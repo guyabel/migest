@@ -1,9 +1,12 @@
 Package: migest
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2015-01-10
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Useful R code for the Estimation of Migration
+Version: 1.7
+Date: 2013-02-10
+Author: Guy J. Abel
+Maintainer: Guy J. Abel <g.j.abel@gmail.com>
+Description: The migest package contains a collection of R functions that are useful to estimate migration when there is missing data. Included is the ffs routine to estimate migration flows from stock data, as well as various other functions to indirectly estimate flows where marginal totals are known. Functions are illustrated with dummy data.
+License: GPL-2
+URL: http://gjabel.wordpress.com/category/r/migest/
+LazyLoad: yes
+LazyData: yes
