@@ -36,7 +36,7 @@ A matrix containing the number of births during the period in each birthplace (r
 A matrix containing the number of deaths during the period in each birthplace (rows) by place of residence (columns) combination created by the user. By default, this argument is \code{NULL}, and hence within the function a \code{d.mat} is formed as a proportional allocation of \code{d} over all populations (i.e. the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same.)
 }
   \item{b.deduct}{
-Method used to deduct births. By default \code{b.deduct="native.gt0"} deducts births from diagonals of stock table (i.e. the native born populations) with the exception of regions where this would lead to a negative adjusted population. In these select regions, births are spread over all population stocks (both native and foreign) thus avoiding potential negative flows. Can also take \code{b.deduct="native"} in which all births are deducted from the diagonals of stock table (i.e. native born populations only).
+Method used to deduct births. By default \code{b.deduct="native.gt0"} deducts births from diagonals of stock table (i.e. the native born populations) with the exception of regions where this would lead to a negative adjusted population. In these select regions, births are spread over all population stocks (both native and foreign) thus avoiding potential negative flows. Can also take \code{b.deduct="native.only"} in which all births are deducted from the diagonals of stock table (i.e. native born populations only).
 }
   \item{\dots}{
 Additional arguments passes to \code{\link{ipf3.qi}}.
@@ -58,6 +58,7 @@ Returns a \code{list} object with:
 }
 \references{
 Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Flows. \emph{Science}, 343 (6178) 1520-1522
+
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 }
 \author{

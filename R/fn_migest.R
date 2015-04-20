@@ -258,7 +258,7 @@ ffs<-function(P1,P2,d,b,m=NULL,method="stocks",b.mat=NULL,d.mat=NULL,b.deduct="n
   if(!(method %in% c("outside","stocks","deaths")) | length(method)!=1)
     stop("method must be one of outside, stocks or deaths")
   if(!(b.deduct %in% c("native.only","native.gt0")) | length(b.deduct)!=1)
-    stop("method must be one of di, stocks or deaths")
+    stop("method must be one of outside, stocks or deaths")
   R<-nrow(P1)
   #set up offset
   if(is.null(m)){
