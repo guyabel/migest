@@ -1,11 +1,10 @@
 Package: migest
 Type: Package
-Title: Useful R code for the Estimation of Migration
-Version: 1.7
-Date: 2013-02-10
+Title: Methods for the Indirect Estimation of Bilateral Migration
+Version: 1.7.1
 Author: Guy J. Abel
 Maintainer: Guy J. Abel <g.j.abel@gmail.com>
-Description: The migest package contains a collection of R functions that are useful to estimate migration when there is missing data. Included is the ffs routine to estimate migration flows from stock data, as well as various other functions to indirectly estimate flows where marginal totals are known. Functions are illustrated with dummy data.
+Description: Indirect methods for estimating bilateral migration flows in the presence of partial or missing data. Methods might be relevant to other categorical data situations on non-migration data, where for example, marginal totals are known and only auxiliary bilateral data is available.
 License: GPL-2
 URL: http://gjabel.wordpress.com/category/r/migest/
 LazyLoad: yes
