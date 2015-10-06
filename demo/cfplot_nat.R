@@ -30,8 +30,8 @@ library("circlize")
 circos.clear()
 par(mar = rep(0, 4), cex=0.8)
 circos.par(start.degree = 90, gap.degree = 4)
-chordDiagram(mat = m, directional = TRUE, order = df1$region, grid.col = df1$col, annotationTrack = "grid",  fromRows = FALSE,
-             transparency = 0.25, preAllocateTracks = list(track.height = 0.1))
+chordDiagram(x = m, directional = TRUE, order = df1$region, grid.col = df1$col, annotationTrack = "grid",
+            transparency = 0.25,  annotationTrackHeight = c(0.1, 0.1)) 
 
 #add in labels and axis
 circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
