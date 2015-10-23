@@ -31,7 +31,8 @@ circos.clear()
 par(mar = rep(0, 4), cex=0.8)
 circos.par(start.degree = 90, gap.degree = 4)
 chordDiagram(x = m, directional = TRUE, order = df1$region, grid.col = df1$col, annotationTrack = "grid",
-            transparency = 0.25,  annotationTrackHeight = c(0.1, 0.1)) 
+            transparency = 0.25,  annotationTrackHeight = c(0.1, 0.1), 
+            preAllocateTracks = list(track.height = 0.1)) 
 
 #add in labels and axis
 circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
@@ -44,7 +45,7 @@ circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
   if(theta < 90 || theta > 270)  aa =c(0, 0.5)
   circos.text(x = mean(xlim), y = 0.1, labels = sector.index, facing = dd, adj = aa)
   circos.axis(h="top", track.index = 2, major.at = seq(0, max(xlim), by=5), minor.ticks=1, 
-              labels.away.percentage = 0.2, labels.niceFacing = FALSE )
+              labels.away.percentage = 0.1, labels.niceFacing = FALSE )
 }, bg.border = NA)
 
 
