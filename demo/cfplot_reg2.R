@@ -47,11 +47,11 @@ chordDiagram(x = df0, grid.col = df1$col, transparency = 0.25,
 # First line of arguments reads in the data (df0) and sets the colours base on the meta data (df1).
 # Second line provides the order of outer sectors and indicates that chords should be directional.
 # Third line indicates that the direction of the chords will be illustrated by both arrows and a difference in height. The
-#  height difference is negative to make the chord shorter at the end (with the arrow head)
+#  height difference is negative to make the chord shorter at the end (with the arrow head).
 # Fourth line ensures the annotations outside the sectors are not plotted, but provides a track measures to later add 
-#  annotatinos such as labels and axis (see below)
+#  annotatinos such as labels and axis (see below).
 # Fifth line indicates the plot should use big arrows, sort the chords left to right in each sector and 
-#  plots the smallest chords first
+#  plots the smallest chords first.
 
 ##
 ##add in labels and axis
@@ -71,20 +71,20 @@ circos.trackPlotRegion(
     circos.text(x = mean(xlim), y = 4.4, 
                 labels = reg2, facing = "bending", cex = 1.2)
     circos.axis(h = "top", 
-                major.at = seq(0, xlim[2], by = ifelse(test = xlim[2]>10, yes = 2, no = 1)), 
+                major.at = seq(from = 0, to = xlim[2], by = ifelse(test = xlim[2]>10, yes = 2, no = 1)), 
                 minor.ticks = 1, major.tick.percentage = 0.5,
                 labels.niceFacing = FALSE)
   }
 )
 
-# first line indicates that first track (rather than any other than may have been created will be used)
-# second line ensures no borders are plotted on the track
-# third line adds a track. 
-# fourth and fifth line collect individual track meta data from plot
-# sixth and seventh line collect matching name information from df1
-# the first circos.text adds text from (reg1) either at y = 6 (if there is a second part of the name in reg2) or 5.2
-# the second circost.text adds text (reg2)
-# the circos.axis add axis with major and minor ticks, without flipping the axis labels in the bottom half
+# First line indicates that first track (rather than any other that may have been created) will be used.
+# Second line ensures no borders are plotted on the track.
+# Third line adds a track.
+# Fourth and fifth line collect individual track meta data from plot object.
+# Sixth and seventh line collect matching name information from plot data frame (df1).
+# The first circos.text adds text from (reg1) either at y = 6 (if there is a second part of the name in reg2) or 5.2.
+# The second circost.text adds text (reg2).
+# The circos.axis add axis with major and minor ticks, without flipping the axis labels in the bottom half.
 
 ##
 ##Printing
