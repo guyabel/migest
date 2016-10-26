@@ -252,6 +252,7 @@ ipf3.qi<-function(rtot=NULL,ctot=NULL,dtot=NULL,m=NULL,speed=TRUE,tol=1e-05,maxi
 ##flows from stock
 ##
 #P1=P1;P2=P2;d=d;b=b.adj;m=m
+#P1 = s0; P2 = s1; d = df7$d; b = df7$b.adj; m = dm; method = "stocks"
 #method="stocks"; d.mat=NULL;b.mat=NULL;b.deduct="native.gt0"
 #m=NULL;
 ffs<-function(P1,P2,d,b,m=NULL,method="stocks",b.mat=NULL,d.mat=NULL,b.deduct="native.gt0",...){
@@ -368,3 +369,4 @@ rc9<-function(x, param=rc9.fund, scaled=TRUE){
 ##
 ##weighted funtion for b.mat and d.mat
 ##
+
