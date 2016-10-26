@@ -1,10 +1,10 @@
 \name{cm2}
 \alias{cm2}
 \title{
-Conditional Maximisation Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.
+Conditional Maximization Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.
 }
 \description{
-The \code{cm2} functotion finds the maximum likelihood estimates for parameters in the log-linear model:
+The \code{cm2} function finds the maximum likelihood estimates for parameters in the log-linear model:
 \deqn{ \log y_{ij} = \log \alpha_i + \log \beta_j + \log m_{ij} }
 as introduced by Willekens (1999). The  \eqn{\alpha_i} and  \eqn{\beta_j} represent background information related to  the characteristics of the origin and destinations respectively. The  \eqn{m_{ij}} factor represents auxiliary information on migration flows, which imposes its interaction structure onto the estimated flow matrix.
 }
@@ -26,14 +26,14 @@ Auxiliary matrix. By default set to 1 for all origin-destination combinations.
 Tolerance level for parameter estimation.
 }
   \item{maxit}{
-Maximum number of verboseations for parameter estimation.
+Maximum number of iterations for parameter estimation.
 }
   \item{verbose}{
-Print the parameter estimates at each verboseation. By default \code{TRUE}.
+Print the parameter estimates at each iteration. By default \code{TRUE}.
 }
 }
 \details{
-Parameter estimates are obtained using the EM algorithm outlined in Willekens (1999). This is equivalent to a conditional maximisation of the likelihood, as discussed by Raymer et. al. (2007). It also provides identical indirect estimates to those obtained from the \code{\link{ipf2}} routine. 
+Parameter estimates are obtained using the EM algorithm outlined in Willekens (1999). This is equivalent to a conditional maximization of the likelihood, as discussed by Raymer et. al. (2007). It also provides identical indirect estimates to those obtained from the \code{\link{ipf2}} routine. 
 
 The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) to equal those provided in the row (\code{rtot}) and column (\code{ctot}) arguments.
 }

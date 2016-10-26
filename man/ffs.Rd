@@ -53,11 +53,11 @@ Setting \code{b.deduct="native.gt0"} allows estimates to correct for cases where
 Returns a \code{list} object with:
   \item{mu }{Array of indirect estimates of origin-destination matrices by place of birth.}
   \item{it }{Iteration count.}
-  \item{tol }{Tolerance level at final verboseation.}
+  \item{tol }{Tolerance level at final iteration.}
   \item{y }{Array of indirect estimates of origin-destination matrices by place of birth with additional rows and columns for births, deaths and moves to other regions.}
 }
 \references{
-Abel, G. J. (2015). Abel, G. J. (2015). Estimates of Global Bilateral Migration Flows by Gender Between 1960 and 2010. \emph{Vienna Institute of Demography Woking Papers} 5/2015.
+Abel, G. J. (2016). Estimates of Global Bilateral Migration Flows by Gender between 1960 and 2015. \emph{Vienna Institute of Demography Working Papers} 2/2016.
 
 Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Flows. \emph{Science}, 343 (6178) 1520-1522
 

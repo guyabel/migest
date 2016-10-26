@@ -14,7 +14,7 @@ Package: \tab migest\cr
 Type: \tab Package\cr
 License: \tab GPL-2\cr
 }
-The estimation methods in this package can be grouped as 1) functions for origin-destination matrices (\code{\link{cm2}} and \code{\link{ipf2}}) and 2) functions for origin-destination matrices categorised by a further set of characteristics, such as ethnicity, employment or health status (\code{\link{cm3}}, \code{\link{ipf3}} and \code{\link{ipf3.qi}}). All these routines are based on indirect estimation methods where marginal totals are known, and a Poisson regression (log-linear) model is assumed. 
+The estimation methods in this package can be grouped as 1) functions for origin-destination matrices (\code{\link{cm2}} and \code{\link{ipf2}}) and 2) functions for origin-destination matrices categorized by a further set of characteristics, such as ethnicity, employment or health status (\code{\link{cm3}}, \code{\link{ipf3}} and \code{\link{ipf3.qi}}). All these routines are based on indirect estimation methods where marginal totals are known, and a Poisson regression (log-linear) model is assumed. 
 
 The flow from stock function, \code{\link{ffs}} acts as a wrapper for a combination of some of these estimation routines with further adjustments for changes in foreign born stocks over a period. The demo files, \code{demo(cfplot_reg)} and \code{demo(cfplot_nat)}, produce circular migration flow plots for migration estimates from Abel and Sander (2014), which were derived using the \code{\link{ffs}} function.
 
@@ -29,7 +29,7 @@ Github repo:
 Guy J. Abel
 }
 \references{
-Abel, G. J. (2015). Abel, G. J. (2015). Estimates of Global Bilateral Migration Flows by Gender Between 1960 and 2010. \emph{Vienna Institute of Demography Woking Papers} 5/2015.
+Abel, G. J. (2016). Estimates of Global Bilateral Migration Flows by Gender between 1960 and 2015. \emph{Vienna Institute of Demography Working Papers} 2/2016.
 
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 

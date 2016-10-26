@@ -4,7 +4,7 @@
 Extract a Classic Origin-Destination Migration Flow Matrix.
 }
 \description{
-Extract a classic origin-destination migration flow matrix from a more detailed disaggregation of flows stored in an (\code{array}) object.
+Extract a classic origin-destination migration flow matrix from a more detailed dis-aggregation of flows stored in an (\code{array}) object.
 }
 \usage{
 fm(y)

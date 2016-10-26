@@ -9,7 +9,7 @@ Provides the Rogers-Castro schedule,
 for a given set of parameters and ages.
 }
 \usage{
-rc9(x, param = rc9.fund, scaled = TRUE)
+rc9(x, param = NULL, scaled = TRUE)
 }
 \arguments{
   \item{x}{
@@ -40,10 +40,10 @@ Guy J. Abel
 \examples{
 # single age groups
 x <- 1:100
-rc9(x, rc9.fund)
-plot(x, rc9(x, rc9.fund), type="l")
+m <- rc9(x, param = rc9.fund)
+plot(x, m, type="l")
 
 # 5 year age groups
-x <- seq(2.5, 102.5, 5)
-plot(x, rc9(x, rc9.fund), type="l")
+m <- rc9(x, param = rc9.fund)
+plot(x, m, type="l")
 }

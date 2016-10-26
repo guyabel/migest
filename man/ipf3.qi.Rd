@@ -29,16 +29,16 @@ Array with counts on diagonal to constrain diagonal elements of the indirect est
 Array of auxiliary data. By default set to 1 for all origin-destination-migrant type combinations.
 }
   \item{speed}{
-Speeds up the IPF algorithm by minimising sufficient statistics.
+Speeds up the IPF algorithm by minimizing sufficient statistics.
 }
   \item{tol}{
 Tolerance level for parameter estimation.
 }
   \item{maxit}{
-Maximum number of verboseations for parameter estimation.
+Maximum number of iterations for parameter estimation.
 }
   \item{verbose}{
-Print the parameter estimates at each verboseation. By default \code{FALSE}.
+Print the parameter estimates at each iteration. By default \code{FALSE}.
 }
 }
 \details{
@@ -50,7 +50,7 @@ The user must ensure that the row and column totals in each table sum to the sam
 Returns a \code{list} object with
   \item{mu }{Array of indirect estimates of origin-destination matrices by migrant characteristic}
   \item{it }{Iteration count}
-  \item{tol }{Tolerance level at final verboseation}
+  \item{tol }{Tolerance level at final iteration}
 }
 \references{
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546

@@ -26,14 +26,14 @@ Auxiliary matrix. By default set to 1 for all origin-destination combinations.
 Tolerance level for parameter estimation.
 }
   \item{maxit}{
-Maximum number of verboseations for parameter estimation.
+Maximum number of iterations for parameter estimation.
 }
   \item{verbose}{
-Print the parameter estimates at each verboseation. By default \code{TRUE}.
+Print the parameter estimates at each iteration. By default \code{TRUE}.
 }
 }
 \details{
-Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). This is equivalent to a conditional maximisation of the likelihood, as discussed by Willekens (1999), and hence provides identical indirect estimates to those obtained from the \code{\link{cm2}} routine. 
+Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). This is equivalent to a conditional maximization of the likelihood, as discussed by Willekens (1999), and hence provides identical indirect estimates to those obtained from the \code{\link{cm2}} routine. 
 
 The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) to equal those provided in the row and column totals.
 
@@ -43,7 +43,7 @@ If only one of the margins is known, the function can still be run. The indirect
 Returns a \code{list} object with
   \item{mu }{Origin-Destination matrix of indirect estimates}
   \item{it }{Iteration count}
-  \item{tol }{Tolerance level at final verboseation}
+  \item{tol }{Tolerance level at final iteration}
 }
 \references{
 Agresti, A. (2002). \emph{Categorical Data Analysis} 2nd edition. Wiley. 

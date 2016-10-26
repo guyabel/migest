@@ -1,7 +1,7 @@
 \name{cm3}
 \alias{cm3}
 \title{
-Conditional Maximisation Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.
+Conditional Maximization Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.
 }
 \description{
 The \code{cm3} function finds the maximum likelihood estimates for parameters in the log-linear model:
@@ -26,14 +26,14 @@ Array of auxiliary data. By default set to 1 for all origin-destination-migrant 
 Tolerance level for parameter estimation.
 }
   \item{maxit}{
-Maximum number of verboseations for parameter estimation.
+Maximum number of iterations for parameter estimation.
 }
   \item{verbose}{
-Print the parameter estimates at each verboseation. By default \code{FALSE}.
+Print the parameter estimates at each iteration. By default \code{FALSE}.
 }
 }
 \details{
-Parameter estimates were obtained using the conditional maximisation of the likelihood, as discussed by Abel (2005) and Raymer et. al. (2007). 
+Parameter estimates were obtained using the conditional maximization of the likelihood, as discussed by Abel (2005) and Raymer et. al. (2007). 
 
 The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the row and column dimension of the auxiliary matrix (\code{m}) to equal those provided in the row and column totals.
 }
