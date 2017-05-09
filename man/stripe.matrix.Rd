@@ -4,28 +4,28 @@
 \alias{stripe.matrix}
 \title{Create a Stripped Matrix with Non-Uniform Block Sizes.}
 \usage{
-stripe.matrix(x = NULL, b = NULL, byrow = FALSE, dimnames = NULL)
+stripe.matrix(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL)
 }
 \arguments{
 \item{x}{Vector of numbers to identify each stripe.}
 
-\item{b}{Numeric value for the size of the stripes within the matrix ordered depending on \code{byrow}}
+\item{s}{Vector of values for the size of the stripes, order depending on \code{byrow}}
 
 \item{byrow}{Logical value. If \code{FALSE} (the default) the stripes are filled by columns, otherwise the stripes in the matrix are filled by rows.}
 
-\item{dimnames}{Character string of name attribute for the basis of the stripped matrix. If \code{NULL} a vector of the same length of \code{b} provides the basis of row and column names.}
+\item{dimnames}{Character string of name attribute for the basis of the stripped matrix. If \code{NULL} a vector of the same length of \code{s} provides the basis of row and column names.}
 }
 \value{
-Returns a \code{matrix} with stripe sizes determined by the \code{b} argument. Each stripe is filled with the same value taken from \code{x}.
+Returns a \code{matrix} with stripe sizes determined by the \code{s} argument. Each stripe is filled with the same value taken from \code{x}.
 }
 \description{
 Create a Stripped Matrix with Non-Uniform Block Sizes.
 }
 \examples{
-stripe.matrix(x = 1:44, b = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)
+stripe.matrix(x = 1:44, s = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)
 }
 \seealso{
-\code{\link{block.matrix}}, \code{\link{block.sum}}, \code{\link{ipf2.b}}
+\code{\link{block.matrix}}, \code{\link{block.sum}}, \code{\link{ipf2.s}}
 }
 \author{
 Guy J. Abel

@@ -7,8 +7,8 @@
 #' @param rtot Vector of origin totals to constrain the sum of the imputed cell rows.
 #' @param ctot Vector of destination totals to constrain the sum of the imputed cell columns.
 #' @param btot Matrix of block totals to constrain the sum of the imputed cell blocks. 
-#' @param blocks Matrix of block structure corresponding to \code{btot}.
-#' @param m Array of auxiliary data. By default set to 1 for all origin-destination-migrant type combinations.
+#' @param block Matrix of block structure corresponding to \code{btot}.
+#' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
@@ -16,7 +16,9 @@
 #'
 #' @return
 #' Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. The \code{btot} take the totals over the blocks in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
+#' 
 #' The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) equal those provided in the row and column totals.
+#' 
 #' Returns a \code{list} object with
 #' \item{mu }{Array of indirect estimates of origin-destination matrices by migrant characteristic}
 #' \item{it }{Iteration count}
@@ -25,23 +27,23 @@
 #' @seealso \code{\link{block.matrix}}, \code{\link{stripe.matrix}}, \code{\link{block.sum}}
 #' 
 #' @export
-y <- ipf2.b(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
-            ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
-            btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE),
-            b = c(2,3,4,3))
-addmargins(y$mu)
 #' @examples
+#' y <- ipf2.b(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
+#'             ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
+#'             btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE),
+#'             block = block.matrix(x = 1:16, b = c(2,3,4,3)))
+#' addmargins(y$mu)
 # rtot = c(30,20,30,10,20,5,0,10,5,5,5,10)
 # ctot = c(45,10,10,5,5,10,50,5,10,0,0,0)
 # btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE)
-# b = c(2,3,4,3)
 ipf2.b<-function(rtot = NULL, ctot = NULL, btot = NULL,
-                 b = NULL, m = NULL,
+                 block = NULL, m = NULL,
                  tol = 1e-05, maxit = 500, verbose=TRUE, ...){
   if(sum(!is.null(rtot), !is.null(ctot)) == 2)
     if(any(round(sum(rtot))!=round(sum(ctot))))
       stop("row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)")
-  b_id <- block.matrix(x = 1:(nrow(btot)*ncol(btot)), b = b, ...)
+  b_id <- block
+  b <- table(block[1,])
   n<-list(i = rtot,
           j = t(ctot),
           b = c(btot))

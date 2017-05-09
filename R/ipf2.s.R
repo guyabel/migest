@@ -7,9 +7,8 @@
 #' @param rtot Vector of origin totals to constrain the sum of the imputed cell rows.
 #' @param ctot Vector of destination totals to constrain the sum of the imputed cell columns.
 #' @param stot Matrix of stripe totals to constrain the sum of the imputed cell blocks. 
-#' @param s Vector of values for the size of the stripes.
-#' @param byrow Logical value. If \code{FALSE} (the default) the stripes are filled by columns, otherwise the stripes in the matrix are filled by rows.
-#' @param m Array of auxiliary data. By default set to 1 for all origin-destination-migrant type combinations.
+#' @param stripe Matrix of stripe stucture corresponding to \code{stot}.
+#' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
@@ -23,50 +22,39 @@
 #' \item{it }{Iteration count}
 #' \item{tol }{Tolerance level at final iteration}
 #' @author Guy J. Abel
-#' @seealso \code{\link{stripe.matrix}}, \code{\link{stripe.matrix}}, \code{\link{stripe.sum}}
+#' @seealso \code{\link{stripe.matrix}}, \code{\link{stripe.matrix}}, \code{\link{block.sum}}
 #' 
 #' @export
 #' @examples
-#' 
-y <- ipf2.s(rtot = c(85, 70, 35, 30, 60, 55, 65),
-            stot = matrix(c(15,20,50,
-                            35,10,25,
-                            5,0,30,
-                            10,10,10,
-                            30,30,0,
-                            15,30,10,
-                            35,25,5 ),
-                          ncol = 3, byrow = TRUE),
-            s = c(2,2,3), byrow = TRUE)
-addmargins(y$mu)
-
-rtot = c(85, 70, 35, 30, 60, 55, 65)
-stot = matrix(c(15,20,50,
-                35,10,25,
-                5,0,30,
-                10,10,10,
-                30,30,0,
-                15,30,10,
-                35,25,5 ),
-              ncol = 3, byrow = TRUE)
-sum(rtot)
-sum(stot)
-ctot = NULL; m = NULL
-s = c(2,2,3); m = NULL
-tol = 1e-05; maxit = 500; verbose=TRUE
- 
+#' y <- ipf2.s(rtot = c(85, 70, 35, 30, 60, 55, 65),
+#'  stot = matrix(c(15,20,50,
+#'                 35,10,25,
+#'                 5 ,0 ,30,
+#'                 10,10,10,
+#'                 30,30,0,
+#'                 15,30,10,
+#'                 35,25,5 ), ncol = 3, byrow = TRUE),
+#'  stripe = stripe.matrix(x = 1:21, s = c(2,2,3), byrow = TRUE))
+#'  addmargins(y$mu)
 ipf2.s <- function(rtot = NULL, ctot = NULL, 
-                   stot = NULL, s = NULL, byrow = FALSE, 
+                   stot = NULL, stripe = NULL, 
                    m = NULL,
                    tol = 1e-05, maxit = 500, verbose=TRUE, ...){
   if(sum(!is.null(rtot), !is.null(ctot)) == 2)
     if(any(round(sum(rtot)) != round(sum(ctot))))
       stop("row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)")
-  # s_id <- stripe.matrix(x = 1:(nrow(stot)*ncol(stot)), s = s, byrow = TRUE)
-  s_id <- stripe.matrix(x = 1:(nrow(stot)*ncol(stot)), s = s, ...)
+  s_id <- stripe
+  byrow <- length(unique(s_id[,1])) == length(s_id[,1])
+  if(byrow == TRUE)
+    s <- table(stripe[1,])
+  if(byrow == FALSE)
+    s <- table(stripe[,1])
+  if(byrow == TRUE)
+    stot <- t(stot)
+  
   n <- list(i = rtot, 
             j = ifelse(is.null(ctot), 0, t(ctot)),
-            s = ifelse(byrow, c(t(stot)), c(stot))
+            s = c(stot))
 
   #set up offset
   if(is.null(m)){
@@ -98,9 +86,7 @@ ipf2.s <- function(rtot = NULL, ctot = NULL,
       m.fact$s <- n$s/mu.marg$s
       m.fact$s[is.nan(m.fact$s)]<-0
       m.fact$s[is.infinite(m.fact$s)]<-0
-      
-      # mu <- mu * stripe.matrix(m.fact$s, s, byrow = TRUE)
-      mu <- mu * stripe.matrix(m.fact$s, s, ...)
+      mu <- mu * stripe.matrix(m.fact$s, s, byrow = byrow)
     }
     
     it<-it+1
@@ -110,7 +96,5 @@ ipf2.s <- function(rtot = NULL, ctot = NULL,
   }
   return(list(mu=mu,it=it,tol=max.diff))
 }
-rm(n,mu,mu.marg,m.fact,it,max.diff,s_id)
-rm(rtot,ctot,stot,s)
-
-
+# rm(n,mu,mu.marg,m.fact,it,max.diff,s_id)
+# rm(rtot,ctot,stot,s, byrow, m, maxit,tol,verbose)
