@@ -1,4 +1,4 @@
-A collection of R functions that are useful to estimate migration when there is missing data. Included is the `ffs` routine to estimate migration flows from stock data, as well as various other functions to indirectly estimate flows where marginal totals are known. Functions are illustrated with dummy data.
+Indirect methods for estimating bilateral migration flows in the presence of partial or missing data. Methods might be relevant to other categorical data situations on non-migration data, where for example, marginal totals are known and only auxiliary bilateral data is available.
 
 
 https://gjabel.wordpress.com/category/r/migest/

@@ -67,9 +67,9 @@ circos.trackPlotRegion(
     reg2 = df1$reg2[df1$region == sector.index]
     
     circos.text(x = mean(xlim), y = ifelse(test = nchar(reg2) == 0, yes = 5.2, no = 6.0), 
-                labels = reg1, facing = "bending", cex = 1.2)
+                labels = reg1, facing = "bending", cex = 1.4)
     circos.text(x = mean(xlim), y = 4.4, 
-                labels = reg2, facing = "bending", cex = 1.2)
+                labels = reg2, facing = "bending", cex = 1.4)
     circos.axis(h = "top", 
                 major.at = seq(from = 0, to = xlim[2], by = ifelse(test = xlim[2]>10, yes = 2, no = 1)), 
                 minor.ticks = 1, major.tick.percentage = 0.5,
@@ -104,5 +104,5 @@ circos.trackPlotRegion(
 # dev.copy2pdf(file = "cfplot_reg2.pdf", height=10, width=10)
 # file.show("./cfplot_reg2.pdf")
 #  
-# dev.print(png, file = "cfplot_reg2.png", height=25, width=25, units = "cm", res=1000)
+# dev.print(png, file = "cfplot_reg2.png", height=10, width=10, units = "in", res=500)
 # file.show("cfplot_reg2.png")
