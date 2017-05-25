@@ -37,9 +37,9 @@
 #' @examples
 #' ## create P1 and P2 stock tables
 #' dn <- LETTERS[1:4]
-#' P1 <- matrix(c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200), 4, 4, 
+#' P1 <- matrix(c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200), 4, 4,
 #'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' P2 <- matrix(c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180), 4, 4, 
+#' P2 <- matrix(c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180), 4, 4,
 #'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
 #' # display with row and col totals
 #' addmargins(P1)
@@ -56,7 +56,7 @@
 #' round(fm(y$mu), 1)
 #' 
 #' ## alternative offset term
-#' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
+#' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 1))
 #' y <- ffs(P1, P2, d, b, dis)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
@@ -80,8 +80,7 @@
 #P1 = s0; P2 = s1; d = df7$d; b = df7$b.adj; m = dm; method = "stocks"
 #method="stocks"; d.mat=NULL;b.mat=NULL;b.deduct="native.gt0"
 #m=NULL;
-ffs <-
-  function(P1,
+ffs <- function(P1,
            P2,
            d,
            b,
@@ -97,17 +96,25 @@ ffs <-
     if (!(b.deduct %in% c("native.only", "native.gt0")) |
         length(b.deduct) != 1)
       stop("method must be one of outside, stocks or deaths")
-    R <- nrow(P1)
+    
+    R <- unique(c(dim(P1), dim(P2)))
+    if (length(R) != 1)
+      stop("P1 and P2 matrices must be square and with the same dimensions.")
+    dn <- dimnames(P1)[[1]]
+    
     #set up offset
+    if (length(dim(m)) == 2) {
+      m <- array(c(m), c(R, R, R))
+    }
     if (is.null(m)) {
-      m <- array(1, c(dim(P1), dim(P1)[1]))
+      m <- array(1, c(R, R, R))
     }
     if (is.null(dimnames(m))) {
-      dimnames(m) <-
-        list(orig = dimnames(P1)[[1]],
-             dest = dimnames(P2)[[1]],
-             pob = dimnames(P1)[[2]])
+      dimnames(m) <- list(orig = dn,
+                          dest = dn,
+                          pob = dn)
     }
+
     if (method == "stocks") {
       if (round(sum(P2 - P1), 1) != round(sum(b - d), 1)) {
         message("sum(P2-P1): ", sum(P2 - P1))
