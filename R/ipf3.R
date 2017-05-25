@@ -60,43 +60,64 @@
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
 #' round(fm(y$mu), 1) 
-ipf3<-function(rtot=NULL,ctot=NULL,m=NULL,tol=1e-05,maxit=500,verbose=TRUE){
-  if(any(round(colSums(rtot))!=round(rowSums(ctot))))
-    stop("row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)")
-  n<-list(ik=rtot,
-          jk=t(ctot))
-  R<-dim(rtot)[1]
-  
-  #set up offset
-  if(is.null(m)){
-    m<-array(1,c(dim(rtot),dim(rtot)[1]))
-    dimnames(m)<-list(orig=dimnames(rtot)[[1]],dest=dimnames(ctot)[[1]],pob=dimnames(rtot)[[2]])
+ipf3 <-
+  function(rtot = NULL,
+           ctot = NULL,
+           m = NULL,
+           tol = 1e-05,
+           maxit = 500,
+           verbose = TRUE) {
+    if (any(round(colSums(rtot)) != round(rowSums(ctot))))
+      stop(
+        "row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)"
+      )
+    
+    R <- unique(c(dim(rtot), dim(ctot)))
+    if (length(R) != 1)
+      stop("Row totals and column totals matrices must be square and with the same dimensions.")
+    dn <- dimnames(rtot)[[1]]
+    
+    n <- list(ik = rtot,
+              jk = t(ctot))
+    
+    #set up offset
+    if (length(dim(m)) == 2) {
+      m <- array(c(m), c(R, R, R))
+    }
+    if (is.null(m)) {
+      m <- array(1, c(dim(rtot), dim(rtot)[1]))
+    }
+    if (is.null(dimnames(m))) {
+      dimnames(m) <- list(orig = dn,
+                          dest = dn,
+                          pob = dn)
+    }
+    
+    mu <- m
+    mu.marg <- n
+    m.fact <- n
+    it <- 0
+    max.diff <- tol * 2
+    while (max.diff > tol & it < maxit) {
+      mu.marg$ik <- apply(mu, c(1, 3), sum)
+      m.fact$ik <- n$ik / mu.marg$ik
+      m.fact$ik[is.nan(m.fact$ik)] <- 0
+      m.fact$ik[is.infinite(m.fact$ik)] <- 0
+      mu <- sweep(mu, c(1, 3), m.fact$ik, "*")
+      
+      mu.marg$jk <- apply(mu, c(2, 3), sum)
+      m.fact$jk <- n$jk / mu.marg$jk
+      m.fact$jk[is.nan(m.fact$jk)] <- 0
+      m.fact$jk[is.infinite(m.fact$jk)] <- 0
+      mu <- sweep(mu, c(2, 3), m.fact$jk, "*")
+      
+      it <- it + 1
+      #max.diff<-max(abs(unlist(n)-unlist(mu.marg)))
+      #speeds up a lot if get rid of unlist (new to v1.7)
+      max.diff <- max(abs(c(n$ik - mu.marg$ik, n$jk - mu.marg$jk)))
+      
+      if (verbose == TRUE)
+        cat(c(it, max.diff), "\n")
+    }
+    return(list(mu = mu, it = it, tol = max.diff))
   }
-  
-  mu<-m
-  mu.marg<-n
-  m.fact<-n
-  it<-0; max.diff<-tol*2
-  while(max.diff>tol & it<maxit){
-    mu.marg$ik <- apply(mu,c(1,3),sum)
-    m.fact$ik <- n$ik/mu.marg$ik
-    m.fact$ik[is.nan(m.fact$ik)]<-0
-    m.fact$ik[is.infinite(m.fact$ik)]<-0
-    mu <- sweep(mu, c(1,3), m.fact$ik, "*")
-    
-    mu.marg$jk <- apply(mu, c(2,3), sum)
-    m.fact$jk <- n$jk/mu.marg$jk
-    m.fact$jk[is.nan(m.fact$jk)]<-0
-    m.fact$jk[is.infinite(m.fact$jk)]<-0
-    mu <- sweep(mu, c(2,3), m.fact$jk, "*")
-    
-    it<-it+1
-    #max.diff<-max(abs(unlist(n)-unlist(mu.marg)))
-    #speeds up a lot if get rid of unlist (new to v1.7)
-    max.diff<-max(abs(c(n$ik-mu.marg$ik, n$jk-mu.marg$jk)))
-    
-    if(verbose==TRUE)
-      cat(c(it, max.diff), "\n")
-  }
-  return(list(mu=mu,it=it,tol=max.diff))
-}

@@ -36,65 +36,76 @@
 #'                 35,25,5 ), ncol = 3, byrow = TRUE),
 #'  stripe = stripe.matrix(x = 1:21, s = c(2,2,3), byrow = TRUE))
 #'  addmargins(y$mu)
-ipf2.s <- function(rtot = NULL, ctot = NULL, 
-                   stot = NULL, stripe = NULL, 
+ipf2.s <- function(rtot = NULL,
+                   ctot = NULL,
+                   stot = NULL,
+                   stripe = NULL,
                    m = NULL,
-                   tol = 1e-05, maxit = 500, verbose=TRUE, ...){
-  if(sum(!is.null(rtot), !is.null(ctot)) == 2)
-    if(any(round(sum(rtot)) != round(sum(ctot))))
-      stop("row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)")
+                   tol = 1e-05,
+                   maxit = 500,
+                   verbose = TRUE,
+                   ...) {
+  if (sum(!is.null(rtot),!is.null(ctot)) == 2)
+    if (any(round(sum(rtot)) != round(sum(ctot))))
+      stop(
+        "row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)"
+      )
   s_id <- stripe
-  byrow <- length(unique(s_id[,1])) == length(s_id[,1])
-  if(byrow == TRUE)
-    s <- table(stripe[1,])
-  if(byrow == FALSE)
-    s <- table(stripe[,1])
-  if(byrow == TRUE)
+  byrow <- length(unique(s_id[, 1])) == length(s_id[, 1])
+  if (byrow == TRUE)
+    s <- table(stripe[1, ])
+  if (byrow == FALSE)
+    s <- table(stripe[, 1])
+  if (byrow == TRUE)
     stot <- t(stot)
   
-  n <- list(i = rtot, 
+  n <- list(i = rtot,
             j = ifelse(is.null(ctot), 0, t(ctot)),
             s = c(stot))
-
+  
   #set up offset
-  if(is.null(m)){
+  if (is.null(m)) {
     m <- s_id
-    m[,] <- 1
+    m[, ] <- 1
   }
   
   mu <- m
   mu.marg <- n
   m.fact <- n
-  it <- 0; max.diff <- tol*2
-  while(max.diff>tol & it<maxit){
-    if(!is.null(ctot)){
-      mu.marg$j <- apply(mu,2,sum)
-      m.fact$j <- n$j/mu.marg$j
-      m.fact$j[is.nan(m.fact$j)]<-0
-      m.fact$j[is.infinite(m.fact$j)]<-0
+  it <- 0
+  max.diff <- tol * 2
+  while (max.diff > tol & it < maxit) {
+    if (!is.null(ctot)) {
+      mu.marg$j <- apply(mu, 2, sum)
+      m.fact$j <- n$j / mu.marg$j
+      m.fact$j[is.nan(m.fact$j)] <- 0
+      m.fact$j[is.infinite(m.fact$j)] <- 0
       mu <- sweep(mu, 2, m.fact$j, "*")
     }
-    if(!is.null(rtot)){
-      mu.marg$i <- apply(mu,1,sum)
-      m.fact$i <- n$i/mu.marg$i
-      m.fact$i[is.nan(m.fact$i)]<-0
-      m.fact$i[is.infinite(m.fact$i)]<-0
+    if (!is.null(rtot)) {
+      mu.marg$i <- apply(mu, 1, sum)
+      m.fact$i <- n$i / mu.marg$i
+      m.fact$i[is.nan(m.fact$i)] <- 0
+      m.fact$i[is.infinite(m.fact$i)] <- 0
       mu <- sweep(mu, 1, m.fact$i, "*")
     }
-    if(!is.null(stot)){
+    if (!is.null(stot)) {
       mu.marg$s <- sapply(1:max(s_id), block.sum, m = mu, bid = s_id)
-      m.fact$s <- n$s/mu.marg$s
-      m.fact$s[is.nan(m.fact$s)]<-0
-      m.fact$s[is.infinite(m.fact$s)]<-0
+      m.fact$s <- n$s / mu.marg$s
+      m.fact$s[is.nan(m.fact$s)] <- 0
+      m.fact$s[is.infinite(m.fact$s)] <- 0
       mu <- mu * stripe.matrix(m.fact$s, s, byrow = byrow)
     }
     
-    it<-it+1
-    max.diff <- max(abs(c(n$i-mu.marg$i, n$j-mu.marg$j, n$s-mu.marg$s)))
-    if(verbose==TRUE)
+    it <- it + 1
+    max.diff <-
+      max(abs(c(
+        n$i - mu.marg$i, n$j - mu.marg$j, n$s - mu.marg$s
+      )))
+    if (verbose == TRUE)
       cat(c(it, max.diff), "\n")
   }
-  return(list(mu=mu,it=it,tol=max.diff))
+  return(list(mu = mu, it = it, tol = max.diff))
 }
 # rm(n,mu,mu.marg,m.fact,it,max.diff,s_id)
 # rm(rtot,ctot,stot,s, byrow, m, maxit,tol,verbose)

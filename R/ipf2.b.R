@@ -36,60 +36,70 @@
 # rtot = c(30,20,30,10,20,5,0,10,5,5,5,10)
 # ctot = c(45,10,10,5,5,10,50,5,10,0,0,0)
 # btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE)
-ipf2.b<-function(rtot = NULL, ctot = NULL, btot = NULL,
-                 block = NULL, m = NULL,
-                 tol = 1e-05, maxit = 500, verbose=TRUE, ...){
-  if(sum(!is.null(rtot), !is.null(ctot)) == 2)
-    if(any(round(sum(rtot))!=round(sum(ctot))))
-      stop("row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)")
+ipf2.b <- function(rtot = NULL,
+                   ctot = NULL,
+                   btot = NULL,
+                   block = NULL,
+                   m = NULL,
+                   tol = 1e-05,
+                   maxit = 500,
+                   verbose = TRUE,
+                   ...) {
+  if (sum(!is.null(rtot),!is.null(ctot)) == 2)
+    if (any(round(sum(rtot)) != round(sum(ctot))))
+      stop(
+        "row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)"
+      )
   b_id <- block
-  b <- table(block[1,])
-  n<-list(i = rtot,
-          j = t(ctot),
-          b = c(btot))
+  b <- table(block[1, ])
+  n <- list(i = rtot,
+            j = t(ctot),
+            b = c(btot))
   
   #set up offset
-  if(is.null(m)){
+  if (is.null(m)) {
     m <- b_id
-    m[,] <- 1
+    m[, ] <- 1
   }
-
+  
   mu <- m
   mu.marg <- n
   m.fact <- n
-  it <- 0; max.diff <- tol*2
-  while(max.diff>tol & it<maxit){
-    if(!is.null(ctot)){
-      mu.marg$j <- apply(mu,2,sum)
-      m.fact$j <- n$j/mu.marg$j
-      m.fact$j[is.nan(m.fact$j)]<-0
-      m.fact$j[is.infinite(m.fact$j)]<-0
+  it <- 0
+  max.diff <- tol * 2
+  while (max.diff > tol & it < maxit) {
+    if (!is.null(ctot)) {
+      mu.marg$j <- apply(mu, 2, sum)
+      m.fact$j <- n$j / mu.marg$j
+      m.fact$j[is.nan(m.fact$j)] <- 0
+      m.fact$j[is.infinite(m.fact$j)] <- 0
       mu <- sweep(mu, 2, m.fact$j, "*")
     }
-    if(!is.null(rtot)){
-      mu.marg$i <- apply(mu,1,sum)
-      m.fact$i <- n$i/mu.marg$i
-      m.fact$i[is.nan(m.fact$i)]<-0
-      m.fact$i[is.infinite(m.fact$i)]<-0
+    if (!is.null(rtot)) {
+      mu.marg$i <- apply(mu, 1, sum)
+      m.fact$i <- n$i / mu.marg$i
+      m.fact$i[is.nan(m.fact$i)] <- 0
+      m.fact$i[is.infinite(m.fact$i)] <- 0
       mu <- sweep(mu, 1, m.fact$i, "*")
     }
-    if(!is.null(btot)){
+    if (!is.null(btot)) {
       mu.marg$b <- sapply(1:max(b_id), block.sum, m = mu, bid = b_id)
-      m.fact$b <- n$b/mu.marg$b
-      m.fact$b[is.nan(m.fact$b)]<-0
-      m.fact$b[is.infinite(m.fact$b)]<-0
+      m.fact$b <- n$b / mu.marg$b
+      m.fact$b[is.nan(m.fact$b)] <- 0
+      m.fact$b[is.infinite(m.fact$b)] <- 0
       
-      mu <- mu*block.matrix(m.fact$b, b)
+      mu <- mu * block.matrix(m.fact$b, b)
     }
     
-    it<-it+1
-    max.diff<-max(abs(c(n$i-mu.marg$i, n$j-mu.marg$j, n$b-mu.marg$b)))
-    if(verbose==TRUE)
+    it <- it + 1
+    max.diff <-
+      max(abs(c(
+        n$i - mu.marg$i, n$j - mu.marg$j, n$b - mu.marg$b
+      )))
+    if (verbose == TRUE)
       cat(c(it, max.diff), "\n")
   }
-  return(list(mu=mu,it=it,tol=max.diff))
+  return(list(mu = mu, it = it, tol = max.diff))
 }
 #rm(n,mu,mu.marg,m.fact,it,max.diff,b_id)
 #rm(rtot,ctot,btot,b)
-
-
