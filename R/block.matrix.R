@@ -24,6 +24,9 @@ block.matrix <- function(x = NULL, b = NULL, byrow = FALSE, dimnames = NULL){
     dn <- paste0(dn, dd)
     dn <- list(dn, dn)
   }
+  if(!is.null(dimnames)){
+    dn <- dimnames
+  }
   xx <- matrix(NA, nrow = sum(b), ncol = sum(b), dimnames = dn)
   k <- 1
   if(byrow == TRUE){

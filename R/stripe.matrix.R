@@ -23,6 +23,9 @@ stripe.matrix <- function(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL){
     dn <- paste0(dn, dd)
     dn <- list(dn, dn)
   }
+  if(!is.null(dimnames)){
+    dn <- dimnames
+  }
   xx <- matrix(NA, nrow = sum(s), ncol = sum(s), dimnames = dn)
   k <- 1
   if(byrow == TRUE){
