@@ -12,7 +12,7 @@
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
-#' @param ... Additional arguments passes to \code{\link{block.matrix}}.
+#' @param ... Additional arguments passes to \code{\link{stripe.matrix}}.
 #'
 #' @return
 #' Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. The \code{stot} take the totals over the stripes in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
