@@ -1,6 +1,6 @@
 #' Fundamental Parameters for Rogers-Castro Migration Schedule
 #'
-#' Set of fundamental parameters suggested by Rogers and Castro (1981).
+#' Set of fundamental parameters for the Rogers-Castro migration age schedule, as suggested in Rogers and Castro (1981).
 #'
 #' @source Rogers, A., and L. J. Castro. (1981). Model Migration Schedules. \emph{IIASA Research Report 81} RR-81-30
 #' @format A \code{list} of the parameters required by the \code{\link{rc9}} function:

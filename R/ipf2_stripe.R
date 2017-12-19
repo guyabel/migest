@@ -26,7 +26,7 @@
 #' 
 #' @export
 #' @examples
-#' y <- ipf2.s(rtot = c(85, 70, 35, 30, 60, 55, 65),
+#' y <- ipf2_stripe(rtot = c(85, 70, 35, 30, 60, 55, 65),
 #'  stot = matrix(c(15,20,50,
 #'                 35,10,25,
 #'                 5 ,0 ,30,
@@ -34,7 +34,7 @@
 #'                 30,30,0,
 #'                 15,30,10,
 #'                 35,25,5 ), ncol = 3, byrow = TRUE),
-#'  stripe = stripe.matrix(x = 1:21, s = c(2,2,3), byrow = TRUE))
+#'  stripe = stripe_matrix(x = 1:21, s = c(2,2,3), byrow = TRUE))
 #'  addmargins(y$mu)
 ipf2.s <- function(rtot = NULL,
                    ctot = NULL,
@@ -71,41 +71,37 @@ ipf2.s <- function(rtot = NULL,
   
   mu <- m
   mu.marg <- n
-  m.fact <- n
+  mu_scaler <- n
   it <- 0
-  max.diff <- tol * 2
-  while (max.diff > tol & it < maxit) {
+  d_max <- tol * 2
+  while (d_max > tol & it < maxit) {
     if (!is.null(ctot)) {
-      mu.marg$j <- apply(mu, 2, sum)
-      m.fact$j <- n$j / mu.marg$j
-      m.fact$j[is.nan(m.fact$j)] <- 0
-      m.fact$j[is.infinite(m.fact$j)] <- 0
-      mu <- sweep(mu, 2, m.fact$j, "*")
+      mu.marg$j <- apply(X = mu, MARGIN = 2, FUN = sum)
+      mu_scaler$j <- n$j / mu.marg$j
+      mu_scaler$j[is.nan(mu_scaler$j) | is.infinite(mu_scaler$j)] <- 0
+      mu <- sweep(x = mu, MARGIN = 2, STATS = mu_scaler$j, FUN = "*")
     }
     if (!is.null(rtot)) {
-      mu.marg$i <- apply(mu, 1, sum)
-      m.fact$i <- n$i / mu.marg$i
-      m.fact$i[is.nan(m.fact$i)] <- 0
-      m.fact$i[is.infinite(m.fact$i)] <- 0
-      mu <- sweep(mu, 1, m.fact$i, "*")
+      mu.marg$i <- apply(X = mu, MARGIN = 1, FUN = sum)
+      mu_scaler$i <- n$i / mu.marg$i
+      mu_scaler$i[is.nan(mu_scaler$i) | is.infinite(mu_scaler$i)] <- 0
+      mu <- sweep(x = mu, MARGIN = 1, STATS = mu_scaler$i, FUN = "*")
     }
     if (!is.null(stot)) {
-      mu.marg$s <- sapply(1:max(s_id), block.sum, m = mu, bid = s_id)
-      m.fact$s <- n$s / mu.marg$s
-      m.fact$s[is.nan(m.fact$s)] <- 0
-      m.fact$s[is.infinite(m.fact$s)] <- 0
-      mu <- mu * stripe.matrix(m.fact$s, s, byrow = byrow)
+      mu.marg$s <- sapply(X = 1:max(s_id), FUN = block.sum, m = mu, bid = s_id)
+      mu_scaler$s <- n$s / mu.marg$s
+      mu_scaler$s[is.nan(mu_scaler$s) | is.infinite(mu_scaler$s)] <- 0
+      mu <- mu * stripe_matrix(x = mu_scaler$s, s = s, byrow = TRUE)
     }
     
     it <- it + 1
-    max.diff <-
-      max(abs(c(
-        n$i - mu.marg$i, n$j - mu.marg$j, n$s - mu.marg$s
-      )))
+    d <- c(n$i - mu_margin$i, n$j - mu_margin$j, n$s - mu.marg$s)
+    d_max <- max(abs(d))
+
     if (verbose == TRUE)
-      cat(c(it, max.diff), "\n")
+      cat(c(it, d_max), "\n")
   }
-  return(list(mu = mu, it = it, tol = max.diff))
+  return(list(mu = mu, it = it, tol = d_max))
 }
-# rm(n,mu,mu.marg,m.fact,it,max.diff,s_id)
+# rm(n,mu,mu.marg,mu_scaler,it,d_max,s_id)
 # rm(rtot,ctot,stot,s, byrow, m, maxit,tol,verbose)

@@ -28,15 +28,15 @@
 #' 
 #' @export
 #' @examples
-#' y <- ipf2.b(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
-#'             ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
-#'             btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE),
-#'             block = block.matrix(x = 1:16, b = c(2,3,4,3)))
+#' y <- ipf2_block(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
+#'                 ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
+#'                 btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE),
+#'                 block = block.matrix(x = 1:16, b = c(2,3,4,3)))
 #' addmargins(y$mu)
 # rtot = c(30,20,30,10,20,5,0,10,5,5,5,10)
 # ctot = c(45,10,10,5,5,10,50,5,10,0,0,0)
 # btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE)
-ipf2.b <- function(rtot = NULL,
+ipf2_block <- function(rtot = NULL,
                    ctot = NULL,
                    btot = NULL,
                    block = NULL,
@@ -63,43 +63,38 @@ ipf2.b <- function(rtot = NULL,
   }
   
   mu <- m
-  mu.marg <- n
-  m.fact <- n
+  mu_margin <- n
+  mu_scaler <- n
   it <- 0
-  max.diff <- tol * 2
-  while (max.diff > tol & it < maxit) {
+  d_max <- tol * 2
+  while (d_max > tol & it < maxit) {
     if (!is.null(ctot)) {
-      mu.marg$j <- apply(mu, 2, sum)
-      m.fact$j <- n$j / mu.marg$j
-      m.fact$j[is.nan(m.fact$j)] <- 0
-      m.fact$j[is.infinite(m.fact$j)] <- 0
-      mu <- sweep(mu, 2, m.fact$j, "*")
+      mu_margin$j <- apply(X = mu, MARGIN = 2, FUN = sum)
+      mu_scaler$j <- n$j / mu_margin$j
+      mu_scaler$j[is.nan(mu_scaler$j) | is.infinite(mu_scaler$j)] <- 0
+      mu <- sweep(x = mu, MARGIN = 2, STATS = mu_scaler$j, FUN = "*")
     }
     if (!is.null(rtot)) {
-      mu.marg$i <- apply(mu, 1, sum)
-      m.fact$i <- n$i / mu.marg$i
-      m.fact$i[is.nan(m.fact$i)] <- 0
-      m.fact$i[is.infinite(m.fact$i)] <- 0
-      mu <- sweep(mu, 1, m.fact$i, "*")
+      mu_margin$i <- apply(X = mu, MARGIN = 1, FUN = sum)
+      mu_scaler$i <- n$i / mu_margin$i
+      mu_scaler$i[is.nan(mu_scaler$i) | is.infinite(mu_scaler$i)] <- 0
+      mu <- sweep(x = mu, MARGIN = 1, STATS = mu_scaler$i, FUN = "*")
     }
     if (!is.null(btot)) {
-      mu.marg$b <- sapply(1:max(b_id), block.sum, m = mu, bid = b_id)
-      m.fact$b <- n$b / mu.marg$b
-      m.fact$b[is.nan(m.fact$b)] <- 0
-      m.fact$b[is.infinite(m.fact$b)] <- 0
-      
-      mu <- mu * block.matrix(m.fact$b, b)
+      mu_margin$b <- sapply(X = 1:max(b_id), FUN = block.sum, m = mu, bid = b_id)
+      mu_scaler$b <- n$b / mu_margin$b
+      mu_scaler$b[is.nan(mu_scaler$b) | is.infinite(mu_scaler$b)] <- 0
+      mu <- mu * block_matrix(x = mu_scaler$b, b = b)
     }
     
     it <- it + 1
-    max.diff <-
-      max(abs(c(
-        n$i - mu.marg$i, n$j - mu.marg$j, n$b - mu.marg$b
-      )))
+    d <- c(n$i - mu_margin$i, n$j - mu_margin$j, n$b - mu_margin$b)
+    d_max <- max(abs(d))
+
     if (verbose == TRUE)
-      cat(c(it, max.diff), "\n")
+      cat(c(it, d_max), "\n")
   }
-  return(list(mu = mu, it = it, tol = max.diff))
+  return(list(mu = mu, it = it, tol = d_max))
 }
-#rm(n,mu,mu.marg,m.fact,it,max.diff,b_id)
+#rm(n,mu,mu_margin,mu_scaler,it,d_max,b_id)
 #rm(rtot,ctot,btot,b)

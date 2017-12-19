@@ -7,23 +7,28 @@
 #'
 #' @return Returns a \code{matrix} with stripe sizes determined by the \code{s} argument. Each stripe is filled with the same value taken from \code{x}. 
 #' @author Guy J. Abel
-#' @seealso \code{\link{block.matrix}}, \code{\link{block.sum}}, \code{\link{ipf2.s}}
+#' @seealso \code{\link{block_matrix}}, \code{\link{block_sum}}, \code{\link{ipf2_stripe}}
 #' @export
 #'
 #' @examples
-#' stripe.matrix(x = 1:44, s = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)
-stripe.matrix <- function(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL){
+#' stripe_matrix(x = 1:44, s = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)
+stripe_matrix <- function(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL){
   n <- length(s)
   ss <- rep(1:n, times = s)
   dn <- NULL
   if(is.null(dimnames)){
-    dn <- LETTERS[1:n]
     dn <- rep(LETTERS[1:n], times = s)
     dd <- unlist(sapply(s, seq, from = 1))
     dn <- paste0(dn, dd)
     dn <- list(dn, dn)
   }
-  if(!is.null(dimnames)){
+  if(!is.null(dimnames) & !is.list(dimnames)){
+    dn <- rep(dimnames, times = s)
+    dd <- unlist(sapply(s, seq, from = 1))
+    dn <- paste0(dn, dd)
+    dn <- list(dn, dn)
+  }
+  if(!is.null(dimnames) & is.list(dimnames)){
     dn <- dimnames
   }
   xx <- matrix(NA, nrow = sum(s), ncol = sum(s), dimnames = dn)

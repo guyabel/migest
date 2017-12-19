@@ -82,10 +82,10 @@ ipf3 <-
     
     #set up offset
     if (length(dim(m)) == 2) {
-      m <- array(c(m), c(R, R, R))
+      m <- array(data = c(m), dim = c(R, R, R))
     }
     if (is.null(m)) {
-      m <- array(1, c(dim(rtot), dim(rtot)[1]))
+      m <- array(data = 1, dim = c(dim(rtot), dim(rtot)[1]))
     }
     if (is.null(dimnames(m))) {
       dimnames(m) <- list(orig = dn,
@@ -94,30 +94,29 @@ ipf3 <-
     }
     
     mu <- m
-    mu.marg <- n
-    m.fact <- n
+    mu_margin <- n
+    mu_scaler <- n
     it <- 0
-    max.diff <- tol * 2
-    while (max.diff > tol & it < maxit) {
-      mu.marg$ik <- apply(mu, c(1, 3), sum)
-      m.fact$ik <- n$ik / mu.marg$ik
-      m.fact$ik[is.nan(m.fact$ik)] <- 0
-      m.fact$ik[is.infinite(m.fact$ik)] <- 0
-      mu <- sweep(mu, c(1, 3), m.fact$ik, "*")
+    d_max <- tol * 2
+    while (d_max > tol & it < maxit) {
+      mu_margin$ik <- apply(X = mu, MARGIN = c(1, 3), FUN = sum)
+      mu_scaler$ik <- n$ik / mu_margin$ik
+      mu_scaler$ik[is.nan(mu_scaler$ik) | is.infinite(mu_scaler$ik)] <- 0
+      mu <- sweep(x = mu, MARGIN = c(1, 3), STATS = mu_scaler$ik, FUN = "*")
       
-      mu.marg$jk <- apply(mu, c(2, 3), sum)
-      m.fact$jk <- n$jk / mu.marg$jk
-      m.fact$jk[is.nan(m.fact$jk)] <- 0
-      m.fact$jk[is.infinite(m.fact$jk)] <- 0
-      mu <- sweep(mu, c(2, 3), m.fact$jk, "*")
+      mu_margin$jk <- apply(X = mu, MARGIN = c(2, 3), FUN = sum)
+      mu_scaler$jk <- n$jk / mu_margin$jk
+      mu_scaler$jk[is.nan(mu_scaler$jk) | is.infinite(mu_scaler$jk)] <- 0
+      mu <- sweep(x = mu, MARGIN = c(2, 3), STATS = mu_scaler$jk, FUN = "*")
       
       it <- it + 1
-      #max.diff<-max(abs(unlist(n)-unlist(mu.marg)))
+      #d_max<-max(abs(unlist(n)-unlist(mu_margin)))
       #speeds up a lot if get rid of unlist (new to v1.7)
-      max.diff <- max(abs(c(n$ik - mu.marg$ik, n$jk - mu.marg$jk)))
+      d <- c(n$ik - mu_margin$ik, n$jk - mu_margin$jk)
+      d_max <- max(abs(d))
       
       if (verbose == TRUE)
-        cat(c(it, max.diff), "\n")
+        cat(c(it, d_max), "\n")
     }
-    return(list(mu = mu, it = it, tol = max.diff))
+    return(list(mu = mu, it = it, tol = d_max))
   }

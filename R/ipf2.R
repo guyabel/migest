@@ -60,36 +60,35 @@ ipf2 <- function(rtot=NULL,ctot=NULL,m=matrix(1,length(rtot),length(ctot)),tol=1
   if(!is.null(rtot) & !is.null(ctot))
     if(round(sum(rtot))!=round(sum(ctot))) 
       stop("row and column totals are not equal, ensure sum(rtot)==sum(ctot)")
-  n<-list(i=rtot,
-          j=ctot)
-  mu<-m
-  mu.marg<-n
-  m.fact<-n
+  n <- list(i = rtot, j = ctot)
+  mu <- m
+  mu_margin <- n
+  mu_scaler <- n
   if(verbose==TRUE)
-    rd<-paste("%.",nchar(format(tol,scientific=FALSE))-2,"f",sep="")
-  it<-0; max.diff<-tol*2
-  while(it==0 | max.diff>tol & it<maxit ){
+    rd <- paste("%.",nchar(format(tol,scientific=FALSE))-2,"f",sep="")
+  it <- 0; d_max <- tol*2
+  while(it==0 | d_max>tol & it<maxit ){
     if(!is.null(ctot)){
-      mu.marg$j <- apply(mu,2,sum)
-      m.fact$j <- n$j/mu.marg$j
-      m.fact$j[is.nan(m.fact$j)]<-0
-      m.fact$j[is.infinite(m.fact$j)]<-0
-      mu <- sweep(mu, 2, m.fact$j, "*")
+      mu_margin$j <- apply(X = mu, MARGIN = 2, FUN = sum)
+      mu_scaler$j <- n$j/mu_margin$j
+      mu_scaler$j[is.nan(mu_scaler$j) | is.infinite(mu_scaler$j)]<-0
+      mu <- sweep(x = mu, MARGIN = 2, STATS = mu_scaler$j, FUN = "*")
     }
     if(!is.null(rtot)){
-      mu.marg$i <- apply(mu,1,sum)
-      m.fact$i <- n$i/mu.marg$i
-      m.fact$i[is.nan(m.fact$i)]<-0
-      m.fact$i[is.infinite(m.fact$i)]<-0
-      mu <- sweep(mu, 1, m.fact$i, "*")
+      mu_margin$i <- apply(X = mu, MARGIN = 1, FUN = sum)
+      mu_scaler$i <- n$i/mu_margin$i
+      mu_scaler$i[is.nan(mu_scaler$i) | is.infinite(mu_scaler$i)]<-0
+      mu <- sweep(x = mu, MARGIN = 1, STATS = mu_scaler$i, FUN = "*")
     }
-    it<-it+1
-    #max.diff<-max(abs(unlist(n)-unlist(mu.marg)))
+    it <- it+1
     #speeds up a lot if get rid of unlist (new to v1.7)
-    max.diff<-max(abs(c(n$i-mu.marg$i, n$j-mu.marg$j)))
+    #d_max<-max(abs(unlist(n)-unlist(mu_marg)))
+    d <- c(n$i-mu_margin$i, n$j-mu_margin$j)
+    d_max <- max(abs(d))
     
     if(verbose==TRUE)
-      cat(sprintf(rd,unlist(m.fact)), fill = TRUE)
+      cat(sprintf(rd,unlist(mu_scaler)), fill = TRUE)
   }
-  return(list(mu=mu,it=it,tol=max(abs(unlist(n)-unlist(mu.marg)))))
+  r <- list(mu=mu, it=it, tol=d_max)
+  return(r)
 }
