@@ -24,7 +24,7 @@
 #' 
 #' Agresti, A. (2002). \emph{Categorical Data Analysis} 2nd edition. Wiley. 
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3.qi}}, \code{\link{ipf2}}
+#' @seealso \code{\link{ipf3_qi}}, \code{\link{ipf2}}
 #' @export
 #'
 #' @examples
@@ -51,7 +51,7 @@
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
-#' round(fm(y$mu), 1)
+#' round(od_sum(y$mu), 1)
 #' 
 #' ## with alternative offset term
 #' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
@@ -59,7 +59,7 @@
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
-#' round(fm(y$mu), 1) 
+#' round(od_sum(y$mu), 1) 
 ipf3 <-
   function(rtot = NULL,
            ctot = NULL,

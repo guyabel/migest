@@ -19,7 +19,7 @@ Rogers, A., and L. J. Castro. (1981). Model Migration Schedules. \emph{IIASA Res
 rc9.fund
 }
 \description{
-Set of fundamental parameters suggested by Rogers and Castro (1981).
+Set of fundamental parameters for the Rogers-Castro migration age schedule, as suggested in Rogers and Castro (1981).
 }
 \examples{
 # check format

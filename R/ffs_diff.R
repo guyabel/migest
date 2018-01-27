@@ -22,9 +22,9 @@
 #'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
 #' P1; P2
 #' 
-#' ffs_econ(P1, P2, decrease = "zero")
-#' ffs_econ(P1, P2, decrease = "return")
-ffs_econ <- function(P1, P2, decrease = "return"){
+#' ffs_diff(P1, P2, decrease = "zero")
+#' ffs_diff(P1, P2, decrease = "return")
+ffs_diff <- function(P1, P2, decrease = "return"){
   if(decrease == "zero"){
     y0 <- P2 - P1
     y0[y0<0] <- 0

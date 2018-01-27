@@ -59,7 +59,7 @@ y <- ipf3(rtot = t(P1), ctot = P2)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table
-round(fm(y$mu), 1)
+round(od_sum(y$mu), 1)
 
 ## with alternative offset term
 dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
@@ -67,7 +67,7 @@ y <- ipf3(rtot = t(P1), ctot = P2, m = dis)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table
-round(fm(y$mu), 1) 
+round(od_sum(y$mu), 1) 
 }
 \references{
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
@@ -75,7 +75,7 @@ Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth
 Agresti, A. (2002). \emph{Categorical Data Analysis} 2nd edition. Wiley.
 }
 \seealso{
-\code{\link{ipf3.qi}}, \code{\link{ipf2}}
+\code{\link{ipf3_qi}}, \code{\link{ipf2}}
 }
 \author{
 Guy J. Abel

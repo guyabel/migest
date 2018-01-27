@@ -21,13 +21,7 @@
 #' @export
 #'
 #' @examples
-#' dn <- LETTERS[1:4]
-#' P1 <- matrix(c(0, 100, 10, 0, 55, 0, 50, 5, 80, 40, 0, 40, 20, 25, 20, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' P2 <- matrix(c(0, 100, 60, 0, 80, 0, 75, 5, 90, 30, 0, 40, 40, 45, 0, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' m <- ffs_econ(P1, P2, decrease = "return")
-#' 
+#' m <- matrix(data = 1:16, nrow = 4)
 #' y <- ipf_net(ntot = c(30, 40, -15, -55), m = m)
 #' addmargins(m)
 #' net_sum(y$mu)

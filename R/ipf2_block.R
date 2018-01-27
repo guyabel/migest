@@ -12,7 +12,7 @@
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
-#' @param ... Additional arguments passes to \code{\link{block.matrix}}.
+#' @param ... Additional arguments passes to \code{\link{block_matrix}}.
 #'
 #' @return
 #' Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. The \code{btot} take the totals over the blocks in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
@@ -24,14 +24,15 @@
 #' \item{it }{Iteration count}
 #' \item{tol }{Tolerance level at final iteration}
 #' @author Guy J. Abel
-#' @seealso \code{\link{block.matrix}}, \code{\link{stripe.matrix}}, \code{\link{block.sum}}
+#' @seealso \code{\link{block_matrix}}, \code{\link{stripe_matrix}}, \code{\link{block_sum}}
 #' 
 #' @export
 #' @examples
 #' y <- ipf2_block(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
 #'                 ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
-#'                 btot = matrix(c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0), nrow = 4, byrow = TRUE),
-#'                 block = block.matrix(x = 1:16, b = c(2,3,4,3)))
+#'                 btot = matrix(data = c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0),
+#'                               nrow = 4, byrow = TRUE),
+#'                 block = block_matrix(x = 1:16, b = c(2,3,4,3)))
 #' addmargins(y$mu)
 # rtot = c(30,20,30,10,20,5,0,10,5,5,5,10)
 # ctot = c(45,10,10,5,5,10,50,5,10,0,0,0)
@@ -81,7 +82,7 @@ ipf2_block <- function(rtot = NULL,
       mu <- sweep(x = mu, MARGIN = 1, STATS = mu_scaler$i, FUN = "*")
     }
     if (!is.null(btot)) {
-      mu_margin$b <- sapply(X = 1:max(b_id), FUN = block.sum, m = mu, bid = b_id)
+      mu_margin$b <- sapply(X = 1:max(b_id), FUN = block_sum, m = mu, block_id = b_id)
       mu_scaler$b <- n$b / mu_margin$b
       mu_scaler$b[is.nan(mu_scaler$b) | is.infinite(mu_scaler$b)] <- 0
       mu <- mu * block_matrix(x = mu_scaler$b, b = b)

@@ -10,15 +10,6 @@
 #' @author Guy J. Abel
 #' @export
 #'
-#' @examples
-#' dn <- LETTERS[1:4]
-#' P1 <- matrix(c(0, 100, 10, 0, 55, 0, 50, 5, 80, 40, 0, 40, 20, 25, 20, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' P2 <- matrix(c(0, 100, 60, 0, 80, 0, 75, 5, 90, 30, 0, 40, 40, 45, 0, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' m <- ffs_econ(P1, P2, decrease = "return")
-#' p <- net_param(region = 1, m = m, ntot = 30)
-#' net_scale(m, region = 1, alpha = p[p>0])
 net_scale <- function(m, region = NULL, alpha){
   x <- m
   x[,] <- 1

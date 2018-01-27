@@ -10,7 +10,7 @@
 #' @param b.mat Matrix containing the number of births during the period in each birthplace (rows) by place of residence (columns) combination created by the user. By default, this argument is \code{NULL}, and hence within the function a \code{b.mat} is formed as a diagonal matrix of \code{b} (i.e. all births happen in their respective place of residence at the end of the period, there are no infant migrants.)
 #' @param d.mat Matrix containing the number of deaths during the period in each birthplace (rows) by place of residence (columns) combination created by the user. By default, this argument is \code{NULL}, and hence within the function a \code{d.mat} is formed as a proportional allocation of \code{d} over all populations (i.e. the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same.)
 #' @param b.deduct Method used to deduct births. By default \code{b.deduct="native.gt0"} deducts births from diagonals of stock table (i.e. the native born populations) with the exception of regions where this would lead to a negative adjusted population. In these select regions, births are spread over all population stocks (both native and foreign) thus avoiding potential negative flows. Can also take \code{b.deduct="native.only"} in which all births are deducted from the diagonals of stock table (i.e. native born populations only).
-#' @param ... Additional arguments passes to \code{\link{ipf3.qi}}.
+#' @param ... Additional arguments passes to \code{\link{ipf3_qi}}.
 #'
 #' @return
 #' Estimates migrant transitions flows between two sequential migrant stock tables as shown in Abel (2013), when \code{method="outside"}. The length of \code{b} and \code{d} must equal the number of rows in \code{P1} and number of columns in \code{P2}.
@@ -31,51 +31,51 @@
 #' 
 #' Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3.qi}}, \code{\link{fm}}
+#' @seealso \code{\link{ipf3_qi}}, \code{\link{od_sum}}, \code{\link{ffs_diff}}
 #' @export
 #'
 #' @examples
 #' ## create P1 and P2 stock tables
 #' dn <- LETTERS[1:4]
-#' P1 <- matrix(c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200), 4, 4,
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' P2 <- matrix(c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180), 4, 4,
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
+#' P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200), 
+#'              nrow = 4, ncol = 4, dimnames = list(pob = dn, por = dn), byrow = TRUE)
+#' P2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+#'              nrow = 4, ncol = 4, dimnames = list(pob = dn, por = dn), byrow = TRUE)
 #' # display with row and col totals
-#' addmargins(P1)
-#' addmargins(P2)
-#' 
+#' addmargins(A = P1)
+#' addmargins(A = P2)
+#'
 #' # no births and deaths
-#' b <- rep(0, 4)
-#' d <- rep(0, 4)
+#' b <- rep(x = 0, 4)
+#' d <- rep(x = 0, 4)
 #' 
-#' y <- ffs(P1, P2, d, b)
+#' y <- ffs(P1 = P1, P2 = P2, d = d, b = b)
 #' # display with row, col and table totals
-#' round(addmargins(y$mu), 1)
+#' round(x = addmargins(A = y$mu), digits = 1)
 #' # display with row and col totals
-#' round(fm(y$mu), 1)
+#' round(x = od_sum(y = y$mu), digits = 1)
 #' 
 #' ## alternative offset term
-#' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 1))
-#' y <- ffs(P1, P2, d, b, dis)
+#' dis <- matrix(data = c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), nrow = 4, ncol = 4)
+#' y <- ffs(P1 = P1, P2 = P2, d = d, b = b, m = dis)
 #' # display with row, col and table totals
-#' round(addmargins(y$mu), 1)
+#' round(x = addmargins(A = y$mu), digits = 1)
 #' # display with row and col totals
-#' round(fm(y$mu), 1)
+#' round(x = od_sum(y = y$mu), digits = 1)
 #' 
 #' ## alternative P2 and changes in population from natural increase
-#' P2 <- matrix(c(1060, 60, 10, 10, 45, 540, 40, 0, 70, 75, 770, 70, 30, 30, 20, 230), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
+#' P2 <- matrix(data = c(1060, 60, 10, 10, 45, 540, 40, 0, 70, 75, 770, 70, 30, 30, 20, 230), 
+#'              nrow = 4, ncol = 4, dimnames = list(pob = dn, por = dn), byrow = TRUE)
 #' # display with row and col totals
-#' addmargins(P2)
+#' addmargins(A = P2)
 #' b <- c(80, 20, 40, 60)
 #' d <- c(70, 30, 50, 10)
 #' 
-#' y <- ffs(P1, P2, d, b, method="outside")
+#' y <- ffs(P1 = P1, P2 = P2, d = d, b = b, method = "outside")
 #' # display with row, col and table totals
-#' round(addmargins(y$mu), 1)
+#' round(x = addmargins(A = y$mu), digits = 1)
 #' # display with row and col totals
-#' round(fm(y$mu), 1)
+#' round(x = od_sum(y = y$mu), digits = 1)
 #P1=P1;P2=P2;d=d;b=b.adj;m=m
 #P1 = s0; P2 = s1; d = df7$d; b = df7$b.adj; m = dm; method = "stocks"
 #method="stocks"; d.mat=NULL;b.mat=NULL;b.deduct="native.gt0"
