@@ -213,7 +213,7 @@ ffs <- function(P1,
     #step 5 calculate
     message("Calculate Flows...")
     #ipf<-ipf3.qi(rtot=t(P1.adj),ctot=P2.adj,m=m)
-    ipf <- ipf3.qi(rtot = t(P1.adj),
+    ipf <- ipf3_qi(rtot = t(P1.adj),
                    ctot = P2.adj,
                    m = m,
                    ...)

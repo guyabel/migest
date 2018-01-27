@@ -49,7 +49,7 @@
 #' addmargins(P2)
 #' 
 #' # run ipf
-# y <- ipf3.qi(rtot = t(P1), ctot = P2)
+# y <- ipf3_qi(rtot = t(P1), ctot = P2)
 # # display with row, col and table totals
 # round(addmargins(y$mu), 1)
 # # origin-destination flow table
@@ -57,14 +57,14 @@
 #' 
 #' ## with alternative offset term
 #' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-#' y <- ipf3.qi(rtot = t(P1), ctot = P2, m = dis)
+#' y <- ipf3_qi(rtot = t(P1), ctot = P2, m = dis)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
 #' round(fm(y$mu), 1) 
 # P1.adj=P1;P2.adj=P2
 #rtot=t(P1.adj);ctot=P2.adj;dtot=NULL;verbose=TRUE;tol=1e-05;maxit=500;speed=TRUE;m=NULL
-ipf3.qi <-
+ipf3_qi <-
   function(rtot = NULL,
            ctot = NULL,
            dtot = NULL,
@@ -160,4 +160,4 @@ ipf3.qi <-
     return(list(mu = mu, it = it, tol = d_max))
   }
 #rm(n,mu,mu_margin,mu_scaler)
-#ipf3.qi(rtot=t(P1.adj),ctot=P2.adj,m=m)#
+#ipf3_qi(rtot=t(P1.adj),ctot=P2.adj,m=m)#

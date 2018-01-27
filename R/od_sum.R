@@ -16,11 +16,11 @@
 #'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
 #'                    dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
 #' round(addmargins(y$N))
-#' round(addmargins(fm(y$N))) 
-fm<-function(y){
-  R<-dim(y)[3]
-  dg<-diag(apply(y,c(1,2),sum))
-  od<-apply(y,c(1,2),sum)
+#' round(addmargins(od_sum(y$N))) 
+od_sum <- function(y){
+  R <- dim(y)[3]
+  dg <- diag(apply(y,c(1,2),sum))
+  od <- apply(y,c(1,2),sum)
   if(R==dim(y)[1])  fl<-od-diag(dg,R,R)
   if(R!=dim(y)[1]){
     y.adj<-y

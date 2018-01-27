@@ -42,33 +42,41 @@
 #'          verbose = FALSE)
 #' # display with row, col and table totals
 #' y
-cm3<-function(rtot=NULL,ctot=NULL,m,tol=1e-05,maxit=500,verbose=FALSE)
+cm3 <- function(rtot=NULL,ctot=NULL,m,tol=1e-05,maxit=500,verbose=FALSE)
 {
   if(round(sum(rtot))!=round(sum(ctot)))
     stop("row and column totals are not equal, ensure sum(rtot)==sum(ctot)")
-  i<-dim(m)[1];  j<-dim(m)[2]
+  i<-dim(m)[1]
+  j<-dim(m)[2]
   alpha <- rep(1,i)
   beta <- rep(1,j)
   if(verbose==TRUE){
-    rd<-paste("%.",nchar(format(tol,scientific=FALSE))-2,"f",sep="")
+    rd <- paste0("%.",
+                 nchar(x = format(x = tol, scientific=FALSE))-2,
+                 "f")
     cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
   }
-  alpha.old <- alpha+1; beta.old <- beta+1
-  it<-1;  max.diff<-tol*2
-  while(max.diff>tol & it<maxit){
+  alpha.old <- alpha+1 
+  beta.old <- beta+1
+  it <- 1
+  d_max <- tol*2
+  while(d_max > tol & it < maxit){
     beta.old <- beta
     for(j in 1:j) {
-      beta[j] <- ctot[j]/colSums(alpha*apply(m,c(1,2),sum))[j]
+      beta[j] <- ctot[j]/colSums(x = alpha * apply(X = m, MARGIN = c(1,2), FUN = sum))[j]
     }
     alpha.old <- alpha
     for(i in 1:i) {
-      alpha[i] <- rtot[i]/colSums(beta*apply(m,c(2,1),sum))[i]
+      alpha[i] <- rtot[i]/colSums(x = beta * apply(X = m, MARGIN = c(2,1), FUN = sum))[i]
     }
     it<-it+1
-    max.diff<-max(abs(alpha-alpha.old), abs(beta-beta.old))
+    d <- c(alpha-alpha.old, beta-beta.old)
+    d_max <- max(abs(d))
     if(verbose==TRUE)
       cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
   }
-  return(list(N=c(alpha%*%t(beta))*m,
-              theta=c(mu=1,alpha=alpha,beta=beta)))
+  return(
+    list(N = c(alpha %*% t(beta)) * m,
+         theta = c(mu = 1, alpha = alpha, beta = beta))
+  )
 }
