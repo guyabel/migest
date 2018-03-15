@@ -34,7 +34,7 @@ ipf_net <-
     R <- unique(c(dim(m), length(ntot)))
     if (length(R) != 1)
       stop("The m matrix must be square and with the same dimensions as the length of net total vector (ntot).")
-    if (sum(ntot)<0e10)
+    if (sum(ntot)<1e-10)
       message("Convergence will not be obtained as ntot does not sum to zero.")
     dn <- dimnames(m)[[1]]
     
@@ -52,8 +52,10 @@ ipf_net <-
     while (d_max > tol & it < maxit) {
       for(i in 1:R){
         p <- net_param(m = mu, region = i, ntot = ntot[i])
-        mu <- net_scale(m = mu, region = i, alpha = p[p>0])
-        mu
+        p <- p[p>0]
+        if(is.infinite(p) | is.na(p) | is.nan(p))
+          p <- 1
+        mu <- net_scale(m = mu, region = i, alpha = p)
       }
       it <- it + 1
       d <- c(net_sum(mu) - ntot)
