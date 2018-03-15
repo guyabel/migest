@@ -34,7 +34,7 @@ ipf_net <-
     R <- unique(c(dim(m), length(ntot)))
     if (length(R) != 1)
       stop("The m matrix must be square and with the same dimensions as the length of net total vector (ntot).")
-    if (sum(ntot))
+    if (sum(ntot)<0e10)
       message("Convergence will not be obtained as ntot does not sum to zero.")
     dn <- dimnames(m)[[1]]
     
