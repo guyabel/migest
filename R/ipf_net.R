@@ -26,7 +26,6 @@
 #' addmargins(m)
 #' sum_net(y$mu)
 #' 
-#' 
 #' dn <- LETTERS[1:4]
 #' m <- matrix(c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0), 4, 4,
 #'             dimnames = list(orig = dn, dest = dn), byrow = TRUE)
@@ -60,6 +59,7 @@ ipf_net <-
     mu <- m
     it <- 0
     d_max <- tol * 2
+    pp <- matrix(NA, ncol = R, nrow = 1)
     while (d_max > tol & it < maxit) {
       for(i in 1:R){
         p <- net_param(m = mu, region = i, ntot = ntot[i])
@@ -67,12 +67,17 @@ ipf_net <-
         if(is.infinite(p) | is.na(p) | is.nan(p))
           p <- 1
         mu <- net_scale(m = mu, region = i, alpha = p)
+        pp[i] <- p
       }
       it <- it + 1
       d <- c(sum_net(mu) - ntot)
       d_max <- max(abs(d))
-      if (verbose == TRUE & (it <20 | it %% 10 ==0))
-        cat(c(it, d_max), "\n")
+      if (verbose == TRUE & (it <20 | it %% 10 ==0)){
+        cat("iteration:", it, "\n")
+        cat("parameters:", pp, "\n")
+        cat("max difference:", d_max, "\n")
+        cat("\n")
+      }
     }
     return(list(mu = mu, it = it, tol = d_max))
   }
