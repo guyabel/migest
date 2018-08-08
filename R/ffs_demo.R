@@ -46,6 +46,7 @@
 #' reg <- LETTERS[1:4]
 #' dimnames(P1) <- dimnames(P2) <- list(pob = reg, por = reg)
 #' names(b) <- names(d) <- reg
+#' P1; P2; b; d
 #' 
 #' # demographic research and science paper example
 #' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d)

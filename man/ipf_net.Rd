@@ -36,6 +36,16 @@ m <- matrix(data = 1:16, nrow = 4)
 y <- ipf_net(ntot = c(30, 40, -15, -55), m = m)
 addmargins(m)
 sum_net(y$mu)
+
+
+dn <- LETTERS[1:4]
+m <- matrix(c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0), 4, 4,
+            dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+sum_net(m)
+
+y <- ipf_net(ntot = c(-100, 125, -75, 50), m = m)
+addmargins(y$mu)
+sum_net(y$mu)
 }
 \author{
 Guy J. Abel

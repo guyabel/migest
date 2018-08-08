@@ -15,11 +15,12 @@
 #' @export
 #'
 #' @examples
-#' dn <- LETTERS[1:4]
-#' P1 <- matrix(c(0, 100, 10, 0, 55, 0, 50, 5, 80, 40, 0, 40, 20, 25, 20, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
-#' P2 <- matrix(c(0, 100, 60, 0, 80, 0, 75, 5, 90, 30, 0, 40, 40, 45, 0, 0), 4, 4, 
-#'              dimnames = list(pob = dn, por = dn), byrow = TRUE)
+#' P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
+#'              nrow = 4, ncol = 4, byrow = TRUE)
+#' P2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+#'              nrow = 4, ncol = 4, byrow = TRUE)
+#' reg <- LETTERS[1:4]
+#' dimnames(P1) <- dimnames(P2) <- list(pob = reg, por = reg)
 #' P1; P2
 #' 
 #' ffs_diff(m1 = P1, m2 = P2, decrease = "zero")
