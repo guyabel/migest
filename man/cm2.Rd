@@ -4,8 +4,8 @@
 \alias{cm2}
 \title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
 \usage{
-cm2(rtot = NULL, ctot = NULL, m = matrix(1, length(rtot), length(ctot)),
-  tol = 1e-05, maxit = 500, verbose = TRUE)
+cm2(rtot = NULL, ctot = NULL, m = matrix(1, length(rtot),
+  length(ctot)), tol = 1e-05, maxit = 500, verbose = TRUE)
 }
 \arguments{
 \item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
@@ -32,7 +32,7 @@ Returns a \code{list} object with
 \description{
 The \code{cm2} function finds the maximum likelihood estimates for parameters in the log-linear model:
 \deqn{ \log y_{ij} = \log \alpha_i + \log \beta_j + \log m_{ij} }
-as introduced by Willekens (1999). The  \eqn{\alpha_i} and  \eqn{\beta_j} represent background information related to  the characteristics of the origin and destinations respectively. The  \eqn{m_{ij}} factor represents auxiliary information on migration flows, which imposes its interaction structure onto the estimated flow matrix.
+as introduced by Willekens (1999). The \eqn{\alpha_i} and  \eqn{\beta_j} represent background information related to  the characteristics of the origin and destinations respectively. The \eqn{m_{ij}} factor represents auxiliary information on migration flows, which imposes its interaction structure onto the estimated flow matrix.
 }
 \examples{
 ## with Willekens (1999) data

@@ -2,7 +2,7 @@
 #'
 #' The \code{cm2} function finds the maximum likelihood estimates for parameters in the log-linear model:
 #' \deqn{ \log y_{ij} = \log \alpha_i + \log \beta_j + \log m_{ij} }
-#' as introduced by Willekens (1999). The  \eqn{\alpha_i} and  \eqn{\beta_j} represent background information related to  the characteristics of the origin and destinations respectively. The  \eqn{m_{ij}} factor represents auxiliary information on migration flows, which imposes its interaction structure onto the estimated flow matrix.
+#' as introduced by Willekens (1999). The \eqn{\alpha_i} and  \eqn{\beta_j} represent background information related to  the characteristics of the origin and destinations respectively. The \eqn{m_{ij}} factor represents auxiliary information on migration flows, which imposes its interaction structure onto the estimated flow matrix.
 #' @param rtot Vector of origin totals to constrain the sum of the imputed cell rows.
 #' @param ctot Vector of destination totals to constrain the sum of the imputed cell columns.
 #' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations. 
@@ -47,7 +47,7 @@
 #' # display with row and col totals
 #' round(addmargins(y$N)) 
 cm2 <- function(rtot = NULL, ctot = NULL, m = matrix(1,length(rtot),length(ctot)),
-               tol = 1e-05, maxit = 500, verbose = TRUE)
+                tol = 1e-05, maxit = 500, verbose = TRUE)
 {
   if(round(sum(rtot))!=round(sum(ctot))) 
     stop("row and column totals are not equal, ensure sum(rtot)==sum(ctot)")

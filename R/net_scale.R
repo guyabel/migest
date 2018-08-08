@@ -12,8 +12,14 @@
 #'
 net_scale <- function(m, region = NULL, alpha){
   x <- m
-  x[,] <- 1
-  x[region,] <- x[region,]*1/alpha
-  x[,region] <- x[,region]*alpha
+  x[] <- 1
+  if(length(dim(m)) == 2){
+    x[region,] <- x[region,]*1/alpha
+    x[,region] <- x[,region]*alpha
+  }
+  if(length(dim(m)) == 3){
+    x[region,,] <- x[region,,]*1/alpha
+    x[,region,] <- x[,region,]*alpha
+  }
   return(x * m)
 }

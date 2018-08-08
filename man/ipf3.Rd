@@ -4,8 +4,8 @@
 \alias{ipf3}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.}
 \usage{
-ipf3(rtot = NULL, ctot = NULL, m = NULL, tol = 1e-05, maxit = 500,
-  verbose = TRUE)
+ipf3(rtot = NULL, ctot = NULL, m = NULL, tol = 1e-05,
+  maxit = 500, verbose = TRUE)
 }
 \arguments{
 \item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
@@ -59,7 +59,7 @@ y <- ipf3(rtot = t(P1), ctot = P2)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table
-round(od_sum(y$mu), 1)
+round(sum_od(y$mu), 1)
 
 ## with alternative offset term
 dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
@@ -67,7 +67,7 @@ y <- ipf3(rtot = t(P1), ctot = P2, m = dis)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table
-round(od_sum(y$mu), 1) 
+round(sum_od(y$mu), 1)
 }
 \references{
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546

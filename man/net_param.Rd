@@ -11,10 +11,10 @@ net_param(m, region, ntot)
 
 \item{region}{Integer value corresponding to the region that the net migration sum is desired. Will return sums for all regions by default.}
 
-\item{ntot}{Vector of net migraiton totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
+\item{ntot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
 }
 \value{
-Vector of two values corresonding to the roots fo the quatratic equation.
+Vector of two values corresponding to the roots for the quadratic equation.
 }
 \description{
 This function is predominantly intended to be used within the \code{\link{ipf_net}} routine.

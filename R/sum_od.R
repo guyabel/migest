@@ -4,7 +4,7 @@
 #' @param y Array of origin-destination matrices, where the first and second dimensions correspond to origin and destination respectively. Higher dimension(s) refer to additional migrant characteristic(s).
 #'
 #' @return
-#' Sums over the first and second dimension and removes counts on diagonals.
+#' Matrix from summing over the first and second dimension. Set diagonals to zero.
 #' 
 #' Returns a \code{matrix} object of origin-destination flows
 #' @author Guy J. Abel
@@ -16,8 +16,8 @@
 #'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
 #'                    dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
 #' round(addmargins(y$N))
-#' round(addmargins(od_sum(y$N))) 
-od_sum <- function(y){
+#' round(addmargins(sum_od(y$N))) 
+sum_od <- function(y){
   R <- dim(y)[3]
   dg <- diag(apply(y,c(1,2),sum))
   od <- apply(y,c(1,2),sum)

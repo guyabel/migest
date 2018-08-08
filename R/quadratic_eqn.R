@@ -7,7 +7,7 @@
 #' @param b Numeric value for multiplicative term of x.
 #' @param c Numeric value for constant term.
 #'
-#' @return Vector of two values corresonding to the roots fo the quatratic equation.
+#' @return Vector of two values corresponding to the roots for the quadratic equation.
 #' @author Guy J. Abel
 #' @source Adapted from https://rpubs.com/kikihatzistavrou/80124
 #' @export
@@ -19,9 +19,9 @@ quadratic_eqn <- function(a,b,c){
     b^2-4*a*c
   }
   if(delta(a,b,c) > 0){ 
-    x_1 = (-b+sqrt(delta(a,b,c)))/(2*a)
-    x_2 = (-b-sqrt(delta(a,b,c)))/(2*a)
-    return(c(x_1,x_2))
+    x1 = (-b+sqrt(delta(a,b,c)))/(2*a)
+    x2 = (-b-sqrt(delta(a,b,c)))/(2*a)
+    return(c(x1,x2))
   }
   else if(delta(a,b,c) == 0){ 
     x = -b/(2*a)

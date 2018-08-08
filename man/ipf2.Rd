@@ -4,8 +4,8 @@
 \alias{ipf2}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
 \usage{
-ipf2(rtot = NULL, ctot = NULL, m = matrix(1, length(rtot), length(ctot)),
-  tol = 1e-05, maxit = 500, verbose = FALSE)
+ipf2(rtot = NULL, ctot = NULL, m = matrix(1, length(rtot),
+  length(ctot)), tol = 1e-05, maxit = 500, verbose = FALSE)
 }
 \arguments{
 \item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}

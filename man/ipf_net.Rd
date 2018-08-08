@@ -8,7 +8,7 @@ ipf_net(ntot = NULL, m = NULL, tol = 1e-05, maxit = 500,
   verbose = TRUE)
 }
 \arguments{
-\item{ntot}{Vector of net migraiton totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
+\item{ntot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
 
 \item{m}{Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.}
 
@@ -20,7 +20,7 @@ ipf_net(ntot = NULL, m = NULL, tol = 1e-05, maxit = 500,
 }
 \value{
 Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The argument \code{ntot} takes the known net migration totals.
-The user must ensure that the net migraiton totals sum to globally to zero.
+The user must ensure that the net migration totals sum to globally to zero.
 
 Returns a \code{list} object with
 \item{mu }{Array of indirect estimates of origin-destination matrices by migrant characteristic}
@@ -35,7 +35,7 @@ The \code{ipf_net} function finds the maximum likelihood estimates for fitted va
 m <- matrix(data = 1:16, nrow = 4)
 y <- ipf_net(ntot = c(30, 40, -15, -55), m = m)
 addmargins(m)
-net_sum(y$mu)
+sum_net(y$mu)
 }
 \author{
 Guy J. Abel

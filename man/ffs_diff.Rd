@@ -2,16 +2,16 @@
 % Please edit documentation in R/ffs_diff.R
 \name{ffs_diff}
 \alias{ffs_diff}
-\title{Estimation of Bilateral Migrant Flows from Bilteral Migrant Stocks Using Stock Differencing}
+\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing}
 \usage{
-ffs_diff(P1, P2, decrease = "return")
+ffs_diff(m1, m2, decrease = "return")
 }
 \arguments{
-\item{P1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
+\item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
 
-\item{P2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
+\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
-\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estiamtes). See details for possible options.}
+\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options.}
 }
 \value{
 Estimates migrant transitions flows between two sequential migrant stock tables. 
@@ -21,7 +21,7 @@ When \code{decrease = "zero"} all decreases in migrant stocks over there period 
 When \code{decrease = "return"} all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)
 }
 \description{
-Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches communly used by economists.
+Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches commonly used by economists.
 }
 \examples{
 dn <- LETTERS[1:4]
@@ -31,8 +31,8 @@ P2 <- matrix(c(0, 100, 60, 0, 80, 0, 75, 5, 90, 30, 0, 40, 40, 45, 0, 0), 4, 4,
              dimnames = list(pob = dn, por = dn), byrow = TRUE)
 P1; P2
 
-ffs_diff(P1, P2, decrease = "zero")
-ffs_diff(P1, P2, decrease = "return")
+ffs_diff(m1 = P1, m2 = P2, decrease = "zero")
+ffs_diff(m1 = P1, m2 = P2, decrease = "return")
 }
 \seealso{
 \code{\link{ffs}}

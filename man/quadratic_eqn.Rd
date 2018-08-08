@@ -17,7 +17,7 @@ quadratic_eqn(a, b, c)
 \item{c}{Numeric value for constant term.}
 }
 \value{
-Vector of two values corresonding to the roots fo the quatratic equation.
+Vector of two values corresponding to the roots for the quadratic equation.
 }
 \description{
 General function to solve classic quadratic equation:

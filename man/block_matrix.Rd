@@ -13,7 +13,7 @@ block_matrix(x = NULL, b = NULL, byrow = FALSE, dimnames = NULL)
 
 \item{byrow}{Logical value. If \code{FALSE} (the default) the blocks are filled by columns, otherwise the blocks in the matrix are filled by rows.}
 
-\item{dimnames}{Character string of name attribute for the basis of the blcok matrix. If \code{NULL} a vector of the same length of \code{b} provides the basis of row and column names.#'}
+\item{dimnames}{Character string of name attribute for the basis of the block matrix. If \code{NULL} a vector of the same length of \code{b} provides the basis of row and column names.#'}
 }
 \value{
 Returns a \code{matrix} with block sizes determined by the \code{b} argument. Each block is filled with the same value taken from \code{x}.
