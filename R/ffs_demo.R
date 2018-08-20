@@ -1,4 +1,4 @@
-#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks
+#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Demographic Accounting Approaches
 #'
 #' Estimates migrant transitions flows between two sequential migrant stock tables. Replaces old \code{ffs}.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 
@@ -29,7 +29,7 @@
 #' 
 #' Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
+#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}, \code{\link{ffs_rates}}
 #' @aliases ffs
 #' @export
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ffs_diff.R
 \name{ffs_diff}
 \alias{ffs_diff}
-\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing}
+\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing Approaches}
 \usage{
 ffs_diff(m1, m2, decrease = "return")
 }
@@ -19,6 +19,8 @@ Estimates migrant transitions flows between two sequential migrant stock tables.
 When \code{decrease = "zero"} all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015) 
 
 When \code{decrease = "return"} all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)
+#' @references 
+Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. \emph{The World Economy} 39(4):496–512.
 }
 \description{
 Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches commonly used by economists.
@@ -36,7 +38,7 @@ ffs_diff(m1 = P1, m2 = P2, decrease = "zero")
 ffs_diff(m1 = P1, m2 = P2, decrease = "return")
 }
 \seealso{
-\code{\link{ffs}}
+\code{\link{ffs_demo}}, \code{\link{ffs_rates}}
 }
 \author{
 Guy J. Abel

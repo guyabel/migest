@@ -3,7 +3,7 @@
 \name{ffs_demo}
 \alias{ffs_demo}
 \alias{ffs}
-\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks}
+\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Demographic Accounting Approaches}
 \usage{
 ffs_demo(m1 = NULL, m2 = NULL, b_por = NULL, d_por = NULL,
   m = NULL, stayer_assumption = TRUE,
@@ -105,7 +105,7 @@ Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Fl
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 }
 \seealso{
-\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
+\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}, \code{\link{ffs_rates}}
 }
 \author{
 Guy J. Abel

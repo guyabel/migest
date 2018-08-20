@@ -1,4 +1,4 @@
-#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing
+#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing Approaches
 #' 
 #' Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches commonly used by economists.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 
@@ -10,8 +10,10 @@
 #' When \code{decrease = "zero"} all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015) 
 #' 
 #' When \code{decrease = "return"} all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)
+#' #' @references 
+#' Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. \emph{The World Economy} 39(4):496–512.
 #' @author Guy J. Abel
-#' @seealso \code{\link{ffs}}
+#' @seealso \code{\link{ffs_demo}}, \code{\link{ffs_rates}}
 #' @export
 #'
 #' @examples
