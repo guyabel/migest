@@ -38,53 +38,53 @@
 #' ## without births and deaths over period
 #' ##
 #' # data as in papers
-#' P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
+#' s1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
-#' P2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+#' s2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' b <- d <- rep(0, 4)
 #' reg <- LETTERS[1:4]
-#' dimnames(P1) <- dimnames(P2) <- list(pob = reg, por = reg)
+#' dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
 #' names(b) <- names(d) <- reg
-#' P1; P2; b; d
+#' s1; s2; b; d
 #' 
 #' # demographic research and science paper example
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d)
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 #' 
 #' # international migration review paper example
-#' P1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
-#' P2[,] <- c(70, 25, 10, 40, 30, 60, 55, 45, 10, 10, 140, 0, 10, 15, 50, 180)
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d)
+#' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
+#' s2[,] <- c(70, 25, 10, 40, 30, 60, 55, 45, 10, 10, 140, 0, 10, 15, 50, 180)
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 #' 
 #' # international migration review supp. material example
 #' dm <- matrix(data = c(0, 5, 50, 500, 5, 0, 45, 495, 50, 45, 0, 450, 500, 495, 450, 0), 
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' dimnames(dm) <- list(orig = reg, dest = reg)
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d, m = dm)
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, m = dm)
 #' 
 #' ##
 #' ## with births and deaths over period
 #' ##
 #' # demographic research paper example
-#' P1[,] <- c(1000, 55, 80, 20, 100, 555, 40, 25, 10, 50, 800, 20, 0, 5, 40, 200)
-#' P2[,] <- c(1060, 45, 70, 30, 60, 540, 75, 30, 10, 40, 770, 20, 10, 0, 70, 230)
+#' s1[,] <- c(1000, 55, 80, 20, 100, 555, 40, 25, 10, 50, 800, 20, 0, 5, 40, 200)
+#' s2[,] <- c(1060, 45, 70, 30, 60, 540, 75, 30, 10, 40, 770, 20, 10, 0, 70, 230)
 #' b[] <- c(80, 20, 40, 60)
 #' d[] <- c(70, 30, 50, 10)
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
 #' # makes more sense to use this method
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d, match_pob_tot_method = "open")
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open")
 #' 
 #' # science paper  supp. material example
 #' b[] <- c(80, 20, 60, 60)
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d)
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 #' 
 #' # international migration review supp. material example
-#' P1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
-#' P2[,] <- c(75, 20, 30, 30, 25, 45, 40, 30, 5, 30, 150, 20, 0, 15, 60, 230)
+#' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
+#' s2[,] <- c(75, 20, 30, 30, 25, 45, 40, 30, 5, 30, 150, 20, 0, 15, 60, 230)
 #' b[] <- c(10, 50, 25, 60)
 #' d[] <- c(30, 10, 40, 10)
-#' ffs_demo(m1 = P1, m2 = P2, b_por = b, d_por = d)
-# m1 = P1; m2 = P2; b_por = b; d_por = d; m = NULL
+#' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+# m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
 # stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"
 # match_pob_tot_method = "open";
 ffs_demo <- function(m1 = NULL,
