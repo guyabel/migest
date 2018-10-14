@@ -2,7 +2,12 @@ Package: migest
 Type: Package
 Title: Methods for the Indirect Estimation of Bilateral Migration
 Version: 1.8.0
-Author: Guy J. Abel
+Author: Authors@R: 
+    person(given = "Guy",
+           family = "Abel",
+           role = c("aut", "cre"),
+           email = "g.j.abel@gmail.com"),
+           comment = c(ORCID = "0000-0002-4893-5687"))
 Maintainer: Guy J. Abel <g.j.abel@gmail.com>
 Description: Indirect methods for estimating bilateral migration flows in the presence of partial or missing data. Methods might be relevant to other categorical data situations on non-migration data, where for example, marginal totals are known and only auxiliary bilateral data is available.
 URL: https://github.com/gjabel/migest/
