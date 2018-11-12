@@ -23,21 +23,21 @@ match_pob_tot <- function(m1, m2, method = "rescale"){
   # m1 = m1_c; m2 = m2_c
   dd <- rowSums(m1) - rowSums(m2)
   if(method == "rescale"){
-    m1_adj <- ipf2(rtot = rowSums(m1) - dd / 2, ctot = colSums(m1), m = m1, maxit = 1e05, tol = 0.1)$mu
-    m2_adj <- ipf2(rtot = rowSums(m2) + dd / 2, ctot = colSums(m2), m = m2, maxit = 1e05, tol = 0.1)$mu
+    m1_adj <- ipf2(row_tot = rowSums(m1) - dd / 2, col_tot = colSums(m1), m = m1, maxit = 1e05, tol = 0.1)$mu
+    m2_adj <- ipf2(row_tot = rowSums(m2) + dd / 2, col_tot = colSums(m2), m = m2, maxit = 1e05, tol = 0.1)$mu
     # zeros for in and out matrices
-    in_mat <- ipf2(rtot = 0, m = m1)$mu
-    out_mat <- ipf2(rtot = 0, m = m2)$mu
+    in_mat <- ipf2(row_tot = 0, m = m1)$mu
+    out_mat <- ipf2(row_tot = 0, m = m2)$mu
   }
   if(method == "open"){
-    in_mat <- ipf2(rtot = pmax(-dd, 0), m = m1)$mu
-    out_mat <- ipf2(rtot = pmax(dd, 0), m = m2)$mu
+    in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m1)$mu
+    out_mat <- ipf2(row_tot = pmax(dd, 0), m = m2)$mu
     m1_adj <- m1 - out_mat
     m2_adj <- m2 - in_mat
   }
   if(method == "open-dr"){
-    in_mat <- ipf2(rtot = pmax(-dd, 0), m = m2)$mu
-    out_mat <- ipf2(rtot = pmax(dd, 0), m = m1)$mu
+    in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m2)$mu
+    out_mat <- ipf2(row_tot = pmax(dd, 0), m = m1)$mu
     m1_adj <- m1 - out_mat
     m2_adj <- m2 - in_mat
   }

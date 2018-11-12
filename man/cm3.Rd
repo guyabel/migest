@@ -4,13 +4,13 @@
 \alias{cm3}
 \title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.}
 \usage{
-cm3(rtot = NULL, ctot = NULL, m, tol = 1e-05, maxit = 500,
+cm3(row_tot = NULL, col_tot = NULL, m, tol = 1e-05, maxit = 500,
   verbose = FALSE)
 }
 \arguments{
-\item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
+\item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
 
-\item{ctot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
+\item{col_tot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
 
 \item{m}{Array of auxiliary data. By default set to 1 for all origin-destination-migrant typology combinations.}
 
@@ -37,14 +37,14 @@ as introduced by Abel (2005). The \eqn{\alpha_{i}} and  \eqn{\beta_{j}} represen
 \examples{
 ## over two tables
 dn <- LETTERS[1:2]
-y <- cm3(rtot = c(18, 20) * 2, ctot = c(16, 22) * 2, 
+y <- cm3(row_tot = c(18, 20) * 2, col_tot = c(16, 22) * 2, 
          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
                    dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
 # display with row, col and table totals
 y
 
 ## over three tables
-y <- cm3(rtot = c(170, 120, 410), ctot = c(500, 140, 60), 
+y <- cm3(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60), 
          m = array(c(5, 1, 2, 7, 4, 2, 5, 9, 5, 4, 3, 1), dim = c(2, 2, 3), 
                    dimnames = list(orig = dn, dest = dn, type = c("0--15", "15-60", ">60"))),
          verbose = FALSE)

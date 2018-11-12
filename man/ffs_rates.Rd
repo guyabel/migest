@@ -4,7 +4,7 @@
 \alias{ffs_rates}
 \title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Rates Approaches}
 \usage{
-ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = NULL)
+ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = "dennett")
 }
 \arguments{
 \item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
@@ -13,7 +13,7 @@ ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = NULL)
 
 \item{M}{Numeric value for the global sum of migration flows, used for \code{dennett} approach.}
 
-\item{method}{Method to estimate flows. Can take values \code{dennett} or \code{rogers-von-rabenau}. See detials section for more information.}
+\item{method}{Method to estimate flows. Can take values \code{dennett} or \code{rogers-von-rabenau}. See detials section for more information. Uses \code{dennett} as default.}
 }
 \value{
 Estimates migrant transitions flows based on migration rates.
@@ -23,24 +23,29 @@ When \code{method = "dennett"} migration are derived from the matrix supplied to
 When \code{method = "rogers-von-rabenau"} a matrix of growth rates are derived from the changes in inital poplations stock \code{m1} to obtain \code{m2};
 \deqn{P^{t+1} = g P^{t}}
 and then multiplied by the corresponding populations at risk in \code{m1}. Can result in negative flows.
+
+#' @references 
+Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows - An Alternative Methodology for Using Migrant Stock Data. \emph{Global Dynamics: Approaches from Complexity Science}, 125–142. https://doi.org/10.1002/9781118937464.ch7
+
+Rogers, A., & Von Rabenau, B. (1971). Estimation of interregional migration streams from place-of-birth-by-residence data. \emph{Demography}, 8(2), 185–194.
 }
 \description{
 Estimates migrant transitions flows between two sequential migrant stock tables using approached based on rates.
 }
 \examples{
-P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
+s1 <- matrix(data = c(100, 10, 10, 0, 20, 55, 25, 10, 10, 40, 140, 65, 20, 25, 20, 200),
              nrow = 4, ncol = 4, byrow = TRUE)
-P2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+s2 <- matrix(data = c(75, 25, 5, 15, 20, 45, 30, 15, 30, 40, 150, 35, 10, 50, 5, 200),
              nrow = 4, ncol = 4, byrow = TRUE)
 reg <- LETTERS[1:4]
-dimnames(P1) <- dimnames(P2) <- list(pob = reg, por = reg)
-P1; P2
+dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
+s1; s2
 
-# calculate totol migration flows for dennett approach
-n <- colSums(P2) - colSums(P1)
+# calculate total migration flows for dennett approach
+n <- colSums(s2) - colSums(s1)
 
-ffs_rates(m1 = P1, M =  sum(abs(n)), method = "dennett" )
-ffs_rates(m1 = P1, m2 = P2, method = "rogers-von-rabenau" )
+ffs_rates(m1 = s1, M =  sum(abs(n)), method = "dennett" )
+ffs_rates(m1 = s1, m2 = s2, method = "rogers-von-rabenau" )
 }
 \seealso{
 \code{\link{ffs_demo}}, \code{\link{ffs_rates}}

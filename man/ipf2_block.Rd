@@ -4,17 +4,18 @@
 \alias{ipf2_block}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Block Diagonal Elements.}
 \usage{
-ipf2_block(rtot = NULL, ctot = NULL, btot = NULL, block = NULL,
-  m = NULL, tol = 1e-05, maxit = 500, verbose = TRUE, ...)
+ipf2_block(row_tot = NULL, col_tot = NULL, block_tot = NULL,
+  block = NULL, m = NULL, tol = 1e-05, maxit = 500,
+  verbose = TRUE, ...)
 }
 \arguments{
-\item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
+\item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
 
-\item{ctot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
+\item{col_tot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
 
-\item{btot}{Matrix of block totals to constrain the sum of the imputed cell blocks.}
+\item{block_tot}{Matrix of block totals to constrain the sum of the imputed cell blocks.}
 
-\item{block}{Matrix of block structure corresponding to \code{btot}.}
+\item{block}{Matrix of block structure corresponding to \code{block_tot}.}
 
 \item{m}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.}
 
@@ -27,7 +28,7 @@ ipf2_block(rtot = NULL, ctot = NULL, btot = NULL, block = NULL,
 \item{...}{Additional arguments passes to \code{\link{block_matrix}}.}
 }
 \value{
-Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. The \code{btot} take the totals over the blocks in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
+Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{row_tot} and \code{col_tot} take the row-table and column-table specific known margins. The \code{block_tot} take the totals over the blocks in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
 
 The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) equal those provided in the row and column totals.
 
@@ -42,9 +43,9 @@ The \code{ipf2.b} function finds the maximum likelihood estimates for fitted val
 where \eqn{m_{pq}} is a prior estimate for \eqn{y_{pq}} and is no more complex than the matrices being fitted. The \eqn{\lambda_{ij}I(p \in i, q \in j)} term ensures a saturated fit on the block the \eqn{(i,j)} block.
 }
 \examples{
-y <- ipf2_block(rtot= c(30,20,30,10,20,5,0,10,5,5,5,10),
-                ctot = c(45,10,10,5,5,10,50,5,10,0,0,0),
-                btot = matrix(data = c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0),
+y <- ipf2_block(row_tot= c(30,20,30,10,20,5,0,10,5,5,5,10),
+                col_tot = c(45,10,10,5,5,10,50,5,10,0,0,0),
+                block_tot = matrix(data = c(0,0 ,50,0, 35,0,25,0, 10,10,0,0, 10,10,0,0),
                               nrow = 4, byrow = TRUE),
                 block = block_matrix(x = 1:16, b = c(2,3,4,3)))
 addmargins(y$mu)

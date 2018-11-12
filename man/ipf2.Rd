@@ -4,13 +4,13 @@
 \alias{ipf2}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
 \usage{
-ipf2(rtot = NULL, ctot = NULL, m = matrix(1, length(rtot),
-  length(ctot)), tol = 1e-05, maxit = 500, verbose = FALSE)
+ipf2(row_tot = NULL, col_tot = NULL, m = matrix(1, length(row_tot),
+  length(col_tot)), tol = 1e-05, maxit = 500, verbose = FALSE)
 }
 \arguments{
-\item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
+\item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
 
-\item{ctot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
+\item{col_tot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
 
 \item{m}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.}
 
@@ -25,7 +25,7 @@ Iterative Proportional Fitting routine set up in a similar manner to Agresti (20
 
 The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) to equal those provided in the row and column totals.
 
-If only one of the margins is known, the function can still be run. The indirect estimates will correspond to the log-linear model without the \eqn{\alpha_{i}} term if (\code{rtot = NULL}) or without the \eqn{\beta_{j}} term if (\code{ctot = NULL})
+If only one of the margins is known, the function can still be run. The indirect estimates will correspond to the log-linear model without the \eqn{\alpha_{i}} term if (\code{row_tot = NULL}) or without the \eqn{\beta_{j}} term if (\code{col_tot = NULL})
 
 Returns a \code{list} object with
 \item{mu }{Origin-Destination matrix of indirect estimates}
@@ -40,18 +40,18 @@ where \eqn{m_{ij}} is a set of prior estimates for \eqn{y_{ij}} and itself is no
 \examples{
 ## with Willekens (1999) data
 dn <- LETTERS[1:2]
-y <- ipf2(rtot = c(18, 20), ctot = c(16, 22), 
+y <- ipf2(row_tot = c(18, 20), col_tot = c(16, 22), 
           m = matrix(c(5, 1, 2, 7), ncol = 2, 
                      dimnames = list(orig = dn, dest = dn)))
 round(addmargins(y$mu),2)
 
 ## with all elements of offset equal
-y <- ipf2(rtot = c(18, 20), ctot = c(16, 22))
+y <- ipf2(row_tot = c(18, 20), col_tot = c(16, 22))
 round(addmargins(y$mu),2)
 
 ## with bigger matrix
 dn <- LETTERS[1:3]
-y <- ipf2(rtot = c(170, 120, 410), ctot = c(500, 140, 60), 
+y <- ipf2(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60), 
           m = matrix(c(50, 10, 220, 120, 120, 30, 545, 0, 10), ncol = 3, 
                      dimnames = list(orig = dn, dest = dn)))
 # display with row and col totals
@@ -59,7 +59,7 @@ round(addmargins(y$mu))
 
 ## only one margin known
 dn <- LETTERS[1:2]
-y <- ipf2(rtot = c(18, 20), ctot = NULL, 
+y <- ipf2(row_tot = c(18, 20), col_tot = NULL, 
           m = matrix(c(5, 1, 2, 7), ncol = 2, 
                      dimnames = list(orig = dn, dest = dn)))
 round(addmargins(y$mu))

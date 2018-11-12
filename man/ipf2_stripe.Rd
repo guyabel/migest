@@ -4,17 +4,18 @@
 \alias{ipf2_stripe}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Stripe Elements.}
 \usage{
-ipf2_stripe(rtot = NULL, ctot = NULL, stot = NULL, stripe = NULL,
-  m = NULL, tol = 1e-05, maxit = 500, verbose = TRUE, ...)
+ipf2_stripe(row_tot = NULL, col_tot = NULL, stripe_tot = NULL,
+  stripe = NULL, m = NULL, tol = 1e-05, maxit = 500,
+  verbose = TRUE, ...)
 }
 \arguments{
-\item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
+\item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
 
-\item{ctot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
+\item{col_tot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
 
-\item{stot}{Matrix of stripe totals to constrain the sum of the imputed cell blocks.}
+\item{stripe_tot}{Matrix of stripe totals to constrain the sum of the imputed cell blocks.}
 
-\item{stripe}{Matrix of stripe stucture corresponding to \code{stot}.}
+\item{stripe}{Matrix of stripe stucture corresponding to \code{stripe_tot}.}
 
 \item{m}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.}
 
@@ -27,7 +28,7 @@ ipf2_stripe(rtot = NULL, ctot = NULL, stot = NULL, stripe = NULL,
 \item{...}{Additional arguments passes to \code{\link{stripe_matrix}}.}
 }
 \value{
-Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. The \code{stot} take the totals over the stripes in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
+Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The arguments \code{row_tot} and \code{col_tot} take the row-table and column-table specific known margins. The \code{stripe_tot} take the totals over the stripes in the matrix defined with \code{b}. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
 The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) equal those provided in the row and column totals.
 Returns a \code{list} object with
 \item{mu }{Array of indirect estimates of origin-destination matrices by migrant characteristic}
@@ -40,8 +41,8 @@ The \code{ipf2.b} function finds the maximum likelihood estimates for fitted val
 where \eqn{m_{pq}} is a prior estimate for \eqn{y_{pq}} and is no more complex than the matrices being fitted. The \eqn{\lambda_{ij}I(p \in i, q \in j)} term ensures a saturated fit on the block the \eqn{(i,j)} block.
 }
 \examples{
-y <- ipf2_stripe(rtot = c(85, 70, 35, 30, 60, 55, 65),
- stot = matrix(c(15,20,50,
+y <- ipf2_stripe(row_tot = c(85, 70, 35, 30, 60, 55, 65),
+ stripe_tot = matrix(c(15,20,50,
                 35,10,25,
                 5 ,0 ,30,
                 10,10,10,

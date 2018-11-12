@@ -15,10 +15,10 @@
 death_mat <- function(d_por = NULL, m1 = NULL, method = "proportion",
                       m2 = NULL, b_por = NULL){
   if (method == "proportion") 
-    dd <- ipf2(ctot = d_por, m = m1)$mu
+    dd <- ipf2(col_tot = d_por, m = m1)$mu
   if (method == "accounting"){
     d_pob <- rowSums(m1) + b_por - rowSums(m2)
-    dd <- ipf2(ctot = d_por, rtot = d_pob, m = m1)$mu
+    dd <- ipf2(col_tot = d_por, row_tot = d_pob, m = m1)$mu
   }
   return(dd)
 }

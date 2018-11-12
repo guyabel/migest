@@ -4,15 +4,16 @@
 \alias{ipf3_qi}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins and Diagonal Elements.}
 \usage{
-ipf3_qi(rtot = NULL, ctot = NULL, dtot = NULL, m = NULL,
-  speed = TRUE, tol = 1e-05, maxit = 500, verbose = TRUE)
+ipf3_qi(row_tot = NULL, col_tot = NULL, diag_count = NULL,
+  m = NULL, speed = TRUE, tol = 1e-05, maxit = 500,
+  verbose = TRUE)
 }
 \arguments{
-\item{rtot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
+\item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
 
-\item{ctot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
+\item{col_tot}{Vector of destination totals to constrain the sum of the imputed cell columns.}
 
-\item{dtot}{Array with counts on diagonal to constrain diagonal elements of the indirect estimates too. By default these are taken as their maximum possible values given the relevant margins totals in each table. If user specifies their own array of diagonal totals, values on the non-diagonals in the array can take any positive number (they are ultimately ignored).}
+\item{diag_count}{Array with counts on diagonal to constrain diagonal elements of the indirect estimates too. By default these are taken as their maximum possible values given the relevant margins totals in each table. If user specifies their own array of diagonal totals, values on the non-diagonals in the array can take any positive number (they are ultimately ignored).}
 
 \item{m}{Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.}
 
@@ -25,7 +26,7 @@ ipf3_qi(rtot = NULL, ctot = NULL, dtot = NULL, m = NULL,
 \item{verbose}{Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.}
 }
 \value{
-Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
+Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments \code{row_tot} and \code{col_tot} take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
 
 The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) equal those provided in the row and column totals.
 
@@ -62,7 +63,7 @@ addmargins(P1)
 addmargins(P2)
 
 # run ipf
-y <- ipf3_qi(rtot = t(P1), ctot = P2)
+y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table
@@ -70,7 +71,7 @@ round(sum_od(y$mu), 1)
 
 ## with alternative offset term
 dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-y <- ipf3_qi(rtot = t(P1), ctot = P2, m = dis)
+y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
 # display with row, col and table totals
 round(addmargins(y$mu), 1)
 # origin-destination flow table

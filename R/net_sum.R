@@ -14,11 +14,11 @@
 #' m <- matrix(data = 1:16, nrow = 4, ncol = 4)
 #' net_sum(m)
 net_sum <- function(m, region = 1:dim(m)[1]){
-  rtot <- apply(X = m, MARGIN = 1, FUN = sum, na.rm = TRUE)
-  ctot <- apply(X = m, MARGIN = 2, FUN = sum, na.rm = TRUE)
-  net <- ctot - rtot
+  row_tot <- apply(X = m, MARGIN = 1, FUN = sum, na.rm = TRUE)
+  col_tot <- apply(X = m, MARGIN = 2, FUN = sum, na.rm = TRUE)
+  net <- col_tot - row_tot
   if(is.null(region))
-    region <- 1:min(length(rtot),length(ctot))
+    region <- 1:min(length(row_tot),length(col_tot))
   n <- net[region]
   return(n)
 }

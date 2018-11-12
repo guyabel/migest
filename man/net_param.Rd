@@ -4,14 +4,14 @@
 \alias{net_param}
 \title{Estimate Parameters for Net Migration Scaling.}
 \usage{
-net_param(m, region, ntot)
+net_param(m, region, net_tot)
 }
 \arguments{
 \item{m}{Matrix of origin-destination flows, where the first and second dimensions correspond to origin and destination respectively.}
 
 \item{region}{Integer value corresponding to the region that the net migration sum is desired. Will return sums for all regions by default.}
 
-\item{ntot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
+\item{net_tot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
 }
 \value{
 Vector of two values corresponding to the roots for the quadratic equation.

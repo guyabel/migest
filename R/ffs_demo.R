@@ -148,9 +148,9 @@ ffs_demo <- function(m1 = NULL,
   
   # ipf
   if(stayer_assumption)
-    fl <- ipf3_qi(rtot = t(m1_d), ctot = m2_d, m = m,...)
+    fl <- ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m,...)
   if(!stayer_assumption)
-    fl <- ipf3(rtot = t(m1_d), ctot = m2_d, m = m,...)
+    fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m,...)
   
   # fill in y
   y[1:R, 1:R, ] <- fl$mu

@@ -3,15 +3,15 @@
 #' The \code{ipf3} function finds the maximum likelihood estimates for fitted values in the log-linear model:
 #' \deqn{ \log y_{ijk} = \log \alpha_{i} + \log \beta_{j} + \log \lambda_{k} + \log \gamma_{ik} + \log \kappa_{jk} + \log m_{ijk} }
 #' where \eqn{m_{ijk}} is a set of prior estimates for \eqn{y_{ijk}} and is no more complex than the matrices being fitted.
-#' @param rtot Vector of origin totals to constrain the sum of the imputed cell rows.
-#' @param ctot Vector of destination totals to constrain the sum of the imputed cell columns.
+#' @param row_tot Vector of origin totals to constrain the sum of the imputed cell rows.
+#' @param col_tot Vector of destination totals to constrain the sum of the imputed cell columns.
 #' @param m Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations. 
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
 #'
 #' @return
-#' Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins.
+#' Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). The arguments \code{row_tot} and \code{col_tot} take the row-table and column-table specific known margins.
 #' 
 #' The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) to equal those provided in the row and column totals.
 #' 
@@ -47,7 +47,7 @@
 #' addmargins(P2)
 #' 
 #' # run ipf
-#' y <- ipf3(rtot = t(P1), ctot = P2)
+#' y <- ipf3(row_tot = t(P1), col_tot = P2)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
@@ -55,37 +55,37 @@
 #' 
 #' ## with alternative offset term
 #' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-#' y <- ipf3(rtot = t(P1), ctot = P2, m = dis)
+#' y <- ipf3(row_tot = t(P1), col_tot = P2, m = dis)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
 #' round(sum_od(y$mu), 1)
 ipf3 <-
-  function(rtot = NULL,
-           ctot = NULL,
+  function(row_tot = NULL,
+           col_tot = NULL,
            m = NULL,
            tol = 1e-05,
            maxit = 500,
            verbose = TRUE) {
-    if (any(round(colSums(rtot)) != round(rowSums(ctot))))
+    if (any(round(colSums(row_tot)) != round(rowSums(col_tot))))
       stop(
-        "row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)"
+        "row and column totals are not equal for one or more sub-tables, ensure colSums(row_tot)==rowSums(col_tot)"
       )
     
-    R <- unique(c(dim(rtot), dim(ctot)))
+    R <- unique(c(dim(row_tot), dim(col_tot)))
     if (length(R) != 1)
       stop("Row totals and column totals matrices must be square and with the same dimensions.")
-    dn <- dimnames(rtot)[[1]]
+    dn <- dimnames(row_tot)[[1]]
     
-    n <- list(ik = rtot,
-              jk = t(ctot))
+    n <- list(ik = row_tot,
+              jk = t(col_tot))
     
     #set up offset
     if (length(dim(m)) == 2) {
       m <- array(data = c(m), dim = c(R, R, R))
     }
     if (is.null(m)) {
-      m <- array(data = 1, dim = c(dim(rtot), dim(rtot)[1]))
+      m <- array(data = 1, dim = c(dim(row_tot), dim(row_tot)[1]))
     }
     if (is.null(dimnames(m))) {
       dimnames(m) <- list(orig = dn,

@@ -4,14 +4,16 @@
 \alias{ffs_diff}
 \title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing Approaches}
 \usage{
-ffs_diff(m1, m2, decrease = "return")
+ffs_diff(m1, m2, decrease = "return", include_native_born = FALSE)
 }
 \arguments{
 \item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
 
 \item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
-\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options.}
+\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Defualt is \code{return}}
+
+\item{include_native_born}{Logcial value to indicate wheather to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.}
 }
 \value{
 Estimates migrant transitions flows between two sequential migrant stock tables. 
@@ -26,16 +28,16 @@ Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A P
 Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches commonly used by economists.
 }
 \examples{
-P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
+s1 <- matrix(data = c(100, 10, 10, 0, 20, 55, 25, 10, 10, 40, 140, 65, 20, 25, 20, 200),
              nrow = 4, ncol = 4, byrow = TRUE)
-P2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+s2 <- matrix(data = c(75, 25, 5, 15, 20, 45, 30, 15, 30, 40, 150, 35, 10, 50, 5, 200),
              nrow = 4, ncol = 4, byrow = TRUE)
 reg <- LETTERS[1:4]
-dimnames(P1) <- dimnames(P2) <- list(pob = reg, por = reg)
-P1; P2
+dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
+s1; s2
 
-ffs_diff(m1 = P1, m2 = P2, decrease = "zero")
-ffs_diff(m1 = P1, m2 = P2, decrease = "return")
+ffs_diff(m1 = s1, m2 = s2, decrease = "zero")
+ffs_diff(m1 = s1, m2 = s2, decrease = "return")
 }
 \seealso{
 \code{\link{ffs_demo}}, \code{\link{ffs_rates}}

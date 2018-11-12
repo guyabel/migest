@@ -5,9 +5,9 @@
 #' The \code{ipf3} function finds the maximum likelihood estimates for fitted values in the log-linear model:
 #' \deqn{ \log y_{ijk} = \log \alpha_{i} + \log \beta_{j} + \log \lambda_{k} + \log \gamma_{ik} + \log \kappa_{jk} + \log \delta_{ijk}I(i=j) + \log m_{ijk} }
 #' where \eqn{m_{ijk}} is a set of prior estimates for \eqn{y_{ijk}} and is no more complex than the matrices being fitted. The \eqn{\delta_{ijk}I(i=j)} term ensures a saturated fit on the diagonal elements of each \eqn{(i,j)} matrix.
-#' @param rtot Vector of origin totals to constrain the sum of the imputed cell rows.
-#' @param ctot Vector of destination totals to constrain the sum of the imputed cell columns.
-#' @param dtot Array with counts on diagonal to constrain diagonal elements of the indirect estimates too. By default these are taken as their maximum possible values given the relevant margins totals in each table. If user specifies their own array of diagonal totals, values on the non-diagonals in the array can take any positive number (they are ultimately ignored).
+#' @param row_tot Vector of origin totals to constrain the sum of the imputed cell rows.
+#' @param col_tot Vector of destination totals to constrain the sum of the imputed cell columns.
+#' @param diag_count Array with counts on diagonal to constrain diagonal elements of the indirect estimates too. By default these are taken as their maximum possible values given the relevant margins totals in each table. If user specifies their own array of diagonal totals, values on the non-diagonals in the array can take any positive number (they are ultimately ignored).
 #' @param m Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations. 
 #' @param speed Speeds up the IPF algorithm by minimizing sufficient statistics.
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
@@ -15,7 +15,7 @@
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
 #'
 #' @return
-#' Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments \code{rtot} and \code{ctot} take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
+#' Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments \code{row_tot} and \code{col_tot} take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
 #' 
 #' The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (\code{m}) equal those provided in the row and column totals.
 #' 
@@ -49,7 +49,7 @@
 #' addmargins(P2)
 #' 
 #' # run ipf
-#' y <- ipf3_qi(rtot = t(P1), ctot = P2)
+#' y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
@@ -57,45 +57,45 @@
 #' 
 #' ## with alternative offset term
 #' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-#' y <- ipf3_qi(rtot = t(P1), ctot = P2, m = dis)
+#' y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
 #' # display with row, col and table totals
 #' round(addmargins(y$mu), 1)
 #' # origin-destination flow table
 #' round(sum_od(y$mu), 1) 
 # P1.adj=P1;P2.adj=P2
-#rtot=t(P1.adj);ctot=P2.adj;dtot=NULL;verbose=TRUE;tol=1e-05;maxit=500;speed=TRUE;m=NULL
+#row_tot=t(P1.adj);col_tot=P2.adj;diag_count=NULL;verbose=TRUE;tol=1e-05;maxit=500;speed=TRUE;m=NULL
 ipf3_qi <-
-  function(rtot = NULL,
-           ctot = NULL,
-           dtot = NULL,
+  function(row_tot = NULL,
+           col_tot = NULL,
+           diag_count = NULL,
            m = NULL,
            speed = TRUE,
            tol = 1e-05,
            maxit = 500,
            verbose = TRUE) {
-    if (any(round(colSums(rtot)) != round(rowSums(ctot))))
+    if (any(round(colSums(row_tot)) != round(rowSums(col_tot))))
       stop(
-        "row and column totals are not equal for one or more sub-tables, ensure colSums(rtot)==rowSums(ctot)"
+        "row and column totals are not equal for one or more sub-tables, ensure colSums(row_tot)==rowSums(col_tot)"
       )
     
-    R <- unique(c(dim(rtot), dim(ctot)))
+    R <- unique(c(dim(row_tot), dim(col_tot)))
     if (length(R) != 1)
       stop("Row totals and column totals matrices must be square and with the same dimensions.")
-    dn <- dimnames(rtot)[[1]]
+    dn <- dimnames(row_tot)[[1]]
     
-    n <- list(ik = rtot,
-              jk = t(ctot),
-              ijk = dtot)
+    n <- list(ik = row_tot,
+              jk = t(col_tot),
+              ijk = diag_count)
     #set up diagonals
     df1 <- expand.grid(a = 1:R, b = 1:R)
-    if (is.null(dtot)) {
-      dtot <- array(1, c(R, R, R))
-      dtot <-
+    if (is.null(diag_count)) {
+      diag_count <- array(1, c(R, R, R))
+      diag_count <-
         with(data = df1, 
-             expr = replace(x = dtot, 
+             expr = replace(x = diag_count, 
                             list = cbind(a, a, b), 
                             values = apply(X = cbind(c(n$ik), c(n$jk)), MARGIN = 1, FUN = min)))
-      n$ijk <- dtot
+      n$ijk <- diag_count
     }
     
     #set up offset
@@ -155,9 +155,9 @@ ipf3_qi <-
         with(data = df1, 
              expr = replace(x = mu, 
                             list = cbind(a, a, b), 
-                            values = c(sapply(X = 1:R, FUN = function(i) diag(dtot[, , i])))))
+                            values = c(sapply(X = 1:R, FUN = function(i) diag(diag_count[, , i])))))
     }
     return(list(mu = mu, it = it, tol = d_max))
   }
 #rm(n,mu,mu_margin,mu_scaler)
-#ipf3_qi(rtot=t(P1.adj),ctot=P2.adj,m=m)#
+#ipf3_qi(row_tot=t(P1.adj),col_tot=P2.adj,m=m)#

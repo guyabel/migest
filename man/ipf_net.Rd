@@ -4,11 +4,11 @@
 \alias{ipf_net}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Net Migration Totals.}
 \usage{
-ipf_net(ntot = NULL, m = NULL, tol = 1e-05, maxit = 500,
+ipf_net(net_tot = NULL, m = NULL, tol = 1e-05, maxit = 500,
   verbose = TRUE)
 }
 \arguments{
-\item{ntot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
+\item{net_tot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
 
 \item{m}{Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.}
 
@@ -19,7 +19,7 @@ ipf_net(ntot = NULL, m = NULL, tol = 1e-05, maxit = 500,
 \item{verbose}{Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.}
 }
 \value{
-Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The argument \code{ntot} takes the known net migration totals.
+Iterative Proportional Fitting routine set up using the partial likelihood derivatives. The argument \code{net_tot} takes the known net migration totals.
 The user must ensure that the net migration totals sum to globally to zero.
 
 Returns a \code{list} object with
@@ -29,11 +29,11 @@ Returns a \code{list} object with
 }
 \description{
 The \code{ipf_net} function finds the maximum likelihood estimates for fitted values in the log-linear model:
-\deqn{ ??? }
+\deqn{\log y_{ij} = \log \alpha_{i} + \log \alpha_{i}^{-1} + \log m_{ij} }
 }
 \examples{
 m <- matrix(data = 1:16, nrow = 4)
-y <- ipf_net(ntot = c(30, 40, -15, -55), m = m)
+y <- ipf_net(net_tot = c(30, 40, -15, -55), m = m)
 addmargins(m)
 sum_net(y$mu)
 
@@ -43,7 +43,7 @@ m <- matrix(c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0), 4, 4,
 addmargins(m)
 sum_net(m)
 
-y <- ipf_net(ntot = c(-100, 125, -75, 50), m = m)
+y <- ipf_net(net_tot = c(-100, 125, -75, 50), m = m)
 addmargins(y$mu)
 sum_net(y$mu)
 }
