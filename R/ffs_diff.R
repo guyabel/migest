@@ -18,9 +18,9 @@
 #' @export
 #'
 #' @examples
-#' s1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
+#' s1 <- matrix(data = c(100, 10, 10, 0, 20, 55, 25, 10, 10, 40, 140, 65, 20, 25, 20, 200),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
-#' s2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
+#' s2 <- matrix(data = c(75, 25, 5, 15, 20, 45, 30, 15, 30, 40, 150, 35, 10, 50, 5, 200),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' reg <- LETTERS[1:4]
 #' dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
@@ -33,13 +33,12 @@ ffs_diff <- function(m1, m2, decrease = "return", include_native_born = FALSE){
     diag(m1) <- 0
     diag(m2) <- 0
   }
+  y0 <- m2 - m1
   if(decrease == "zero"){
-    y0 <- m2 - m1
     y0[y0<0] <- 0
     y <- y0
   }
   if(decrease == "return"){
-    y0 <- m2 - m1
     y1 <- t(y0) * -1
     y1[y1<0] <- 0
     y0[y0<0] <- 0
