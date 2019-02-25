@@ -2,7 +2,7 @@ Package: migest
 Type: Package
 Title: Methods for the Indirect Estimation of Bilateral Migration
 Version: 1.8.0
-Authors@R: c(person("Guy", "Abel", role = c("aut", "cre"),
+Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
                     email = "g.j.abel@gmail.com",
                     comment = c(ORCID = "0000-0002-4893-5687")))
 Maintainer: Guy J. Abel <g.j.abel@gmail.com>
