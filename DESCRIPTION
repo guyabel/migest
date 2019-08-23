@@ -2,15 +2,13 @@ Package: migest
 Type: Package
 Title: Methods for the Indirect Estimation of Bilateral Migration
 Version: 1.8.1
-Author: Authors@R: 
-    person(given = "Guy",
-           family = "Abel",
-           role = c("aut", "cre"),
-           email = "g.j.abel@gmail.com"),
-           comment = c(ORCID = "0000-0002-4893-5687"))
+Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
+                    email = "g.j.abel@gmail.com",
+                    comment = c(ORCID = "0000-0002-4893-5687")))
 Maintainer: Guy J. Abel <g.j.abel@gmail.com>
-Description: Indirect methods for estimating bilateral migration flows in the presence of partial or missing data. Methods might be relevant to other categorical data situations on non-migration data, where for example, marginal totals are known and only auxiliary bilateral data is available.
+Description: Indirect methods for estimating bilateral migration flows in the presence of partial or missing data, including the estimation of bilateral migration flows from changes in bilateral migrant stock tables (e.g. Abel (2013) <doi:10.4054/DemRes.2013.28.18>).
 URL: https://github.com/gjabel/migest/
+BugReports: https://github.com/gjabel/migest/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

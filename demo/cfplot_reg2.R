@@ -38,7 +38,7 @@ par(mar = rep(0, 4))
 ##chord diagram with user selected adjustments for bilateral migration flow data
 ##
 
-chordDiagram(x = df0, grid.col = df1$col, transparency = 0.25,
+chordDiagram(x = df0 %>% select(1:3), grid.col = df1$col, transparency = 0.25,
              order = df1$region, directional = 1,
              direction.type = c("arrows", "diffHeight"), diffHeight  = -0.04,
              annotationTrack = "grid", annotationTrackHeight = c(0.05, 0.1),
