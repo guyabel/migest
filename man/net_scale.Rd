@@ -17,7 +17,7 @@ net_scale(m, region = NULL, alpha)
 Matrix scaled in region(s) by value of alpha, where \code{alpha} applied to destination flows and inverse of \code{alpha} applied to origin flows
 }
 \description{
-This function is predominantly intended to be used within the \code{\link{ipf_net}} routine.
+This function is predominantly intended to be used within the \code{\link{cm_net}} routine.
 }
 \author{
 Guy J. Abel

@@ -22,6 +22,41 @@ match_pob_tot <- function(m1, m2, method = "rescale"){
     stop("method must be open, open-dr or rescale")
   # m1 = m1_c; m2 = m2_c
   dd <- rowSums(m1) - rowSums(m2)
+  # if(method == "rescale"){
+  #   m1_adj <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05, 
+  #                         # print = TRUE, 
+  #                         target.list = list(1, 2),
+  #                         target.data = list(rowSums(m1) - dd / 2, colSums(m1)))
+  #   m2_adj <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05, 
+  #                         # print = TRUE, 
+  #                         target.list = list(1, 2),
+  #                         target.data = list(rowSums(m2) + dd / 2, colSums(m2)))
+  #   m1_adj <- m1_adj$x.hat
+  #   m2_adj <- m2_adj$x.hat
+  #   # zeros for in and out matrices for return object
+  #   zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0))
+  #   in_mat <- out_mat <- zeros$x.hat
+  # }
+  # if(method == "open"){
+  #   in_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
+  #                         target.list = list(1),
+  #                         target.data = list(pmax(-dd, 0)))
+  #   out_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
+  #                         target.list = list(1),
+  #                         target.data = list(pmax(dd, 0)))
+  #   m1_adj <- m1 - out_mat$x.hat
+  #   m2_adj <- m2 - in_mat$x.hat
+  # }
+  # if(method == "open-dr"){
+  #   in_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
+  #                         target.list = list(1),
+  #                         target.data = list(pmax(-dd, 0)))
+  #   out_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
+  #                          target.list = list(1),
+  #                          target.data = list(pmax(dd, 0)))
+  #   m1_adj <- m1 - out_mat$x.hat
+  #   m2_adj <- m2 - in_mat$x.hat
+  # }
   if(method == "rescale"){
     m1_adj <- ipf2(row_tot = rowSums(m1) - dd / 2, col_tot = colSums(m1), m = m1, maxit = 1e05, tol = 0.1)$mu
     m2_adj <- ipf2(row_tot = rowSums(m2) + dd / 2, col_tot = colSums(m2), m = m2, maxit = 1e05, tol = 0.1)$mu

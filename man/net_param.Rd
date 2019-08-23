@@ -17,7 +17,7 @@ net_param(m, region, net_tot)
 Vector of two values corresponding to the roots for the quadratic equation.
 }
 \description{
-This function is predominantly intended to be used within the \code{\link{ipf_net}} routine.
+This function is predominantly intended to be used within the \code{\link{cm_net}} routine.
 }
 \author{
 Guy J. Abel

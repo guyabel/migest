@@ -4,9 +4,9 @@
 \alias{cm2}
 \title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
 \usage{
-cm2(row_tot = NULL, col_tot = NULL, m = matrix(1, length(row_tot),
-  length(col_tot)), tol = 1e-05, maxit = 500, verbose = TRUE,
-  rtot = row_tot, ctot = col_tot)
+cm2(row_tot = NULL, col_tot = NULL, m = matrix(data = 1, nrow =
+  length(row_tot), ncol = length(col_tot)), tol = 1e-06, maxit = 500,
+  verbose = TRUE, rtot = row_tot, ctot = col_tot)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
@@ -51,14 +51,13 @@ y <- cm2(row_tot = c(18, 20), col_tot = c(16, 22))
 y
 
 ## with bigger matrix
-dn <- LETTERS[1:3]
-y <- cm2(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60), 
-         m = matrix(c(50, 10, 220, 120, 120, 30, 545, 0, 10), 
-                    ncol = 3, 
-                    dimnames = list(orig = dn, dest = dn)))
+dn <- LETTERS[1:4]
+y <- cm2(row_tot = c(250, 100, 140, 110), col_tot = c(150, 150, 180, 120),
+         m = matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+                    nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE))
                     
 # display with row and col totals
-round(addmargins(y$N)) 
+round(addmargins(y$n)) 
 }
 \references{
 Raymer, J., G. J. Abel, and P. W. F. Smith (2007). Combining census and registration data to estimate detailed elderly migration flows in England and Wales. \emph{Journal of the Royal Statistical Society: Series A (Statistics in Society)} 170 (4), 891--908.

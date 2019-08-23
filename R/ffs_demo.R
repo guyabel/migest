@@ -85,6 +85,7 @@
 #' d[] <- c(30, 10, 40, 10)
 #' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 # m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
+# m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
 # stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"
 # match_pob_tot_method = "open";
 ffs_demo <- function(m1 = NULL,
@@ -145,26 +146,30 @@ ffs_demo <- function(m1 = NULL,
   x <- match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method)
   m1_d <- x$m1_adj
   m2_d <- x$m2_adj
-  
+    
   # ipf
   if(stayer_assumption)
-    fl <- ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m,...)
+    fl <- ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m,...)$mu
   if(!stayer_assumption)
-    fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m,...)
-  
+    fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m,...)$mu
+    # fl <- mipfp::Ipfp(seed = m, tol = 1e-03, iter = 1e05, 
+    #                   # print = TRUE, 
+    #                   target.list = list(c(1, 3), c(2,3)),
+    #                   target.data = list(t(m1_d), m2_d))$x.hat
+
   # fill in y
-  y[1:R, 1:R, ] <- fl$mu
+  y[1:R, 1:R, ] <- fl
   y[R + 1, 1:R, ] <- b_mat
   y[R + 2, 1:R, ] <- t(x$out_mat)
   y[1:R, R + 1, ] <- t(d_mat)
   y[1:R, R + 2, ] <- t(x$in_mat)
   
-  return(c(fl, 
-           list(y = y, 
-                stayer_assumption = stayer_assumption,
-                match_pob_tot_method = match_pob_tot_method,
-                birth_non_negative = birth_non_negative,
-                death_method = death_method, 
-                od_flow = stats::addmargins(sum_od(fl$mu)))
+  return(list(flow = fl, 
+              y = y, 
+              stayer_assumption = stayer_assumption,
+              match_pob_tot_method = match_pob_tot_method,
+              birth_non_negative = birth_non_negative,
+              death_method = death_method, 
+              od_flow = stats::addmargins(sum_od(fl))
   ))
 }

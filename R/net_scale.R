@@ -1,6 +1,6 @@
 #' Scale Migration Flows in Origin-Destination
 #'
-#' This function is predominantly intended to be used within the \code{\link{ipf_net}} routine.
+#' This function is predominantly intended to be used within the \code{\link{cm_net}} routine.
 #' 
 #' @param m Matrix of origin-destination flows, where the first and second dimensions correspond to origin and destination respectively. 
 #' @param region Integer corresponding to row (column) in a square matrix for the region where scaling is to be applied

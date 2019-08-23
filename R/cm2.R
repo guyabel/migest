@@ -40,42 +40,55 @@
 #' y
 #' 
 #' ## with bigger matrix
-#' dn <- LETTERS[1:3]
-#' y <- cm2(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60), 
-#'          m = matrix(c(50, 10, 220, 120, 120, 30, 545, 0, 10), 
-#'                     ncol = 3, 
-#'                     dimnames = list(orig = dn, dest = dn)))
+#' dn <- LETTERS[1:4]
+#' y <- cm2(row_tot = c(250, 100, 140, 110), col_tot = c(150, 150, 180, 120),
+#'          m = matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+#'                     nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE))
 #'                     
 #' # display with row and col totals
-#' round(addmargins(y$N)) 
-cm2 <- function(row_tot = NULL, col_tot = NULL, m = matrix(1,length(row_tot),length(col_tot)),
-                tol = 1e-05, maxit = 500, verbose = TRUE, rtot = row_tot, ctot = col_tot)
-{
-  if(round(sum(row_tot))!=round(sum(col_tot))) 
+#' round(addmargins(y$n)) 
+cm2 <- function(row_tot = NULL, col_tot = NULL, 
+                m = matrix(data = 1, nrow = length(row_tot), ncol = length(col_tot)),
+                tol = 1e-06, maxit = 500, verbose = TRUE, 
+                rtot = row_tot, ctot = col_tot){
+  if(round(sum(row_tot)) != round(sum(col_tot))) 
     stop("row and column totals are not equal, ensure sum(row_tot)==sum(col_tot)")
-  i<-dim(m)[1];  j<-dim(m)[2]
-  alpha <- rep(1,i)
-  beta <- rep(1,j)
-  if(verbose==TRUE){
-    rd<-paste("%.",nchar(format(tol,scientific=FALSE))-2,"f",sep="")
-    cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
+  
+  i <- dim(m)[1];  
+  j <- dim(m)[2]
+  alpha <- rep(x = 1, times = i)
+  beta <- rep(x = 1, times = j)
+  if (verbose == TRUE){
+    cat("iteration:", 0, "\n")
+    cat("alpha parameters:", "\n")
+    cat("beta parameters:", beta, "\n")
+    cat("\n")
   }
-  alpha.old <- alpha+1; beta.old <- beta+1
-  it<-1;  max.diff<-tol*2
-  while(max.diff>tol & it<maxit ){
-    beta.old <- beta
-    for(j in 1:j) {
-      beta[j] <- col_tot[j]/sum(alpha * m[, j])
-    }
-    alpha.old <- alpha
+  
+  it <- 1;  
+  d_max <- tol * 2
+
+  while(d_max > tol & it < maxit){
+    alpha_old <- alpha
     for(i in 1:i) {
       alpha[i] <- row_tot[i]/sum(beta * m[i,  ])
     }
-    it<-it+1
-    max.diff<-max(abs(alpha-alpha.old), abs(beta-beta.old))
-    if(verbose==TRUE)
-      cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
+    beta_old <- beta
+    for(j in 1:j) {
+      beta[j] <- col_tot[j]/sum(alpha * m[, j])
+    }
+    d_max <- max(abs(c(alpha_old - alpha, beta_old - beta)))
+    if (verbose == TRUE & (it < 20 | it %% 10 ==0)){
+      cat("iteration:", it, "\n")
+      cat("alpha parameters:", alpha, "\n")
+      cat("beta parameters:", beta, "\n")
+      cat("max difference:", d_max, "\n")
+      cat("\n")
+    }
+    it <- it+1
   }
-  return(list(N = alpha %*% t(beta)*m,
-              theta=c(alpha=alpha,beta=beta)))
+  return(
+    list(n = alpha %*% t(beta)*m, 
+         theta = c(alpha = alpha, beta = beta))
+  )
 }

@@ -29,54 +29,59 @@
 #' @examples
 #' ## over two tables
 #' dn <- LETTERS[1:2]
-#' y <- cm3(row_tot = c(18, 20) * 2, col_tot = c(16, 22) * 2, 
-#'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
+#' y <- cm3(row_tot = c(18, 20) * 2, col_tot = c(16, 22) * 2,
+#'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2),
 #'                    dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
 #' # display with row, col and table totals
 #' y
 #' 
 #' ## over three tables
-#' y <- cm3(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60), 
-#'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9, 5, 4, 3, 1), dim = c(2, 2, 3), 
+#' y <- cm3(row_tot = c(170, 120, 410), col_tot = c(500, 140, 60),
+#'          m = array(c(5, 1, 2, 7,  4, 2, 5, 9,  5, 4, 3, 1), dim = c(2, 2, 3),
 #'                    dimnames = list(orig = dn, dest = dn, type = c("0--15", "15-60", ">60"))),
-#'          verbose = FALSE)
+#'                    verbose = FALSE)
 #' # display with row, col and table totals
 #' y
-cm3 <- function(row_tot=NULL,col_tot=NULL,m,tol=1e-05,maxit=500,verbose=FALSE)
-{
-  if(round(sum(row_tot))!=round(sum(col_tot)))
+cm3 <- function(row_tot = NULL, col_tot = NULL, m = NULL,
+                tol = 1e-06, maxit = 500, verbose = TRUE){
+  if(round(sum(row_tot)) != round(sum(col_tot))) 
     stop("row and column totals are not equal, ensure sum(row_tot)==sum(col_tot)")
-  i<-dim(m)[1]
-  j<-dim(m)[2]
-  alpha <- rep(1,i)
-  beta <- rep(1,j)
-  if(verbose==TRUE){
-    rd <- paste0("%.",
-                 nchar(x = format(x = tol, scientific=FALSE))-2,
-                 "f")
-    cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
+  
+  i <- dim(m)[1]  
+  j <- dim(m)[2]
+  alpha <- rep(x = 1, times = i)
+  beta <- rep(x = 1, times = j)
+  if (verbose == TRUE){
+    cat("iteration:", 0, "\n")
+    cat("alpha parameters:", "\n")
+    cat("beta parameters:", beta, "\n")
+    cat("\n")
   }
-  alpha.old <- alpha+1 
-  beta.old <- beta+1
-  it <- 1
-  d_max <- tol*2
+  
+  it <- 1;  
+  d_max <- tol * 2
+  
   while(d_max > tol & it < maxit){
-    beta.old <- beta
-    for(j in 1:j) {
-      beta[j] <- col_tot[j]/colSums(x = alpha * apply(X = m, MARGIN = c(1,2), FUN = sum))[j]
-    }
-    alpha.old <- alpha
+    alpha_old <- alpha
     for(i in 1:i) {
       alpha[i] <- row_tot[i]/colSums(x = beta * apply(X = m, MARGIN = c(2,1), FUN = sum))[i]
     }
-    it<-it+1
-    d <- c(alpha-alpha.old, beta-beta.old)
-    d_max <- max(abs(d))
-    if(verbose==TRUE)
-      cat(sprintf(rd,c(alpha,beta)), fill = TRUE)
+    beta_old <- beta
+    for(j in 1:j) {
+      beta[j] <- col_tot[j]/colSums(x = alpha * apply(X = m, MARGIN = c(1,2), FUN = sum))[j]
+    }
+    d_max <- max(abs(c(alpha_old - alpha, beta_old - beta)))
+    if (verbose == TRUE & (it < 20 | it %% 10 ==0)){
+      cat("iteration:", it, "\n")
+      cat("alpha parameters:", alpha, "\n")
+      cat("beta parameters:", beta, "\n")
+      cat("max difference:", d_max, "\n")
+      cat("\n")
+    }
+    it <- it+1
   }
   return(
-    list(N = c(alpha %*% t(beta)) * m,
-         theta = c(mu = 1, alpha = alpha, beta = beta))
+    list(n = c(alpha %*% t(beta)) * m, 
+         theta = c(alpha = alpha, beta = beta))
   )
 }

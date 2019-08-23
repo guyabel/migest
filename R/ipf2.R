@@ -56,7 +56,9 @@
 #'                      dimnames = list(orig = dn, dest = dn)))
 #' round(addmargins(y$mu))
 #ipf (rather than cm)...gives different estimates
-ipf2 <- function(row_tot=NULL,col_tot=NULL,m=matrix(1,length(row_tot),length(col_tot)),tol=1e-05,maxit=500,verbose=FALSE){
+ipf2 <- function(row_tot = NULL, col_tot = NULL, 
+                 m = matrix(1,length(row_tot),length(col_tot)),
+                 tol = 1e-05, maxit=500, verbose=FALSE){
   if(!is.null(row_tot) & !is.null(col_tot))
     if(round(sum(row_tot))!=round(sum(col_tot))) 
       stop("row and column totals are not equal, ensure sum(row_tot)==sum(col_tot)")

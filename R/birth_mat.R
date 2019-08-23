@@ -16,6 +16,9 @@ birth_mat <- function(b_por = NULL, m2 = NULL, non_negative = TRUE){
     xx <- diag(m2) - b_por < 0
     if (sum(xx) > 0)
       bb[, xx] <- ipf2(col_tot = b_por, m = m2)$mu[, xx]
+      # bb[, xx] <- mipfp::Ipfp(seed = m2, 
+      #                         target.list = list(2), 
+      #                         target.data = b_por)$x.hat[, xx]
   }
   return(bb)
 }
