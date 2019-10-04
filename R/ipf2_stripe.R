@@ -59,8 +59,11 @@ ipf2_stripe <- function(row_tot = NULL,
   if (byrow == TRUE)
     stripe_tot <- t(stripe_tot)
   
+  # n <- list(i = row_tot,
+  #           j = ifelse(is.null(col_tot), 0, t(col_tot)),
+  #           s = c(stripe_tot))
   n <- list(i = row_tot,
-            j = ifelse(is.null(col_tot), 0, t(col_tot)),
+            j = col_tot,
             s = c(stripe_tot))
   
   #set up offset
@@ -91,7 +94,7 @@ ipf2_stripe <- function(row_tot = NULL,
       mu_margin$s <- sapply(X = 1:max(s_id), FUN = block_sum, m = mu, block_id = s_id)
       mu_scaler$s <- n$s / mu_margin$s
       mu_scaler$s[is.nan(mu_scaler$s) | is.infinite(mu_scaler$s)] <- 0
-      mu <- mu * stripe_matrix(x = mu_scaler$s, s = s, byrow = TRUE)
+      mu <- mu * stripe_matrix(x = mu_scaler$s, s = s, byrow = byrow)
     }
     
     it <- it + 1
