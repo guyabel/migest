@@ -16,6 +16,7 @@ multi_comp(m)
 Multiplicative component descriptions of *n*-dimension flow tables based on total reference coding system.
 }
 \examples{
+n <- LETTERS[1:4]
 m0 <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0), 
              nrow = 4, ncol = 4, dimnames = list(orig = n, dest = n), byrow = TRUE)
 addmargins(m0)
