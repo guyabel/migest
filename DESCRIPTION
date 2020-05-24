@@ -1,7 +1,7 @@
 Package: migest
 Type: Package
 Title: Methods for the Indirect Estimation of Bilateral Migration
-Version: 1.8.1
+Version: 1.8.2
 Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
                     email = "g.j.abel@gmail.com",
                     comment = c(ORCID = "0000-0002-4893-5687")))
@@ -14,4 +14,12 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Imports:
-    mipfp
+    mipfp,
+    dplyr,
+    purrr,
+    tidyr,
+    stringr,
+    magrittr,
+    stats,
+    utils
+    
