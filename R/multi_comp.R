@@ -14,7 +14,7 @@
 #' multi_comp(m = m0)
 multi_comp <- function(m){
   if(length(dim(m)) == 2)
-    mm <- multi_comp2(m = m)
+    mm <- multi_comp0(m = m)
   if(length(dim(m)) > 2){
     d0 <- m %>%
       as.data.frame.table(row.names = obs) %>%
@@ -36,7 +36,7 @@ multi_comp <- function(m){
       group_by_at(names(.)[-c(1:2, ncol(.))]) %>%
       nest() %>%
       mutate(m_od = map(data, function(x) xtabs(formula = f0, data = x)),
-             m_mc = map(m_od, function(x) multi_comp2(x)),
+             m_mc = map(m_od, function(x) multi_comp0(x)),
              d_mc = map(m_mc, function(x) as.data.frame.table(x))) %>%
       select(-data, -m_od, -m_mc) %>%
       unnest(cols = d_mc) %>%
@@ -59,7 +59,7 @@ multi_comp <- function(m){
 #'              nrow = 4, ncol = 4, dimnames = list(orig = n, dest = n), byrow = TRUE)
 #' addmargins(m0)
 #' multi_comp(m = m0)
-multi_comp2 <- function(m){
+multi_comp0 <- function(m){
   d0 <- m %>%
     addmargins() %>%
     as.data.frame.table(responseName = "obs") %>%
