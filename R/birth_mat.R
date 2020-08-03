@@ -9,8 +9,11 @@
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
 #' @export
+
 birth_mat <- function(b_por = NULL, m2 = NULL, non_negative = TRUE){
-  bb <- diag(b_por)
+  # m2 = m2_b
+  bb <- m2
+  bb[,] <- diag(b_por)
   if(non_negative){
     # check that deduction of bb will not lead to negative populations
     xx <- diag(m2) - b_por < 0

@@ -1,4 +1,4 @@
-#' Rescale Native Born Populations to Match Differences in Births and Deaths over Period
+#' Rescale Native Born Populations to Match Global Differences in Births and Deaths over Period
 #'
 #' This function is predominantly intended to be used within the ffs routines in the migest package. Adjustment to ensure that global differences in stocks match the global demographic changes from births and deaths.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 
@@ -26,12 +26,12 @@
 #' # births and deaths
 #' b <- rep(x = 10, 4)
 #' d <- rep(x = 5, 4)
-#' # no change in stocks, but 20 more deaths than births...
-#' sum(P2 - P1) - sum(b - d)
+#' # no change in stocks, but 20 more births than deaths...
+#' sum(P2 - P1) + sum(b - d)
 #' # rescale
 #' y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
 #' y
-#' sum(y$m1_adj - y$m2_adj) - sum(b - d)
+#' sum(y$m1_adj - y$m2_adj) + sum(b - d)
 #' 
 #' # check for when extra is positive and odd
 #' d[1] <- 31
@@ -41,13 +41,14 @@
 #' y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
 #' sum(y$m1_adj - y$m2_adj) - sum(b - d)
 rescale_nb <- function(m1, m2, b, d, verbose = FALSE){
+  # m1 = m1_c; m2 = m2_c; b = 0; d = 0
   pop_grow <- sum(m2 - m1)
   nat_grow <- sum(b - d)
   dd <- nat_grow - pop_grow
   tot1 <- sum(diag(m1))
   tot2 <- sum(diag(m2))
   # if dd is an odd number
-  if(dd %% 2 != 0){
+  if(round(dd %% 2) == 0){
     diag(m2) <- rescale_integer_sum(x = diag(m2), tot = tot2 + 1)
     pop_grow <- sum(m2 - m1)
     dd <- nat_grow - pop_grow

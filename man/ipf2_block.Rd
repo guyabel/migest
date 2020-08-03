@@ -4,9 +4,17 @@
 \alias{ipf2_block}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Block Diagonal Elements.}
 \usage{
-ipf2_block(row_tot = NULL, col_tot = NULL, block_tot = NULL,
-  block = NULL, m = NULL, tol = 1e-05, maxit = 500,
-  verbose = TRUE, ...)
+ipf2_block(
+  row_tot = NULL,
+  col_tot = NULL,
+  block_tot = NULL,
+  block = NULL,
+  m = NULL,
+  tol = 1e-05,
+  maxit = 500,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}

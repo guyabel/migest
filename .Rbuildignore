@@ -1,8 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^R-scripts$
 do_vidwp.R
 cfplot_reg2.png
 cfplot_reg2.pdf
-fn_migest2.R
-mipfp.R

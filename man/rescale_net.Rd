@@ -4,8 +4,12 @@
 \alias{rescale_net}
 \title{Rescale Net Migration Total to a Global Zero Sum}
 \usage{
-rescale_net(x, method = "no-switches", w = rep(1, length(x)),
-  integer_result = TRUE)
+rescale_net(
+  x,
+  method = "no-switches",
+  w = rep(1, length(x)),
+  integer_result = TRUE
+)
 }
 \arguments{
 \item{x}{Vector of net migration values}

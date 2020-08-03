@@ -6,8 +6,6 @@
 #'
 #' @return A \code{tibble} with total in- and out-flows for each region. 
 #' @export
-#'
-#' @examples
 sum_turnover <- function(m, drop_diagonal = TRUE, include_net = TRUE){
   if(!is.matrix(m)){
     d <- m %>%
@@ -22,7 +20,7 @@ sum_turnover <- function(m, drop_diagonal = TRUE, include_net = TRUE){
   }
   if(drop_diagonal)
     d <- d %>%
-      mutate(migration = ifelse(orig == dest, 0, migration))
+      dplyr::mutate(migration = ifelse(orig == dest, 0, migration))
   d <- d %>%
     dplyr::as_tibble() %>%
     dplyr::group_by(orig) %>%

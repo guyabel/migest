@@ -4,8 +4,6 @@
 #'
 #' @return A \code{tibble} with columns for orig, destination, corridor, stream, countersteam and net stream in each pair (corridor)
 #' @export
-#'
-#' @examples
 net_stream <- function(m){
   if(!is.matrix(m)){
     d <- m %>%
@@ -20,11 +18,11 @@ net_stream <- function(m){
   }
   d %>%
     dplyr::as_tibble() %>%
-    filter(orig != dest) %>%
-    mutate(corridor = ifelse(orig < dest, paste(orig, dest, sep = " - "), paste(dest, orig, sep = " - "))) %>%
-    group_by(corridor) %>%
-    mutate(counterstream = rev(stream),
-           stream_net = stream - counterstream) %>%
-    ungroup() %>%
-    select(orig, dest, corridor, everything())
+    dplyr::filter(orig != dest) %>%
+    dplyr::mutate(corridor = ifelse(orig < dest, paste(orig, dest, sep = " - "), paste(dest, orig, sep = " - "))) %>%
+    dplyr::group_by(corridor) %>%
+    dplyr::mutate(counterstream = rev(stream),
+                  stream_net = stream - counterstream) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(orig, dest, corridor, dplyr::everything())
 }

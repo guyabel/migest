@@ -4,9 +4,17 @@
 \alias{ipf2_stripe}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Stripe Elements.}
 \usage{
-ipf2_stripe(row_tot = NULL, col_tot = NULL, stripe_tot = NULL,
-  stripe = NULL, m = NULL, tol = 1e-05, maxit = 500,
-  verbose = TRUE, ...)
+ipf2_stripe(
+  row_tot = NULL,
+  col_tot = NULL,
+  stripe_tot = NULL,
+  stripe = NULL,
+  m = NULL,
+  tol = 1e-05,
+  maxit = 500,
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}

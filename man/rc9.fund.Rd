@@ -4,14 +4,16 @@
 \name{rc9.fund}
 \alias{rc9.fund}
 \title{Fundamental Parameters for Rogers-Castro Migration Schedule}
-\format{A \code{list} of the parameters required by the \code{\link{rc9}} function:
+\format{
+A \code{list} of the parameters required by the \code{\link{rc9}} function:
  \deqn{ a_{1} = 0.02 }
  \deqn{ \alpha_{1} = 0.1 }
  \deqn{ a_{2} = 0.06 }
  \deqn{ \alpha_{2} = 0.1 }
  \deqn{ \mu_{2} = 20 }
  \deqn{ \lambda_{2} = 0.4 }
- \deqn{ c = 0.003 }}
+ \deqn{ c = 0.003 }
+}
 \source{
 Rogers, A., and L. J. Castro. (1981). Model Migration Schedules. \emph{IIASA Research Report 81} RR-81-30
 }

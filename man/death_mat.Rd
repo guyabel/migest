@@ -4,8 +4,13 @@
 \alias{death_mat}
 \title{Calculate Deaths for Each Element of Place of Birth - Place of Residence Stock Matrix}
 \usage{
-death_mat(d_por = NULL, m1 = NULL, method = "proportion",
-  m2 = NULL, b_por = NULL)
+death_mat(
+  d_por = NULL,
+  m1 = NULL,
+  method = "proportion",
+  m2 = NULL,
+  b_por = NULL
+)
 }
 \arguments{
 \item{d_por}{Vector of numberic values for deaths in each place of residence.}

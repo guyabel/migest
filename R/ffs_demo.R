@@ -6,10 +6,12 @@
 #' @param b_por Vector of the number of births between time \emph{t} and \emph{t}+1 in each region.
 #' @param d_por Vector of the number of deaths between time \emph{t} and \emph{t}+1 in each region.
 #' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.
-#' @param stayer_assumption Logical value to indicate wheather to use \code{\link{ipf3}} or \code{\link{ipf3_qi}} to estimate flows. By default uses \code{ipf3_qi}, i.e. is set to \code{TRUE}. The \code{ipf} function is useful for replicating method of Azoze and Raferty.
+#' @param stayer_assumption Logical value to indicate whether to use \code{\link{ipf3}} or \code{\link{ipf3_qi}} to estimate flows. By default uses \code{ipf3_qi}, i.e. is set to \code{TRUE}. The \code{ipf} function is useful for replicating method of Azoze and Raferty.
+#' @param match_global Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_pob_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.
 #' @param match_pob_tot_method Character string passed to \code{method} argument in \code{\link{match_pob_tot}} to ensure place of birth margins in stock tables match.
 #' @param birth_non_negative Logical value passed to \code{non_negative} argument in \code{\link{birth_mat}}.
 #' @param death_method Character string passed to \code{method} argument in \code{\link{death_mat}}.
+#' @param verbose Logical value to indicate the print the parameter estimates at each iteration of the various IPF routines. By default \code{FALSE}.
 #' @param ... Additional arguments passes to \code{\link{ipf3_qi}} or \code{\link{ipf3}}.
 #'
 #' @return
@@ -86,7 +88,7 @@
 #' ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 # m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
 # m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
-# stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"
+# stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"; match_global = "after-demo-adjust"; verbose = FALSE
 # match_pob_tot_method = "open";
 ffs_demo <- function(m1 = NULL,
                      m2 = NULL, 
@@ -94,9 +96,11 @@ ffs_demo <- function(m1 = NULL,
                      d_por = NULL, 
                      m = NULL,
                      stayer_assumption = TRUE,
+                     match_global = "before-demo-adjust",
                      match_pob_tot_method = "rescale",
                      birth_non_negative = TRUE,
                      death_method = "proportion",
+                     verbose = FALSE,
                      ...) {
   # make sure dimensions match
   R <- unique(c(dim(m1), dim(m2), length(b_por), length(d_por)))
@@ -127,31 +131,51 @@ ffs_demo <- function(m1 = NULL,
                       dest = c(dn, "death", "outside"),
                       pob = dn)
   
-  # clean stocks so that population growth (m2 - m1) matches natural growth (b - d)
-  m1_b <- m1_a
-  m2_b <- m2_a
-  if(match_pob_tot_method == "rescale"){
-    x <- rescale_nb(m1 = m1, m2 = m2, b = b, d = d)
-    m1_b <- x$m1_adj
-    m2_b <- x$m2_adj
+  if(match_global == "before-demo-adjust"  & match_pob_tot_method %in% c("rescale", "rescale-adjust-zero-fb")){
+    if(verbose)
+      message("Rescale native born cells for global zero net migration...")
+    x <- rescale_nb(m1 = m1_a, m2 = m2_a, b = b, d = d)
+    m1_a <- x$m1_adj
+    m2_a <- x$m2_adj
   }
   
   # adjust for births and deaths
-  b_mat <- birth_mat(b_por = b_por, m2 = m2_b, non_negative = birth_non_negative)
-  d_mat <- death_mat(d_por = d_por, m1 = m1_b, method = death_method, m2 = m2_b, b_por = b)
-  m1_c <- m1_b - d_mat
-  m2_c <- m2_b - b_mat
+  if(verbose)
+    message("Adjust stock tables for changes in births and deaths...")
+  
+  b_mat <- birth_mat(b_por = b, m2 = m2_a, non_negative = birth_non_negative)
+  d_mat <- death_mat(d_por = d, m1 = m1_a, method = death_method, m2 = m2_a, b_por = b)
+  m1_b <- m1_a - d_mat
+  m2_b <- m2_a - b_mat
+  
+  # clean stocks so that population growth (m2 - m1) matches natural growth (b - d)
+  # in scientific data paper used rescale_nb before births and deaths - not sure why, 
+  # leads more risk of negative values when adjust pob row totals to match (next)
+  m1_c <- m1_b
+  m2_c <- m2_b
+  if(match_global == "after-demo-adjust" & match_pob_tot_method %in% c("rescale", "rescale-adjust-zero-fb")){
+    if(verbose)
+      message("Rescale native born cells for global zero net migration...")
+    dd <- sum(m2_c) - sum(m1_c)
+    diag(m1_c) <- diag(m1_c) + dd * diag(m1_c)/sum(diag(m1_c)) * 0.5
+    diag(m2_c) <- diag(m2_c) - dd * diag(m2_c)/sum(diag(m2_c)) * 0.5
+  }
   
   # adjust for pob rows to match
-  x <- match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method)
+  if(verbose)
+    message("Rescale stock tables for equal place of birth totals...")
+  x <- match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method, verbose = verbose)
   m1_d <- x$m1_adj
   m2_d <- x$m2_adj
-    
+  # round(rowSums(m1_d)); round(rowSums(m2_d));
+  
   # ipf
+  if(verbose)
+    message("Estimate flows to match changes in adjusted stocks")
   if(stayer_assumption)
-    fl <- ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m,...)$mu
+    fl <- ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m, verbose = verbose, ...)$mu
   if(!stayer_assumption)
-    fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m,...)$mu
+    fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m, verbose = verbose, ...)$mu
     # fl <- mipfp::Ipfp(seed = m, tol = 1e-03, iter = 1e05, 
     #                   # print = TRUE, 
     #                   target.list = list(c(1, 3), c(2,3)),

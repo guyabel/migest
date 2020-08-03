@@ -57,8 +57,9 @@
 #' round(addmargins(y$mu))
 #ipf (rather than cm)...gives different estimates
 ipf2 <- function(row_tot = NULL, col_tot = NULL, 
-                 m = matrix(1,length(row_tot),length(col_tot)),
+                 m = matrix(1, length(row_tot), length(col_tot)),
                  tol = 1e-05, maxit=500, verbose=FALSE){
+  # row_tot = rowSums(m1) - dd / 2; col_tot = colSums(m1); m = m1; maxit = 1e05; tol = 0.1; verbose = TRUE
   if(!is.null(row_tot) & !is.null(col_tot))
     if(round(sum(row_tot))!=round(sum(col_tot))) 
       stop("row and column totals are not equal, ensure sum(row_tot)==sum(col_tot)")
@@ -88,8 +89,9 @@ ipf2 <- function(row_tot = NULL, col_tot = NULL,
     d <- c(n$i-mu_margin$i, n$j-mu_margin$j)
     d_max <- max(abs(d))
     
-    if(verbose==TRUE)
-      cat(sprintf(rd,unlist(mu_scaler)), fill = TRUE)
+    if(verbose==TRUE & it %% 10 == 0 | verbose==TRUE & it < 10)
+      message(d_max)
+      # cat(sprintf(rd,unlist(mu_scaler)), fill = TRUE)
   }
   r <- list(mu=mu, it=it, tol=d_max)
   return(r)

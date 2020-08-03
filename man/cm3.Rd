@@ -4,8 +4,14 @@
 \alias{cm3}
 \title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.}
 \usage{
-cm3(row_tot = NULL, col_tot = NULL, m = NULL, tol = 1e-06,
-  maxit = 500, verbose = TRUE)
+cm3(
+  row_tot = NULL,
+  col_tot = NULL,
+  m = NULL,
+  tol = 1e-06,
+  maxit = 500,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}

@@ -1,16 +1,14 @@
 #' Estimate Net Migration from Lifetime Migration Data
 #'
 #' @param .data A data frame with two rows with the total number of lifetime in- and out-migrants in seperate columns. The first row contains totals at the first time point and second row at the second time point. 
-#' @param in_migrant Chracater string name of column containin in-migrant counts. Default `code{"in_migrants"}`.
-#' @param out_migrant Chracater string name of column containin out-migrant counts. Default `code{"out_migrants"}`.
-#' @param year Chracater string name of column containin time points. Default `code{"year"}`.
-#' @param in_survival Survival probablity for foreign migrants in region
-#' @param out_survival Survival probablity for native migrants outside of region
+#' @param in_migrant Character string name of column containing in-migrant counts. Default `code{"in_migrants"}`.
+#' @param out_migrant Character string name of column containing out-migrant counts. Default `code{"out_migrants"}`.
+#' @param year Character string name of column containing time points. Default `code{"year"}`.
+#' @param in_survival Survival probability for foreign migrants in region
+#' @param out_survival Survival probability for native migrants outside of region
 #'
-#' @return
+#' @return Data frame with estimates of net migration
 #' @export
-#'
-#' @examples
 net_from_lifetime <- function(.data, in_migrant = "in_migrants", out_migrant = "out_migrants", year = "year",
                               in_survival, out_survival){
   .data %>%

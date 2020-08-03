@@ -9,22 +9,22 @@
 #' @author Guy J. Abel
 #' @export
 #'
-sum_tidy_total <- function(d = NULL, type = "orig"){
+sum_total <- function(d = NULL, type = "orig"){
   if(type == "orig"){
     dd <- d %>%
       dplyr::select(orig, flow) %>%
-      group_by(orig) %>%
-      summarise(flow_out = sum(flow)) %>%
-      rename(name = orig) %>%
-      ungroup()
+      dplyr::group_by(orig) %>%
+      dplyr::summarise(flow_out = sum(flow)) %>%
+      dplyr::rename(name = orig) %>%
+      dplyr::ungroup()
   }
   if(type == "dest"){
     dd <- d %>%
-      select(dest, flow) %>%
-      group_by(dest) %>%
-      summarise(flow_in = sum(flow)) %>%
-      rename(name = dest) %>%
-      ungroup()
+      dplyr::select(dest, flow) %>%
+      dplyr::group_by(dest) %>%
+      dplyr::summarise(flow_in = sum(flow)) %>%
+      dplyr::rename(name = dest) %>%
+      dplyr::ungroup()
   }
   return(dd)
 }

@@ -4,9 +4,16 @@
 \alias{cm2}
 \title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
 \usage{
-cm2(row_tot = NULL, col_tot = NULL, m = matrix(data = 1, nrow =
-  length(row_tot), ncol = length(col_tot)), tol = 1e-06, maxit = 500,
-  verbose = TRUE, rtot = row_tot, ctot = col_tot)
+cm2(
+  row_tot = NULL,
+  col_tot = NULL,
+  m = matrix(data = 1, nrow = length(row_tot), ncol = length(col_tot)),
+  tol = 1e-06,
+  maxit = 500,
+  verbose = TRUE,
+  rtot = row_tot,
+  ctot = col_tot
+)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}

@@ -4,8 +4,7 @@
 \alias{cm_net}
 \title{Conditional Maximisation Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Net Migration Totals.}
 \usage{
-cm_net(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500,
-  verbose = TRUE)
+cm_net(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE)
 }
 \arguments{
 \item{net_tot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}

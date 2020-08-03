@@ -4,8 +4,14 @@
 \alias{ipf3}
 \title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.}
 \usage{
-ipf3(row_tot = NULL, col_tot = NULL, m = NULL, tol = 1e-05,
-  maxit = 500, verbose = TRUE)
+ipf3(
+  row_tot = NULL,
+  col_tot = NULL,
+  m = NULL,
+  tol = 1e-05,
+  maxit = 500,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{row_tot}{Vector of origin totals to constrain the sum of the imputed cell rows.}
