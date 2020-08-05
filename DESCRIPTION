@@ -21,4 +21,5 @@ Imports:
     stringr,
     magrittr,
     stats,
+    tibble,
     utils

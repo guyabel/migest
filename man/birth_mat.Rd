@@ -7,7 +7,7 @@
 birth_mat(b_por = NULL, m2 = NULL, non_negative = TRUE)
 }
 \arguments{
-\item{b_por}{Vector of numberic values for births in each place of residence}
+\item{b_por}{Vector of numeric values for births in each place of residence}
 
 \item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
