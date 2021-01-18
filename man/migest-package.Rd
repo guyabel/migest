@@ -19,7 +19,7 @@ The estimation methods in this package can be grouped as 1) functions for origin
 The \code{\link{ffs_diff}}, \code{\link{ffs_rates}} and \code{\link{ffs_demo}} functions provide different methods to estimate migration bilateral flows from changes in stocks, see Abel and Cohen (2019) for a review of different methods. The demo files, \code{demo(cfplot_reg2)}, \code{demo(cfplot_reg)} and \code{demo(cfplot_nat)}, produce circular migration flow plots for migration estimates from Abel(2018) and Abel and Sander (2014), which were derived using the \code{\link{ffs_demo}} function.
 
 Github repo:
-\url{http://github.com/guyabel/migest} 
+\url{https://github.com/guyabel/migest} 
 
 }
 \author{
