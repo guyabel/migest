@@ -61,8 +61,8 @@ ipf2 <- function(row_tot = NULL, col_tot = NULL,
                  tol = 1e-05, maxit=500, verbose=FALSE){
   # row_tot = rowSums(m1) - dd / 2; col_tot = colSums(m1); m = m1; maxit = 1e05; tol = 0.1; verbose = TRUE
   if(!is.null(row_tot) & !is.null(col_tot))
-    if(round(sum(row_tot))!=round(sum(col_tot))) 
-      stop("row and column totals are not equal, ensure sum(row_tot)==sum(col_tot)")
+    if((sum(row_tot) - sum(col_tot)) > tol) 
+      stop("row and column totals are not equal, ensure sum(row_tot) is equal to sum(col_tot)")
   n <- list(i = row_tot, j = col_tot)
   mu <- m
   mu_margin <- n
