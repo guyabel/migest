@@ -40,10 +40,9 @@ y <- cm_net(net_tot = c(30, 40, -15, -55), m = m)
 addmargins(y$n)
 sum_net(y$n)
 
-dn <- LETTERS[1:4]
 m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-            nrow = 4, ncol = 4,
-            dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+            nrow = 4, ncol = 4, byrow = TRUE,
+            dimnames = list(orig = LETTERS[1:4], dest = LETTERS[1:4]))
 addmargins(m)
 sum_net(m)
 

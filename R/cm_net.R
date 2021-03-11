@@ -30,10 +30,9 @@
 #' addmargins(y$n)
 #' sum_net(y$n)
 #' 
-#' dn <- LETTERS[1:4]
 #' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-#'             nrow = 4, ncol = 4,
-#'             dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+#'             nrow = 4, ncol = 4, byrow = TRUE,
+#'             dimnames = list(orig = LETTERS[1:4], dest = LETTERS[1:4]))
 #' addmargins(m)
 #' sum_net(m)
 #' 
@@ -41,53 +40,51 @@
 #' addmargins(y$n)
 #' sum_net(y$n)
 cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE) {
+   # net_tot = c(-100, 125, -75, 50); m = NULL; tol = 1e-06;  maxit = 500; verbose = TRUE
    R <- unique(c(dim(m), length(net_tot)))
    if (length(R) != 1)
      stop("The m matrix must be square and with the same dimensions as the length of net total vector (net_tot).")
-   if (round(sum(net_tot), 5) != 0)
+   if (sum(net_tot) %% 1 > tol)
      message("Convergence will not be obtained as net_tot does not sum to zero.")
    
-   dn <- dimnames(m)[[1]]
    #set up offset
-   if (is.null(m)) {
+   if (is.null(m))
      m <- matrix(1, nrow = R, ncol = R)
-   }
-   if (is.null(dimnames(m))) {
-     dimnames(m) <- list(orig = dn, dest = dn)
-   }
+   if (is.null(dimnames(m)))
+      dimnames(m) <- list(orig = LETTERS[1:R], dest = LETTERS[1:R])
    
    alpha <- rep(1, R)
-   if (verbose == TRUE){
-     cat("iteration:", 0, "\n")
-     cat("alpha parameters:", alpha, "\n")
-     cat("\n")
-   }
-   
-   it <- 1;  
+   it <- 0;  
    d_max <- tol * 2
-   mu <- m
+   mm <- m
    
    while (d_max > tol & it < maxit) {
-     alpha_old <- alpha
-     for(i in 1:R){
-       p <- net_param(m = mu, region = i, net_tot = net_tot[i])
-       p <- p[p>0]
-       if(is.infinite(p) | is.na(p) | is.nan(p))
-         p <- 1
-       mu <- net_scale(m = mu, region = i, alpha = p)
-       alpha[i] <- p
-     }
-     d_max <- max(abs(alpha_old - alpha))
-         if (verbose == TRUE & (it <20 | it %% 10 ==0)){
-       cat("iteration:", it, "\n")
-       cat("parameters:", alpha, "\n")
-       cat("max difference:", d_max, "\n")
-       cat("\n")
-     }
-     it <- it + 1
+      if (verbose == TRUE & (it < 20 | it %% 10 == 0)){
+         cat("iteration:", it, "\n")
+         cat("alpha parameters:", alpha, "\n")
+         cat("\n")
+      }
+      alpha_old <- alpha
+      for(i in 1:R){
+         # mm <- (1/alpha) %*% t(alpha) * m
+         mm[,i] <- 1/alpha * m[,i]
+         mm[i,] <- alpha * m[i,]
+         
+         # print(round(addmargins(mm),1))
+         # print(migest::sum_net(mm))
+         # print(net_tot)
+         emi_tot <- apply(X = mm, MARGIN = 1, FUN = "sum")
+         imm_tot <- apply(X = mm, MARGIN = 2, FUN = "sum")
+         
+         p <- quadratic_eqn(a = imm_tot[i], b = -net_tot[i], c = -emi_tot[i])
+         p <- p[p>0]
+         if(is.infinite(p) | is.na(p) | is.nan(p))
+            p <- 1
+         alpha[i] <- p
+      }
+      d_max <- max(abs(alpha_old - alpha))
+      it <- it + 1
    }
-   return(
-     list(n = mu, 
-          theta = c(alpha = alpha, beta = beta))
-   )
+   return(list(n = (1/alpha) %*% t(alpha) * m, 
+               theta = c(alpha = alpha)))
 }
