@@ -39,7 +39,8 @@
 #' y <- cm_net(net_tot = c(-100, 125, -75, 50), m = m)
 #' addmargins(y$n)
 #' sum_net(y$n)
-cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE) {
+cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE,
+                   alpha0 = rep(1, length(net_tot))) {
    # net_tot = c(-100, 125, -75, 50); m = NULL; tol = 1e-06;  maxit = 500; verbose = TRUE
    R <- unique(c(dim(m), length(net_tot)))
    if (length(R) != 1)
@@ -53,7 +54,7 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
    if (is.null(dimnames(m)))
       dimnames(m) <- list(orig = LETTERS[1:R], dest = LETTERS[1:R])
    
-   alpha <- rep(1, R)
+   alpha <- alpha0
    it <- 0;  
    d_max <- tol * 2
    mm <- m
