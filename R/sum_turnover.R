@@ -67,13 +67,13 @@ sum_turnover <- function(
   
   d <- d %>%
     dplyr::as_tibble() %>%
-    dplyr::group_by(!!g, orig) %>%
+    dplyr::group_by_at(c({{g}}, "orig")) %>%
     dplyr::mutate(tot_out = sum(flow)) %>%
-    dplyr::group_by(!!g, dest) %>%
+    dplyr::group_by_at(c({{g}}, "dest")) %>%
     dplyr::mutate(tot_in = sum(flow)) %>%
     dplyr::filter(orig == dest) %>%
     dplyr::ungroup() %>%
-    dplyr::group_by(!!g) %>%
+    dplyr::group_by_at({{g}}) %>%
     dplyr::mutate(region = orig) %>%
     dplyr::select(region, tot_in, tot_out)
   if(include_net){
