@@ -42,6 +42,7 @@ sum_turnover <- function(
   # m = d0; drop_diagonal = TRUE; include_net = TRUE
   # m <- xtabs(formula = da_pb_closed ~ orig + dest, data = d0, subset = year0 == 1990)
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
+  # flow_col = "flow"
   if(!type %in% c("internal", "international"))
     stop("type must be set to internal or international")
   if(!is.matrix(m)){
@@ -49,11 +50,9 @@ sum_turnover <- function(
       dplyr::rename(orig := !!orig_col,
                     dest := !!dest_col,
                     flow := !!flow_col)
-    g <- dplyr::groups(d)
+    g <- dplyr::group_vars(d)
     if(length(g) == 0) 
       g <- NULL
-    if(length(g) != 0) 
-      g <- tibble::deframe(g)
   }
   if(is.matrix(m)){
     d <- as.data.frame.table(x = m, responseName = "flow", stringsAsFactors = FALSE) %>%
