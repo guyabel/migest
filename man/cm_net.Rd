@@ -4,18 +4,27 @@
 \alias{cm_net}
 \title{Conditional Maximisation Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Net Migration Totals.}
 \usage{
-cm_net(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE)
+cm_net(
+  net_tot = NULL,
+  m = NULL,
+  tol = 1e-06,
+  maxit = 500,
+  verbose = TRUE,
+  alpha0 = rep(1, length(net_tot))
+)
 }
 \arguments{
 \item{net_tot}{Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.}
 
-\item{m}{Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.}
+\item{m}{Array of auxiliary data. By default, set to 1 for all origin-destination-migrant typologies combinations.}
 
 \item{tol}{Numeric value for the tolerance level used in the parameter estimation.}
 
 \item{maxit}{Numeric value for the maximum number of iterations used in the parameter estimation.}
 
 \item{verbose}{Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.}
+
+\item{alpha0}{Vector of initial estimates for alpha}
 }
 \value{
 Conditional maximisation routine set up using the partial likelihood derivatives. The argument \code{net_tot} takes the known net migration totals.

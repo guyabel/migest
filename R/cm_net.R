@@ -4,10 +4,11 @@
 #' \deqn{\log y_{ij} = \log \alpha_{i} + \log \alpha_{i}^{-1} + \log m_{ij} }
 #' 
 #' @param net_tot Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.
-#' @param m Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations. 
+#' @param m Array of auxiliary data. By default, set to 1 for all origin-destination-migrant typologies combinations. 
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration. By default \code{FALSE}.
+#' @param alpha0 Vector of initial estimates for alpha
 #'
 #' @return
 #' Conditional maximisation routine set up using the partial likelihood derivatives. The argument \code{net_tot} takes the known net migration totals.
@@ -44,13 +45,13 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
    # net_tot = c(-100, 125, -75, 50); m = NULL; tol = 1e-06;  maxit = 500; verbose = TRUE
    R <- unique(c(dim(m), length(net_tot)))
    if (length(R) != 1)
-     stop("The m matrix must be square and with the same dimensions as the length of net total vector (net_tot).")
+      stop("The m matrix must be square and with the same dimensions as the length of net total vector (net_tot).")
    if (sum(net_tot) %% 1 > tol)
-     message("Convergence will not be obtained as net_tot does not sum to zero.")
+      message("Convergence will not be obtained as net_tot does not sum to zero.")
    
    #set up offset
    if (is.null(m))
-     m <- matrix(1, nrow = R, ncol = R)
+      m <- matrix(1, nrow = R, ncol = R)
    if (is.null(dimnames(m)))
       dimnames(m) <- list(orig = LETTERS[1:R], dest = LETTERS[1:R])
    
