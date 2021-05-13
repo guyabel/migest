@@ -43,6 +43,7 @@
 cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose = TRUE,
                    alpha0 = rep(1, length(net_tot))) {
    # net_tot = c(-100, 125, -75, 50); m = NULL; tol = 1e-06;  maxit = 500; verbose = TRUE
+   # m = matrix(data = 1:16, nrow = 4); net_tot = c(30, 40, -15, -55); tol = 1e-06;  maxit = 500; verbose = TRUE; alpha0 = rep(1, length(net_tot))
    R <- unique(c(dim(m), length(net_tot)))
    if (length(R) != 1)
       stop("The m matrix must be square and with the same dimensions as the length of net total vector (net_tot).")
@@ -58,7 +59,6 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
    alpha <- alpha0
    it <- 0;  
    d_max <- tol * 2
-   mm <- m
    
    while (d_max > tol & it < maxit) {
       if (verbose == TRUE & (it < 20 | it %% 10 == 0)){
@@ -67,18 +67,13 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
          cat("\n")
       }
       alpha_old <- alpha
+      
       for(i in 1:R){
-         # mm <- (1/alpha) %*% t(alpha) * m
-         mm[,i] <- 1/alpha * m[,i]
-         mm[i,] <- alpha * m[i,]
-         
-         # print(round(addmargins(mm),1))
-         # print(migest::sum_net(mm))
-         # print(net_tot)
-         emi_tot <- apply(X = mm, MARGIN = 1, FUN = "sum")
-         imm_tot <- apply(X = mm, MARGIN = 2, FUN = "sum")
-         
-         p <- quadratic_eqn(a = imm_tot[i], b = -net_tot[i], c = -emi_tot[i])
+         # (-net_tot[h] + sqrt(net_tot[h]^2 + 4 * sum(1/alpha[, (i-1)] * m[h,]) * sum(alpha[,(i-1)] * m[,h]))) / (2 * sum(1/alpha[, (i-1)] * m[h,]))
+         # (-net_tot[i] + sqrt(net_tot[i]^2 + 4 * sum(1/alpha * m[i,]) * sum(alpha * m[,i]))) / (2 * sum(1/alpha * m[i,]))
+         p <- quadratic_eqn(a = sum(1/alpha_old * m[i,]), 
+                            b = net_tot[i], 
+                            c = -sum(alpha_old * m[,i]))
          p <- p[p>0]
          if(is.infinite(p) | is.na(p) | is.nan(p))
             p <- 1
@@ -87,6 +82,6 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
       d_max <- max(abs(alpha_old - alpha))
       it <- it + 1
    }
-   return(list(n = (1/alpha) %*% t(alpha) * m, 
+   return(list(n = diag(alpha) %*% m %*% diag(1/alpha) ,
                theta = c(alpha = alpha)))
 }
