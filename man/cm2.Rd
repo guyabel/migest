@@ -2,7 +2,7 @@
 % Please edit documentation in R/cm2.R
 \name{cm2}
 \alias{cm2}
-\title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
+\title{Conditional maximization routine for the indirect estimation of origin-destination migration flow table with known margins}
 \usage{
 cm2(
   row_tot = NULL,

@@ -1,4 +1,4 @@
-#' Create a Stripped Matrix with Non-Uniform Block Sizes.
+#' Create a stripped matrix with non-uniform block sizes.
 #'
 #' @param x Vector of numbers to identify each stripe.
 #' @param s Vector of values for the size of the stripes, order depending on \code{byrow}

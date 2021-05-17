@@ -2,7 +2,7 @@
 % Please edit documentation in R/rc9.R
 \name{rc9}
 \alias{rc9}
-\title{Rogers-Castro Migration Schedule}
+\title{Generate a Rogers-Castro nine-parameter migration schedule}
 \usage{
 rc9(x, param = NULL, scaled = TRUE)
 }

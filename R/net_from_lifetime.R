@@ -1,6 +1,6 @@
-#' Estimate Net Migration from Lifetime Migration Data
+#' Estimate net migration from lifetime migration data
 #'
-#' @param .data A data frame with two rows with the total number of lifetime in- and out-migrants in seperate columns. The first row contains totals at the first time point and second row at the second time point. 
+#' @param .data A data frame with two rows with the total number of lifetime in- and out-migrants in separate columns. The first row contains totals at the first time point and second row at the second time point. 
 #' @param in_migrant Character string name of column containing in-migrant counts. Default `code{"in_migrants"}`.
 #' @param out_migrant Character string name of column containing out-migrant counts. Default `code{"out_migrants"}`.
 #' @param year Character string name of column containing time points. Default `code{"year"}`.

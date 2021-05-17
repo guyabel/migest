@@ -1,5 +1,7 @@
 #' Multiplicative component descriptions of origin-destination flow tables based on total reference coding system.
 #' 
+#' Multiplicative component descriptions of origin-destination flow tables based on total reference coding system.
+#' 
 #' @param m \code{matrix} of migration flows
 #'
 #' @return \code{matrix} of multiplicative components of `m`. When output is an array the total for each table of origin-destination flows is used. 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/rescale_integer_sum.R
 \name{rescale_integer_sum}
 \alias{rescale_integer_sum}
-\title{Rescale Integer Vector to a Set sum}
+\title{Rescale integer vector to a set sum}
 \usage{
 rescale_integer_sum(x, tot)
 }

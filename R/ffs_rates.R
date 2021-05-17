@@ -1,4 +1,4 @@
-#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Rates Approaches
+#' Estimation of bilateral migrant flows from bilateral migrant stocks using rates approaches
 #'
 #' Estimates migrant transitions flows between two sequential migrant stock tables using approached based on rates.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 

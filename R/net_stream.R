@@ -1,4 +1,4 @@
-#' Calculate Counterstream and Stream Net Migration
+#' Calculate counterstream and stream net migration
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame the first and second columns correspond to origin and destination respecivly. The third column contains the number of migraitons or migrants.
 #'

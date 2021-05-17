@@ -2,7 +2,7 @@
 % Please edit documentation in R/rescale_net.R
 \name{rescale_net}
 \alias{rescale_net}
-\title{Rescale Net Migration Total to a Global Zero Sum}
+\title{Rescale net migration total to a global zero sum}
 \usage{
 rescale_net(
   x,

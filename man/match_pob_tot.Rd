@@ -2,7 +2,7 @@
 % Please edit documentation in R/match_pob_tot.R
 \name{match_pob_tot}
 \alias{match_pob_tot}
-\title{Adjust Migrant Stock Tables to Have Matching Place of Birth Totals}
+\title{Adjust migrant stock tables to have matching place of birth totals}
 \usage{
 match_pob_tot(m1, m2, method = "rescale", verbose = FALSE)
 }

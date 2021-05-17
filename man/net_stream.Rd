@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_stream.R
 \name{net_stream}
 \alias{net_stream}
-\title{Calculate Counterstream and Stream Net Migration}
+\title{Calculate counterstream and stream net migration}
 \usage{
 net_stream(m)
 }
@@ -13,5 +13,5 @@ net_stream(m)
 A \code{tibble} with columns for orig, destination, corridor, stream, countersteam and net stream in each pair (corridor)
 }
 \description{
-Calculate Counterstream and Stream Net Migration
+Calculate counterstream and stream net migration
 }

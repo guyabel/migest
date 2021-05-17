@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_turnover.R
 \name{sum_turnover}
 \alias{sum_turnover}
-\title{Extract Total In-, Out- and Net-Migration Totals from an Origin-Destination Migration Flow Matrix or Data Frame.}
+\title{Extract total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_turnover(
   m,
@@ -33,7 +33,7 @@ sum_turnover(
 A \code{tibble} with total in- and out-flows for each region.
 }
 \description{
-Extract Total In-, Out- and Net-Migration Totals from an Origin-Destination Migration Flow Matrix or Data Frame.
+Extract total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
 }
 \examples{
 # matrix

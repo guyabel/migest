@@ -1,4 +1,4 @@
-#' Conditional Maximization Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.
+#' Conditional maximization routine for the indirect estimation of origin-destination-migrant type migration flow tables with known origin and destination margins.
 #'
 #' The \code{cm3} function finds the maximum likelihood estimates for parameters in the log-linear model:
 #' \deqn{ \log y_{ijk} = \log \alpha_{i} + \log \beta_{j} + \log m_{ijk} }

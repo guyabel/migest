@@ -1,4 +1,4 @@
-#' Extract Total In-, Out- and Net-Migration Totals from an Origin-Destination Migration Flow Matrix or Data Frame.
+#' Extract total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param drop_diagonal Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.

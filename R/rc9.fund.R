@@ -1,4 +1,4 @@
-#' Fundamental Parameters for Rogers-Castro Migration Schedule
+#' Fundamental parameters for Rogers-Castro migration schedule
 #'
 #' Set of fundamental parameters for the Rogers-Castro migration age schedule, as suggested in Rogers and Castro (1981).
 #'

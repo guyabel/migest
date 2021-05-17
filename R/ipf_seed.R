@@ -1,4 +1,4 @@
-#' Quickly Create IPF Seed
+#' Quickly create IPF seed
 #' 
 #' This function is predominantly intended to be used within the ipf routines in the migest package.
 #'

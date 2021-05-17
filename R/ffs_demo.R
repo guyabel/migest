@@ -1,4 +1,4 @@
-#' Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Demographic Accounting Approaches
+#' Estimation of bilateral migrant flows from bilateral migrant stocks using demographic accounting approaches
 #'
 #' Estimates migrant transitions flows between two sequential migrant stock tables. Replaces old \code{ffs}.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 

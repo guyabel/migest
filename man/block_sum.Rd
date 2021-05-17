@@ -2,7 +2,7 @@
 % Please edit documentation in R/block_sum.R
 \name{block_sum}
 \alias{block_sum}
-\title{Sum of Selected Block in a Block Matrix}
+\title{Sum over a selected block in a block matrix}
 \usage{
 block_sum(block = NULL, m = NULL, block_id = NULL)
 }

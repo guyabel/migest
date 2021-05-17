@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_od.R
 \name{sum_od}
 \alias{sum_od}
-\title{Extract a Classic Origin-Destination Migration Flow Matrix.}
+\title{Extract a classic origin-destination migration flow matrix.}
 \usage{
 sum_od(y)
 }

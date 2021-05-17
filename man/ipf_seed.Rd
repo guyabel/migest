@@ -2,7 +2,7 @@
 % Please edit documentation in R/ipf_seed.R
 \name{ipf_seed}
 \alias{ipf_seed}
-\title{Quickly Create IPF Seed}
+\title{Quickly create IPF seed}
 \usage{
 ipf_seed(m = NULL, R = NULL, n_dim = NULL, dn = NULL)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ffs_diff.R
 \name{ffs_diff}
 \alias{ffs_diff}
-\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Stock Differencing Approaches}
+\title{Estimation of bilateral migrant flows from bilateral migrant stocks using stock differencing approaches}
 \usage{
 ffs_diff(m1, m2, decrease = "return", include_native_born = FALSE)
 }

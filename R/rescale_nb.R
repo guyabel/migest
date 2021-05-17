@@ -1,4 +1,4 @@
-#' Rescale Native Born Populations to Match Global Differences in Births and Deaths over Period
+#' Rescale native born populations to match global differences in births and deaths over period
 #'
 #' This function is predominantly intended to be used within the ffs routines in the migest package. Adjustment to ensure that global differences in stocks match the global demographic changes from births and deaths.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 

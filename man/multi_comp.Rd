@@ -2,7 +2,7 @@
 % Please edit documentation in R/multi_comp.R
 \name{multi_comp}
 \alias{multi_comp}
-\title{Multiplicative Component Description of Origin-Destination Migration Flow Tables}
+\title{Multiplicative component description of origin-destination migration flow tables}
 \usage{
 multi_comp(m)
 }

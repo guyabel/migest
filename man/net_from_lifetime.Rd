@@ -2,7 +2,7 @@
 % Please edit documentation in R/net_from_lifetime.R
 \name{net_from_lifetime}
 \alias{net_from_lifetime}
-\title{Estimate Net Migration from Lifetime Migration Data}
+\title{Estimate net migration from lifetime migration data}
 \usage{
 net_from_lifetime(
   .data,
@@ -14,7 +14,7 @@ net_from_lifetime(
 )
 }
 \arguments{
-\item{.data}{A data frame with two rows with the total number of lifetime in- and out-migrants in seperate columns. The first row contains totals at the first time point and second row at the second time point.}
+\item{.data}{A data frame with two rows with the total number of lifetime in- and out-migrants in separate columns. The first row contains totals at the first time point and second row at the second time point.}
 
 \item{in_migrant}{Character string name of column containing in-migrant counts. Default `code{"in_migrants"}`.}
 
@@ -30,5 +30,5 @@ net_from_lifetime(
 Data frame with estimates of net migration
 }
 \description{
-Estimate Net Migration from Lifetime Migration Data
+Estimate net migration from lifetime migration data
 }

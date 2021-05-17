@@ -1,4 +1,4 @@
-#' Solve Quadratic Equation
+#' Solutions from the quadratic equation
 #' 
 #' General function to solve classic quadratic equation:
 #' \deqn{ a x^2 + b x + c = 0 }

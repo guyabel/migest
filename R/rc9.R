@@ -1,4 +1,4 @@
-#' Rogers-Castro Migration Schedule
+#' Generate a Rogers-Castro nine-parameter migration schedule
 #' 
 #' Provides the Rogers-Castro schedule,
 #' \deqn{ M(x) = a_{1} \exp[-\alpha_{1}x] + a_{2} \exp [ \alpha_{2}(x-\mu_{2})- \exp [ \lambda_{2}(x-\mu_{2}) ] ] +c}

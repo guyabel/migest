@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_net.R
 \name{sum_net}
 \alias{sum_net}
-\title{Extract Net Migration from an Origin-Destination Migration Flow Matrix.}
+\title{Extract net migration from an origin-destination migration flow matrix.}
 \usage{
 sum_net(m, region = 1:dim(m)[1])
 }

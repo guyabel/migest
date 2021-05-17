@@ -1,4 +1,4 @@
-#' Create a Block Matrix with Non-Uniform Block Sizes.
+#' Create a block matrix with non-uniform block sizes.
 #' 
 #' Creates a \code{matrix} with differing size blocks
 #' @param x Vector of numbers to identify each block.

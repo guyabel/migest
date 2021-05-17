@@ -2,7 +2,7 @@
 % Please edit documentation in R/ipf3_qi.R
 \name{ipf3_qi}
 \alias{ipf3_qi}
-\title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins and Diagonal Elements.}
+\title{Iterative proportional fitting routine for the indirect estimation of origin-destination-migrant type migration flow tables with known origin and destination margins and diagonal elements.}
 \usage{
 ipf3_qi(
   row_tot = NULL,

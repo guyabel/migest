@@ -2,7 +2,7 @@
 % Please edit documentation in R/ipf2_stripe.R
 \name{ipf2_stripe}
 \alias{ipf2_stripe}
-\title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Stripe Elements.}
+\title{iterative proportional fitting routine for the indirect estimation of origin-destination-type migration flow tables with known origin and destination margins and stripe elements.}
 \usage{
 ipf2_stripe(
   row_tot = NULL,

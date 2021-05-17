@@ -2,7 +2,7 @@
 % Please edit documentation in R/ipf2.R
 \name{ipf2}
 \alias{ipf2}
-\title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination Migration Flow Table with Known Margins.}
+\title{Iterative proportional fitting routine for the indirect estimation of origin-destination migration flow table with known margins.}
 \usage{
 ipf2(
   row_tot = NULL,

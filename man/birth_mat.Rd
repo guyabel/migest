@@ -2,7 +2,7 @@
 % Please edit documentation in R/birth_mat.R
 \name{birth_mat}
 \alias{birth_mat}
-\title{Calculate Births for Each Element of Place of Birth - Place of Residence Stock Matrix}
+\title{Calculate births for each element of place of birth - place of residence stock matrix}
 \usage{
 birth_mat(b_por = NULL, m2 = NULL, non_negative = TRUE)
 }

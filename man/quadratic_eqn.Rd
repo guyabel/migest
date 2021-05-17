@@ -2,7 +2,7 @@
 % Please edit documentation in R/quadratic_eqn.R
 \name{quadratic_eqn}
 \alias{quadratic_eqn}
-\title{Solve Quadratic Equation}
+\title{Solutions from the quadratic equation}
 \source{
 Adapted from https://rpubs.com/kikihatzistavrou/80124
 }

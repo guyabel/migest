@@ -3,7 +3,7 @@
 \docType{data}
 \name{rc9.fund}
 \alias{rc9.fund}
-\title{Fundamental Parameters for Rogers-Castro Migration Schedule}
+\title{Fundamental parameters for Rogers-Castro migration schedule}
 \format{
 A \code{list} of the parameters required by the \code{\link{rc9}} function:
  \deqn{ a_{1} = 0.02 }

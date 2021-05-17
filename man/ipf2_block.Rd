@@ -2,7 +2,7 @@
 % Please edit documentation in R/ipf2_block.R
 \name{ipf2_block}
 \alias{ipf2_block}
-\title{Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Origin and Destination Margins and Block Diagonal Elements.}
+\title{Iterative proportional fitting routine for the indirect estimation of origin-destination-type migration flow tables with known origin and destination margins and block diagonal elements.}
 \usage{
 ipf2_block(
   row_tot = NULL,

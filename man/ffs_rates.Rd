@@ -2,7 +2,7 @@
 % Please edit documentation in R/ffs_rates.R
 \name{ffs_rates}
 \alias{ffs_rates}
-\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Rates Approaches}
+\title{Estimation of bilateral migrant flows from bilateral migrant stocks using rates approaches}
 \usage{
 ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = "dennett")
 }

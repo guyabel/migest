@@ -1,4 +1,4 @@
-#' Iterative Proportional Fitting Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins and Diagonal Elements.
+#' Iterative proportional fitting routine for the indirect estimation of origin-destination-migrant type migration flow tables with known origin and destination margins and diagonal elements.
 #'
 #' This function is predominantly intended to be used within the \code{\link{ffs}} routine.
 #' 

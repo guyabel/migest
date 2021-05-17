@@ -2,7 +2,7 @@
 % Please edit documentation in R/rescale_nb.R
 \name{rescale_nb}
 \alias{rescale_nb}
-\title{Rescale Native Born Populations to Match Global Differences in Births and Deaths over Period}
+\title{Rescale native born populations to match global differences in births and deaths over period}
 \usage{
 rescale_nb(m1, m2, b, d, verbose = FALSE)
 }

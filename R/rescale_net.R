@@ -1,4 +1,4 @@
-#' Rescale Net Migration Total to a Global Zero Sum
+#' Rescale net migration total to a global zero sum
 #'
 #' Modify a set of net migration (or any numbers) so that they sum to zero.
 #' @param x Vector of net migration values

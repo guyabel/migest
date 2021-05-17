@@ -1,4 +1,4 @@
-#' Calculate Births for Each Element of Place of Birth - Place of Residence Stock Matrix 
+#' Calculate births for each element of place of birth - place of residence stock matrix
 #'
 #' This function is predominantly intended to be used within the ffs routines in the migest package. 
 #' @param b_por Vector of numeric values for births in each place of residence

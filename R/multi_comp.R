@@ -1,4 +1,4 @@
-#' Multiplicative Component Description of Origin-Destination Migration Flow Tables
+#' Multiplicative component description of origin-destination migration flow tables
 #'
 #' Multiplicative component descriptions of *n*-dimension flow tables based on total reference coding system.
 #' 

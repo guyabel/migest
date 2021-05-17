@@ -2,7 +2,7 @@
 % Please edit documentation in R/death_mat.R
 \name{death_mat}
 \alias{death_mat}
-\title{Calculate Deaths for Each Element of Place of Birth - Place of Residence Stock Matrix}
+\title{Calculate deaths for each element of place of birth - place of residence stock matrix}
 \usage{
 death_mat(
   d_por = NULL,
@@ -13,7 +13,7 @@ death_mat(
 )
 }
 \arguments{
-\item{d_por}{Vector of numberic values for deaths in each place of residence.}
+\item{d_por}{Vector of numeric values for deaths in each place of residence.}
 
 \item{m1}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Used to distribute deaths proportionally to each migrant stock population. For use when \code{method = "accounting"}}
 
@@ -21,13 +21,13 @@ death_mat(
 
 \item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Used to distribute deaths proportionally to each migrant stock population.}
 
-\item{b_por}{Vector of numberic values for births in each place of residence. For use when \code{method = "accounting"}.}
+\item{b_por}{Vector of numeric values for births in each place of residence. For use when \code{method = "accounting"}.}
 }
 \value{
 Matrix of place of death by place of residence
 }
 \description{
-This function is predominantly intended to be used within the ffs routines in the migest package.
+This function is predominantly intended to be used within the \code{ffs} routines in the migest package.
 }
 \seealso{
 \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}

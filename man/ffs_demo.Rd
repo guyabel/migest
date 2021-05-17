@@ -3,7 +3,7 @@
 \name{ffs_demo}
 \alias{ffs_demo}
 \alias{ffs}
-\title{Estimation of Bilateral Migrant Flows from Bilateral Migrant Stocks Using Demographic Accounting Approaches}
+\title{Estimation of bilateral migrant flows from bilateral migrant stocks using demographic accounting approaches}
 \usage{
 ffs_demo(
   m1 = NULL,

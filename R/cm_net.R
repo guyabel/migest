@@ -1,9 +1,9 @@
-#' Conditional Maximisation Routine for the Indirect Estimation of Origin-Destination-Type Migration Flow Tables with Known Net Migration Totals.
+#' Conditional maximization routine for the indirect estimation of origin-destination-type migration flow tables with known net migration totals.
 #'
 #' The \code{cm_net} function finds the maximum likelihood estimates for fitted values in the log-linear model:
 #' \deqn{\log y_{ij} = \log \alpha_{i} + \log \alpha_{i}^{-1} + \log m_{ij} }
 #' 
-#' @param net_tot Vector of net migration totals to constrain the sum of the imputed cell columns. Elements must sum to zero.
+#' @param net_tot Vector of net migration totals to constrain the sum of the imputed cell row and columns. Elements must sum to zero.
 #' @param m Array of auxiliary data. By default, set to 1 for all origin-destination-migrant typologies combinations. 
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
@@ -18,7 +18,7 @@
 #' \item{mu }{Array of indirect estimates of origin-destination matrices by migrant characteristic}
 #' \item{it }{Iteration count}
 #' \item{tol }{Tolerance level at final iteration}
-#' @author Guy J. Abel
+#' @author Guy J. Abel, Peter W. F. Smith
 #' @export
 #'
 #' @examples
@@ -69,6 +69,7 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
       alpha_old <- alpha
       
       for(i in 1:R){
+         # peter's code
          # (-net_tot[h] + sqrt(net_tot[h]^2 + 4 * sum(1/alpha[, (i-1)] * m[h,]) * sum(alpha[,(i-1)] * m[,h]))) / (2 * sum(1/alpha[, (i-1)] * m[h,]))
          # (-net_tot[i] + sqrt(net_tot[i]^2 + 4 * sum(1/alpha * m[i,]) * sum(alpha * m[,i]))) / (2 * sum(1/alpha * m[i,]))
          p <- quadratic_eqn(a = sum(1/alpha_old * m[i,]), 
@@ -82,6 +83,7 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
       d_max <- max(abs(alpha_old - alpha))
       it <- it + 1
    }
-   return(list(n = diag(alpha) %*% m %*% diag(1/alpha) ,
-               theta = c(alpha = alpha)))
+   f <- diag(alpha) %*% m %*% diag(1/alpha)
+   dimnames(f) <- dimnames(m)
+   return(list(n = f, theta = c(alpha = alpha)))
 }

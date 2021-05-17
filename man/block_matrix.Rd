@@ -2,7 +2,7 @@
 % Please edit documentation in R/block_matrix.R
 \name{block_matrix}
 \alias{block_matrix}
-\title{Create a Block Matrix with Non-Uniform Block Sizes.}
+\title{Create a block matrix with non-uniform block sizes.}
 \usage{
 block_matrix(x = NULL, b = NULL, byrow = FALSE, dimnames = NULL)
 }

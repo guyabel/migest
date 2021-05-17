@@ -1,4 +1,4 @@
-#' Sum of Selected Block in a Block Matrix
+#' Sum over a selected block in a block matrix
 #'
 #' Returns of a sum of a block within a \code{matrix}. This function is predominantly intended to be used within the \code{\link{ipf2_block}} routine.
 #'

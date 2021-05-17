@@ -1,4 +1,4 @@
-#' Adjust Migrant Stock Tables to Have Matching Place of Birth Totals
+#' Adjust migrant stock tables to have matching place of birth totals
 #'
 #' This function is predominantly intended to be used within the ffs routines in the migest package. 
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cm3.R
 \name{cm3}
 \alias{cm3}
-\title{Conditional Maximization Routine for the Indirect Estimation of Origin-Destination-Migrant Type Migration Flow Tables with Known Origin and Destination Margins.}
+\title{Conditional maximization routine for the indirect estimation of origin-destination-migrant type migration flow tables with known origin and destination margins.}
 \usage{
 cm3(
   row_tot = NULL,

@@ -1,4 +1,4 @@
-#' Rescale Integer Vector to a Set sum
+#' Rescale integer vector to a set sum
 #'
 #' For when you want to rescale a set of numbers to sum to a given value and do not want all rescaled values to be integers.
 #'

@@ -1,4 +1,4 @@
-#' Extract Net Migration from an Origin-Destination Migration Flow Matrix.
+#' Extract net migration from an origin-destination migration flow matrix.
 #'
 #' Sums each regions flows (from origin rows and destination columns) to obtain net migration sums.
 #' 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/stripe_matrix.R
 \name{stripe_matrix}
 \alias{stripe_matrix}
-\title{Create a Stripped Matrix with Non-Uniform Block Sizes.}
+\title{Create a stripped matrix with non-uniform block sizes.}
 \usage{
 stripe_matrix(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL)
 }
@@ -19,7 +19,7 @@ stripe_matrix(x = NULL, s = NULL, byrow = FALSE, dimnames = NULL)
 Returns a \code{matrix} with stripe sizes determined by the \code{s} argument. Each stripe is filled with the same value taken from \code{x}.
 }
 \description{
-Create a Stripped Matrix with Non-Uniform Block Sizes.
+Create a stripped matrix with non-uniform block sizes.
 }
 \examples{
 stripe_matrix(x = 1:44, s = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)

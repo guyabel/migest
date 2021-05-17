@@ -1,4 +1,4 @@
-#' Extract a Classic Origin-Destination Migration Flow Matrix.
+#' Extract a classic origin-destination migration flow matrix.
 #'
 #' Extract a classic origin-destination migration flow matrix from a more detailed dis-aggregation of flows stored in an (\code{array}) object.
 #' @param y Array of origin-destination matrices, where the first and second dimensions correspond to origin and destination respectively. Higher dimension(s) refer to additional migrant characteristic(s).
