@@ -30,6 +30,8 @@ sum_lump(
 
 \item{fill}{Numeric value for to fill small cells below the `threshold` when `complete` is `TRUE`. Default of zero.}
 
+\item{return_matrix}{Logical to return a matrix. Default `FALSE`.}
+
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
@@ -37,12 +39,13 @@ sum_lump(
 \item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 }
 \value{
-A \code{tibble} with an additional `other` origins and/or destinations region based on the grouping together of small values below the `threshold` argument and the `lump` argument to indicate on where to apply the threshold. 
-
-The `lump` argument can take values `flow` or `bilat` to apply the threshold to the data values for between region migration, `in` or `imm` to apply the threshold to the incoming region totals and `out` or `emi` to apply the threshold to outgoing region totals.
+A \code{tibble} with an additional `other` origins and/or destinations region based on the grouping together of small values below the `threshold` argument and the `lump` argument to indicate on where to apply the threshold.
 }
 \description{
 Lump together regions/countries if their flows are below a given threshold.
+}
+\details{
+The `lump` argument can take values `flow` or `bilat` to apply the threshold to the data values for between region migration, `in` or `imm` to apply the threshold to the incoming region totals and `out` or `emi` to apply the threshold to outgoing region totals.
 }
 \examples{
 dn <- LETTERS[1:4]

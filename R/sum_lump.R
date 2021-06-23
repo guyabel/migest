@@ -8,13 +8,14 @@
 #' @param other_level Character string for the origin and/or destination label for the lumped values below the `threshold`. Default `"other"`.
 #' @param complete Logical value to return a `tibble` with complete the origin-destination combinations
 #' @param fill Numeric value for to fill small cells below the `threshold` when `complete` is `TRUE`. Default of zero.
+#' @param return_matrix Logical to return a matrix. Default `FALSE`.
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #'
 #' @return A \code{tibble} with an additional `other` origins and/or destinations region based on the grouping together of small values below the `threshold` argument and the `lump` argument to indicate on where to apply the threshold. 
 #' 
-#' The `lump` argument can take values `flow` or `bilat` to apply the threshold to the data values for between region migration, `in` or `imm` to apply the threshold to the incoming region totals and `out` or `emi` to apply the threshold to outgoing region totals.
+#' @details The `lump` argument can take values `flow` or `bilat` to apply the threshold to the data values for between region migration, `in` or `imm` to apply the threshold to the incoming region totals and `out` or `emi` to apply the threshold to outgoing region totals.
 #' @export
 #'
 #' @examples
@@ -61,7 +62,8 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   # lump = "flow"
   # other_level = "other"; complete = TRUE; fill = 0
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
-  
+  if(!lump %in% c("flow", "bilat", "in", "imm", "emi", "out"))
+    stop("lump is not recognised")
   if(!is.matrix(m)){
     d <- m %>%
       dplyr::rename(orig := !!orig_col,
@@ -114,8 +116,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
                                     fill = list(flow = fill)) else .
   
   if(complete & is.matrix(m) & return_matrix){
-    x2 <- x2 %>%
-      xtabs(formula = flow ~ orig + dest, data = .)
+    x2 <- stats::xtabs(formula = flow ~ orig + dest, data = x2)
   }
   return(x2)
 }
