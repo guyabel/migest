@@ -43,7 +43,7 @@ m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0)
 sum_turnover(m)
 
 \dontrun{
-# data frame (tidy) foramt
+# data frame (tidy) format
 library(tidyverse)
 
 # download Abel and Cohen (2019) estimates

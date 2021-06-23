@@ -19,7 +19,7 @@
 #' sum_turnover(m)
 #' 
 #' \dontrun{
-#' # data frame (tidy) foramt
+#' # data frame (tidy) format
 #' library(tidyverse)
 #' 
 #' # download Abel and Cohen (2019) estimates
