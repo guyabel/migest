@@ -36,7 +36,7 @@
 #' # return a data frame with small values replaced with zero
 #' sum_lump(m, threshold = 80, complete = TRUE, return_matrix = FALSE)
 #' 
-#' \donottest{
+#' \dontrun{
 #' # data frame (tidy) format
 #' library(tidyverse)
 #' 
@@ -62,7 +62,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   # lump = "flow"
   # other_level = "other"; complete = TRUE; fill = 0
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
-  if(!lump %in% c("flow", "bilat", "in", "imm", "emi", "out"))
+  if(!all(lump %in% c("flow", "bilat", "in", "imm", "emi", "out")))
     stop("lump is not recognised")
   if(!is.matrix(m)){
     d <- m %>%
@@ -99,12 +99,12 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   
   # set other
   x0 <- d %>%
-    if(length(imm_lump)==0) . else mutate(., orig = ifelse(orig %in% imm_lump, other_level, orig)) %>%
-    if(length(emi_lump)==0) . else mutate(., dest = ifelse(dest %in% emi_lump, other_level, dest))
+    if(length(imm_lump)==0) . else dplyr::mutate(., orig = ifelse(orig %in% imm_lump, other_level, orig)) %>%
+    if(length(emi_lump)==0) . else dplyr::mutate(., dest = ifelse(dest %in% emi_lump, other_level, dest))
 
   x1 <- x0 %>%
-    if(is.null(flow_lump)) . else mutate(., orig = ifelse(flow < threshold, other_level, orig)) %>%
-    if(is.null(flow_lump)) . else mutate(., dest = ifelse(flow < threshold, other_level, dest))
+    if(is.null(flow_lump)) . else dplyr::mutate(., orig = ifelse(flow < threshold, other_level, orig)) %>%
+    if(is.null(flow_lump)) . else dplyr::mutate(., dest = ifelse(flow < threshold, other_level, dest))
 
   x2 <- x1 %>%
     dplyr::group_by_at(c({{g}}, "orig", "dest")) %>%

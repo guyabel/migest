@@ -65,7 +65,7 @@ sum_lump(m, threshold = 50, complete = TRUE)
 # return a data frame with small values replaced with zero
 sum_lump(m, threshold = 80, complete = TRUE, return_matrix = FALSE)
 
-\donottest{
+\dontrun{
 # data frame (tidy) format
 library(tidyverse)
 

@@ -3,7 +3,9 @@
 #' @description Expand matrix of data frame of migration data to include aggregate sums for corresponding origin and destination meta regions.
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
-#' @param return_matrix Logical to return a matrix. Default `TRUE`
+#' @param return_matrix Logical to return a matrix. Default `TRUE`.
+#' @param guess_order Logical to return a matrix or data frame ordered by origin and destination with area names at the end of each block. Default `TRUE`. If `FALSE` returns matrix or data frame based on alphabetical order of origin and destinations.
+#' @param area_first Order area sums to be placed before the origin and destination values. Default `TRUE`
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
@@ -17,24 +19,6 @@
 #'
 #' @examples
 #' ##
-#' ## from data frame
-#' ##
-#' library(tidyverse)
-#' d <- block_matrix(x = 1:25, b = c(2,3,4,2,1)) %>%
-#'   as.data.frame.table(responseName = "flow") %>%
-#'   as_tibble() %>%
-#'   rename(orig = 1, 
-#'          dest = 2) %>%
-#'   mutate(orig_area = str_sub(string = orig, end = 1),
-#'          dest_area = str_sub(string = dest, end = 1))
-#' d
-#' 
-#' sum_expand(d)
-#' 
-#' # return a matrix
-#' sum_expand(d, return_matrix = FALSE)
-#' 
-#' ##
 #' ## from matrix
 #' ##
 #' m <- block_matrix(x = 1:16, b = c(2,3,4,2))
@@ -43,10 +27,52 @@
 #' a <- rep(LETTERS[1:4], times = c(2,3,4,2))
 #' a
 #' sum_expand(m = m, orig_area = a, dest_area = a)
-sum_expand <- function(m, return_matrix = TRUE,
+#' 
+#' # place area sums after regions
+#' sum_expand(m = m, orig_area = a, dest_area = a, area_first = FALSE)
+#'
+#' ##
+#' ## from large data frame
+#' ##
+#' \dontrun{
+#' library(tidyverse)
+#' library(countrycode)
+#' 
+#' # download Abel and Cohen (2019) estimates
+#' f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+#' 
+#' cm <- c("CHI" = "Europe",
+#'         "SCG" = "Europe", 
+#'         "SUD" = "Africa")
+#' 
+#' # 1990-1995 flow estimates
+#' f %>%
+#'   filter(year0 == 1990) %>%
+#'   mutate(
+#'     orig_area = countrycode(sourcevar = orig, custom_match = cm,
+#'                             origin = "iso3c", destination = "un.region.name"),
+#'     dest_area = countrycode(sourcevar = dest, custom_match = cm,
+#'                             origin = "iso3c", destination = "un.region.name")
+#'   ) %>%
+#'   sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
+#' 
+#' # by group (period)
+#' f %>%
+#'   mutate(
+#'     orig_area = countrycode(sourcevar = orig, custom_match = cm,
+#'                             origin = "iso3c", destination = "un.region.name"),
+#'     dest_area = countrycode(sourcevar = dest, custom_match = cm,
+#'                             origin = "iso3c", destination = "un.region.name")) %>%
+#'   group_by(year0) %>%
+#'   sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
+#' }
+sum_expand <- function(m, return_matrix = TRUE, guess_order = TRUE, area_first = TRUE,
                        orig_col = "orig", dest_col = "dest", flow_col = "flow",
                        orig_area_col = "orig_area", dest_area_col = "dest_area", 
                        orig_area = NULL, dest_area = NULL){
+  # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
+  # orig_area_col = "orig_area"; dest_area_col = "dest_area"
+  # orig_area = a; dest_area = a
   if(!is.matrix(m)){
     d <- m %>%
       dplyr::rename(orig := !!orig_col,
@@ -68,9 +94,44 @@ sum_expand <- function(m, return_matrix = TRUE,
       dplyr::rename(orig := 1,
                     dest := 2) %>%
       dplyr::as_tibble() %>%
-      dplyr::bind_cols(expand_grid(dest_area = dest_area, orig_area = orig_area)) %>%
+      dplyr::bind_cols(
+        tidyr::expand_grid(dest_area = dest_area, 
+                           orig_area = orig_area)
+      ) %>%
       dplyr::relocate(-dest_area)
     g <- NULL
+  }
+  if(guess_order){
+    c0 <- d %>%
+      dplyr::ungroup() %>%
+      dplyr::select(orig, orig_area) %>%
+      dplyr::distinct() %>%
+      dplyr::rename(region = 1,
+                    area = 2)
+    
+    c1 <- d %>%
+      dplyr::ungroup() %>%
+      dplyr::select(dest, dest_area) %>%
+      dplyr::distinct() %>%
+      dplyr::rename(region = 1,
+                    area = 2)
+    
+    c2 <- c0 %>%
+      dplyr::full_join(c1) %>%
+      dplyr::mutate(area = forcats::fct_inorder(area)) %>%
+      dplyr::arrange(area) %>%
+      dplyr::mutate(area = as.character(area)) %>%
+      dplyr::group_by(area) %>%
+      dplyr::summarise(
+        value = ifelse(
+          test = area_first, 
+          yes = paste0(c(unique(area), region), collapse = "#"), 
+          no =  paste0(c(region, unique(area)), collapse = "#")
+        ), .groups = "drop") %>%
+      dplyr::pull(value) %>%
+      paste(collapse = "#") %>%
+      stringr::str_split(pattern = "#") %>%
+      .[[1]] 
   }
   x0 <- d %>%
     tidyr::pivot_longer(cols = c(orig, orig_area), 
@@ -79,11 +140,25 @@ sum_expand <- function(m, return_matrix = TRUE,
                  names_to = "dest_type", values_to = "dest") %>%
     dplyr::group_by_at(c({{g}}, "orig", "dest")) %>%
     dplyr::summarise(flow = sum(flow), .groups = "drop") %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::group_by_at({{g}})
+  
+  if(guess_order){
+    x0 <- x0 %>%
+      dplyr::mutate(orig = factor(orig, levels = c2), 
+                    dest = factor(dest, levels = c2)) %>%
+      dplyr::arrange(orig, dest)
+  }
     
   if(return_matrix){
     x0 <- stats::xtabs(formula = flow ~ orig + dest, data = x0)
+    x0 <- unclass(x0)
+  }
+  
+  if(guess_order & !return_matrix){
+    x0 <- x0 %>%
+      dplyr::mutate(orig = as.character(orig), 
+                    dest = as.character(dest))
   }
   return(x0)
 }
-
