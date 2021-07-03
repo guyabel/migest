@@ -74,8 +74,8 @@ f <- read_csv("https://ndownloader.figshare.com/files/26239945")
 
 # large 1990-1995 flow estimates
 f \%>\%
-filter(year0 == 1990) \%>\%
-sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
+  filter(year0 == 1990) \%>\%
+  sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
 
 # large flow estimates for each year
 f \%>\%

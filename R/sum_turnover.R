@@ -6,17 +6,22 @@
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
-#' @param type Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in}, \code{tot_out} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.
+#' @param type Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in_mig}, \code{tot_out_mig} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.
+#' @param international Logical to indicate if flows are international.
+#' @param name_tot Logical to prefix column names with "tot_". Default `FALSE`.
 #'
-#' @return A \code{tibble} with total in- and out-flows for each region. 
+#' @return A \code{tibble} with total in-, out- and turnover of flows for each region. 
 #' 
 #' @export
 #' @examples 
 #' # matrix
 #' dn <- LETTERS[1:4]
-#' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-#'             nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+#'   m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+#'               nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
 #' sum_turnover(m)
+#'   
+#' # different labels
+#' sum_turnover(m, international = TRUE)
 #' 
 #' \dontrun{
 #' # data frame (tidy) format
@@ -36,13 +41,14 @@
 #'   sum_turnover(flow_col = "da_pb_closed", type = "international")
 #' }   
 sum_turnover <- function(
-  m, drop_diagonal = TRUE, include_net = TRUE,
+  m, drop_diagonal = TRUE, include_net = TRUE, 
   orig_col = "orig", dest_col = "dest", flow_col = "flow",
-  type = "internal"){
+  type = "internal", international = FALSE, name_tot = FALSE){
   # m = d0; drop_diagonal = TRUE; include_net = TRUE
   # m <- xtabs(formula = da_pb_closed ~ orig + dest, data = d0, subset = year0 == 1990)
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
   # flow_col = "flow"
+  orig <- dest <- flow <- region <- tot_in_mig <- tot_out_mig <- NULL
   if(!type %in% c("internal", "international"))
     stop("type must be set to internal or international")
   if(!is.matrix(m)){
@@ -68,23 +74,28 @@ sum_turnover <- function(
   d <- d %>%
     dplyr::as_tibble() %>%
     dplyr::group_by_at(c({{g}}, "orig")) %>%
-    dplyr::mutate(tot_out = sum(flow)) %>%
+    dplyr::mutate(tot_out_mig = sum(flow)) %>%
     dplyr::group_by_at(c({{g}}, "dest")) %>%
-    dplyr::mutate(tot_in = sum(flow)) %>%
+    dplyr::mutate(tot_in_mig = sum(flow)) %>%
     dplyr::filter(orig == dest) %>%
     dplyr::ungroup() %>%
     dplyr::group_by_at({{g}}) %>%
     dplyr::mutate(region = orig) %>%
-    dplyr::select(region, tot_in, tot_out)
+    dplyr::select(region, tot_in_mig, tot_out_mig) %>%
+    dplyr::mutate(tot_turn = tot_in_mig + tot_out_mig)
   if(include_net){
     d <- d %>%
-      dplyr::mutate(tot_net = tot_in - tot_out)
+      dplyr::mutate(tot_net = tot_in_mig - tot_out_mig)
   }
-  if(type == "international"){
+  if(type == "international" | international == TRUE){
     d <- d %>%
       dplyr::rename(country = region, 
-                    tot_imm = tot_in,
-                    tot_emi = tot_out)
+                    tot_imm = tot_in_mig,
+                    tot_emi = tot_out_mig)
+  }
+  if(!name_tot){
+    d <- d %>%
+      stats::setNames(stringr::str_remove(names(.), pattern = "tot_"))
   }
   return(d)
 }

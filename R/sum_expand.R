@@ -23,7 +23,7 @@
 #' ##
 #' m <- block_matrix(x = 1:16, b = c(2,3,4,2))
 #' m
-#' # requires a vector of origin and destination areas
+# requires a vector of origin and destination areas
 #' a <- rep(LETTERS[1:4], times = c(2,3,4,2))
 #' a
 #' sum_expand(m = m, orig_area = a, dest_area = a)
@@ -73,6 +73,7 @@ sum_expand <- function(m, return_matrix = TRUE, guess_order = TRUE, area_first =
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
   # orig_area_col = "orig_area"; dest_area_col = "dest_area"
   # orig_area = a; dest_area = a
+  orig <- dest <- flow <- region <- area <- value <- NULL
   if(!is.matrix(m)){
     d <- m %>%
       dplyr::rename(orig := !!orig_col,
@@ -117,7 +118,7 @@ sum_expand <- function(m, return_matrix = TRUE, guess_order = TRUE, area_first =
                     area = 2)
     
     c2 <- c0 %>%
-      dplyr::full_join(c1) %>%
+      dplyr::full_join(c1, by = c("region", "area")) %>%
       dplyr::mutate(area = forcats::fct_inorder(area)) %>%
       dplyr::arrange(area) %>%
       dplyr::mutate(area = as.character(area)) %>%
@@ -152,7 +153,8 @@ sum_expand <- function(m, return_matrix = TRUE, guess_order = TRUE, area_first =
     
   if(return_matrix){
     x0 <- stats::xtabs(formula = flow ~ orig + dest, data = x0)
-    x0 <- unclass(x0)
+    attr(x0, "class") <- NULL
+    attr(x0, "call") <- NULL
   }
   
   if(guess_order & !return_matrix){

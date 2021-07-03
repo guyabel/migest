@@ -18,6 +18,7 @@
 #' multi_comp(m = m0)
 #' multi_comp2(m = m0)
 multi_comp2 <- function(m){
+  obs <- comp <- m_mc <- m_od <- d_mc <- NULL
   if(length(dim(m)) == 2)
     mm <- multi_comp(m = m)
   if(length(dim(m)) > 2){

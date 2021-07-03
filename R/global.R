@@ -1,1 +1,1 @@
-utils::globalVariables(c(".", ":=","comp", "d_mc", "fit", "interact", "m_mc", "m_od",  "obs", "prop", "in_migrants", "out_migrants", "net_foreign", "net_native", "net", "orig", 'dest', "period", "corridor", "stream", "counterstream", "migration", "region", "tot_in", "tot_out", "flow", "fb1", "fb2", "mid_target", "nb1", "nb2", "pob1", "pob2", "target", "value", "area"))
+utils::globalVariables(c(".", ":="))

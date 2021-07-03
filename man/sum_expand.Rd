@@ -53,7 +53,6 @@ Expand matrix of data frame of migration data to include aggregate sums for corr
 ##
 m <- block_matrix(x = 1:16, b = c(2,3,4,2))
 m
-# requires a vector of origin and destination areas
 a <- rep(LETTERS[1:4], times = c(2,3,4,2))
 a
 sum_expand(m = m, orig_area = a, dest_area = a)

@@ -11,7 +11,9 @@ sum_turnover(
   orig_col = "orig",
   dest_col = "dest",
   flow_col = "flow",
-  type = "internal"
+  type = "internal",
+  international = FALSE,
+  name_tot = FALSE
 )
 }
 \arguments{
@@ -27,10 +29,14 @@ sum_turnover(
 
 \item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{type}{Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in}, \code{tot_out} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.}
+\item{type}{Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in_mig}, \code{tot_out_mig} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.}
+
+\item{international}{Logical to indicate if flows are international.}
+
+\item{name_tot}{Logical to prefix column names with "tot_". Default `FALSE`.}
 }
 \value{
-A \code{tibble} with total in- and out-flows for each region.
+A \code{tibble} with total in-, out- and turnover of flows for each region.
 }
 \description{
 Extract total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
@@ -38,9 +44,12 @@ Extract total in-, out- and net-migration totals from an origin-destination migr
 \examples{
 # matrix
 dn <- LETTERS[1:4]
-m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-            nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+  m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+              nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
 sum_turnover(m)
+  
+# different labels
+sum_turnover(m, international = TRUE)
 
 \dontrun{
 # data frame (tidy) format

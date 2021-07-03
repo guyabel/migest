@@ -15,6 +15,7 @@
 #' addmargins(m0)
 #' multi_comp(m = m0)
 multi_comp <- function(m){
+  obs <- fit <- prop <- interact <- comp <- NULL
   d0 <- m %>%
     stats::addmargins() %>%
     as.data.frame.table(responseName = "obs") %>%

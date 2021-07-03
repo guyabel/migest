@@ -45,8 +45,8 @@
 #' 
 #' # large 1990-1995 flow estimates
 #' f %>%
-#' filter(year0 == 1990) %>%
-#' sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
+#'   filter(year0 == 1990) %>%
+#'   sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
 #' 
 #' # large flow estimates for each year
 #' f %>%
@@ -62,6 +62,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   # lump = "flow"
   # other_level = "other"; complete = TRUE; fill = 0
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
+  orig <- dest <- flow <- region <- in_mig <- out_mig <- NULL
   if(!all(lump %in% c("flow", "bilat", "in", "imm", "emi", "out")))
     stop("lump is not recognised")
   if(!is.matrix(m)){
@@ -85,13 +86,13 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   if(any(lump %in% c("in", "imm"))){
     imm_lump <- d %>%
       sum_turnover() %>%
-      dplyr::filter(tot_in < threshold) %>%
+      dplyr::filter(in_mig < threshold) %>%
       dplyr::pull(region)
   }
   if(any(lump %in% c("out", "emi"))){
     emi_lump <- d %>%
       sum_turnover() %>%
-      dplyr::filter(tot_out < threshold) %>%
+      dplyr::filter(out_mig < threshold) %>%
       dplyr::pull(region)
   }
   if(any(lump %in% c("flow", "bilat")))
