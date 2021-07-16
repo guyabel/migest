@@ -27,9 +27,9 @@
 #' Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3}}, \code{\link{ffs_demo}}
-#' @export
-#'
+#' 
 #' @examples
+#' \donttest{
 #' ## create row-table and column-table specific known margins.
 #' dn <- LETTERS[1:4]
 #' P1 <- matrix(c(1000, 100,  10,   0, 
@@ -48,22 +48,21 @@
 #' addmargins(P1)
 #' addmargins(P2)
 #' 
-#' # run ipf
-#' y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
-#' # display with row, col and table totals
-#' round(addmargins(y$mu), 1)
-#' # origin-destination flow table
-#' round(sum_od(y$mu), 1)
+#' # # run ipf
+#' # y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
+#' # # display with row, col and table totals
+#' # round(addmargins(y$mu), 1)
+#' # # origin-destination flow table
+#' # round(sum_od(y$mu), 1)
 #' 
 #' ## with alternative offset term
-#' dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-#' y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
-#' # display with row, col and table totals
-#' round(addmargins(y$mu), 1)
-#' # origin-destination flow table
-#' round(sum_od(y$mu), 1) 
-# P1.adj=P1;P2.adj=P2
-#row_tot=t(P1.adj);col_tot=P2.adj;diag_count=NULL;verbose=TRUE;tol=1e-05;maxit=500;speed=TRUE;m=NULL
+#' # dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
+#' # y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
+#' # # display with row, col and table totals
+#' # round(addmargins(y$mu), 1)
+#' # # origin-destination flow table
+#' # round(sum_od(y$mu), 1)
+#' } 
 ipf3_qi <-
   function(row_tot = NULL,
            col_tot = NULL,
@@ -73,6 +72,9 @@ ipf3_qi <-
            tol = 1e-05,
            maxit = 500,
            verbose = TRUE) {
+    # P1.adj=P1;P2.adj=P2
+    #row_tot=t(P1.adj);col_tot=P2.adj;diag_count=NULL;verbose=TRUE;tol=1e-05;maxit=500;speed=TRUE;m=NULL
+    
     if (any(round(colSums(row_tot)) != round(rowSums(col_tot))))
       stop(
         "row and column totals are not equal for one or more sub-tables, ensure colSums(row_tot)==rowSums(col_tot)"

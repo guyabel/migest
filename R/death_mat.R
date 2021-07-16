@@ -10,8 +10,7 @@
 #' @return
 #' Matrix of place of death by place of residence
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-#' @export
+#' @seealso \code{\link{ffs_diff}}
 death_mat <- function(d_por = NULL, m1 = NULL, method = "proportion",
                       m2 = NULL, b_por = NULL){
   if (method == "proportion") 

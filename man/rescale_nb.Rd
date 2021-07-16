@@ -24,6 +24,7 @@ List with adjusted \code{m1} and \code{m2}.
 This function is predominantly intended to be used within the ffs routines in the migest package. Adjustment to ensure that global differences in stocks match the global demographic changes from births and deaths.
 }
 \examples{
+\donttest{
 dn <- LETTERS[1:4]
 P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
              nrow = 4, ncol = 4, dimnames = list(pob = dn, por = dn), byrow = TRUE)
@@ -39,17 +40,18 @@ d <- rep(x = 5, 4)
 # no change in stocks, but 20 more births than deaths...
 sum(P2 - P1) + sum(b - d)
 # rescale
-y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
-y
-sum(y$m1_adj - y$m2_adj) + sum(b - d)
+# y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
+# y
+# sum(y$m1_adj - y$m2_adj) + sum(b - d)
 
 # check for when extra is positive and odd
 d[1] <- 31
 d
 sum(P2 - P1) - sum(b - d)
 # rescale
-y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
-sum(y$m1_adj - y$m2_adj) - sum(b - d)
+# y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
+# sum(y$m1_adj - y$m2_adj) - sum(b - d)
+}
 }
 \seealso{
 \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}

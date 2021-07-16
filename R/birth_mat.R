@@ -8,7 +8,6 @@
 #' @return Matrix of place of birth by place of residence for new-born’s
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-#' @export
 birth_mat <- function(b_por = NULL, m2 = NULL, non_negative = TRUE){
   # m2 = m2_b
   bb <- m2

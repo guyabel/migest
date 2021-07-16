@@ -30,7 +30,7 @@ Matrix of place of death by place of residence
 This function is predominantly intended to be used within the \code{ffs} routines in the migest package.
 }
 \seealso{
-\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
+\code{\link{ffs_diff}}
 }
 \author{
 Guy J. Abel

@@ -11,9 +11,9 @@
 #' List with adjusted \code{m1} and \code{m2}.
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-#' @export
 #' 
 #' @examples
+#' \donttest{
 #' dn <- LETTERS[1:4]
 #' P1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
 #'              nrow = 4, ncol = 4, dimnames = list(pob = dn, por = dn), byrow = TRUE)
@@ -29,17 +29,18 @@
 #' # no change in stocks, but 20 more births than deaths...
 #' sum(P2 - P1) + sum(b - d)
 #' # rescale
-#' y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
-#' y
-#' sum(y$m1_adj - y$m2_adj) + sum(b - d)
+#' # y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
+#' # y
+#' # sum(y$m1_adj - y$m2_adj) + sum(b - d)
 #' 
 #' # check for when extra is positive and odd
 #' d[1] <- 31
 #' d
 #' sum(P2 - P1) - sum(b - d)
 #' # rescale
-#' y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
-#' sum(y$m1_adj - y$m2_adj) - sum(b - d)
+#' # y <- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)
+#' # sum(y$m1_adj - y$m2_adj) - sum(b - d)
+#' }
 rescale_nb <- function(m1, m2, b, d, verbose = FALSE){
   # m1 = m1_c; m2 = m2_c; b = 0; d = 0
   pop_grow <- sum(m2 - m1)

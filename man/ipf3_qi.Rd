@@ -51,6 +51,7 @@ The \code{ipf3} function finds the maximum likelihood estimates for fitted value
 where \eqn{m_{ijk}} is a set of prior estimates for \eqn{y_{ijk}} and is no more complex than the matrices being fitted. The \eqn{\delta_{ijk}I(i=j)} term ensures a saturated fit on the diagonal elements of each \eqn{(i,j)} matrix.
 }
 \examples{
+\donttest{
 ## create row-table and column-table specific known margins.
 dn <- LETTERS[1:4]
 P1 <- matrix(c(1000, 100,  10,   0, 
@@ -69,20 +70,21 @@ P2 <- matrix(c(950, 100,  60,   0,
 addmargins(P1)
 addmargins(P2)
 
-# run ipf
-y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
-# display with row, col and table totals
-round(addmargins(y$mu), 1)
-# origin-destination flow table
-round(sum_od(y$mu), 1)
+# # run ipf
+# y <- ipf3_qi(row_tot = t(P1), col_tot = P2)
+# # display with row, col and table totals
+# round(addmargins(y$mu), 1)
+# # origin-destination flow table
+# round(sum_od(y$mu), 1)
 
 ## with alternative offset term
-dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
-y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
-# display with row, col and table totals
-round(addmargins(y$mu), 1)
-# origin-destination flow table
-round(sum_od(y$mu), 1) 
+# dis <- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))
+# y <- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)
+# # display with row, col and table totals
+# round(addmargins(y$mu), 1)
+# # origin-destination flow table
+# round(sum_od(y$mu), 1)
+} 
 }
 \references{
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546

@@ -22,6 +22,7 @@ Imports:
     stats,
     tibble,
     forcats,
+    ggplot2,
     utils
 Depends: 
     R (>= 2.10)

@@ -1,7 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^hex$
 ^data-raw$
 ^R-scripts$
 do_vidwp.R
 cfplot_reg2.png
 cfplot_reg2.pdf
+^build_package\.R$

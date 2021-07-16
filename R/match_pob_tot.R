@@ -26,7 +26,6 @@
 #' 
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-#' @export
 match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   if (!(method %in% c("open", "open-dr", "rescale-adjust-zero-fb", "rescale")) | length(method) != 1)
     stop("method must be open, open-dr, rescale-adjust-zero-fb or rescale")
