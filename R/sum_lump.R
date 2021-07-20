@@ -65,22 +65,12 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   orig <- dest <- flow <- region <- in_mig <- out_mig <- NULL
   if(!all(lump %in% c("flow", "bilat", "in", "imm", "emi", "out")))
     stop("lump is not recognised")
-  if(!is.matrix(m)){
-    d <- m %>%
-      dplyr::rename(orig := !!orig_col,
-                    dest := !!dest_col,
-                    flow := !!flow_col)
-    g <- dplyr::group_vars(d)
-    if(length(g) == 0) 
-      g <- NULL
-  }
-  if(is.matrix(m)){
-    d <- as.data.frame.table(x = m, responseName = "flow", stringsAsFactors = FALSE) %>%
-      dplyr::rename(orig := 1,
-                    dest := 2) %>%
-      dplyr::as_tibble()
-    g <- NULL
-  }
+  
+  fmt <- format_migration_tibble(
+    m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
+  )
+  d <- fmt$d
+  g <- fmt$g
   
   imm_lump <- emi_lump <- flow_lump <- NULL
   if(any(lump %in% c("in", "imm"))){

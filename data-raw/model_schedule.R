@@ -1,6 +1,6 @@
 library(tidyverse)
 
-d <- read_csv("./data-raw/mode_schedules.csv")
+d <- read_csv("./data-raw/model_schedules.csv")
 
 d0 <- d %>%
   pivot_longer(cols = -(1:2), names_to = "param") %>%
@@ -13,13 +13,13 @@ d0 %>%
          sex == "male") %>%
   select(param, value) %>%
   deframe()
-model_rc_un <- d0
-usethis::use_data(model_rc_un, overwrite = TRUE)
+rc_model_un <- d0
+usethis::use_data(rc_model_un, overwrite = TRUE)
 
 rc9.fund<-list(a1=0.02, alpha1=0.1, a2=0.06, alpha2=0.1, mu2=20, lambda2=0.4, c=0.003)
-model_rc_fun <- enframe(rc9.fund) %>%
+rc_model_fund <- enframe(rc9.fund) %>%
   mutate(value = unlist(value)) %>%
   rename(param = 1)
-usethis::use_data(model_rc_fun, overwrite = TRUE)
+usethis::use_data(rc_model_fund, overwrite = TRUE)
 
 

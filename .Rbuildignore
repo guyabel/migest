@@ -7,3 +7,4 @@ do_vidwp.R
 cfplot_reg2.png
 cfplot_reg2.pdf
 ^build_package\.R$
+gadm36_KOR_1_sp.rds

@@ -1,0 +1,13 @@
+﻿sex,schedule,a1,alpha1,a2,alpha2,mu2,lambda2,c
+male,Western standard,0.0215,0.105,0.0694,0.112,20.04,0.391,0.0028
+male,Low dependency,0.0128,0.105,0.0804,0.112,20.04,0.391,0.0028
+male,High dependency,0.0303,0.105,0.0582,0.112,20.04,0.391,0.0028
+male,Young labour force entry,0.0215,0.105,0.0691,0.112,16.09,0.391,0.0028
+male,Old labour force entry,0.0215,0.105,0.0691,0.112,23.99,0.391,0.0028
+male,Low dependency low labour force entry,0.0128,0.105,0.08,0.112,16.09,0.391,0.0028
+female,Western standard,0.0233,0.107,0.0766,0.1436,20.632,0.4003,0.0036
+female,Low dependency,0.0149,0.107,0.09,0.1436,20.632,0.4003,0.0036
+female,High dependency,0.0318,0.107,0.0632,0.1436,20.04,0.4003,0.0036
+female,Young labour force entry,0.0233,0.107,0.0766,0.1436,17.132,0.4003,0.0036
+female,Old labour force entry,0.0233,0.107,0.0766,0.1436,24.132,0.4003,0.0036
+female,Low dependency low labour force entry,0.0149,0.107,0.09,0.1436,17.132,0.4003,0.0036

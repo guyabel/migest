@@ -44,8 +44,8 @@ Extract total in-, out- and net-migration totals from an origin-destination migr
 \examples{
 # matrix
 dn <- LETTERS[1:4]
-  m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-              nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+            nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
 sum_turnover(m)
   
 # different labels

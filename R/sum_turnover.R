@@ -16,8 +16,8 @@
 #' @examples 
 #' # matrix
 #' dn <- LETTERS[1:4]
-#'   m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-#'               nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+#' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
+#'             nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
 #' sum_turnover(m)
 #'   
 #' # different labels
@@ -51,22 +51,13 @@ sum_turnover <- function(
   orig <- dest <- flow <- region <- tot_in_mig <- tot_out_mig <- NULL
   if(!type %in% c("internal", "international"))
     stop("type must be set to internal or international")
-  if(!is.matrix(m)){
-    d <- m %>%
-      dplyr::rename(orig := !!orig_col,
-                    dest := !!dest_col,
-                    flow := !!flow_col)
-    g <- dplyr::group_vars(d)
-    if(length(g) == 0) 
-      g <- NULL
-  }
-  if(is.matrix(m)){
-    d <- as.data.frame.table(x = m, responseName = "flow", stringsAsFactors = FALSE) %>%
-      dplyr::rename(orig := 1,
-                    dest := 2) %>%
-      dplyr::as_tibble()
-    g <- NULL
-  }
+  
+  fmt <- format_migration_tibble(
+    m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
+  )
+  d <- fmt$d
+  g <- fmt$g
+  
   if(drop_diagonal)
     d <- d %>%
       dplyr::mutate(flow = ifelse(orig == dest, 0, flow))
