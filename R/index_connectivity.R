@@ -43,16 +43,11 @@ index_connectivity <- function(m = NULL, #inequality_expected =  c("equal", "wei
   
   # gini_orig_all = FALSE; gini_dest_all = FALSE;  gini_corrected = TRUE
   orig <- dest <- flow <- NULL
-  
   if(!is.matrix(m)){
-    m <- m %>%
-      dplyr::rename(orig := !!orig_col,
-                    dest := !!dest_col,
-                    flow := !!flow_col) %>%
-      stats::xtabs(formula = flow ~ orig + dest, data = .)
+    m <- format_migration_matrix(m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col)
     diag(m) <- 0
   }
-  d0 <- format_migration_tibble(m = m)$d %>%
+  d0 <- format_migration_tibble(m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col)$d %>%
     dplyr::filter(orig != dest)
   m0 <- stats::glm(formula = round(flow) ~ orig + dest, data = d0, family = "poisson")
   f0 <- stats::fitted(m0)

@@ -43,11 +43,11 @@ index_distance <- function(m = NULL,
                            ){
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"; pop_col = "pop"; dist_col = "dist"
   orig <- dest <- flow <- NULL
-  fmt <- format_migration_tibble(
+  ff <- format_migration_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
-  d0 <- fmt$d
-  g <- fmt$g
+  d0 <- ff$d
+  g <- ff$g
   
   m_reg <- as.character(unique(c(d0$orig, d0$dest)))
   # dd <- format_migration_tibble(m = korea_dist, flow_col = "dist")$d

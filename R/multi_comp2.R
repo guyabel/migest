@@ -15,7 +15,6 @@
 #' m0 <- array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2),
 #'             dimnames = list(orig = n, dest = n, type = c("ILL", "HEALTHY")))
 #' addmargins(m0)
-#' multi_comp(m = m0)
 #' multi_comp2(m = m0)
 multi_comp2 <- function(m){
   obs <- comp <- m_mc <- m_od <- d_mc <- NULL

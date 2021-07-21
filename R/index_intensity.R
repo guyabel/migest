@@ -53,10 +53,9 @@ index_intensity <- function(m = NULL,
     m <- matrix(m)
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"; pop_col = "pop"; dist_col = "dist"
   orig <- dest <- flow <- pop <- cmp <- NULL
-  fmt <- format_migration_tibble(
+  d <- format_migration_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
-  )
-  d <- fmt$d
+  )$d
 
   if(is.vector(pop_total)){
     p <- tibble::tibble(pop = pop_total)

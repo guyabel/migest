@@ -32,11 +32,7 @@ index_impact <- function(m, pop_total,
                          long = TRUE){
   orig <- dest <- flow <- pop <- reg <- net <- turn <- NULL
   if(!is.matrix(m)){
-    m <- m %>%
-      dplyr::rename(orig := !!orig_col,
-                    dest := !!dest_col,
-                    flow := !!flow_col) %>%
-      stats::xtabs(formula = flow ~ orig + dest, data = .)
+    m <- format_migration_matrix(m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col)
     diag(m) <- 0
   }
   r <- unique(row.names(m), colnames(m))
