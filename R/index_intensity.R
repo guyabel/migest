@@ -7,6 +7,7 @@
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param pop_col Character string of the population column name (when \code{pop_total} is a data frame rather than a ]\code{vector})
+#' @param drop_diag Logical to drop diagonal values (where origin and destination are the same) from calcualtions
 #' @param long Logical to return a long data frame with index values all in one column
 #'
 #' @return A tibble with 2 summary measures where
@@ -45,9 +46,9 @@
 index_intensity <- function(m = NULL, 
                            pop_total = NULL, 
                            n = NULL,
-                           long = TRUE, 
                            orig_col = "orig", dest_col = "dest", 
-                           flow_col = "flow", pop_col = "pop"
+                           flow_col = "flow", pop_col = "pop",
+                           drop_diag = TRUE, long = TRUE
 ){
   if(length(m) == 1)
     m <- matrix(m)
@@ -71,10 +72,9 @@ index_intensity <- function(m = NULL,
   }
 
   d %>%
-    {if(nrow(d) > 1) dplyr::filter(., orig != dest) else .} %>%
+    {if(nrow(d) > 1 & drop_diag) dplyr::filter(., orig != dest) else .} %>%
     dplyr::summarise(
       cmp = 100 * sum(flow)/sum(p$pop),
       courgeau_k = cmp/log(n^2)) %>%
     {if(long) tidyr::pivot_longer(data = ., cols = "cmp":"courgeau_k", names_to = "measure") else .}
 }
-

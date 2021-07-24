@@ -17,6 +17,8 @@ d0 <- d %>%
   separate(col = orig, into = c("orig_code", "orig"), sep = " ", convert = TRUE) %>%
   select(-contains("code")) %>%
   mutate(flow = as.integer(flow),
+         # orig = str_remove(string = orig, pattern = "-do"),
+         # dest = str_remove(string = dest, pattern = "-do"),
          orig = fct_inorder(orig), 
          dest = fct_inorder(dest)) %>%
   filter(year >= 2012) %>%
@@ -38,6 +40,7 @@ d1 <- d %>%
   drop_na() %>%
   mutate(region = ifelse(region == "Sejong_si", "Sejong", region), 
          region = ifelse(region == "Jeju-do", "Jeju", region))
+         # region = str_remove(string = region, pattern = "-do"))
 unique(d1$region) %in% levels(korea_reg$orig)
 
 korea_pop <- d1
@@ -53,6 +56,7 @@ detach("package:raster", unload=TRUE)
 library(geosphere)
 c0 <- do.call(rbind, st_geometry(k$mid))
 korea_dist <- round(distm(c0)/1000)
+# k$NAME_1 <- str_remove(string =k$NAME_1, pattern = "-do")
 dimnames(korea_dist) <- list(orig = k$NAME_1, dest = k$NAME_1)
 k$NAME_1 %in% unique(korea_pop$region)
   

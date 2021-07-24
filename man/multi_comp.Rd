@@ -21,4 +21,10 @@ m0 <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0
              nrow = 4, ncol = 4, byrow = TRUE, dimnames = list(orig = r, dest = r))
 addmargins(m0)
 multi_comp(m = m0)
+
+# data frame
+library(dplyr)
+italy_area \%>\%
+  filter(year == 2000) \%>\%
+  multi_comp()
 }

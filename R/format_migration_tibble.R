@@ -14,7 +14,9 @@ format_migration_tibble <- function(m, orig_col = "orig", dest_col = "dest", flo
       dplyr::rename(orig := !!orig_col,
                     dest := !!dest_col,
                     flow := !!flow_col)
-    g <- dplyr::group_vars(d)
+    g <- dplyr::group_vars(m)
+    if(length(g) != 0) 
+      d <- dplyr::group_by_at(d, g)
     if(length(g) == 0) 
       g <- NULL
   }

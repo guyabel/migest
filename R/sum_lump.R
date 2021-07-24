@@ -66,11 +66,11 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   if(!all(lump %in% c("flow", "bilat", "in", "imm", "emi", "out")))
     stop("lump is not recognised")
   
-  fmt <- format_migration_tibble(
+  dd <- format_migration_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
-  d <- fmt$d
-  g <- fmt$g
+  d <- dd$d
+  g <- dd$g
   
   imm_lump <- emi_lump <- flow_lump <- NULL
   if(any(lump %in% c("in", "imm"))){

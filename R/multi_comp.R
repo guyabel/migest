@@ -16,6 +16,7 @@
 #' multi_comp(m = m0)
 #' 
 #' # data frame
+#' library(dplyr)
 #' italy_area %>%
 #'   filter(year == 2000) %>%
 #'   multi_comp()
@@ -24,11 +25,6 @@ multi_comp <- function(m){
   obs <- fit <- prop <- interact <- comp <- NULL
   
   if(!is.matrix(m)){
-    u <- apply(X = m, MARGIN = 2, FUN = dplyr::n_distinct)
-    if(any(u) == 1){
-      ii <- which(u == 1)
-      m <- dplyr::select(m, -dplyr::all_of(names(ii)))
-    }
     m <- format_migration_matrix(m, array = TRUE)
   }
     

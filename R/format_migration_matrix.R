@@ -16,6 +16,9 @@ format_migration_matrix <- function(m, array = TRUE, orig_col = "orig", dest_col
                     dest := !!dest_col,
                     flow := !!flow_col) %>%
       dplyr::relocate(flow, orig, dest)
+    u <- apply(X = m, MARGIN = 2, FUN = dplyr::n_distinct)
+    ii <- which(u == 1)
+    m <- dplyr::select(m, -dplyr::all_of(names(ii)))
     if(!array){
       m <- m %>%
         stats::xtabs(formula = flow ~ orig + dest, data = .)
