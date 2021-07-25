@@ -5,8 +5,11 @@
 \title{Summary indices of migration age profile}
 \source{
 Rogers, A. (1975). Introduction to Multiregional Mathematical Demography. Wiley.
+
 Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247
+
 Bell, M., & Muhidin, S. (2009). Cross-National Comparisons of Internal Migration (Research Paper 2009/30; Human Development Reports).
+
 Bernard, A., Bell, M., & Charles-Edwards, E. (2014). Improved measures for the cross-national comparison of age profiles of internal migration. Population Studies, 68(2), 179–195. https://doi.org/10.1080/00324728.2014.890243
 }
 \usage{

@@ -3,6 +3,7 @@
 #' @param pars Named vector or parameters parameters from a Rogers and Castro schedule
 #'
 #' @return A tibble with at least five summary measures
+#' @source Rogers, A., & Castro, L. J. (1981). Model Migration Schedules. In IIASA Research Report (Vol. 81, Issue RR-81-30). http://webarchive.iiasa.ac.at/Admin/PUB/Documents/RR-81-030.pdf
 #' @export
 #'
 #' @examples

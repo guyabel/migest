@@ -4,25 +4,23 @@
 \alias{index_distance}
 \title{Summary indices of migration distance}
 \source{
-#' Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247
+Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247
 }
 \usage{
 index_distance(
   m = NULL,
-  dist = NULL,
-  long = TRUE,
+  d = NULL,
   orig_col = "orig",
   dest_col = "dest",
   flow_col = "flow",
-  dist_col = "dist"
+  dist_col = "dist",
+  long = TRUE
 )
 }
 \arguments{
 \item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
 
-\item{dist}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{dist_col}. Region names should match those in `m`.}
-
-\item{long}{Logical to return a long data frame with index values all in one column}
+\item{d}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{dist_col}. Region names should match those in `m`.}
 
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
@@ -31,6 +29,8 @@ index_distance(
 \item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{dist_col}{Character string of the distance column name (when \code{dist} is a data frame rather than a \code{matrix})}
+
+\item{long}{Logical to return a long data frame with index values all in one column}
 }
 \value{
 A tibble with 3 summary measures where
@@ -45,7 +45,7 @@ Summary indices of migration distance
 # single year
 index_distance(
   m = subset(korea_reg, year == 2020), 
-  dist = korea_dist
+  d = korea_dist
 )
 
 library(dplyr)
@@ -54,9 +54,9 @@ library(purrr)
 # multiple years
 korea_reg \%>\%
   nest(m = c(orig, dest, flow)) \%>\%
-  mutate(dist = list(korea_dist)) \%>\%
-  mutate(i = map2(.x = m, .y = dist, 
-                  .f = ~index_distance(m = .x, dist = .y, long = FALSE))) \%>\%
-  select(-m, -dist) \%>\%
+  mutate(d = list(korea_dist)) \%>\%
+  mutate(i = map2(.x = m, .y = d, 
+                  .f = ~index_distance(m = .x, d = .y, long = FALSE))) \%>\%
+  select(-m, -d) \%>\%
   unnest(i)
 }

@@ -5,37 +5,22 @@
 \title{Summary indices of migration intensity}
 \source{
 Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247
+
 Courgeau, D. (1973). Migrants et migrations. Population, 28(1), 95–129. https://doi.org/10.2307/1530972
+
 Bernard, A., Rowe, F., Bell, M., Ueffing, P., Charles-Edwards, E., & Zhu, Y. (2017). Comparing internal migration across the countries of Latin America: A multidimensional approach. Plos One, 12(3), e0173895. https://doi.org/10.1371/journal.pone.0173895
 }
 \usage{
-index_intensity(
-  m = NULL,
-  pop_total = NULL,
-  n = NULL,
-  long = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
-  pop_col = "pop"
-)
+index_intensity(mig_total = NULL, pop_total = NULL, n = NULL, long = TRUE)
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{mig_total}{Numeric value for the total number of migrations.}
 
-\item{pop_total}{Numeric value or vector for the total population. If a vector greater of length one is given, values will be summed. Can be a data frame, with column of populations labelled using `pop_col`}
+\item{pop_total}{Numeric value for the total population.}
 
-\item{n}{Numeric value for the number of regions in `m`. If not given will be derived from the dimensions of `m`}
+\item{n}{Numeric value for the number of regions used in the definition of migration for `mig_total`.}
 
 \item{long}{Logical to return a long data frame with index values all in one column}
-
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
-
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
-
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
-
-\item{pop_col}{Character string of the population column name (when \code{pop_total} is a data frame rather than a ]\code{vector})}
 }
 \value{
 A tibble with 2 summary measures where
@@ -47,25 +32,39 @@ Summary indices of migration intensity
 }
 \examples{
 # single year
-index_intensity(
-  m = subset(korea_reg, year == 2020),
-  pop_total = subset(korea_pop, year == 2020),
-  pop_col = "population"
-)
+library(dplyr)
+m <- korea_reg \%>\%
+  filter(year == 2020,
+         orig != dest) \%>\%
+  pull(flow) \%>\%
+  sum()
+m
+p <- korea_pop \%>\%
+  filter(year == 2020) \%>\%
+  pull(population) \%>\%
+  sum()
+p
+index_intensity(mig_total = m, pop_total = p, n = n_distinct(korea_pop$region))
 
 # multiple years
-library(dplyr)
-library(tidyr)
+mm <- korea_reg \%>\%
+  group_by(year) \%>\%
+  filter(orig != dest) \%>\%
+  summarise(m = sum(flow))
+mm
+pp <- korea_pop \%>\%
+  group_by(year) \%>\%
+  summarise(p = sum(population))
+pp
+
 library(purrr)
-korea_reg \%>\%
-  nest(m = c(orig, dest, flow)) \%>\%
-  left_join(korea_pop) \%>\%
-  nest(p = c(region, population)) \%>\%
-  mutate(i = map2(
-    .x = m, .y = p,
-    .f = ~index_intensity(
-      m = .x, pop_total = .y, pop_col = "population", long = FALSE
-    ))) \%>\%
-  select(-m, -p) \%>\%
-  unnest(i)
+library(tidyr)
+mm \%>\%
+  left_join(pp) \%>\%
+  mutate(i = map2(.x = m, .y = p,
+                  .f = ~index_intensity(mig_total = .x,
+                                        pop_total = .y,
+                                        n = n_distinct(korea_pop$region),
+                                        long = FALSE))) \%>\%
+  unnest(cols = i)
 }

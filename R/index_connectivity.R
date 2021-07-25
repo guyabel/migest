@@ -9,12 +9,13 @@
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param long Logical to return a long data frame with index values all in one column
 #'
-#' @return A tibble with 11 summary measures:
+#' @return A tibble with 12 summary measures:
 #' \item{connectivity}{I_{mc} of Bell et. al. (2002) for the share of non-zero flows. A value of 0 means no connections (all zero flows) and 1 shows that all regions are connected by migrants.}
-#' \item{inequality}{I_{mi} of Bell et. al. (2002) based on a distributions of flows in `m` compared to distributions of expected flows from a Poisson regression independence fit `flow ~ orig +  dest`. A value of 0 shoes complete equality in flows and 1 shows maximum inequality.}
+#' \item{inequality_equal}{I_{mi} of Bell et. al. (2002) based on a distributions of flows compared to equal distributions of expected flows . A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
+#' \item{inequality_sim}{I_{mi} of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit `flow ~ orig +  dest`. A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
 #' \item{gini_total}{Overall concentration of migration from Bell (2002), corrected from Plane and Mulligan (1997). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one single flow. Calculated using `migration.indices::migration.gini.total()`}
-#' \item{gini_orig_standardized}{Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 100 shows maximum focusing. Calculated using `migration.indices::migration.gini.row.standardized()`.}
-#' \item{gini_dest_standardized}{Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 100 shows maximum focusing. Calculated using `migration.indices::migration.gini.col.standardized()`.}
+#' \item{gini_orig_standardized}{Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from `migration.indices::migration.gini.row.standardized()`.}
+#' \item{gini_dest_standardized}{Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from `migration.indices::migration.gini.col.standardized()`.}
 #' \item{mwg_orig}{Origin spatial focusing, from Bell et. al. (2002). Calculated using `migration.indices::migration.weighted.gini.out()`}
 #' \item{mwg_dest}{Destination spatial focusing, from Bell et. al. (2002). Calculated using `migration.indices::migration.weighted.gini.in()`}
 #' \item{mwg_mean}{Mean spatial focusing, from Bell et. al. (2002). Average of the origin and destination migration weighted Gini indices (`mwg_orig` and `mwg_dest`). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one region. Calculated using `migration.indices::migration.weighted.gini.mean()`}
@@ -22,16 +23,16 @@
 #' \item{acv}{Aggregated system-wide coefficient of variation from Rogers and Sweeney (1998), using `migration.indices::migration.acv()`}
 #'  
 #' @source Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247 \cr
-#' Rogers, A., & Raymer, J. (1998). The Spatial Focus of US Interstate Migration Flows. International Journal of Population Geography, 4(1), 63–80. https://doi.org/10.1002/(SICI)1099-1220(199803)4%3A1<63%3A%3AAID-IJPG87>3.0.CO%3B2-U \cr
-#' Rogers, A., & Sweeney, S. (1998). Measuring the Spatial Focus of Migration Patterns. Professional Geographer, 50(2), 232–242. \cr
-#' Plane, D., & Mulligan, G. F. (1997). Measuring spatial focusing in a migration system. Demography, 34(2), 251–262.
+#' @source Rogers, A., & Raymer, J. (1998). The Spatial Focus of US Interstate Migration Flows. International Journal of Population Geography, 4(1), 63–80. https://doi.org/10.1002/(SICI)1099-1220(199803)4%3A1<63%3A%3AAID-IJPG87>3.0.CO%3B2-U  \cr
+#' @source Rogers, A., & Sweeney, S. (1998). Measuring the Spatial Focus of Migration Patterns. Professional Geographer, 50(2), 232–242.  \cr
+#' @source Plane, D., & Mulligan, G. F. (1997). Measuring spatial focusing in a migration system. Demography, 34(2), 251–262. \cr
 #' 
 #' @export
 #'
 #' @examples
 #' library(dplyr)
 #' korea_reg %>%
-#'   filter(year == 2019) %>%
+#'   filter(year == 2020) %>%
 #'   index_connectivity()
 index_connectivity <- function(m = NULL, #inequality_expected =  c("equal", "weighted"),
                                gini_orig_all = FALSE, gini_dest_all = FALSE,
@@ -53,12 +54,13 @@ index_connectivity <- function(m = NULL, #inequality_expected =  c("equal", "wei
 
   d <- tibble::tibble(
     connectivity = migration.indices::migration.connectivity(m),
-    inequality = 0.5 * sum(abs(d0$flow/sum(d0$flow) - f0/sum(f0))),
-    # not sure about migration.inequality - bell (2002) says should be between 0 and 1
+    inequality_equal = 0.5 * sum(abs(d0$flow/sum(d0$flow) - mean(d0$flow)/sum(d0$flow))),
+    inequality_sim = 0.5 * sum(abs(d0$flow/sum(d0$flow) - f0/sum(f0))),
+    # not sure about migration.indices::migration.inequality - bell (2002) says should be between 0 and 1
     #inequality = migration.indices::migration.inequality(m, expected = inequality_expected),
     gini_total = migration.indices::migration.gini.total(m, corrected = gini_corrected),
-    gini_orig_standardized = migration.indices::migration.gini.row.standardized(m),
-    gini_dest_standardized = migration.indices::migration.gini.col.standardized(m),
+    gini_orig_standardized = migration.indices::migration.gini.row.standardized(m)/100,
+    gini_dest_standardized = migration.indices::migration.gini.col.standardized(m)/100,
     mwg_orig = migration.indices::migration.weighted.gini.out(m = m),
     mwg_dest = migration.indices::migration.weighted.gini.in(m = m),
     mwg_mean = migration.indices::migration.weighted.gini.mean(m = m),

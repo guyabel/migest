@@ -51,7 +51,6 @@ library(sf)
 k <- raster::getData(country = "KOR", level  = 1) %>%
   st_as_sf() %>%
   mutate(mid = st_centroid(geometry))
-detach("package:raster", unload=TRUE)
 
 library(geosphere)
 c0 <- do.call(rbind, st_geometry(k$mid))
@@ -60,4 +59,19 @@ korea_dist <- round(distm(c0)/1000)
 dimnames(korea_dist) <- list(orig = k$NAME_1, dest = k$NAME_1)
 k$NAME_1 %in% unique(korea_pop$region)
   
+# usethis::use_data(korea_dist, overwrite = TRUE)
+
+##
+## population weighted
+##
+# this is from world pop
+# https://www.worldpop.org/doi/10.5258/SOTON/WP00703
+d <- read_csv("./data-raw/PWD_2020_sub_national_100m.csv") %>%
+  filter(ISO == "KOR")
+c1 <- d %>%
+  select(PWC_Lon, PWC_Lat)
+# korea_dist <- round(distm(c0)/1000)
+korea_dist <- round(distm(c1)/1000)
+dimnames(korea_dist) <- list(orig = d$Adm_N, dest = d$Adm_N)
+d$Adm_N %in% unique(korea_pop$region)
 usethis::use_data(korea_dist, overwrite = TRUE)

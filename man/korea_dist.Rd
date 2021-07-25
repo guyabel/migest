@@ -3,17 +3,17 @@
 \docType{data}
 \name{korea_dist}
 \alias{korea_dist}
-\title{Distances in kilometers between centroids of Korean administrative regions}
+\title{Weighted distances in kilometers between 2020 population centroids of Korean administrative regions}
 \format{
 An object of class \code{matrix} (inherits from \code{array}) with 17 rows and 17 columns.
+}
+\source{
+Robin Edwards, Maksym Bondarenko, Andrew J. Tatem and Alessandro Sorichetta. Unconstrained subnational Population Weighted Density in 2000, 2005, 2010, 2015 and 2020 ( 100m resolution ). WorldPop, University of Southampton, UK. doi:10.5258/SOTON/WP00703
 }
 \usage{
 korea_dist
 }
 \description{
-Distance matrix of kilometers between centroids of first level administrative regions of South Korea.
-}
-\details{
-Data derived in R using the GADM shape files (downloaded using raster::getData), sf::st_centroid to calculate region centroids, and geosphere::distm to calculate great circle distance between centroid points
+Distance matrix of kilometers between population weighted centroids in 2020 of first level administrative regions of South Korea.
 }
 \keyword{datasets}
