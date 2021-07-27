@@ -69,5 +69,5 @@ index_impact <- function(m, p,
       preference = sum(m / (sum(m) * (p$pop/sum(p$pop)) %*% (t(p$pop/sum(p$pop))))),
       velocity = sum(m / (p$pop %*% t(p$pop)) * sum(p$pop))
     ) %>%
-    {if(long) tidyr::pivot_longer(data = ., cols = "effectivness":"velocity", names_to = "measure") else .}
+    {if(long) tidyr::pivot_longer(data = ., cols = 1:ncol(.), names_to = "measure") else .}
 }

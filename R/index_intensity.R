@@ -59,6 +59,6 @@ index_intensity <- function(mig_total = NULL,
   cmp <- courgeau_k <- NULL
   tibble::tibble(cmp = 100 * mig_total/pop_total,
                  courgeau_k = cmp/log(n^2)) %>%
-    {if(long) tidyr::pivot_longer(data = ., cols = "cmp":"courgeau_k", names_to = "measure") else .}
+    {if(long) tidyr::pivot_longer(data = ., cols = 1:ncol(.), names_to = "measure") else .}
 }
 

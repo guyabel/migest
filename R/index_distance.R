@@ -64,5 +64,5 @@ index_distance <- function(m = NULL,
       mean = matrixStats::weightedMean(x = dist, w = flow),
       median = matrixStats::weightedMedian(x = dist, w = flow),
       decay = stats::glm(formula = round(flow) ~ orig + dest + log(dist), data = ., family = "poisson")$coefficients["log(dist)"]) %>%
-    {if(long) tidyr::pivot_longer(data = ., cols = "mean":"decay", names_to = "measure") else .}
+    {if(long) tidyr::pivot_longer(data = ., cols = 1:ncol(.), names_to = "measure") else .}
 }

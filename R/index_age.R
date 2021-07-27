@@ -69,7 +69,7 @@ index_age <- function(d = NULL, age, mi, age_min = 5, age_max = 65, breadth = 5,
       mdrc = a[d == min_d],
       asymmetry = murc/mdrc) %>%
     dplyr::select(-max_d, -min_d) %>%
-    {if(long) tidyr::pivot_longer(data = ., cols = "gmr":"asymmetry", names_to = "measure") else .}
+    {if(long) tidyr::pivot_longer(data = ., cols = 1:ncol(.), names_to = "measure") else .}
 }
 
 
