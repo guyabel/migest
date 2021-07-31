@@ -278,12 +278,7 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 #&gt;   Sum 1160.0 680.0 935.0 225.0 3000
 #&gt; </div><div class='input'><span class='co'># origin-destination flow table</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='sum_od.html'>sum_od</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>$</span><span class='va'>mu</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     dest
-#&gt; orig     A     B     C    D
-#&gt;    A   0.0 137.8 126.9 17.3
-#&gt;    B 159.9   0.0 101.3 22.8
-#&gt;    C  92.6  67.3   0.0 47.3
-#&gt;    D  34.5  39.0  33.9  0.0</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in sum_od(y$mu): could not find function "sum_od"</span></div><div class='input'>
 <span class='co'>## with alternative offset term</span>
 <span class='va'>dis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>7</span>, <span class='fl'>4</span>, <span class='fl'>6</span>, <span class='fl'>7</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>ipf3</span><span class='op'>(</span>row_tot <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>P1</span><span class='op'>)</span>, col_tot <span class='op'>=</span> <span class='va'>P2</span>, m <span class='op'>=</span> <span class='va'>dis</span><span class='op'>)</span>
@@ -349,12 +344,7 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 #&gt;   Sum 1160.0 680.0 935.0 225.0 3000
 #&gt; </div><div class='input'><span class='co'># origin-destination flow table</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='sum_od.html'>sum_od</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>$</span><span class='va'>mu</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     dest
-#&gt; orig     A     B     C    D
-#&gt;    A   0.0 146.8 136.6 20.1
-#&gt;    B 169.6   0.0 113.8 29.3
-#&gt;    C  99.3  77.7   0.0 57.3
-#&gt;    D  39.6  48.2  38.9  0.0</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in sum_od(y$mu): could not find function "sum_od"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
