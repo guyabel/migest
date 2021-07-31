@@ -7,15 +7,9 @@
 #' Matrix from summing over the first and second dimension. Set diagonals to zero.
 #' 
 #' Returns a \code{matrix} object of origin-destination flows
-#' @author Guy J. Abel
+#' @export
 #'
 #' @examples
-#' dn <- LETTERS[1:2]
-#' y <- cm3(row_tot = c(18, 20) * 2, col_tot = c(16, 22) * 2, 
-#'          m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
-#'                    dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
-#' round(addmargins(y$n))
-#' round(addmargins(sum_od(y$n))) 
 sum_od <- function(y){
   R <- dim(y)[3]
   dg <- diag(apply(y,c(1,2),sum))

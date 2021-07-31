@@ -14,7 +14,8 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 
 <img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="180" style="padding-left: 20px; padding-bottom: 20px;" />
 
-Tools and data sets for estimating migration
+Tools for estimating, measuring and working with migration data. See the
+[pkgdown site](http://guyabel.github.io/migest/) for more information
 
 ## Installation
 

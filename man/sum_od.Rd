@@ -17,14 +17,3 @@ Returns a \code{matrix} object of origin-destination flows
 \description{
 Extract a classic origin-destination migration flow matrix from a more detailed dis-aggregation of flows stored in an (\code{array}) object.
 }
-\examples{
-dn <- LETTERS[1:2]
-y <- cm3(row_tot = c(18, 20) * 2, col_tot = c(16, 22) * 2, 
-         m = array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2), 
-                   dimnames = list(orig = dn, dest = dn, type = c("ILL", "HEALTHY"))))
-round(addmargins(y$n))
-round(addmargins(sum_od(y$n))) 
-}
-\author{
-Guy J. Abel
-}
