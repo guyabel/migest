@@ -8,8 +8,9 @@
 #'
 #' @return Returns a numeric value of the sum of a single block.
 #' @author Guy J. Abel
+#' @noRd
 #' @seealso \code{\link{block_matrix}}, \code{\link{stripe_matrix}}, \code{\link{ipf2_block}}
-#' 
+#'
 #' @export
 #'
 #' @examples

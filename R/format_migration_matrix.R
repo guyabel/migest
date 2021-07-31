@@ -6,6 +6,8 @@
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #'
+#' @keyword internal
+#' @noRd
 #' @return Formatted matrix
 format_migration_matrix <- function(m, array = TRUE, orig_col = "orig", dest_col = "dest", flow_col = "flow"){
   orig <- dest <- flow <- NULL

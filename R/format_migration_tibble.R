@@ -5,6 +5,8 @@
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #'
+#' @keyword internal
+#' @noRd
 #' @return Formatted tibble
 format_migration_tibble <- function(m, orig_col = "orig", dest_col = "dest", flow_col = "flow"){
   orig <- dest <- flow <- NULL
@@ -15,9 +17,9 @@ format_migration_tibble <- function(m, orig_col = "orig", dest_col = "dest", flo
                     dest := !!dest_col,
                     flow := !!flow_col)
     g <- dplyr::group_vars(m)
-    if(length(g) != 0) 
+    if(length(g) != 0)
       d <- dplyr::group_by_at(d, g)
-    if(length(g) == 0) 
+    if(length(g) == 0)
       g <- NULL
   }
   if(is.matrix(m)){
