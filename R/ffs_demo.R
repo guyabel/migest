@@ -35,7 +35,7 @@
 #' 
 #' Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}, \code{\link{ffs_rates}}
+#' @seealso \code{\link{ffs_diff}}, \code{\link{ffs_rates}}
 #' @aliases ffs
 #' @export
 #'

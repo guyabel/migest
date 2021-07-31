@@ -7,7 +7,7 @@
 #'
 #' @return Returns a \code{matrix} with stripe sizes determined by the \code{s} argument. Each stripe is filled with the same value taken from \code{x}. 
 #' @author Guy J. Abel
-#' @seealso \code{\link{block_matrix}}, \code{\link{block_sum}}, \code{\link{ipf2_stripe}}
+#' @seealso \code{\link{block_matrix}},  \code{\link{ipf2_stripe}}
 #' @export
 #'
 #' @examples

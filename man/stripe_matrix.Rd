@@ -25,7 +25,7 @@ Create a stripped matrix with non-uniform block sizes.
 stripe_matrix(x = 1:44, s = c(2,3,4,2), dimnames = LETTERS[1:4], byrow = TRUE)
 }
 \seealso{
-\code{\link{block_matrix}}, \code{\link{block_sum}}, \code{\link{ipf2_stripe}}
+\code{\link{block_matrix}},  \code{\link{ipf2_stripe}}
 }
 \author{
 Guy J. Abel

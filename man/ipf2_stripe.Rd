@@ -23,7 +23,7 @@ ipf2_stripe(
 
 \item{stripe_tot}{Matrix of stripe totals to constrain the sum of the imputed cell blocks.}
 
-\item{stripe}{Matrix of stripe stucture corresponding to \code{stripe_tot}.}
+\item{stripe}{Matrix of stripe structure corresponding to \code{stripe_tot}.}
 
 \item{m}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.}
 
@@ -61,7 +61,7 @@ y <- ipf2_stripe(row_tot = c(85, 70, 35, 30, 60, 55, 65),
  addmargins(y$mu)
 }
 \seealso{
-\code{\link{stripe_matrix}}, \code{\link{block_matrix}}, \code{\link{block_sum}}
+\code{\link{stripe_matrix}}, \code{\link{block_matrix}}
 }
 \author{
 Guy J. Abel

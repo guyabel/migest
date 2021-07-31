@@ -59,7 +59,7 @@ y <- ipf2_block(row_tot= c(30,20,30,10,20,5,0,10,5,5,5,10),
 addmargins(y$mu)
 }
 \seealso{
-\code{\link{block_matrix}}, \code{\link{stripe_matrix}}, \code{\link{block_sum}}
+\code{\link{block_matrix}}, \code{\link{stripe_matrix}}
 }
 \author{
 Guy J. Abel

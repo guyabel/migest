@@ -8,7 +8,6 @@
 #' 
 #' Returns a \code{matrix} object of origin-destination flows
 #' @author Guy J. Abel
-#' @export
 #'
 #' @examples
 #' dn <- LETTERS[1:2]

@@ -8,7 +8,7 @@
 #' 
 #' @return Returns a \code{matrix} with block sizes determined by the \code{b} argument. Each block is filled with the same value taken from \code{x}. 
 #' @author Guy J. Abel
-#' @seealso \code{\link{stripe_matrix}}, \code{\link{block_sum}}, \code{\link{ipf2_block}}
+#' @seealso \code{\link{stripe_matrix}}
 #' @export
 #'
 #' @examples

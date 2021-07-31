@@ -21,9 +21,6 @@ Sums each regions flows (from origin rows and destination columns) to obtain net
 m <- matrix(data = 1:16, nrow = 4, ncol = 4)
 sum_net(m)
 }
-\seealso{
-\code{\link{block_sum}}, \code{\link{sum_od}}
-}
 \author{
 Guy J. Abel
 }

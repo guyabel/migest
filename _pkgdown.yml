@@ -1,14 +1,17 @@
 reference:
-- title: "Migration indices"
-- contents:
-  - starts_with("index")
 - title: "Migration data summaries"
 - contents:
+  - sum_turnover
+  - sum_net
+  - sum_lump
+  - sum_expand
   - counter
   - multi_comp
   - multi_comp2
-  - starts_with("sum")
-- title: "Matrix functions"
+- title: "Migration indices"
+- contents:
+  - starts_with("index")
+- title: "Functions for creating matrices"
 - contents:
   - block_matrix
   - stripe_matrix
@@ -20,7 +23,10 @@ reference:
   - starts_with("cm")
 - title: "Iterative proportional fitting procedures"
 - contents:
-  - starts_with("ipf")
+  - ipf2
+  - ipf3
+  - ipf2_block
+  - ipf2_stripe
 - title: "Net migration estimation methods"
 - contents:
   - starts_with("net")

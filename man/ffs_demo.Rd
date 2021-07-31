@@ -123,7 +123,7 @@ Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Fl
 Abel, G. J. (2013). Estimating Global Migration Flow Tables Using Place of Birth. \emph{Demographic Research} 28, (18) 505-546
 }
 \seealso{
-\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}, \code{\link{ffs_rates}}
+\code{\link{ffs_diff}}, \code{\link{ffs_rates}}
 }
 \author{
 Guy J. Abel

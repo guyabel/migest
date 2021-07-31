@@ -24,7 +24,7 @@
 #' \item{it }{Iteration count}
 #' \item{tol }{Tolerance level at final iteration}
 #' @author Guy J. Abel
-#' @seealso \code{\link{block_matrix}}, \code{\link{stripe_matrix}}, \code{\link{block_sum}}
+#' @seealso \code{\link{block_matrix}}, \code{\link{stripe_matrix}}
 #' 
 #' @export
 #' @examples

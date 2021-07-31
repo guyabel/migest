@@ -7,7 +7,7 @@
 #' @param row_tot Vector of origin totals to constrain the sum of the imputed cell rows.
 #' @param col_tot Vector of destination totals to constrain the sum of the imputed cell columns.
 #' @param stripe_tot Matrix of stripe totals to constrain the sum of the imputed cell blocks. 
-#' @param stripe Matrix of stripe stucture corresponding to \code{stripe_tot}.
+#' @param stripe Matrix of stripe structure corresponding to \code{stripe_tot}.
 #' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.
@@ -22,7 +22,7 @@
 #' \item{it }{Iteration count}
 #' \item{tol }{Tolerance level at final iteration}
 #' @author Guy J. Abel
-#' @seealso \code{\link{stripe_matrix}}, \code{\link{block_matrix}}, \code{\link{block_sum}}
+#' @seealso \code{\link{stripe_matrix}}, \code{\link{block_matrix}}
 #' 
 #' @export
 #' @examples
