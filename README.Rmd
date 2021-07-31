@@ -1,15 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  # fig.path = "man/figures/",
+  out.width = "100%"
+)
+```
 
 # migest
 
 <!-- badges: start -->
 <!-- [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) -->
-
-[![CRAN
-status](https://www.r-pkg.org/badges/version/migest)](https://CRAN.R-project.org/package=migest)
-[![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN status](https://www.r-pkg.org/badges/version/migest)](https://CRAN.R-project.org/package=migest)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 <img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="180" style="padding-left: 20px; padding-bottom: 20px;" />
@@ -18,8 +27,7 @@ Tools and data sets for estimating migration
 
 ## Installation
 
-You can install the released version of migest from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the released version of migest from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("migest")
@@ -31,3 +39,4 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("guyabel/migest")
 ```
+
