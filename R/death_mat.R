@@ -9,10 +9,8 @@
 #'
 #' @return
 #' Matrix of place of death by place of residence
-#' @author Guy J. Abel
 #' @keyword internal
 #' @noRd
-#' @seealso \code{\link{ffs_diff}}
 death_mat <- function(d_por = NULL, m1 = NULL, method = "proportion",
                       m2 = NULL, b_por = NULL){
   if (method == "proportion")

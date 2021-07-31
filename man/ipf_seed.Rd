@@ -21,13 +21,6 @@ An \code{array} or \code{matrix}
 \description{
 This function is predominantly intended to be used within the ipf routines in the migest package.
 }
-\examples{
-\donttest{
-# ipf_seed(m = NULL, R = 4, n_dim = 2)
-# ipf_seed(m = NULL, R = 5, n_dim = 3, dn = LETTERS[1:5])
-# ipf_seed(m = matrix(1:4, nrow = 2), n_dim = 3, dn = LETTERS[1:2])
-}
-}
 \seealso{
 \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
 }

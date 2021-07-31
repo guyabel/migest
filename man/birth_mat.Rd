@@ -19,9 +19,3 @@ Matrix of place of birth by place of residence for new-born’s
 \description{
 This function is predominantly intended to be used within the ffs routines in the migest package.
 }
-\seealso{
-\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-}
-\author{
-Guy J. Abel
-}
