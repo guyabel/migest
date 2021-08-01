@@ -19,7 +19,7 @@ cm_net_tot(
 \arguments{
 \item{net_tot}{Vector of net migration totals to constrain the sum of the imputed cell row and columns. Elements must sum to zero.}
 
-\item{tot}{Numeric value of grand total to constrain sum oof all imputed cells.}
+\item{tot}{Numeric value of grand total to constrain sum of all imputed cells.}
 
 \item{m}{Array of auxiliary data. By default, set to 1 for all origin-destination-migrant typologies combinations.}
 

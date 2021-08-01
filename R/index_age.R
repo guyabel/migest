@@ -6,7 +6,7 @@
 #' @param mi Numeric vector of migration intensities corresponding to each value of `age`. Used if `d = NULL`.
 #' @param age_min Numeric value for minimum age for peak calculations. Taken as 5 by default.
 #' @param age_max Numeric value for maximum age for peak calculations. Taken as 65 by default.
-#' @param breadth Numeric value for number of age groups around peak to be used in breadth_peak measure. Defualt of `5`.
+#' @param breadth Numeric value for number of age groups around peak to be used in breadth_peak measure. Default of `5`.
 #' @param age_col Character string of the age column name (when \code{d} is provided)
 #' @param mi_col Character string of the migration intensities column name (when \code{d} is provided)
 #' @param long Logical to return a long data frame with index values all in one column

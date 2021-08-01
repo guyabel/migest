@@ -9,7 +9,7 @@ Data frame with 202 rows and 4 columns:
 \describe{
   \item{sample}{IPUMS International sample - either BRA2000 or FRA2006}
   \item{age}{Age on census data}
-  \item{migrants}{Number of migrants, defined by those who had changed usual place of residence to a different minor adminstrative region compared to usual place of residence five years prior to the cenuses. Obtained by summing person weights for `migrate5` variable equal to any of code 12, 20 or 30.}
+  \item{migrants}{Number of migrants, defined by those who had changed usual place of residence to a different minor administrative region compared to usual place of residence five years prior to the census. Obtained by summing person weights for `migrate5` variable equal to any of code 12, 20 or 30.}
   \item{population}{Population of each age group, obtained by summing person weights `perwt` variable. }
 }
 }

@@ -146,15 +146,15 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Method to estimate flows. Can take values <code>dennett</code> or <code>rogers-von-rabenau</code>. See detials section for more information. Uses <code>dennett</code> as default.</p></td>
+      <td><p>Method to estimate flows. Can take values <code>dennett</code> or <code>rogers-von-rabenau</code>. See details section for more information. Uses <code>dennett</code> as default.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Estimates migrant transitions flows based on migration rates.</p>
-<p>When <code>method = "dennett"</code> migration are derived from the matrix supplied to <code>m1</code>. Dennett uses bilateral migrant stocks at begining of period. Rates then multiplied by global migration flows supplied in <code>M</code>.</p>
-<p>When <code>method = "rogers-von-rabenau"</code> a matrix of growth rates are derived from the changes in inital poplations stock <code>m1</code> to obtain <code>m2</code>;
+<p>When <code>method = "dennett"</code> migration are derived from the matrix supplied to <code>m1</code>. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in <code>M</code>.</p>
+<p>When <code>method = "rogers-von-rabenau"</code> a matrix of growth rates are derived from the changes in initial populations stock <code>m1</code> to obtain <code>m2</code>;
 $$P^{t+1} = g P^{t}$$
 and then multiplied by the corresponding populations at risk in <code>m1</code>. Can result in negative flows.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

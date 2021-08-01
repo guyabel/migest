@@ -23,6 +23,6 @@ Published in United Nations Department of Economic and Social Affairs Population
 new_england_1960
 }
 \description{
-New England population data for by place of birth and age in 1950 and 1960 for male white native borns
+New England population data for by place of birth and age in 1950 and 1960 for male white native born.
 }
 \keyword{datasets}

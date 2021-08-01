@@ -18,7 +18,7 @@ rescale_net(
 
 \item{w}{Weights used in rescaling method}
 
-\item{integer_result}{Logical operator to indicate if output shoud be integers, default is \code{TRUE}.}
+\item{integer_result}{Logical operator to indicate if output should be integers, default is \code{TRUE}.}
 }
 \value{
 Rescales net migration for a number of regions in vector \code{x} to sum to zero.  When \code{method="no-switches"} rescaling of values are done for the positive and negative values separately, to ensure the final global sum is zero. When \code{method="switches"} the mean of the unscaled net migration is subtracted from each value.

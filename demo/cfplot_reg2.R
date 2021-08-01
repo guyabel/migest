@@ -31,7 +31,7 @@ circos.clear()
 circos.par(start.degree = 90, gap.degree = 4, track.margin = c(-0.1, 0.1), points.overflow.warning = FALSE)
 par(mar = rep(0, 4))
 
-#increasing the gaps between sectors, start at 12 o'clock, ensure no gap between the chord and the sector at the begining
+#increasing the gaps between sectors, start at 12 o'clock, ensure no gap between the chord and the sector at the beginning
 # subdue warning messages and have no margins in the plot
 
 ##

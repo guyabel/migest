@@ -11,7 +11,7 @@ ffs_diff(m1, m2, decrease = "return", include_native_born = FALSE)
 
 \item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
-\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Defualt is \code{return}}
+\item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Default is \code{return}}
 
 \item{include_native_born}{Logical value to indicate whether to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.}
 }

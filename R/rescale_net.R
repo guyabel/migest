@@ -4,7 +4,7 @@
 #' @param x Vector of net migration values
 #' @param method Method used to adjust net migration values of \code{x} to obtain a global zero sum. By default \code{method="no-switches"}. Can also take values \code{method="switches"}. See details for explanation on each method.
 #' @param w Weights used in rescaling method
-#' @param integer_result Logical operator to indicate if output shoud be integers, default is \code{TRUE}.
+#' @param integer_result Logical operator to indicate if output should be integers, default is \code{TRUE}.
 #'
 #' @return Rescales net migration for a number of regions in vector \code{x} to sum to zero.  When \code{method="no-switches"} rescaling of values are done for the positive and negative values separately, to ensure the final global sum is zero. When \code{method="switches"} the mean of the unscaled net migration is subtracted from each value. 
 #' @references 

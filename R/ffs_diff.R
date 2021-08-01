@@ -3,7 +3,7 @@
 #' Estimates migrant transitions flows between two sequential migrant stock tables using differencing approaches commonly used by economists.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 
 #' @param m2 Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.
-#' @param decrease How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Defualt is \code{return}
+#' @param decrease How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Default is \code{return}
 #' @param include_native_born Logical value to indicate whether to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.
 #'
 #' @return Estimates migrant transitions flows between two sequential migrant stock tables. 

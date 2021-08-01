@@ -3,7 +3,7 @@
 \docType{data}
 \name{italy_area}
 \alias{italy_area}
-\title{Single year age-sepcific origin destination migration flows between Italian NUTS1 areas}
+\title{Single year age-specific origin destination migration flows between Italian NUTS1 areas}
 \format{
 Data frame with 3500 rows and 5 columns:
 \describe{

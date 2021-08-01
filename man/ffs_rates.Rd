@@ -13,14 +13,14 @@ ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = "dennett")
 
 \item{M}{Numeric value for the global sum of migration flows, used for \code{dennett} approach.}
 
-\item{method}{Method to estimate flows. Can take values \code{dennett} or \code{rogers-von-rabenau}. See detials section for more information. Uses \code{dennett} as default.}
+\item{method}{Method to estimate flows. Can take values \code{dennett} or \code{rogers-von-rabenau}. See details section for more information. Uses \code{dennett} as default.}
 }
 \value{
 Estimates migrant transitions flows based on migration rates.
 
-When \code{method = "dennett"} migration are derived from the matrix supplied to \code{m1}. Dennett uses bilateral migrant stocks at begining of period. Rates then multiplied by global migration flows supplied in \code{M}.
+When \code{method = "dennett"} migration are derived from the matrix supplied to \code{m1}. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in \code{M}.
 
-When \code{method = "rogers-von-rabenau"} a matrix of growth rates are derived from the changes in inital poplations stock \code{m1} to obtain \code{m2};
+When \code{method = "rogers-von-rabenau"} a matrix of growth rates are derived from the changes in initial populations stock \code{m1} to obtain \code{m2};
 \deqn{P^{t+1} = g P^{t}}
 and then multiplied by the corresponding populations at risk in \code{m1}. Can result in negative flows.
 }

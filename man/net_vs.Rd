@@ -24,7 +24,7 @@ net_vs(
 \item{deaths_col}{Character string name of column containing name of deaths over the period. Default \code{"deaths"}.}
 }
 \value{
-A tibble with additional columns for the population change (`pop_change`), the natural population incearse (`natural_inc`) and the net migration (`net`) over the period.
+A tibble with additional columns for the population change (`pop_change`), the natural population increase (`natural_inc`) and the net migration (`net`) over the period.
 }
 \description{
 Estimate net migration from vital statistics

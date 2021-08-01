@@ -6,7 +6,7 @@
 #' @param births_col Character string name of column containing name of births over the period. Default \code{"births"}.
 #' @param deaths_col Character string name of column containing name of deaths over the period. Default \code{"deaths"}.
 #'
-#' @return A tibble with additional columns for the population change (`pop_change`), the natural population incearse (`natural_inc`) and the net migration (`net`) over the period.
+#' @return A tibble with additional columns for the population change (`pop_change`), the natural population increase (`natural_inc`) and the net migration (`net`) over the period.
 #' @export
 #' 
 #' @references Bogue, D. J., Hinze, K., & White, M. (1982). Techniques of Estimating Net Migration. Community and Family Study Center. University of Chicago.

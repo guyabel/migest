@@ -7,7 +7,7 @@
 \format{
 Data frame with 164 rows and 7 columns:
 \describe{
-  \item{zone}{Zone of state. In somce cases the state and zone are the same entity}
+  \item{zone}{Zone of state. In some cases the state and zone are the same entity}
   \item{state}{Indian state}
   \item{sex}{Migrant sex}
   \item{in_migrants}{In-migrant total based on birthplace}

@@ -1,6 +1,6 @@
 #' New England male white-native population totals in 1950 and 1960 by place of birth and age
 #'
-#' New England population data for by place of birth and age in 1950 and 1960 for male white native borns
+#' New England population data for by place of birth and age in 1950 and 1960 for male white native born.
 #'
 #' @format Data frame with 72 rows and 4 columns:
 #' \describe{

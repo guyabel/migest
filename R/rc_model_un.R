@@ -5,7 +5,7 @@
 #' @format A \code{tibble} with five columns and 84 rows:
 #' \describe{
 #'   \item{schedule}{Character string for full name of schedule}
-#'   \item{value}{Character string for abbrivated name of schedule}
+#'   \item{value}{Character string for abbreviated name of schedule}
 #'   \item{param}{Character string for sex of schedule}
 #'   \item{param}{Character string for the seven parameters}
 #'   \item{value}{Parameter values}

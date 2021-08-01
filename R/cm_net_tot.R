@@ -4,7 +4,7 @@
 #' \deqn{\log y_{ij} = \log \alpha_{i} + \log \alpha_{i}^{-1} + \log m_{ij} }
 #' 
 #' @param net_tot Vector of net migration totals to constrain the sum of the imputed cell row and columns. Elements must sum to zero.
-#' @param tot Numeric value of grand total to constrain sum oof all imputed cells.
+#' @param tot Numeric value of grand total to constrain sum of all imputed cells.
 #' @param m Array of auxiliary data. By default, set to 1 for all origin-destination-migrant typologies combinations. 
 #' @param tol Numeric value for the tolerance level used in the parameter estimation.
 #' @param maxit Numeric value for the maximum number of iterations used in the parameter estimation.

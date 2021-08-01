@@ -1,4 +1,4 @@
-#' Single year age-sepcific origin destination migration flows between Italian NUTS1 areas
+#' Single year age-specific origin destination migration flows between Italian NUTS1 areas
 #'
 #' Origin-destination migration flows from 7 years between 1970 and 2000 by five-year age groups
 #'

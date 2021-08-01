@@ -36,7 +36,7 @@ index_age(
 
 \item{age_max}{Numeric value for maximum age for peak calculations. Taken as 65 by default.}
 
-\item{breadth}{Numeric value for number of age groups around peak to be used in breadth_peak measure. Defualt of \code{5}.}
+\item{breadth}{Numeric value for number of age groups around peak to be used in breadth_peak measure. Default of \code{5}.}
 
 \item{age_col}{Character string of the age column name (when \code{d} is provided)}
 
