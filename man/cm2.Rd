@@ -48,9 +48,9 @@ as introduced by Willekens (1999). The \eqn{\alpha_i} and  \eqn{\beta_j} represe
 }
 \examples{
 ## with Willekens (1999) data
-dn <- LETTERS[1:2]
+r <- LETTERS[1:2]
 y <- cm2(row_tot = c(18, 20), col_tot = c(16, 22), 
-         m = matrix(c(5, 1, 2, 7), ncol = 2, dimnames = list(orig = dn, dest = dn)))
+         m = matrix(c(5, 1, 2, 7), ncol = 2, dimnames = list(orig = r, dest = r)))
 y
 
 ## with all elements of offset equal (independence fit)
@@ -58,10 +58,10 @@ y <- cm2(row_tot = c(18, 20), col_tot = c(16, 22))
 y
 
 ## with bigger matrix
-dn <- LETTERS[1:4]
+r <- LETTERS[1:4]
 y <- cm2(row_tot = c(250, 100, 140, 110), col_tot = c(150, 150, 180, 120),
          m = matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-                    nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE))
+                    nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE))
                     
 # display with row and col totals
 round(addmargins(y$n)) 

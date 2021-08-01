@@ -34,7 +34,8 @@ reference:
   - starts_with("rc")
 - title: "Rescaling functions"
 - contents:
-  - starts_with("rescale")
+  - rescale_net
+  - rescale_integer_sum
 - title: "Classic data sets"
 - contents:
   - alabama_1970
