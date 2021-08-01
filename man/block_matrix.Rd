@@ -23,6 +23,7 @@ Creates a \code{matrix} with differing size blocks
 }
 \examples{
 block_matrix(x = 1:16, b = c(2,3,4,2))
+
 block_matrix(x = 1:25, b = c(2,3,4,2,1))
 }
 \seealso{

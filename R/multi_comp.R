@@ -7,7 +7,10 @@
 #' @return \code{matrix} or \code{array} of multiplicative components of `m`. When output is an array the total for each table of origin-destination flows is used. 
 #' @importFrom magrittr "%>%"
 #' @export
-#'
+#' 
+#' @references Rogers, A., Willekens, F., Little, J., & Raymer, J. (2002). Describing migration spatial structure. Papers in Regional Science, 81(1), 29–48. https://doi.org/10.1007/s101100100090
+#' 
+#' @references Raymer, J., Bonaguidi, A., & Valentini, A. (2006). Describing and projecting the age and spatial structures of interregional migration in Italy. Population, Space and Place, 12(5), 371–388. https://doi.org/10.1002/psp.414
 #' @examples
 #' r <- LETTERS[1:4]
 #' m0 <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0), 
@@ -19,7 +22,8 @@
 #' library(dplyr)
 #' italy_area %>%
 #'   filter(year == 2000) %>%
-#'   multi_comp()
+#'   multi_comp() %>%
+#'   round(digits = 3)
 multi_comp <- function(m){
   # m = filter(italy_area, year == 2000) %>% select(-year)
   obs <- fit <- prop <- interact <- comp <- NULL

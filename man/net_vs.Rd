@@ -43,3 +43,6 @@ d \%>\%
   mutate(deaths = c(51449, 58845, 86880, 123220)) \%>\%
   net_vs(pop0_col = "pop_1960", pop1_col = "pop_1970")
 }
+\references{
+Bogue, D. J., Hinze, K., & White, M. (1982). Techniques of Estimating Net Migration. Community and Family Study Center. University of Chicago.
+}

@@ -3,9 +3,9 @@
 #' @description Expand matrix of data frame of migration data to include aggregate sums for corresponding origin and destination meta regions.
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
-#' @param return_matrix Logical to return a matrix. Default `TRUE`.
-#' @param guess_order Logical to return a matrix or data frame ordered by origin and destination with area names at the end of each block. Default `TRUE`. If `FALSE` returns matrix or data frame based on alphabetical order of origin and destinations.
-#' @param area_first Order area sums to be placed before the origin and destination values. Default `TRUE`
+#' @param return_matrix Logical to return a matrix. Default \code{TRUE}.
+#' @param guess_order Logical to return a matrix or data frame ordered by origin and destination with area names at the end of each block. Default \code{TRUE}. If \code{FALSE} returns matrix or data frame based on alphabetical order of origin and destinations.
+#' @param area_first Order area sums to be placed before the origin and destination values. Default \code{TRUE}
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
@@ -23,7 +23,8 @@
 #' ##
 #' m <- block_matrix(x = 1:16, b = c(2,3,4,2))
 #' m
-# requires a vector of origin and destination areas
+#' 
+#' # requires a vector of origin and destination areas
 #' a <- rep(LETTERS[1:4], times = c(2,3,4,2))
 #' a
 #' sum_expand(m = m, orig_area = a, dest_area = a)

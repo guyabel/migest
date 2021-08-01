@@ -14,7 +14,7 @@ Data frame with 2,601 rows and 4 columns:
 }
 }
 \source{
-Statistics Korea, Internal Migration Statistics. Data downloaded from https://kosis.kr/eng in July 2021.
+Statistics Korea, Internal Migration Statistics. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
 }
 \usage{
 korea_reg

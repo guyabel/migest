@@ -4,6 +4,7 @@
 #' @param long Logical to return a long data frame with index values all in one column
 #'
 #' @return A tibble with at least five summary measures
+#' @md
 #' @source Rogers, A., & Castro, L. J. (1981). Model Migration Schedules. In IIASA Research Report (Vol. 81, Issue RR-81-30). http://webarchive.iiasa.ac.at/Admin/PUB/Documents/RR-81-030.pdf
 #' @export
 #'

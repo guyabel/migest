@@ -14,6 +14,8 @@
 #' @return Data frame with estimates of net migration
 #' @export
 #' 
+#' @references Bogue, D. J., Hinze, K., & White, M. (1982). Techniques of Estimating Net Migration. Community and Family Study Center. University of Chicago.
+#' 
 #' @examples 
 #' # results to match un manual 1984 (table 24)
 #' net_sr(bombay_1951, pop0_col = "pop_1941", pop1_col = "pop_1951")

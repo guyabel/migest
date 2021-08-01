@@ -146,7 +146,7 @@
     </tr>
     <tr>
       <th>d</th>
-      <td><p>A <code>matrix</code> or data frame of origin-destination distances. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>dist_col</code>. Region names should match those in `m`.</p></td>
+      <td><p>A <code>matrix</code> or data frame of origin-destination distances. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>dist_col</code>. Region names should match those in <code>m</code>.</p></td>
     </tr>
     <tr>
       <th>orig_col</th>
@@ -177,8 +177,8 @@
 
     <p>A tibble with 3 summary measures where</p>
 <dt>mean</dt><dd><p>Mean migration distance from Bell et. al. (2002) - not discussed in text but given in Table 6</p></dd>
-  <dt>median</dt><dd><p>Mean migration distance from Bell et. al. (2002)</p></dd>
-  <dt>decay</dt><dd><p>Distance decay parameter obtained from a Poisson regression model (`flow ~ orig + dest + log(dist)`)</p></dd>
+<dt>median</dt><dd><p>Mean migration distance from Bell et. al. (2002)</p></dd>
+<dt>decay</dt><dd><p>Distance decay parameter obtained from a Poisson regression model (<code>flow ~ orig + dest + log(dist)</code>)</p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

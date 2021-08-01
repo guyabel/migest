@@ -16,7 +16,8 @@ Data frame with 3500 rows and 5 columns:
 }
 \source{
 Provided by James Raymer. Originally from ISTAT. 2003. Rapporto annuale: La situazione nel Paese nel 2003. ISTAT, Rome. 
-Data used in Raymer, J., Bonaguidi, A., & Valentini, A. (2006). Describing and projecting the age and spatial structures of interregional migration in Italy. Population, Space and Place, 12(5), 371–388. https://doi.org/10.1002/psp.414
+
+Data used in Raymer, J., Bonaguidi, A., & Valentini, A. (2006). Describing and projecting the age and spatial structures of interregional migration in Italy. Population, Space and Place, 12(5), 371–388. \url{https://doi.org/10.1002/psp.414}
 }
 \usage{
 italy_area

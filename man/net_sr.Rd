@@ -59,3 +59,6 @@ net_sr(manila_1970, pop0_col = "pop_1960", pop1_col = "pop_1970",
 net_sr(manila_1970, pop0_col = "pop_1960", pop1_col = "pop_1970", 
        survival_ratio_col = "phl_census_sr", net_children = TRUE)
 }
+\references{
+Bogue, D. J., Hinze, K., & White, M. (1982). Techniques of Estimating Net Migration. Community and Family Study Center. University of Chicago.
+}

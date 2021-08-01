@@ -26,6 +26,7 @@
 #' @source Rogers, A., & Raymer, J. (1998). The Spatial Focus of US Interstate Migration Flows. International Journal of Population Geography, 4(1), 63–80. https://doi.org/10.1002/(SICI)1099-1220(199803)4%3A1<63%3A%3AAID-IJPG87>3.0.CO%3B2-U  \cr
 #' @source Rogers, A., & Sweeney, S. (1998). Measuring the Spatial Focus of Migration Patterns. Professional Geographer, 50(2), 232–242.  \cr
 #' @source Plane, D., & Mulligan, G. F. (1997). Measuring spatial focusing in a migration system. Demography, 34(2), 251–262. \cr
+#' @md
 #' 
 #' @export
 #'

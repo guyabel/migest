@@ -14,7 +14,7 @@
 #' \deqn{P^{t+1} = g P^{t}}
 #' and then multiplied by the corresponding populations at risk in \code{m1}. Can result in negative flows.
 #' 
-#' #' @references 
+#' @references 
 #' Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows - An Alternative Methodology for Using Migrant Stock Data. \emph{Global Dynamics: Approaches from Complexity Science}, 125–142. https://doi.org/10.1002/9781118937464.ch7
 #' 
 #' Rogers, A., & Von Rabenau, B. (1971). Estimation of interregional migration streams from place-of-birth-by-residence data. \emph{Demography}, 8(2), 185–194.
@@ -28,8 +28,8 @@
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' s2 <- matrix(data = c(75, 25, 5, 15, 20, 45, 30, 15, 30, 40, 150, 35, 10, 50, 5, 200),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
-#' reg <- LETTERS[1:4]
-#' dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
+#' r <- LETTERS[1:4]
+#' dimnames(s1) <- dimnames(s2) <- list(pob = r, por = r)
 #' s1; s2
 #' 
 #' # calculate total migration flows for dennett approach

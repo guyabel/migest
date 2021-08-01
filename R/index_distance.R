@@ -14,6 +14,7 @@
 #'   \item{decay}{Distance decay parameter obtained from a Poisson regression model (`flow ~ orig + dest + log(dist)`)}
 #'   
 #' @source Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247
+#' @md
 #' @export
 #'
 #' @examples

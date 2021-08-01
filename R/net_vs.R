@@ -8,6 +8,8 @@
 #'
 #' @return A tibble with additional columns for the population change (`pop_change`), the natural population incearse (`natural_inc`) and the net migration (`net`) over the period.
 #' @export
+#' 
+#' @references Bogue, D. J., Hinze, K., & White, M. (1982). Techniques of Estimating Net Migration. Community and Family Study Center. University of Chicago.
 #'
 #' @examples
 #' library(dplyr)

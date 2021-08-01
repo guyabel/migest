@@ -9,11 +9,15 @@
 #' @import utils
 #' 
 #' @export
+#' 
+#' @references Rogers, A., Willekens, F., Little, J., & Raymer, J. (2002). Describing migration spatial structure. Papers in Regional Science, 81(1), 29–48. https://doi.org/10.1007/s101100100090
+#' 
+#' @references Raymer, J., Bonaguidi, A., & Valentini, A. (2006). Describing and projecting the age and spatial structures of interregional migration in Italy. Population, Space and Place, 12(5), 371–388. https://doi.org/10.1002/psp.414
 #'
 #' @examples
-#' n <- LETTERS[1:2]
+#' r <- LETTERS[1:2]
 #' m0 <- array(c(5, 1, 2, 7, 4, 2, 5, 9), dim = c(2, 2, 2),
-#'             dimnames = list(orig = n, dest = n, type = c("ILL", "HEALTHY")))
+#'             dimnames = list(orig = r, dest = r, type = c("ILL", "HEALTHY")))
 #' addmargins(m0)
 #' multi_comp2(m = m0)
 multi_comp2 <- function(m){

@@ -15,7 +15,9 @@ Data frame with 72 rows and 4 columns:
 }
 }
 \source{
-United States Bureau of the Census, United States Census ofPopulation: 1960..Subject Reports.."State of birth" (Washington, D.C.), table 25, pp. 61-62. Persons with place of birth not reported were distributed pro rata among those with place of birth reported. Published in United Nations Department of Economic and Social Affairs Population Division - 1983 - Methods of measuring internal migration \url{https://www.un.org/en/development/desa/population/publications/manual/migration/measuring-migration.asp}
+United States Bureau of the Census, United States Census of Population: 1960..Subject Reports.."State of birth" (Washington, D.C.), table 25, pp. 61-62. Persons with place of birth not reported were distributed pro rata among those with place of birth reported. 
+
+Published in United Nations Department of Economic and Social Affairs Population Division - 1983 - Methods of measuring internal migration \url{https://www.un.org/en/development/desa/population/publications/manual/migration/measuring-migration.asp}
 }
 \usage{
 new_england_1960

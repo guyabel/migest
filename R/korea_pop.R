@@ -8,5 +8,5 @@
 #'   \item{year}{Year of flow}
 #'   \item{population}{Resident Population}
 #' }
-#' @source Source: Statistics Korea, Population Statistics Based on Resident Registration. Data downloaded from https://kosis.kr/eng in July 2021.
+#' @source Source: Statistics Korea, Population Statistics Based on Resident Registration. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
 "korea_pop"

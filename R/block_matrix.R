@@ -13,6 +13,7 @@
 #'
 #' @examples
 #' block_matrix(x = 1:16, b = c(2,3,4,2))
+#' 
 #' block_matrix(x = 1:25, b = c(2,3,4,2,1))
 block_matrix <- function(x = NULL, b = NULL, byrow = FALSE, dimnames = NULL){
   n <- length(b)

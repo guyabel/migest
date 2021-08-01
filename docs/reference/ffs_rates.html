@@ -157,8 +157,9 @@
 <p>When <code>method = "rogers-von-rabenau"</code> a matrix of growth rates are derived from the changes in inital poplations stock <code>m1</code> to obtain <code>m2</code>;
 $$P^{t+1} = g P^{t}$$
 and then multiplied by the corresponding populations at risk in <code>m1</code>. Can result in negative flows.</p>
-<p>#' @references 
-Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows - An Alternative Methodology for Using Migrant Stock Data. <em>Global Dynamics: Approaches from Complexity Science</em>, 125–142. https://doi.org/10.1002/9781118937464.ch7</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows - An Alternative Methodology for Using Migrant Stock Data. <em>Global Dynamics: Approaches from Complexity Science</em>, 125–142. https://doi.org/10.1002/9781118937464.ch7</p>
 <p>Rogers, A., &amp; Von Rabenau, B. (1971). Estimation of interregional migration streams from place-of-birth-by-residence data. <em>Demography</em>, 8(2), 185–194.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -172,8 +173,8 @@ Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows -
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>75</span>, <span class='fl'>25</span>, <span class='fl'>5</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>45</span>, <span class='fl'>30</span>, <span class='fl'>15</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>150</span>, <span class='fl'>35</span>, <span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>, <span class='fl'>200</span><span class='op'>)</span>,
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>reg</span>, por <span class='op'>=</span> <span class='va'>reg</span><span class='op'>)</span>
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>r</span>, por <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
 <span class='va'>s1</span>; <span class='va'>s2</span>
 </div><div class='output co'>#&gt;    por
 #&gt; pob   A  B   C   D

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract net migration from an origin-destination migration flow matrix. — sum_net • migest</title>
+<title>Calculate net migration from an origin-destination migration flow matrix. — sum_net • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Extract net migration from an origin-destination migration flow matrix. — sum_net" />
-<meta property="og:description" content="Sums each regions flows (from origin rows and destination columns) to obtain net migration sums." />
+<meta property="og:title" content="Calculate net migration from an origin-destination migration flow matrix. — sum_net" />
+<meta property="og:description" content="Sums each regions flows to obtain net migration sums." />
 
 
 
@@ -118,13 +118,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract net migration from an origin-destination migration flow matrix.</h1>
+    <h1>Calculate net migration from an origin-destination migration flow matrix.</h1>
     <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/sum_net.R'><code>R/sum_net.R</code></a></small>
     <div class="hidden name"><code>sum_net.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Sums each regions flows (from origin rows and destination columns) to obtain net migration sums.</p>
+    <p>Sums each regions flows to obtain net migration sums.</p>
     </div>
 
     <pre class="usage"><span class='fu'>sum_net</span><span class='op'>(</span><span class='va'>m</span>, region <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span></pre>
@@ -145,14 +145,26 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns a numeric value of the sum of a single block.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='sum_turnover.html'>sum_turnover</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Guy J. Abel</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>16</span>, nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
-<span class='fu'>sum_net</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] -18  -6   6  18</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>r</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>16</span>, nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>,
+            dimnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>orig <span class='op'>=</span> <span class='va'>r</span>, dest <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>m</span>
+</div><div class='output co'>#&gt;     dest
+#&gt; orig A B  C  D
+#&gt;    A 1 5  9 13
+#&gt;    B 2 6 10 14
+#&gt;    C 3 7 11 15
+#&gt;    D 4 8 12 16</div><div class='input'><span class='fu'>sum_net</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   A   B   C   D 
+#&gt; -18  -6   6  18 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

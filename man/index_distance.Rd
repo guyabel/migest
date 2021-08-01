@@ -20,7 +20,7 @@ index_distance(
 \arguments{
 \item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
 
-\item{d}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{dist_col}. Region names should match those in `m`.}
+\item{d}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{dist_col}. Region names should match those in \code{m}.}
 
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
@@ -34,9 +34,9 @@ index_distance(
 }
 \value{
 A tibble with 3 summary measures where
-  \item{mean}{Mean migration distance from Bell et. al. (2002) - not discussed in text but given in Table 6}
-  \item{median}{Mean migration distance from Bell et. al. (2002)}
-  \item{decay}{Distance decay parameter obtained from a Poisson regression model (`flow ~ orig + dest + log(dist)`)}
+\item{mean}{Mean migration distance from Bell et. al. (2002) - not discussed in text but given in Table 6}
+\item{median}{Mean migration distance from Bell et. al. (2002)}
+\item{decay}{Distance decay parameter obtained from a Poisson regression model (\code{flow ~ orig + dest + log(dist)})}
 }
 \description{
 Summary indices of migration distance

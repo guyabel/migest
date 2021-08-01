@@ -25,11 +25,11 @@ index_impact(
 \arguments{
 \item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
 
-\item{p}{A data frame or named vector for the total population. When data frame, column of populations labelled using `pop_col` and region names labelled `reg_col`.}
+\item{p}{A data frame or named vector for the total population. When data frame, column of populations labelled using \code{pop_col} and region names labelled \code{reg_col}.}
 
 \item{pop_col}{Character string of the population column name}
 
-\item{reg_col}{Character string of the region column name. Must match dimension names or values in origin and destination columns of `m`.}
+\item{reg_col}{Character string of the region column name. Must match dimension names or values in origin and destination columns of \code{m}.}
 
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
@@ -41,10 +41,10 @@ index_impact(
 }
 \value{
 A tibble with 4 summary measures where
-  \item{effectivness}{Migration effectiveness index (MEI) from Shryock et al. (1975). Values range between 0 and 100. High values indicate migration is an efficient mechanism of population redistribution, generating a large net migration. Conversely, low values denote that migration is closely balanced, leading to comparatively little redistribution.}
-  \item{anmr}{Aggregate net migration rate from Bell et. al. (2002). The population weighted version of `mei`.}
-  \item{perference}{Index of preference, given in UN DESA (1983). From Bachi (1957) and Shryock et al. (1975) - measures size of migration compared to expected flows based on unifrom migration. Can go from 0 to infinity}
-  \item{velocity}{Index of velocity, given in UN DESA (1983). From Bogue, Shryock, Jr. & Hoermann (1957) - measures size of migration compared to expected flows based on population size alone. Can go from 0 to infinity}
+\item{effectivness}{Migration effectiveness index (MEI) from Shryock et al. (1975). Values range between 0 and 100. High values indicate migration is an efficient mechanism of population redistribution, generating a large net migration. Conversely, low values denote that migration is closely balanced, leading to comparatively little redistribution.}
+\item{anmr}{Aggregate net migration rate from Bell et. al. (2002). The population weighted version of \code{mei}.}
+\item{perference}{Index of preference, given in UN DESA (1983). From Bachi (1957) and Shryock et al. (1975) - measures size of migration compared to expected flows based on unifrom migration. Can go from 0 to infinity}
+\item{velocity}{Index of velocity, given in UN DESA (1983). From Bogue, Shryock, Jr. & Hoermann (1957) - measures size of migration compared to expected flows based on population size alone. Can go from 0 to infinity}
 }
 \description{
 Summary indices of migration impact

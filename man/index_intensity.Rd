@@ -18,14 +18,14 @@ index_intensity(mig_total = NULL, pop_total = NULL, n = NULL, long = TRUE)
 
 \item{pop_total}{Numeric value for the total population.}
 
-\item{n}{Numeric value for the number of regions used in the definition of migration for `mig_total`.}
+\item{n}{Numeric value for the number of regions used in the definition of migration for \code{mig_total}.}
 
 \item{long}{Logical to return a long data frame with index values all in one column}
 }
 \value{
 A tibble with 2 summary measures where
-  \item{cmp}{Crude migration probability from Bell et. al. (2002), sometimes known as crude migration intensity, e.g. Bernard (2017)}
-  \item{courgeau_k}{Intensity measure of Courgeau (1973)}
+\item{cmp}{Crude migration probability from Bell et. al. (2002), sometimes known as crude migration intensity, e.g. Bernard (2017)}
+\item{courgeau_k}{Intensity measure of Courgeau (1973)}
 }
 \description{
 Summary indices of migration intensity

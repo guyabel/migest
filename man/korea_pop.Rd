@@ -13,7 +13,7 @@ Data frame with 2,601 rows and 4 columns:
 }
 }
 \source{
-Source: Statistics Korea, Population Statistics Based on Resident Registration. Data downloaded from https://kosis.kr/eng in July 2021.
+Source: Statistics Korea, Population Statistics Based on Resident Registration. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
 }
 \usage{
 korea_pop

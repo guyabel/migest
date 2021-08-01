@@ -15,7 +15,7 @@ counter(
 \arguments{
 \item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
 
-\item{label}{Character string for the prefix of the calculated columns. Can take values `flow` or `stream`}
+\item{label}{Character string for the prefix of the calculated columns. Can take values \code{flow} or \code{stream}}
 
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 

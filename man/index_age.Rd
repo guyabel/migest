@@ -28,15 +28,15 @@ index_age(
 \arguments{
 \item{d}{Data frame of age specific migration intensities. If used, ensure the correct column names are passed to \code{age_col} and \code{mi_col}.}
 
-\item{age}{Numeric vector of ages. Used if `d = NULL`.}
+\item{age}{Numeric vector of ages. Used if \code{d = NULL}.}
 
-\item{mi}{Numeric vector of migration intensities corresponding to each value of `age`. Used if `d = NULL`.}
+\item{mi}{Numeric vector of migration intensities corresponding to each value of \code{age}. Used if \code{d = NULL}.}
 
 \item{age_min}{Numeric value for minimum age for peak calculations. Taken as 5 by default.}
 
 \item{age_max}{Numeric value for maximum age for peak calculations. Taken as 65 by default.}
 
-\item{breadth}{Numeric value for number of age groups around peak to be used in breadth_peak measure. Defualt of `5`.}
+\item{breadth}{Numeric value for number of age groups around peak to be used in breadth_peak measure. Defualt of \code{5}.}
 
 \item{age_col}{Character string of the age column name (when \code{d} is provided)}
 
@@ -46,14 +46,14 @@ index_age(
 }
 \value{
 A tibble with 8 summary measures where
-  \item{gmr}{Gross migraproduction rate of Rogers (1975)}
-  \item{peak_mi}{Peak migration intensities, from Bell et. al. (2002)}
-  \item{peak_age}{Corresponding age of `peak_mi`, from Bell et. al. (2002)}
-  \item{peak_breadth}{Breadth of peak, from Bell and Muhidin (2009)}
-  \item{peak_share}{Percentage share of peak breadth of all migration, from Bell and Muhidin (2009)}
-  \item{murc}{Maximum upward rate of change of Bernard, Bell and Charles-Edwards (2014)}
-  \item{mdrc}{Maximum downward rate of change of Bernard, Bell and Charles-Edwards (2014)}
-  \item{asymmetry}{Asymmetry between the `murc` and `mudc`, from Bernard, Bell and Charles-Edwards (2014)}
+\item{gmr}{Gross migraproduction rate of Rogers (1975)}
+\item{peak_mi}{Peak migration intensities, from Bell et. al. (2002)}
+\item{peak_age}{Corresponding age of \code{peak_mi}, from Bell et. al. (2002)}
+\item{peak_breadth}{Breadth of peak, from Bell and Muhidin (2009)}
+\item{peak_share}{Percentage share of peak breadth of all migration, from Bell and Muhidin (2009)}
+\item{murc}{Maximum upward rate of change of Bernard, Bell and Charles-Edwards (2014)}
+\item{mdrc}{Maximum downward rate of change of Bernard, Bell and Charles-Edwards (2014)}
+\item{asymmetry}{Asymmetry between the \code{murc} and \code{mudc}, from Bernard, Bell and Charles-Edwards (2014)}
 }
 \description{
 Summary measures of migration age profiles as proposed by Rogers (1975), Bell et. al. (2002), Bell and Muhidin (2009) and Bernard, Bell and Charles-Edwards (2014)

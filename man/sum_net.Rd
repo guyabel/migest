@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_net.R
 \name{sum_net}
 \alias{sum_net}
-\title{Extract net migration from an origin-destination migration flow matrix.}
+\title{Calculate net migration from an origin-destination migration flow matrix.}
 \usage{
 sum_net(m, region = 1:dim(m)[1])
 }
@@ -15,11 +15,17 @@ sum_net(m, region = 1:dim(m)[1])
 Returns a numeric value of the sum of a single block.
 }
 \description{
-Sums each regions flows (from origin rows and destination columns) to obtain net migration sums.
+Sums each regions flows to obtain net migration sums.
 }
 \examples{
-m <- matrix(data = 1:16, nrow = 4, ncol = 4)
+r <- LETTERS[1:4]
+m <- matrix(data = 1:16, nrow = 4, ncol = 4,
+            dimnames = list(orig = r, dest = r))
+m
 sum_net(m)
+}
+\seealso{
+\code{\link{sum_turnover}}
 }
 \author{
 Guy J. Abel

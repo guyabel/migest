@@ -9,5 +9,5 @@
 #'   \item{year}{Year of flow}
 #'   \item{flow}{Migration flow}
 #' }
-#' @source Statistics Korea, Internal Migration Statistics. Data downloaded from https://kosis.kr/eng in July 2021.
+#' @source Statistics Korea, Internal Migration Statistics. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
 "korea_reg"

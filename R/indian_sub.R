@@ -11,6 +11,7 @@
 #'   \item{out_migrants}{Out-migrant total based on birthplace}
 #'   \item{net_migrants}{Net migrant total based on birthplace}
 #' }
-#' @source  A Historical Study Of Internal Migration In The Indian Sub-continent 1901-1931 by Zachariah, K.C. 
-#' Scaped from \url{https://archive.org/details/in.ernet.dli.2015.130424/page/n73/mode/2up}
+#' @source  Zachariah, K. C. (1964). A Historical Study of Internal Migration in the Indian Sub-Continent 1901-1931. (Vol. 19). Asia Publishing House.
+#' 
+#' Scraped from \url{https://archive.org/details/in.ernet.dli.2015.130424/page/n73/mode/2up}
 "indian_sub"

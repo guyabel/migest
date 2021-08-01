@@ -20,6 +20,7 @@
 #'   \item{murc}{Maximum upward rate of change of Bernard, Bell and Charles-Edwards (2014)}
 #'   \item{mdrc}{Maximum downward rate of change of Bernard, Bell and Charles-Edwards (2014)}
 #'   \item{asymmetry}{Asymmetry between the `murc` and `mudc`, from Bernard, Bell and Charles-Edwards (2014)}
+#' @md
 #'   
 #' @source Rogers, A. (1975). Introduction to Multiregional Mathematical Demography. Wiley.
 #' @source Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., & Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247

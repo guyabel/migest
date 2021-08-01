@@ -2,7 +2,6 @@ reference:
 - title: "Migration data summaries"
 - contents:
   - sum_turnover
-  - sum_net
   - sum_lump
   - sum_expand
   - counter

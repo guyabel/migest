@@ -14,7 +14,7 @@ Data frame with 13 rows and 5 columns:
 }
 }
 \source{
-Scraped from Table 6 of United Nations Department of Economic and Social Affairs Population Division. (1992). Preparing Migration Data for Subnational Population Projections. http://www.un.org/esa/population/techcoop/IntMig/migdata_popproj/migdata_popproj.html
+Scraped from Table 6 of United Nations Department of Economic and Social Affairs Population Division. (1992). Preparing Migration Data for Subnational Population Projections. \url{http://www.un.org/esa/population/techcoop/IntMig/migdata_popproj/migdata_popproj.html}
 }
 \usage{
 manila_1970

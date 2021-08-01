@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_turnover.R
 \name{sum_turnover}
 \alias{sum_turnover}
-\title{Extract turnover and total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.}
+\title{Calculate turnover and total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_turnover(
   m,
@@ -33,19 +33,20 @@ sum_turnover(
 
 \item{international}{Logical to indicate if flows are international.}
 
-\item{name_tot}{Logical to prefix column names with "tot_". Default `FALSE`.}
+\item{name_tot}{Logical to prefix column names with `"tot_"` to match older versions. Default `FALSE`.}
 }
 \value{
 A \code{tibble} with total in-, out- and turnover of flows for each region.
 }
 \description{
-Extract turnover and total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
+Calculate turnover and total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
 }
 \examples{
 # matrix
-dn <- LETTERS[1:4]
+r <- LETTERS[1:4]
 m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
-            nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+            nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
+m
 sum_turnover(m)
   
 # different labels

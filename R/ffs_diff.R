@@ -4,15 +4,17 @@
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t} 
 #' @param m2 Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.
 #' @param decrease How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Defualt is \code{return}
-#' @param include_native_born Logcial value to indicate wheather to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.
+#' @param include_native_born Logical value to indicate whether to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.
 #'
 #' @return Estimates migrant transitions flows between two sequential migrant stock tables. 
 #' 
 #' When \code{decrease = "zero"} all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015) 
 #' 
 #' When \code{decrease = "return"} all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)
-#' #' @references 
+#' 
+#' @references 
 #' Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. \emph{The World Economy} 39(4):496–512.
+#' 
 #' @author Guy J. Abel
 #' @seealso \code{\link{ffs_demo}}, \code{\link{ffs_rates}}
 #' @export
@@ -22,8 +24,8 @@
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' s2 <- matrix(data = c(75, 25, 5, 15, 20, 45, 30, 15, 30, 40, 150, 35, 10, 50, 5, 200),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
-#' reg <- LETTERS[1:4]
-#' dimnames(s1) <- dimnames(s2) <- list(pob = reg, por = reg)
+#' r <- LETTERS[1:4]
+#' dimnames(s1) <- dimnames(s2) <- list(pob = r, por = r)
 #' s1; s2
 #' 
 #' ffs_diff(m1 = s1, m2 = s2, decrease = "zero")

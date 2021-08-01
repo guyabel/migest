@@ -12,5 +12,5 @@
 #'   \item{pop_1950}{Enumerated population in 1950}
 #'   \item{pop_1960}{Enumerated population in 1960}
 #' }
-#' @source Data scraped from Hope T. Eldridge, Net Intercensal Migration for States and Geographic Divisions of the United States, 1950-1960: Methodological and Substantive Aspects. Analytical and Technical Report No.5 (Population, Studies Center,                                      University of Pennsylvania, Philadelphia, 1965), table D, pp. 183-191.
+#' @source Data scraped from Table D, pp. 183-191 of Eldridge, H., & Kim, Y. (1968). The estimation of intercensal migration from birth-residence statistics: a study of data for the United States, 1950 and 1960 (PSC Analytical and Technical Report Series, Issue 7). \url{http://repository.upenn.edu/psc_penn_papers/3/}
 "usa_1960"

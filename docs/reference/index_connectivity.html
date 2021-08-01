@@ -147,11 +147,11 @@
     </tr>
     <tr>
       <th>gini_orig_all</th>
-      <td><p>Logical to include gini index values for all origin regions. Default `FALSE`.</p></td>
+      <td><p>Logical to include gini index values for all origin regions. Default <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>gini_dest_all</th>
-      <td><p>Logical to include gini index values for all destination regions. Default `FALSE`.</p></td>
+      <td><p>Logical to include gini index values for all destination regions. Default <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>gini_corrected</th>
@@ -178,7 +178,7 @@
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., &amp; Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247 <br /></p>
-<p>Rogers, A., &amp; Raymer, J. (1998). The Spatial Focus of US Interstate Migration Flows. International Journal of Population Geography, 4(1), 63–80. https://doi.org/10.1002/(SICI)1099-1220(199803)4<!-- %3A1&lt;63%3A%3AAID-IJPG87&gt;3.0.CO%3B2-U  \cr --></p>
+<p>Rogers, A., &amp; Raymer, J. (1998). The Spatial Focus of US Interstate Migration Flows. International Journal of Population Geography, 4(1), 63–80. https://doi.org/10.1002/(SICI)1099-1220(199803)4%3A1&lt;63%3A%3AAID-IJPG87&gt;3.0.CO%3B2-U  <br /></p>
 <p>Rogers, A., &amp; Sweeney, S. (1998). Measuring the Spatial Focus of Migration Patterns. Professional Geographer, 50(2), 232–242.  <br /></p>
 <p>Plane, D., &amp; Mulligan, G. F. (1997). Measuring spatial focusing in a migration system. Demography, 34(2), 251–262. <br /></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -186,15 +186,15 @@
     <p>A tibble with 12 summary measures:</p>
 <dt>connectivity</dt><dd><p>I_mc of Bell et. al. (2002) for the share of non-zero flows. A value of 0 means no connections (all zero flows) and 1 shows that all regions are connected by migrants.</p></dd>
 <dt>inequality_equal</dt><dd><p>I_mi of Bell et. al. (2002) based on a distributions of flows compared to equal distributions of expected flows . A value of 0 shows complete equality in flows and 1 shows maximum inequality.</p></dd>
-<dt>inequality_sim</dt><dd><p>I_mi of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit `flow ~ orig +  dest`. A value of 0 shows complete equality in flows and 1 shows maximum inequality.</p></dd>
-<dt>gini_total</dt><dd><p>Overall concentration of migration from Bell (2002), corrected from Plane and Mulligan (1997). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one single flow. Calculated using `migration.indices::migration.gini.total()`</p></dd>
-<dt>gini_orig_standardized</dt><dd><p>Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from `migration.indices::migration.gini.row.standardized()`.</p></dd>
-<dt>gini_dest_standardized</dt><dd><p>Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from `migration.indices::migration.gini.col.standardized()`.</p></dd>
-<dt>mwg_orig</dt><dd><p>Origin spatial focusing, from Bell et. al. (2002). Calculated using `migration.indices::migration.weighted.gini.out()`</p></dd>
-<dt>mwg_dest</dt><dd><p>Destination spatial focusing, from Bell et. al. (2002). Calculated using `migration.indices::migration.weighted.gini.in()`</p></dd>
-<dt>mwg_mean</dt><dd><p>Mean spatial focusing, from Bell et. al. (2002). Average of the origin and destination migration weighted Gini indices (`mwg_orig` and `mwg_dest`). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one region. Calculated using `migration.indices::migration.weighted.gini.mean()`</p></dd>
+<dt>inequality_sim</dt><dd><p>I_mi of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit <code>flow ~ orig +  dest</code>. A value of 0 shows complete equality in flows and 1 shows maximum inequality.</p></dd>
+<dt>gini_total</dt><dd><p>Overall concentration of migration from Bell (2002), corrected from Plane and Mulligan (1997). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one single flow. Calculated using <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.gini.total.html'>migration.indices::migration.gini.total()</a></code></p></dd>
+<dt>gini_orig_standardized</dt><dd><p>Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.gini.row.standardized.html'>migration.indices::migration.gini.row.standardized()</a></code>.</p></dd>
+<dt>gini_dest_standardized</dt><dd><p>Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.gini.col.standardized.html'>migration.indices::migration.gini.col.standardized()</a></code>.</p></dd>
+<dt>mwg_orig</dt><dd><p>Origin spatial focusing, from Bell et. al. (2002). Calculated using <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.out.html'>migration.indices::migration.weighted.gini.out()</a></code></p></dd>
+<dt>mwg_dest</dt><dd><p>Destination spatial focusing, from Bell et. al. (2002). Calculated using <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.in.html'>migration.indices::migration.weighted.gini.in()</a></code></p></dd>
+<dt>mwg_mean</dt><dd><p>Mean spatial focusing, from Bell et. al. (2002). Average of the origin and destination migration weighted Gini indices (<code>mwg_orig</code> and <code>mwg_dest</code>). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one region. Calculated using <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.mean.html'>migration.indices::migration.weighted.gini.mean()</a></code></p></dd>
 <dt>cv</dt><dd><p>Coefficient of variation from Rogers and Raymer (1998).</p></dd>
-<dt>acv</dt><dd><p>Aggregated system-wide coefficient of variation from Rogers and Sweeney (1998), using `migration.indices::migration.acv()`</p></dd>
+<dt>acv</dt><dd><p>Aggregated system-wide coefficient of variation from Rogers and Sweeney (1998), using <code><a href='https://rdrr.io/pkg/migration.indices/man/migration.acv.html'>migration.indices::migration.acv()</a></code></p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

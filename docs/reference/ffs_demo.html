@@ -230,788 +230,115 @@
 <span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>950</span>, <span class='fl'>100</span>, <span class='fl'>60</span>, <span class='fl'>0</span>, <span class='fl'>80</span>, <span class='fl'>505</span>, <span class='fl'>75</span>, <span class='fl'>5</span>, <span class='fl'>90</span>, <span class='fl'>30</span>, <span class='fl'>800</span>, <span class='fl'>40</span>, <span class='fl'>40</span>, <span class='fl'>45</span>, <span class='fl'>0</span>, <span class='fl'>180</span><span class='op'>)</span>,
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>b</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4</span><span class='op'>)</span>
-<span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>reg</span>, por <span class='op'>=</span> <span class='va'>reg</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>reg</span>
-<span class='va'>s1</span>; <span class='va'>s2</span>; <span class='va'>b</span>; <span class='va'>d</span>
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>r</span>, por <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>r</span>
+<span class='va'>s1</span>
 </div><div class='output co'>#&gt;    por
 #&gt; pob    A   B   C   D
 #&gt;   A 1000 100  10   0
 #&gt;   B   55 555  50   5
 #&gt;   C   80  40 800  40
-#&gt;   D   20  25  20 200</div><div class='output co'>#&gt;    por
+#&gt;   D   20  25  20 200</div><div class='input'>
+<span class='va'>s2</span>
+</div><div class='output co'>#&gt;    por
 #&gt; pob   A   B   C   D
 #&gt;   A 950 100  60   0
 #&gt;   B  80 505  75   5
 #&gt;   C  90  30 800  40
-#&gt;   D  40  45   0 180</div><div class='output co'>#&gt; A B C D 
-#&gt; 0 0 0 0 </div><div class='output co'>#&gt; A B C D 
+#&gt;   D  40  45   0 180</div><div class='input'>
+<span class='va'>b</span>
+</div><div class='output co'>#&gt; A B C D 
+#&gt; 0 0 0 0 </div><div class='input'>
+<span class='va'>d</span>
+</div><div class='output co'>#&gt; A B C D 
 #&gt; 0 0 0 0 </div><div class='input'>
 <span class='co'># demographic research and science paper example</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig     A   B  C D
-#&gt;    A 950.5   0 50 0
-#&gt;    B   0.0 100  0 0
-#&gt;    C   0.0   0 10 0
-#&gt;    D   0.0   0  0 0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig  A   B  C D
-#&gt;    A 55   0  0 0
-#&gt;    B 25 505 25 0
-#&gt;    C  0   0 50 0
-#&gt;    D  0   0  0 5
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig  A  B   C  D
-#&gt;    A 80  0   0  0
-#&gt;    B 10 30   0  0
-#&gt;    C  0  0 800  0
-#&gt;    D  0  0   0 40
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig  A  B C   D
-#&gt;    A 20  0 0   0
-#&gt;    B  0 25 0   0
-#&gt;    C 10 10 0   0
-#&gt;    D 10 10 0 180
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig          A   B  C D death outside
-#&gt;   A       950.5   0 50 0     0       0
-#&gt;   B         0.0 100  0 0     0       0
-#&gt;   C         0.0   0 10 0     0       0
-#&gt;   D         0.0   0  0 0     0       0
-#&gt;   birth     0.0   0  0 0     0       0
-#&gt;   outside   0.0   0  0 0     0       0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig       A   B  C D death outside
-#&gt;   A       55   0  0 0     0       0
-#&gt;   B       25 505 25 0     0       0
-#&gt;   C        0   0 50 0     0       0
-#&gt;   D        0   0  0 5     0       0
-#&gt;   birth    0   0  0 0     0       0
-#&gt;   outside  0   0  0 0     0       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig       A  B   C  D death outside
-#&gt;   A       80  0   0  0     0       0
-#&gt;   B       10 30   0  0     0       0
-#&gt;   C        0  0 800  0     0       0
-#&gt;   D        0  0   0 40     0       0
-#&gt;   birth    0  0   0  0     0       0
-#&gt;   outside  0  0   0  0     0       0
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig       A  B C   D death outside
-#&gt;   A       20  0 0   0     0       0
-#&gt;   B        0 25 0   0     0       0
-#&gt;   C       10 10 0   0     0       0
-#&gt;   D       10 10 0 180     0       0
-#&gt;   birth    0  0 0   0     0       0
-#&gt;   outside  0  0 0   0     0       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "rescale"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='va'>e0</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='va'>e0</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig   A  B  C D Sum
 #&gt;   A    0  0 50 0  50
 #&gt;   B   35  0 25 0  60
 #&gt;   C   10 10  0 0  20
 #&gt;   D   10 10  0 0  20
-#&gt;   Sum 55 20 75 0 150
-#&gt; </div><div class='input'>
+#&gt;   Sum 55 20 75 0 150</div><div class='input'>
 <span class='co'># international migration review paper example</span>
 <span class='va'>s1</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>55</span>, <span class='fl'>40</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>25</span>, <span class='fl'>140</span>, <span class='fl'>20</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>65</span>, <span class='fl'>200</span><span class='op'>)</span>
 <span class='va'>s2</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>60</span>, <span class='fl'>55</span>, <span class='fl'>45</span>, <span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>140</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>50</span>, <span class='fl'>180</span><span class='op'>)</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig        A        B          C        D
-#&gt;    A 69.97555 19.99853 0.04130057 9.998155
-#&gt;    B  0.00000 10.00214 0.00000000 0.000000
-#&gt;    C  0.00000  0.00000 9.98432596 0.000000
-#&gt;    D  0.00000  0.00000 0.00000000 0.000000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig         A         B      C        D
-#&gt;    A 19.961779  0.000000  0.000 0.000000
-#&gt;    B  0.000000 55.398318  0.000 0.000000
-#&gt;    C  5.082765  4.730935 10.047 5.049044
-#&gt;    D  0.000000  0.000000  0.000 9.980160
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig        A           B            C        D
-#&gt;    A 9.963367  0.06259027 3.087515e-03  0.00000
-#&gt;    B 0.000000 40.11935070 0.000000e+00  0.00000
-#&gt;    C 0.000000  0.00000000 1.401676e+02  0.00000
-#&gt;    D 0.000000 14.63694990 7.220260e-01 49.82505
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig         A         B C        D
-#&gt;    A 19.984653  0.000000 0   0.0000
-#&gt;    B  0.000000 24.982793 0   0.0000
-#&gt;    C  9.969731  9.980899 0   0.0000
-#&gt;    D 10.076411 10.087698 0 179.6678
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig             A        B          C        D death outside
-#&gt;   A       69.97555 19.99853 0.04130057 9.998155     0       0
-#&gt;   B        0.00000 10.00214 0.00000000 0.000000     0       0
-#&gt;   C        0.00000  0.00000 9.98432596 0.000000     0       0
-#&gt;   D        0.00000  0.00000 0.00000000 0.000000     0       0
-#&gt;   birth    0.00000  0.00000 0.00000000 0.000000     0       0
-#&gt;   outside  0.00000  0.00000 0.00000000 0.000000     0       0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig              A         B      C        D death outside
-#&gt;   A       19.961779  0.000000  0.000 0.000000     0       0
-#&gt;   B        0.000000 55.398318  0.000 0.000000     0       0
-#&gt;   C        5.082765  4.730935 10.047 5.049044     0       0
-#&gt;   D        0.000000  0.000000  0.000 9.980160     0       0
-#&gt;   birth    0.000000  0.000000  0.000 0.000000     0       0
-#&gt;   outside  0.000000  0.000000  0.000 0.000000     0       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig             A           B            C        D death outside
-#&gt;   A       9.963367  0.06259027 3.087515e-03  0.00000     0       0
-#&gt;   B       0.000000 40.11935070 0.000000e+00  0.00000     0       0
-#&gt;   C       0.000000  0.00000000 1.401676e+02  0.00000     0       0
-#&gt;   D       0.000000 14.63694990 7.220260e-01 49.82505     0       0
-#&gt;   birth   0.000000  0.00000000 0.000000e+00  0.00000     0       0
-#&gt;   outside 0.000000  0.00000000 0.000000e+00  0.00000     0       0
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig              A         B C        D death outside
-#&gt;   A       19.984653  0.000000 0   0.0000     0       0
-#&gt;   B        0.000000 24.982793 0   0.0000     0       0
-#&gt;   C        9.969731  9.980899 0   0.0000     0       0
-#&gt;   D       10.076411 10.087698 0 179.6678     0       0
-#&gt;   birth    0.000000  0.000000 0   0.0000     0       0
-#&gt;   outside  0.000000  0.000000 0   0.0000     0       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "rescale"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='va'>e1</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='va'>e1</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig         A        B          C         D       Sum
 #&gt;   A    0.00000 20.06112 0.04438808  9.998155  30.10366
 #&gt;   B    0.00000  0.00000 0.00000000  0.000000   0.00000
 #&gt;   C   15.05250 14.71183 0.00000000  5.049044  34.81337
 #&gt;   D   10.07641 24.72465 0.72202599  0.000000  35.52308
-#&gt;   Sum 25.12891 59.49760 0.76641407 15.047199 100.44012
-#&gt; </div><div class='input'>
+#&gt;   Sum 25.12891 59.49760 0.76641407 15.047199 100.44012</div><div class='input'>
 <span class='co'># international migration review supp. material example</span>
-<span class='va'>dm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>50</span>, <span class='fl'>500</span>, <span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>45</span>, <span class='fl'>495</span>, <span class='fl'>50</span>, <span class='fl'>45</span>, <span class='fl'>0</span>, <span class='fl'>450</span>, <span class='fl'>500</span>, <span class='fl'>495</span>, <span class='fl'>450</span>, <span class='fl'>0</span><span class='op'>)</span>, 
+<span class='co'># distance matrix</span>
+<span class='va'>dd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>50</span>, <span class='fl'>500</span>, <span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>45</span>, <span class='fl'>495</span>, <span class='fl'>50</span>, <span class='fl'>45</span>, <span class='fl'>0</span>, <span class='fl'>450</span>, <span class='fl'>500</span>, <span class='fl'>495</span>, <span class='fl'>450</span>, <span class='fl'>0</span><span class='op'>)</span>, 
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>dm</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>orig <span class='op'>=</span> <span class='va'>reg</span>, dest <span class='op'>=</span> <span class='va'>reg</span><span class='op'>)</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, m <span class='op'>=</span> <span class='va'>dm</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig        A           B        C           D
-#&gt;    A 70.37889 19.81927767 0.000000 9.973302073
-#&gt;    B  0.00000 10.04225735 0.000000 0.000000000
-#&gt;    C  0.00000  0.05684745 9.976561 0.002860633
-#&gt;    D  0.00000  0.00000000 0.000000 0.000000000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig         A         B        C        D
-#&gt;    A 19.917879  0.000000  0.00000 0.000000
-#&gt;    B  0.000000 55.410664  0.00000 0.000000
-#&gt;    C  5.156388  4.707128 10.02342 5.057943
-#&gt;    D  0.000000  0.000000  0.00000 9.976581
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig          A        B            C        D
-#&gt;    A 9.98110783  0.00000 0.000000e+00  0.00000
-#&gt;    B 0.00000000 40.02451 0.000000e+00  0.00000
-#&gt;    C 0.00000000  0.00000 1.400023e+02  0.00000
-#&gt;    D 0.02581451 14.95828 6.799172e-03 50.00124
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig         A         B C        D
-#&gt;    A 19.965709  0.000000 0   0.0000
-#&gt;    B  0.000000 25.019696 0   0.0000
-#&gt;    C 10.264289  9.739533 0   0.0000
-#&gt;    D  9.794964 10.223623 0 179.9922
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig             A           B        C           D death outside
-#&gt;   A       70.37889 19.81927767 0.000000 9.973302073     0       0
-#&gt;   B        0.00000 10.04225735 0.000000 0.000000000     0       0
-#&gt;   C        0.00000  0.05684745 9.976561 0.002860633     0       0
-#&gt;   D        0.00000  0.00000000 0.000000 0.000000000     0       0
-#&gt;   birth    0.00000  0.00000000 0.000000 0.000000000     0       0
-#&gt;   outside  0.00000  0.00000000 0.000000 0.000000000     0       0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig              A         B        C        D death outside
-#&gt;   A       19.917879  0.000000  0.00000 0.000000     0       0
-#&gt;   B        0.000000 55.410664  0.00000 0.000000     0       0
-#&gt;   C        5.156388  4.707128 10.02342 5.057943     0       0
-#&gt;   D        0.000000  0.000000  0.00000 9.976581     0       0
-#&gt;   birth    0.000000  0.000000  0.00000 0.000000     0       0
-#&gt;   outside  0.000000  0.000000  0.00000 0.000000     0       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig               A        B            C        D death outside
-#&gt;   A       9.98110783  0.00000 0.000000e+00  0.00000     0       0
-#&gt;   B       0.00000000 40.02451 0.000000e+00  0.00000     0       0
-#&gt;   C       0.00000000  0.00000 1.400023e+02  0.00000     0       0
-#&gt;   D       0.02581451 14.95828 6.799172e-03 50.00124     0       0
-#&gt;   birth   0.00000000  0.00000 0.000000e+00  0.00000     0       0
-#&gt;   outside 0.00000000  0.00000 0.000000e+00  0.00000     0       0
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig              A         B C        D death outside
-#&gt;   A       19.965709  0.000000 0   0.0000     0       0
-#&gt;   B        0.000000 25.019696 0   0.0000     0       0
-#&gt;   C       10.264289  9.739533 0   0.0000     0       0
-#&gt;   D        9.794964 10.223623 0 179.9922     0       0
-#&gt;   birth    0.000000  0.000000 0   0.0000     0       0
-#&gt;   outside  0.000000  0.000000 0   0.0000     0       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "rescale"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>dd</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>orig <span class='op'>=</span> <span class='va'>r</span>, dest <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
+<span class='va'>dd</span>
+</div><div class='output co'>#&gt;     dest
+#&gt; orig   A   B   C   D
+#&gt;    A   0   5  50 500
+#&gt;    B   5   0  45 495
+#&gt;    C  50  45   0 450
+#&gt;    D 500 495 450   0</div><div class='input'><span class='va'>e3</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, m <span class='op'>=</span> <span class='va'>dd</span><span class='op'>)</span>
+<span class='va'>e3</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig          A        B           C         D      Sum
 #&gt;   A    0.000000 19.81928 0.000000000  9.973302 29.79258
 #&gt;   B    0.000000  0.00000 0.000000000  0.000000  0.00000
 #&gt;   C   15.420677 14.50351 0.000000000  5.060804 34.98499
 #&gt;   D    9.820779 25.18190 0.006799172  0.000000 35.00948
-#&gt;   Sum 25.241456 59.50469 0.006799172 15.034106 99.78705
-#&gt; </div><div class='input'>
+#&gt;   Sum 25.241456 59.50469 0.006799172 15.034106 99.78705</div><div class='input'>
 <span class='co'>##</span>
 <span class='co'>## with births and deaths over period</span>
 <span class='co'>##</span>
-<span class='co'># demographic research paper example</span>
+<span class='co'># demographic research paper example (with births and deaths)</span>
 <span class='va'>s1</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>55</span>, <span class='fl'>80</span>, <span class='fl'>20</span>, <span class='fl'>100</span>, <span class='fl'>555</span>, <span class='fl'>40</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>800</span>, <span class='fl'>20</span>, <span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>40</span>, <span class='fl'>200</span><span class='op'>)</span>
 <span class='va'>s2</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1060</span>, <span class='fl'>45</span>, <span class='fl'>70</span>, <span class='fl'>30</span>, <span class='fl'>60</span>, <span class='fl'>540</span>, <span class='fl'>75</span>, <span class='fl'>30</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>770</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>0</span>, <span class='fl'>70</span>, <span class='fl'>230</span><span class='op'>)</span>
 <span class='va'>b</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>80</span>, <span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>60</span><span class='op'>)</span>
 <span class='va'>d</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>30</span>, <span class='fl'>50</span>, <span class='fl'>10</span><span class='op'>)</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, match_pob_tot_method <span class='op'>=</span> <span class='st'>"open-dr"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B         C        D
-#&gt;    A 939.39394  0.00000 0.0000000 0.000000
-#&gt;    B  26.42296 59.13165 0.4234563 9.855274
-#&gt;    C   0.00000  0.00000 9.4318182 0.000000
-#&gt;    D   0.00000  0.00000 0.0000000 0.000000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig  A          B  C D
-#&gt;    A 45   4.187249  0 0
-#&gt;    B  0 506.350996  0 0
-#&gt;    C  0   4.895986 40 0
-#&gt;    D  0   4.565768  0 0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig        A         B        C         D
-#&gt;    A 67.14057  4.315617   0.0000  3.695332
-#&gt;    B  0.00000 38.333333   0.0000  0.000000
-#&gt;    C  0.00000 29.287371 700.1802 25.077888
-#&gt;    D  0.00000  0.000000   0.0000 38.367347
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig        A         B         C   D
-#&gt;    A 18.53239  0.000000  0.000000   0
-#&gt;    B  0.00000 23.632527  0.000000   0
-#&gt;    C  0.00000  0.000000 18.607113   0
-#&gt;    D 11.46761  6.367473  1.392887 170
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B         C        D      death    outside
-#&gt;   A       939.39394  0.00000 0.0000000 0.000000 60.6060606 14.1831046
-#&gt;   B        26.42296 59.13165 0.4234563 9.855274  4.1666667  0.8683533
-#&gt;   C         0.00000  0.00000 9.4318182 0.000000  0.5681818  0.1447256
-#&gt;   D         0.00000  0.00000 0.0000000 0.000000  0.0000000  0.1447256
-#&gt;   birth    80.00000  0.00000 0.0000000 0.000000  0.0000000  0.0000000
-#&gt;   outside   0.00000  0.00000 0.0000000 0.000000  0.0000000  0.0000000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig              A          B         C       D      death outside
-#&gt;   A       45.000000   4.187249  0.000000 0.00000  3.3333333       0
-#&gt;   B        0.000000 506.350996  0.000000 0.00000 23.1250000       0
-#&gt;   C        0.000000   4.895986 40.000000 0.00000  2.8409091       0
-#&gt;   D        0.000000   4.565768  0.000000 0.00000  0.2040816       0
-#&gt;   birth    0.000000  20.000000  0.000000 0.00000  0.0000000       0
-#&gt;   outside  2.479418  25.524004  2.263105 0.23015  0.0000000       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig             A         B        C         D     death   outside
-#&gt;   A       67.14057  4.315617   0.0000  3.695332  4.848485  2.859433
-#&gt;   B        0.00000 38.333333   0.0000  0.000000  1.666667  3.063679
-#&gt;   C        0.00000 29.287371 700.1802 25.077888 45.454545 29.819805
-#&gt;   D        0.00000  0.000000   0.0000 38.367347  1.632653  2.859433
-#&gt;   birth    0.00000  0.000000  40.0000  0.000000  0.000000  0.000000
-#&gt;   outside  0.00000  0.000000   0.0000  0.000000  0.000000  0.000000
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig               A          B          C         D    death outside
-#&gt;   A       18.5323852  0.0000000  0.0000000   0.00000 1.212121       0
-#&gt;   B        0.0000000 23.6325274  0.0000000   0.00000 1.041667       0
-#&gt;   C        0.0000000  0.0000000 18.6071125   0.00000 1.136364       0
-#&gt;   D       11.4676148  6.3674726  1.3928875 170.00000 8.163265       0
-#&gt;   birth    0.0000000  0.0000000  0.0000000  60.00000 0.000000       0
-#&gt;   outside  0.2554936  0.3258059  0.2565238   2.60876 0.000000       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "open-dr"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
-#&gt; orig         A         B         C         D       Sum
-#&gt;   A    0.00000  8.502866 0.0000000  3.695332  12.19820
-#&gt;   B   26.42296  0.000000 0.4234563  9.855274  36.70169
-#&gt;   C    0.00000 34.183358 0.0000000 25.077888  59.26125
-#&gt;   D   11.46761 10.933241 1.3928875  0.000000  23.79374
-#&gt;   Sum 37.89057 53.619464 1.8163437 38.628494 131.95487
-#&gt; </div><div class='input'><span class='co'># makes more sense to use this method</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, match_pob_tot_method <span class='op'>=</span> <span class='st'>"open"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B         C  D
-#&gt;    A 939.39394  0.00000 0.0000000  0
-#&gt;    B  26.81098 58.59268 0.4296748 10
-#&gt;    C   0.00000  0.00000 9.4318182  0
-#&gt;    D   0.00000  0.00000 0.0000000  0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig  A          B  C D
-#&gt;    A 45   4.398319  0 0
-#&gt;    B  0 505.662981  0 0
-#&gt;    C  0   5.142782 40 0
-#&gt;    D  0   4.795918  0 0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig        A         B        C         D
-#&gt;    A 66.79939  4.499413   0.0000  3.852711
-#&gt;    B  0.00000 38.333333   0.0000  0.000000
-#&gt;    C  0.00000 30.534684 697.8648 26.145924
-#&gt;    D  0.00000  0.000000   0.0000 38.367347
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig        A         B        C   D
-#&gt;    A 18.37429  0.000000  0.00000   0
-#&gt;    B  0.00000 23.544743  0.00000   0
-#&gt;    C  0.00000  0.000000 18.58791   0
-#&gt;    D 11.62571  6.455257  1.41209 170
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B         C  D      death    outside
-#&gt;   A       939.39394  0.00000 0.0000000  0 60.6060606 13.7950812
-#&gt;   B        26.81098 58.59268 0.4296748 10  4.1666667  1.4073208
-#&gt;   C         0.00000  0.00000 9.4318182  0  0.5681818  0.1385071
-#&gt;   D         0.00000  0.00000 0.0000000  0  0.0000000  0.0000000
-#&gt;   birth    80.00000  0.00000 0.0000000  0  0.0000000  0.0000000
-#&gt;   outside   0.00000  0.00000 0.0000000  0  0.0000000  0.0000000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig              A          B         C D      death outside
-#&gt;   A       45.000000   4.398319  0.000000 0  3.3333333       0
-#&gt;   B        0.000000 505.662981  0.000000 0 23.1250000       0
-#&gt;   C        0.000000   5.142782 40.000000 0  2.8409091       0
-#&gt;   D        0.000000   4.795918  0.000000 0  0.2040816       0
-#&gt;   birth    0.000000  20.000000  0.000000 0  0.0000000       0
-#&gt;   outside  2.268348  26.212019  2.016309 0  0.0000000       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig             A         B        C         D     death   outside
-#&gt;   A       66.79939  4.499413   0.0000  3.852711  4.848485  3.200610
-#&gt;   B        0.00000 38.333333   0.0000  0.000000  1.666667  1.632569
-#&gt;   C        0.00000 30.534684 697.8648 26.145924 45.454545 32.135154
-#&gt;   D        0.00000  0.000000   0.0000 38.367347  1.632653  1.634018
-#&gt;   birth    0.00000  0.000000  40.0000  0.000000  0.000000  0.000000
-#&gt;   outside  0.00000  0.000000   0.0000  0.000000  0.000000  0.000000
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig             A         B          C          D    death outside
-#&gt;   A       18.37429  0.000000  0.0000000   0.000000 1.212121       0
-#&gt;   B        0.00000 23.544743  0.0000000   0.000000 1.041667       0
-#&gt;   C        0.00000  0.000000 18.5879097   0.000000 1.136364       0
-#&gt;   D       11.62571  6.455257  1.4120903 170.000000 8.163265       0
-#&gt;   birth    0.00000  0.000000  0.0000000  60.000000 0.000000       0
-#&gt;   outside  0.41359  0.413590  0.2757267   2.343677 0.000000       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "open"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='va'>e4</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, match_pob_tot_method <span class='op'>=</span> <span class='st'>"open-dr"</span><span class='op'>)</span>
+<span class='co'># makes more sense to use this method</span>
+<span class='va'>e5</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, match_pob_tot_method <span class='op'>=</span> <span class='st'>"open"</span><span class='op'>)</span>
+<span class='va'>e5</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig         A         B         C         D       Sum
 #&gt;   A    0.00000  8.897732 0.0000000  3.852711  12.75044
 #&gt;   B   26.81098  0.000000 0.4296748 10.000000  37.24065
 #&gt;   C    0.00000 35.677466 0.0000000 26.145924  61.82339
 #&gt;   D   11.62571 11.251175 1.4120903  0.000000  24.28898
-#&gt;   Sum 38.43669 55.826373 1.8417650 39.998635 136.10346
-#&gt; </div><div class='input'>
+#&gt;   Sum 38.43669 55.826373 1.8417650 39.998635 136.10346</div><div class='input'>
 <span class='co'># science paper  supp. material example</span>
 <span class='va'>b</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>80</span>, <span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>60</span><span class='op'>)</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B        C       D
-#&gt;    A 942.46268  0.00000 0.000000 0.00000
-#&gt;    B  34.10724 56.49634 0.583247 9.81133
-#&gt;    C   0.00000  0.00000 9.366678 0.00000
-#&gt;    D   0.00000  0.00000 0.000000 0.00000
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig            A          B        C D
-#&gt;    A 48.389330144   0.000000  0.00000 0
-#&gt;    B  0.000000000 523.535673  0.00000 0
-#&gt;    C  0.002843014   0.751389 42.98745 0
-#&gt;    D  0.017272875   4.565102  0.00000 0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig       A         B        C         D
-#&gt;    A 69.7374  3.327696   0.0000  3.240618
-#&gt;    B  0.0000 40.906604   0.0000  0.000000
-#&gt;    C  0.0000 26.404335 706.6268 25.713389
-#&gt;    D  0.0000  0.000000   0.0000 39.743008
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig        A         B         C        D
-#&gt;    A 18.30537  0.000000  0.000000   0.0000
-#&gt;    B  0.00000 24.533233  0.000000   0.0000
-#&gt;    C  0.00000  0.000000 18.201909   0.0000
-#&gt;    D 12.41690  4.511449  2.259055 171.4956
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B        C       D      death outside
-#&gt;   A       942.46268  0.00000 0.000000 0.00000 60.6101255       0
-#&gt;   B        34.10724 56.49634 0.583247 9.81133  4.1666667       0
-#&gt;   C         0.00000  0.00000 9.366678 0.00000  0.5681818       0
-#&gt;   D         0.00000  0.00000 0.000000 0.00000  0.0000000       0
-#&gt;   birth    80.00000  0.00000 0.000000 0.00000  0.0000000       0
-#&gt;   outside   0.00000  0.00000 0.000000 0.00000  0.0000000       0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig                 A          B        C D      death outside
-#&gt;   A       48.389330144   0.000000  0.00000 0  3.3318910       0
-#&gt;   B        0.000000000 523.535673  0.00000 0 23.1250000       0
-#&gt;   C        0.002843014   0.751389 42.98745 0  2.8409091       0
-#&gt;   D        0.017272875   4.565102  0.00000 0  0.2040816       0
-#&gt;   birth    0.000000000  20.000000  0.00000 0  0.0000000       0
-#&gt;   outside  0.000000000   0.000000  0.00000 0  0.0000000       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig            A         B        C         D     death outside
-#&gt;   A       69.7374  3.327696   0.0000  3.240618  4.846387       0
-#&gt;   B        0.0000 40.906604   0.0000  0.000000  1.666667       0
-#&gt;   C        0.0000 26.404335 706.6268 25.713389 45.454545       0
-#&gt;   D        0.0000  0.000000   0.0000 39.743008  1.632653       0
-#&gt;   birth    0.0000  0.000000  60.0000  0.000000  0.000000       0
-#&gt;   outside  0.0000  0.000000   0.0000  0.000000  0.000000       0
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig             A         B         C        D    death outside
-#&gt;   A       18.30537  0.000000  0.000000   0.0000 1.211597       0
-#&gt;   B        0.00000 24.533233  0.000000   0.0000 1.041667       0
-#&gt;   C        0.00000  0.000000 18.201909   0.0000 1.136364       0
-#&gt;   D       12.41690  4.511449  2.259055 171.4956 8.163265       0
-#&gt;   birth    0.00000  0.000000  0.000000  60.0000 0.000000       0
-#&gt;   outside  0.00000  0.000000  0.000000   0.0000 0.000000       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "rescale"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='va'>e6</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='va'>e6</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig             A         B        C         D        Sum
 #&gt;   A    0.000000000  3.327696 0.000000  3.240618   6.568314
 #&gt;   B   34.107236105  0.000000 0.583247  9.811330  44.501813
 #&gt;   C    0.002843014 27.155724 0.000000 25.713389  52.871956
 #&gt;   D   12.434176193  9.076551 2.259055  0.000000  23.769782
-#&gt;   Sum 46.544255312 39.559971 2.842302 38.765337 127.711866
-#&gt; </div><div class='input'>
-<span class='co'># international migration review supp. material example</span>
+#&gt;   Sum 46.544255312 39.559971 2.842302 38.765337 127.711866</div><div class='input'>
+<span class='co'># international migration review supp. material example (with births and deaths)</span>
 <span class='va'>s1</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>55</span>, <span class='fl'>40</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>25</span>, <span class='fl'>140</span>, <span class='fl'>20</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>65</span>, <span class='fl'>200</span><span class='op'>)</span>
 <span class='va'>s2</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>75</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>30</span>, <span class='fl'>25</span>, <span class='fl'>45</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>5</span>, <span class='fl'>30</span>, <span class='fl'>150</span>, <span class='fl'>20</span>, <span class='fl'>0</span>, <span class='fl'>15</span>, <span class='fl'>60</span>, <span class='fl'>230</span><span class='op'>)</span>
 <span class='va'>b</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>25</span>, <span class='fl'>60</span><span class='op'>)</span>
 <span class='va'>d</span><span class='op'>[</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>30</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>10</span><span class='op'>)</span>
-<span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $flow
-#&gt; , , pob = A
-#&gt; 
-#&gt;     dest
-#&gt; orig        A        B        C D
-#&gt;    A 68.73684 8.258457 0.000000 0
-#&gt;    B  0.00000 8.120586 0.000000 0
-#&gt;    C  0.00000 1.051386 5.675578 0
-#&gt;    D  0.00000 0.000000 0.000000 0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B        C        D
-#&gt;    A 17.058087  0.00000  0.00000 0.000000
-#&gt;    B  2.495671 28.68482 12.76128 5.780648
-#&gt;    C  0.000000  0.00000 18.72239 0.000000
-#&gt;    D  0.000000  0.00000  0.00000 9.417525
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B          C        D
-#&gt;    A  9.318430  0.00000   0.000000  0.00000
-#&gt;    B 10.706236 23.92586   4.876536  0.00000
-#&gt;    C  0.000000  0.00000 114.549126  0.00000
-#&gt;    D  7.192126  0.00000   3.275910 56.41139
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;     dest
-#&gt; orig         A        B         C        D
-#&gt;    A 17.092733  0.00000  0.000000   0.0000
-#&gt;    B  2.132977 19.46418  1.049853   0.0000
-#&gt;    C  0.000000  0.00000 15.008335   0.0000
-#&gt;    D 10.296176  0.00000  5.067787 173.3691
-#&gt; 
-#&gt; 
-#&gt; $y
-#&gt; , , pob = A
-#&gt; 
-#&gt;          dest
-#&gt; orig             A        B        C D      death outside
-#&gt;   A       68.73684 8.258457 0.000000 0 20.0332226       0
-#&gt;   B        0.00000 8.120586 0.000000 0  0.7692308       0
-#&gt;   C        0.00000 1.051386 5.675578 0  2.0512821       0
-#&gt;   D        0.00000 0.000000 0.000000 0  0.0000000       0
-#&gt;   birth   10.00000 0.000000 0.000000 0  0.0000000       0
-#&gt;   outside  0.00000 0.000000 0.000000 0  0.0000000       0
-#&gt; 
-#&gt; , , pob = B
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B        C         D     death outside
-#&gt;   A       17.058087  0.00000  0.00000  0.000000 3.9867110       0
-#&gt;   B        2.495671 28.68482 12.76128  5.780648 4.2307692       0
-#&gt;   C        0.000000  0.00000 18.72239  0.000000 5.1282051       0
-#&gt;   D        0.000000  0.00000  0.00000  9.417525 0.3636364       0
-#&gt;   birth    8.960573 15.94982 14.33692 10.752688 0.0000000       0
-#&gt;   outside  0.000000  0.00000  0.00000  0.000000 0.0000000       0
-#&gt; 
-#&gt; , , pob = C
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B          C        D     death outside
-#&gt;   A        9.318430  0.00000   0.000000  0.00000  1.993355       0
-#&gt;   B       10.706236 23.92586   4.876536  0.00000  3.076923       0
-#&gt;   C        0.000000  0.00000 114.549126  0.00000 28.717949       0
-#&gt;   D        7.192126  0.00000   3.275910 56.41139  2.363636       0
-#&gt;   birth    0.000000  0.00000  25.000000  0.00000  0.000000       0
-#&gt;   outside  0.000000  0.00000   0.000000  0.00000  0.000000       0
-#&gt; 
-#&gt; , , pob = D
-#&gt; 
-#&gt;          dest
-#&gt; orig              A        B         C        D    death outside
-#&gt;   A       17.092733  0.00000  0.000000   0.0000 3.986711       0
-#&gt;   B        2.132977 19.46418  1.049853   0.0000 1.923077       0
-#&gt;   C        0.000000  0.00000 15.008335   0.0000 4.102564       0
-#&gt;   D       10.296176  0.00000  5.067787 173.3691 7.272727       0
-#&gt;   birth    0.000000  0.00000  0.000000  60.0000 0.000000       0
-#&gt;   outside  0.000000  0.00000  0.000000   0.0000 0.000000       0
-#&gt; 
-#&gt; 
-#&gt; $stayer_assumption
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $match_pob_tot_method
-#&gt; [1] "rescale"
-#&gt; 
-#&gt; $birth_non_negative
-#&gt; [1] TRUE
-#&gt; 
-#&gt; $death_method
-#&gt; [1] "proportion"
-#&gt; 
-#&gt; $od_flow
-#&gt;      dest
+<span class='va'>e7</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
+<span class='va'>e7</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt;      dest
 #&gt; orig         A        B         C        D       Sum
 #&gt;   A    0.00000 8.258457  0.000000 0.000000  8.258457
 #&gt;   B   15.33488 0.000000 18.687672 5.780648 39.803204
 #&gt;   C    0.00000 1.051386  0.000000 0.000000  1.051386
 #&gt;   D   17.48830 0.000000  8.343697 0.000000 25.831999
-#&gt;   Sum 32.82319 9.309843 27.031369 5.780648 74.945047
-#&gt; </div></pre>
+#&gt;   Sum 32.82319 9.309843 27.031369 5.780648 74.945047</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

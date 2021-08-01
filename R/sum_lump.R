@@ -4,24 +4,25 @@
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param threshold Numeric value used to determine small flows, origins or destinations that will be grouped (lumped) together. 
-#' @param lump Character string to indicate where to apply the threshold. Choose from the `flow` values, `in` migration totals and/or `out` migration totals.
-#' @param other_level Character string for the origin and/or destination label for the lumped values below the `threshold`. Default `"other"`.
-#' @param complete Logical value to return a `tibble` with complete the origin-destination combinations
-#' @param fill Numeric value for to fill small cells below the `threshold` when `complete` is `TRUE`. Default of zero.
-#' @param return_matrix Logical to return a matrix. Default `FALSE`.
+#' @param lump Character string to indicate where to apply the threshold. Choose from the \code{flow} values, \code{in} migration totals and/or \code{out} migration totals.
+#' @param other_level Character string for the origin and/or destination label for the lumped values below the \code{threshold}. Default \code{"other"}.
+#' @param complete Logical value to return a \code{tibble} with complete the origin-destination combinations
+#' @param fill Numeric value for to fill small cells below the \code{threshold} when \code{complete = TRUE}. Default of zero.
+#' @param return_matrix Logical to return a matrix. Default \code{FALSE}.
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #'
-#' @return A \code{tibble} with an additional `other` origins and/or destinations region based on the grouping together of small values below the `threshold` argument and the `lump` argument to indicate on where to apply the threshold. 
+#' @return A \code{tibble} with an additional \code{other} origins and/or destinations region based on the grouping together of small values below the \code{threshold} argument and the \code{lump} argument to indicate on where to apply the threshold. 
 #' 
-#' @details The `lump` argument can take values `flow` or `bilat` to apply the threshold to the data values for between region migration, `in` or `imm` to apply the threshold to the incoming region totals and `out` or `emi` to apply the threshold to outgoing region totals.
+#' @details The \code{lump} argument can take values \code{flow} or \code{bilat} to apply the threshold to the data values for between region migration, \code{in} or \code{imm} to apply the threshold to the incoming region totals and \code{out} or \code{emi} to apply the threshold to outgoing region totals.
 #' @export
 #'
 #' @examples
-#' dn <- LETTERS[1:4]
+#' r <- LETTERS[1:4]
 #' m <- matrix(data = c(0, 100, 30, 10, 50, 0, 50, 5, 10, 40, 0, 40, 20, 25, 20, 0),
-#'             nrow = 4, ncol = 4, dimnames = list(orig = dn, dest = dn), byrow = TRUE)
+#'             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
+#' m
 #' 
 #' # threshold on in and out totals
 #' sum_lump(m, threshold = 100, lump = c("in", "out"))

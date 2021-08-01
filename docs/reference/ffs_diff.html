@@ -146,7 +146,7 @@
     </tr>
     <tr>
       <th>include_native_born</th>
-      <td><p>Logcial value to indicate wheather to include diagonal elements of <code>m1</code> and <code>m2</code>. Default of <code>FALSE</code> - not include.</p></td>
+      <td><p>Logical value to indicate whether to include diagonal elements of <code>m1</code> and <code>m2</code>. Default of <code>FALSE</code> - not include.</p></td>
     </tr>
     </table>
 
@@ -154,9 +154,10 @@
 
     <p>Estimates migrant transitions flows between two sequential migrant stock tables.</p>
 <p>When <code>decrease = "zero"</code> all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015)</p>
-<p>When <code>decrease = "return"</code> all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)
-#' @references 
-Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. <em>The World Economy</em> 39(4):496–512.</p>
+<p>When <code>decrease = "return"</code> all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. <em>The World Economy</em> 39(4):496–512.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ffs_demo.html'>ffs_demo</a></code>, <code><a href='ffs_rates.html'>ffs_rates</a></code></p></div>
@@ -169,8 +170,8 @@ Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A P
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>75</span>, <span class='fl'>25</span>, <span class='fl'>5</span>, <span class='fl'>15</span>, <span class='fl'>20</span>, <span class='fl'>45</span>, <span class='fl'>30</span>, <span class='fl'>15</span>, <span class='fl'>30</span>, <span class='fl'>40</span>, <span class='fl'>150</span>, <span class='fl'>35</span>, <span class='fl'>10</span>, <span class='fl'>50</span>, <span class='fl'>5</span>, <span class='fl'>200</span><span class='op'>)</span>,
              nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>reg</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
-<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>reg</span>, por <span class='op'>=</span> <span class='va'>reg</span><span class='op'>)</span>
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pob <span class='op'>=</span> <span class='va'>r</span>, por <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>
 <span class='va'>s1</span>; <span class='va'>s2</span>
 </div><div class='output co'>#&gt;    por
 #&gt; pob   A  B   C   D
