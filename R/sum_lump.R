@@ -58,11 +58,12 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
                      other_level = "other",
                      complete = FALSE, fill = 0, return_matrix = TRUE,
                      orig_col = "orig", dest_col = "dest", flow_col = "flow"){
-  # m = filter(f, year0 == 1990) 
-  # threshold = 1e5; lump = c("in", "out");
+  # m = m0filter(f, year0 == 1990) 
+  # threshold = 1e3; lump = c("in", "out");
   # lump = "flow"
   # other_level = "other"; complete = TRUE; fill = 0
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
+  # flow_col = "flow"
   orig <- dest <- flow <- region <- in_mig <- out_mig <- NULL
   if(!all(lump %in% c("flow", "bilat", "in", "imm", "emi", "out")))
     stop("lump is not recognised")
@@ -91,8 +92,8 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   
   # set other
   x0 <- d %>%
-    if(length(imm_lump)==0) . else dplyr::mutate(., orig = ifelse(orig %in% imm_lump, other_level, orig)) %>%
-    if(length(emi_lump)==0) . else dplyr::mutate(., dest = ifelse(dest %in% emi_lump, other_level, dest))
+    if(length(emi_lump)==0) . else dplyr::mutate(., orig = ifelse(orig %in% emi_lump, other_level, orig)) %>%
+    if(length(imm_lump)==0) . else dplyr::mutate(., dest = ifelse(dest %in% imm_lump, other_level, dest))
 
   x1 <- x0 %>%
     if(is.null(flow_lump)) . else dplyr::mutate(., orig = ifelse(flow < threshold, other_level, orig)) %>%
