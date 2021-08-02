@@ -32,7 +32,7 @@ counter <- function(m, label = "flow",
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"
   if(!label %in% c("flow", "stream"))
     stop("label must be set to stream or flow")
-  orig <- dest <- flow <- corridor <- pair <- counter_flow <- net_flow <- NULL
+  orig <- dest <- flow <- corridor <- pair <- counter_flow <- interchange <-  net_flow <- NULL
   if(!is.matrix(m)){
     d <- m %>%
       dplyr::rename(orig := !!orig_col,
@@ -57,7 +57,8 @@ counter <- function(m, label = "flow",
     dplyr::mutate(pair = ifelse(orig < dest, paste(orig, dest, sep = " - "), paste(dest, orig, sep = " - "))) %>%
     dplyr::group_by_at(c({{g}}, "pair")) %>%
     dplyr::mutate(counter_flow = rev(flow),
-                  net_flow = flow - counter_flow) %>%
+                  net_flow = flow - counter_flow,
+                  interchange = flow + counter_flow) %>%
     dplyr::ungroup() %>%
     dplyr::group_by_at({{g}}) %>%
     dplyr::relocate(orig, dest, corridor, pair)
