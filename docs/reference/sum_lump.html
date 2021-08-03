@@ -62,6 +62,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=281584718"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '281584718');
+</script>
+
 
   </head>
 
@@ -208,15 +218,15 @@
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
 #&gt;   orig  dest   flow
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> B     A        50
-#&gt; <span style='color: #BCBCBC;'>2</span> B     B         0
-#&gt; <span style='color: #BCBCBC;'>3</span> B     other    55
-#&gt; <span style='color: #BCBCBC;'>4</span> C     A        10
-#&gt; <span style='color: #BCBCBC;'>5</span> C     B        40
-#&gt; <span style='color: #BCBCBC;'>6</span> C     other    40
-#&gt; <span style='color: #BCBCBC;'>7</span> other A        20
-#&gt; <span style='color: #BCBCBC;'>8</span> other B       125
-#&gt; <span style='color: #BCBCBC;'>9</span> other other    60</div><div class='input'>
+#&gt; <span style='color: #BCBCBC;'>1</span> A     B       100
+#&gt; <span style='color: #BCBCBC;'>2</span> A     C        30
+#&gt; <span style='color: #BCBCBC;'>3</span> A     other    10
+#&gt; <span style='color: #BCBCBC;'>4</span> B     B         0
+#&gt; <span style='color: #BCBCBC;'>5</span> B     C        50
+#&gt; <span style='color: #BCBCBC;'>6</span> B     other    55
+#&gt; <span style='color: #BCBCBC;'>7</span> other B        65
+#&gt; <span style='color: #BCBCBC;'>8</span> other C        20
+#&gt; <span style='color: #BCBCBC;'>9</span> other other    70</div><div class='input'>
 <span class='co'># threshold on flows (default)</span>
 <span class='fu'>sum_lump</span><span class='op'>(</span><span class='va'>m</span>, threshold <span class='op'>=</span> <span class='fl'>40</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 3</span>

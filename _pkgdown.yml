@@ -51,3 +51,6 @@ reference:
 - title: "Miscellaneous"
 - contents:
   - quadratic_eqn
+template:
+  params:
+    ganalytics: 281584718
