@@ -10,6 +10,7 @@
 status](https://www.r-pkg.org/badges/version/migest)](https://CRAN.R-project.org/package=migest)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/guyabel/migest/workflows/R-CMD-check/badge.svg)](https://github.com/guyabel/migest/actions)
 <!-- badges: end -->
 
 <img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="180" style="padding-left: 20px; padding-bottom: 20px;" />
