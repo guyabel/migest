@@ -4,3 +4,5 @@
 * Added hex logo
 * Added pkgdown
 * Github actions working
+* Added `str_wrap_n()`
+

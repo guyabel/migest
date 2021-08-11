@@ -51,6 +51,7 @@ reference:
 - title: "Miscellaneous"
 - contents:
   - quadratic_eqn
+  - str_wrap_n
 template:
   params:
     ganalytics: G-2XE3QBSNZJ
