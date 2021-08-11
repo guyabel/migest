@@ -1,6 +1,6 @@
 # usethis::use_cran_badge()
 # usethis::use_lifecycle_badge(stage = "stable")
-usethis::use
+# cranlogs::cranlogs_badge(package_name = "migest", summary = "grand-total")
 # usethis::use_pipe()
 # usethis::use_tibble()
 # usethis::use_news_md()
