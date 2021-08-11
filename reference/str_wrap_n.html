@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • migest</title>
+<title>Wrap character string to fit a target number of lines — str_wrap_n • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Wrap character string to fit a target number of lines — str_wrap_n" />
+<meta property="og:description" content="Inserts line breaks for spaces, where the position of the line breaks are chosen to provide the most balanced length of each line." />
 
 
 
@@ -75,7 +76,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -127,31 +128,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/guyabel/migest/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Wrap character string to fit a target number of lines</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/str_wrap_n.R'><code>R/str_wrap_n.R</code></a></small>
+    <div class="hidden name"><code>str_wrap_n.Rd</code></div>
     </div>
 
-    <div id="migest-201" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.1">
-<a href="#migest-201" class="anchor"></a>migest 2.0.1<small> Unreleased </small>
-</h1>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Added hex logo</li>
-<li>Added pkgdown</li>
-<li>Github actions working</li>
-<li>Added <code><a href="../reference/str_wrap_n.html">str_wrap_n()</a></code>
-</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Inserts line breaks for spaces, where the position of the line breaks are chosen to provide the most balanced length of each line.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>str_wrap_n</span><span class='op'>(</span>string <span class='op'>=</span> <span class='cn'>NULL</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>string</th>
+      <td><p>Character string to be broken up</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>Number of lines to break the string over</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The original <code>string</code> with line breaks inserted at optimal positions.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Function is intended for a small number of line breaks. The <code>n</code> argument is not allowed to be greater than 8 as all combinations of possible line breaks are explored.</p>
+<p>When there a number of possible solutions that provide equally balanced number of characters in each line, the function returns the character string where the number of spaces are distributed most evenly.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>str_wrap_n</span><span class='op'>(</span>string <span class='op'>=</span> <span class='st'>"a bb ccc dddd eeee ffffff"</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "a bb ccc dddd\neeee ffffff"</div><div class='input'><span class='fu'>str_wrap_n</span><span class='op'>(</span>string <span class='op'>=</span> <span class='st'>"a bb ccc dddd eeee ffffff"</span>, n <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "a bb\nccc dddd\neeee\nffffff"</div><div class='input'><span class='fu'>str_wrap_n</span><span class='op'>(</span>string <span class='op'>=</span> <span class='st'>"a bb ccc dddd eeee ffffff"</span>, n <span class='op'>=</span> <span class='fl'>8</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Asking for more lines than words</span></div><div class='output co'>#&gt; [1] "a\nbb\nccc\ndddd\neeee\nffffff"</div><div class='input'><span class='fu'>str_wrap_n</span><span class='op'>(</span>string <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a bb"</span>, <span class='st'>"a bb ccc"</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "a\nbb"     "a bb\nccc"</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

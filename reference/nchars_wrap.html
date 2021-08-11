@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • migest</title>
+<title>Count the number of characters per line — nchars_wrap • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Count the number of characters per line — nchars_wrap" />
+<meta property="og:description" content="Count the number of characters per line" />
 
 
 
@@ -75,7 +76,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -127,31 +128,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/guyabel/migest/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Count the number of characters per line</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/nchars_wrap.R'><code>R/nchars_wrap.R</code></a></small>
+    <div class="hidden name"><code>nchars_wrap.Rd</code></div>
     </div>
 
-    <div id="migest-201" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.1">
-<a href="#migest-201" class="anchor"></a>migest 2.0.1<small> Unreleased </small>
-</h1>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Added hex logo</li>
-<li>Added pkgdown</li>
-<li>Github actions working</li>
-<li>Added <code><a href="../reference/str_wrap_n.html">str_wrap_n()</a></code>
-</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Count the number of characters per line</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>nchars_wrap</span><span class='op'>(</span><span class='va'>b</span>, <span class='va'>w</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>b</th>
+      <td><p>Numeric vector for the position of line breaks between the words in <code>w</code></p></td>
+    </tr>
+    <tr>
+      <th>w</th>
+      <td><p>Character string vector of words</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>List with vectors for number of characters per line and the number of words per line</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
