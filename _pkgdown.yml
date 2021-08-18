@@ -52,6 +52,17 @@ reference:
 - contents:
   - quadratic_eqn
   - str_wrap_n
+navbar:
+  structure:
+    left:  [home, intro, reference, articles, tutorials, news]
+    right: [github, twitter, personal-site]
+  components:
+     twitter:
+       icon: "fab fa-twitter fa-lg"
+       href: https://twitter.com/guyabelguyabel
+     personal-site:
+       icon: "fas fa-blog fa-lg"
+       href: https://guyabel.com
 template:
   params:
     ganalytics: G-2XE3QBSNZJ
