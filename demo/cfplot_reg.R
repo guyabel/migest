@@ -49,9 +49,9 @@ circos.clear()
 
 
 
-##
-##Longer, older code without the chordDiagram function. Uncomment to run.
-##
+# ##
+# ##Longer, older code without the chordDiagram function. Uncomment to run.
+# ##
 # ##
 # ##install packages if not already done so (uncomment)
 # ##

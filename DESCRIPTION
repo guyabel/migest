@@ -22,12 +22,16 @@ Imports:
     stats,
     tibble,
     forcats,
-    ggplot2,
     utils,
     matrixStats, 
-    migration.indices
+    migration.indices,
+    circlize,
+    graphics,
+    grDevices
 Depends: 
     R (>= 2.10)
 Suggests: 
-    spelling
+    spelling, 
+    tidyverse,
+    countrycode
 Language: en-US

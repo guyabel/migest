@@ -9,13 +9,6 @@
 #'
 #' @return An \code{array} or \code{matrix}
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-#' @noRd
-#' \donttest{
-#' # ipf_seed(m = NULL, R = 4, n_dim = 2)
-#' # ipf_seed(m = NULL, R = 5, n_dim = 3, dn = LETTERS[1:5])
-#' # ipf_seed(m = matrix(1:4, nrow = 2), n_dim = 3, dn = LETTERS[1:2])
-#' }
 ipf_seed <- function(m = NULL, R = NULL, n_dim = NULL, dn = NULL){
   if (is.null(m) & is.null(R))
     stop("Must provide either m or R")

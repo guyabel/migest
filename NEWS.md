@@ -5,4 +5,6 @@
 * Added pkgdown
 * Github actions working
 * Added `str_wrap_n()`
+* Added `mig_chord()`
+* Added `dict_ims`
 

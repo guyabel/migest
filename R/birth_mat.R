@@ -6,8 +6,6 @@
 #' @param non_negative Adjust birth matrix calculation to ensure all deductions from \code{m2} will result in positive population counts. On rare occasions when working with international stock data the number of births can exceed the increase in the number of native born population.
 #'
 #' @return Matrix of place of birth by place of residence for new-born’s
-#' @noRd
-#' @keyword internal
 birth_mat <- function(b_por = NULL, m2 = NULL, non_negative = TRUE){
   # m2 = m2_b
   bb <- m2

@@ -21,9 +21,6 @@ An \code{array} or \code{matrix}
 \description{
 This function is predominantly intended to be used within the ipf routines in the migest package.
 }
-\seealso{
-\code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
-}
 \author{
 Guy J. Abel
 }

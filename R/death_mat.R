@@ -9,8 +9,6 @@
 #'
 #' @return
 #' Matrix of place of death by place of residence
-#' @keyword internal
-#' @noRd
 death_mat <- function(d_por = NULL, m1 = NULL, method = "proportion",
                       m2 = NULL, b_por = NULL){
   if (method == "proportion")

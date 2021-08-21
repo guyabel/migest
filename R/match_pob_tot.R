@@ -24,8 +24,6 @@
 #'
 #' Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Flows. \emph{Science}, 343 (6178) 1520-1522
 #'
-#' @keyword internal
-#' @noRd
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
 match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){

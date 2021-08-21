@@ -8,8 +8,6 @@
 #' 
 #' Returns a \code{matrix} object of origin-destination flows
 #' @export
-#'
-#' @examples
 sum_od <- function(y){
   R <- dim(y)[3]
   dg <- diag(apply(y,c(1,2),sum))

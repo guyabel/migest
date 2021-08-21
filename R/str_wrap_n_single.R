@@ -17,7 +17,7 @@ str_wrap_n_single <- function(string = NULL, n = 2){
   }
   if(n == 1)
     return(string)
-  i <- dd <- s <- nn <- var_n <- var_s <- value <- words <- NULL
+  i <- dd <- s <- nn <- var_n <- var_s <- name <- value <- words <- NULL
   b <- utils::combn(x = 2:length(w)-1, m = n - 1) %>%
     t() %>%
     as.data.frame() %>%

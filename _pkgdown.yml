@@ -48,6 +48,10 @@ reference:
   - new_england_1960
   - uar_1960
   - usa_1960
+- title: "Visualisation"
+- contents:
+  - mig_chord
+  - str_wrap_n
 - title: "Miscellaneous"
 - contents:
   - quadratic_eqn
@@ -66,3 +70,7 @@ navbar:
 template:
   params:
     ganalytics: G-2XE3QBSNZJ
+figures:
+  fig.width: 7.2916667
+  fig.height: 7.2916667
+
