@@ -10,7 +10,9 @@ mig_chord(
   lab_bend1 = NULL,
   lab_bend2 = NULL,
   label_size = 1,
+  label_nudge = 0,
   axis_size = 0.8,
+  axis_breaks = NULL,
   ...,
   no_labels = FALSE,
   no_axis = FALSE,
@@ -33,9 +35,13 @@ mig_chord(
 
 \item{label_size}{Font size of label text.}
 
+\item{label_nudge}{Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis.}
+
 \item{axis_size}{Font size on axis labels.}
 
-\item{...}{Arguments for \code{circlize::chordDiagram()}.}
+\item{axis_breaks}{Numeric value for how often to add axis label breaks. Default not activated, uses default from \code{circlize::circos.axis()}}
+
+\item{...}{Arguments for \code{circlize::chordDiagramFromDataFrame()}.}
 
 \item{no_labels}{Logical to indicate if to include plot labels. Set to \code{FALSE} by default.}
 
@@ -43,25 +49,25 @@ mig_chord(
 
 \item{clear_circos_par}{Logical to run \code{circlize::circos.clear()}. Set to \code{TRUE} by default. Set to \code{FALSE} if you wish to add further to the plot.}
 
-\item{zero_margin}{Set margins of the plotting graphics device to zero. Set to \code{FALSE} by default.}
+\item{zero_margin}{Set margins of the plotting graphics device to zero. Set to \code{TRUE} by default.}
 
 \item{start.degree}{Argument for \code{circlize::circos.par()}.}
 
-\item{gap.degree}{Argument for \code{circlize::chordDiagram()}.}
+\item{gap.degree}{Argument for \code{circlize::chordDiagramFromDataFrame()}.}
 
-\item{track.margin}{Argument for \code{circlize::chordDiagram()}.}
+\item{track.margin}{Argument for \code{circlize::chordDiagramFromDataFrame()}.}
 
-\item{points.overflow.warning}{Argument for \code{circlize::chordDiagram()}.}
+\item{points.overflow.warning}{Argument for \code{circlize::chordDiagramFromDataFrame()}.}
 }
 \value{
-Chord diagram based on first three columns of \code{x}. The function tweaks the defaults of \code{circlize::chordDiagram()} for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the \code{circlize::chordDiagram()} arguments.
+Chord diagram based on first three columns of \code{x}. The function tweaks the defaults of \code{circlize::chordDiagramFromDataFrame()} for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the \code{circlize::chordDiagramFromDataFrame()} arguments.
 
 The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the \code{pdf} function). See the end of the examples for converting PDFs to images. 
 
-Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks (as in the examples) and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE}.
+Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks, \code{label_nudge}, track height in \code{preAllocateTracks} and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE} and \code{clear_circos_par = FALSE}.
 }
 \description{
-Adaption of \code{circlize::chordDiagram()} for with defaults set to allow for more effective visualisation of directional origin-destination data
+Adaption of \code{circlize::chordDiagramFromDataFrame()} for with defaults set to allow for more effective visualisation of directional origin-destination data
 }
 \examples{
 \dontrun{
@@ -96,7 +102,7 @@ mig_chord(x = pb)
 # dev.off()
 # file.show("chord.pdf")
 
-# pass arguments to circlize::chordDiagram
+# pass arguments to circlize::chordDiagramFromDataFrame
 # pdf(file = "chord.pdf")
 mig_chord(x = pb, 
           # order of regions
@@ -105,7 +111,7 @@ mig_chord(x = pb,
           preAllocateTracks = list(track.height = 0.3),
           # colours
           grid.col = c("blue", "royalblue", "navyblue", "skyblue", "cadetblue", "darkblue")
-          )
+          ) 
 # dev.off()
 # file.show("chord.pdf")
 

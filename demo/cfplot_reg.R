@@ -1,56 +1,60 @@
 ##
-##install packages if not already done so (uncomment)
+## load packages
 ##
-# install.packages("circlize")
-# install.packages("dplyr")
-# install.packages("tidyr")
+# install.packages("tidyverse")
+library(tidyverse)
+library(migest)
 
 ##
-##read in table and define matrix (m) and reference data.frame (df1)
+## read in table and define matrix (m) and reference data.frame (df1)
 ##
-df0 <- read.table(system.file("science", "region_custom.txt", package = "migest"), skip=2, stringsAsFactors=FALSE)
+science_reg <- read_tsv(system.file("science", "region_custom.txt", package = "migest"), 
+                        skip = 1, n_max = 10)
 
-#select and rename labels
-library("dplyr")
-df1 <- df0 %>% select(1:3) %>% rename(order = V1, rgb = V2, region = V3) %>% mutate(region = gsub("_", " ", region))
+# set up a region data frame
+r <- science_reg %>%
+  select(1:3) %>% 
+  rename(order = 1, 
+         rgb = 2,
+         region = 3) %>% 
+  arrange(order) %>% 
+  separate(col = rgb, into = c("r","g","b")) %>% 
+  mutate(col = rgb(red = r, green = g, blue = b, max = 255),
+         label = str_replace_all(string = region, pattern = "_", replacement = " "))
+r
 
-#flow matrix
-m <- as.matrix(df0[,-(1:3)]/1e06)
-dimnames(m) <- list(orig = df1$region, dest = df1$region)
-#drop small flows
-m[m<=quantile(m,0.65)]<-0
+# set up a flow data frame
+d <- science_reg %>%
+  rename(orig = 3) %>%
+  select(-(1:2)) %>%
+  pivot_longer(cols = -1, names_to = "dest", values_to = "flow") %>%
+  mutate(flow = flow/1e6, 
+         # drop small flows - not sure why we thought this was a good idea
+         vis = flow > quantile(x = flow, 0.65))
+d
 
-#sort regions and create colours
-library("tidyr")
-df1 <- df1 %>% arrange(order) %>% separate(rgb, c("r","g","b")) %>% 
-  mutate(col = rgb(r, g, b, max=255), max = rowSums(m)+colSums(m))
-
-#plot using chordDiagram
-library("circlize")
-circos.clear()
-par(mar = rep(0, 4), cex=0.9)
-circos.par(start.degree = 90, gap.degree = 4)
-chordDiagram(x = m, directional = 1, order = df1$region, 
-             grid.col = df1$col, annotationTrack = "grid", 
-             transparency = 0.25,  annotationTrackHeight = c(0.1, 0.1),
-             diffHeight  = -0.04)
-
-#add in labels and axis
-circos.trackPlotRegion(track.index = 1, panel.fun = function(x, y) {
-  xlim = get.cell.meta.data("xlim")
-  sector.index = get.cell.meta.data("sector.index")
-  circos.text(mean(xlim), 2.5, sector.index, facing = "bending")
-  circos.axis("top", major.at = seq(0, max(xlim)), minor.ticks=1, labels.away.percentage = 0.2, labels.niceFacing = FALSE )
-}, bg.border = NA)
-circos.clear()
-
-
-
-
-
+##
+## plot using mig_chord adaption of circlize::chordDiagram
+##
+pdf(file = "chord_reg.pdf")
+mig_chord(x = d, 
+          order = r$region,
+          grid.col = r %>% 
+            select(region, col) %>%
+            deframe(), 
+          lab_bend1 = r %>%
+            select(region, label) %>%
+            deframe(),
+          label_size = 0.9,
+          axis_breaks = 1,
+          link.visible = d$vis
+          )
+dev.off()
+file.show("chord_reg.pdf")
 
 # ##
-# ##Longer, older code without the chordDiagram function. Uncomment to run.
+# ## Original code, pre circlize::chordDiagram and improvements in visualising 
+# ## migration data using migest::mig_chord. Uncomment to run.
 # ##
 # ##
 # ##install packages if not already done so (uncomment)

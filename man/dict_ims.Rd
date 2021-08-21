@@ -56,12 +56,7 @@ d <- f \%>\%
   ) \%>\%
   group_by(year0, orig, dest) \%>\%
   summarise_all(sum)
-  
-# follow order in dictionary
-d \%>\%
-  mutate(orig = factor(orig, levels = unique(dict_ims$region)),
-         dest = factor(dest, levels = unique(dict_ims$region))) \%>\%
-  arrange(year0, orig, dest)
+d
 }
 }
 \keyword{datasets}

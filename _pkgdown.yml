@@ -55,7 +55,7 @@ reference:
 - title: "Miscellaneous"
 - contents:
   - quadratic_eqn
-  - str_wrap_n
+  - dict_ims
 navbar:
   structure:
     left:  [home, intro, reference, articles, tutorials, news]

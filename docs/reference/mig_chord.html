@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Chord diagram for directional origin-destination data — mig_chord" />
-<meta property="og:description" content="Adaption of circlize::chordDiagram() for with defaults set to allow for more effective visualisation of directional origin-destination data" />
+<meta property="og:description" content="Adaption of circlize::chordDiagramFromDataFrame() for with defaults set to allow for more effective visualisation of directional origin-destination data" />
 
 
 
@@ -146,7 +146,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Adaption of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code> for with defaults set to allow for more effective visualisation of directional origin-destination data</p>
+    <p>Adaption of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code> for with defaults set to allow for more effective visualisation of directional origin-destination data</p>
     </div>
 
     <pre class="usage"><span class='fu'>mig_chord</span><span class='op'>(</span>
@@ -155,7 +155,9 @@
   lab_bend1 <span class='op'>=</span> <span class='cn'>NULL</span>,
   lab_bend2 <span class='op'>=</span> <span class='cn'>NULL</span>,
   label_size <span class='op'>=</span> <span class='fl'>1</span>,
+  label_nudge <span class='op'>=</span> <span class='fl'>0</span>,
   axis_size <span class='op'>=</span> <span class='fl'>0.8</span>,
+  axis_breaks <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>,
   no_labels <span class='op'>=</span> <span class='cn'>FALSE</span>,
   no_axis <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -191,12 +193,20 @@
       <td><p>Font size of label text.</p></td>
     </tr>
     <tr>
+      <th>label_nudge</th>
+      <td><p>Numeric value to nudge clockwise labels towards (negative number) or away (positive number) the sector axis.</p></td>
+    </tr>
+    <tr>
       <th>axis_size</th>
       <td><p>Font size on axis labels.</p></td>
     </tr>
     <tr>
+      <th>axis_breaks</th>
+      <td><p>Numeric value for how often to add axis label breaks. Default not activated, uses default from <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame</a></code></p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Arguments for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code>.</p></td>
+      <td><p>Arguments for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code>.</p></td>
     </tr>
     <tr>
       <th>no_labels</th>
@@ -212,7 +222,7 @@
     </tr>
     <tr>
       <th>zero_margin</th>
-      <td><p>Set margins of the plotting graphics device to zero. Set to <code>FALSE</code> by default.</p></td>
+      <td><p>Set margins of the plotting graphics device to zero. Set to <code>TRUE</code> by default.</p></td>
     </tr>
     <tr>
       <th>start.degree</th>
@@ -220,23 +230,23 @@
     </tr>
     <tr>
       <th>gap.degree</th>
-      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code>.</p></td>
+      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code>.</p></td>
     </tr>
     <tr>
       <th>track.margin</th>
-      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code>.</p></td>
+      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code>.</p></td>
     </tr>
     <tr>
       <th>points.overflow.warning</th>
-      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code>.</p></td>
+      <td><p>Argument for <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Chord diagram based on first three columns of <code>x</code>. The function tweaks the defaults of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code> for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagram.html'>circlize::chordDiagram()</a></code> arguments.</p>
+    <p>Chord diagram based on first three columns of <code>x</code>. The function tweaks the defaults of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code> for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code> arguments.</p>
 <p>The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the <code>pdf</code> function). See the end of the examples for converting PDFs to images.</p>
-<p>Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks (as in the examples) and font sizes in <code>label_size</code> and <code>axis_size</code> to find the best fit. If none of the label options produce desirable results, plot your own using <code><a href='https://rdrr.io/pkg/circlize/man/circos.text.html'>circlize::circos.text</a></code> having set <code>no_labels = TRUE</code>.</p>
+<p>Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks, <code>label_nudge</code>, track height in <code>preAllocateTracks</code> and font sizes in <code>label_size</code> and <code>axis_size</code> to find the best fit. If none of the label options produce desirable results, plot your own using <code><a href='https://rdrr.io/pkg/circlize/man/circos.text.html'>circlize::circos.text</a></code> having set <code>no_labels = TRUE</code> and <code>clear_circos_par = FALSE</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
@@ -296,7 +306,7 @@
 </div><div class='img'><img src='mig_chord-1.png' alt='' width='700' height='700' /></div><div class='input'><span class='co'># dev.off()</span>
 <span class='co'># file.show("chord.pdf")</span>
 
-<span class='co'># pass arguments to circlize::chordDiagram</span>
+<span class='co'># pass arguments to circlize::chordDiagramFromDataFrame</span>
 <span class='co'># pdf(file = "chord.pdf")</span>
 <span class='fu'>mig_chord</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>pb</span>, 
           <span class='co'># order of regions</span>
@@ -305,7 +315,7 @@
           preAllocateTracks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>track.height <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>,
           <span class='co'># colours</span>
           grid.col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>, <span class='st'>"royalblue"</span>, <span class='st'>"navyblue"</span>, <span class='st'>"skyblue"</span>, <span class='st'>"cadetblue"</span>, <span class='st'>"darkblue"</span><span class='op'>)</span>
-          <span class='op'>)</span>
+          <span class='op'>)</span> 
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Since you have set `order`, you should better set `grid.col` as a named</span>
 #&gt; <span class='warning'>vector where sector names are the vector names, or else the color will</span>
 #&gt; <span class='warning'>be wrongly assigned.</span></div><div class='img'><img src='mig_chord-2.png' alt='' width='700' height='700' /></div><div class='input'><span class='co'># dev.off()</span>

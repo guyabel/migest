@@ -1,28 +1,30 @@
 #' Chord diagram for directional origin-destination data
 #' 
-#' Adaption of \code{circlize::chordDiagram()} for with defaults set to allow for more effective visualisation of directional origin-destination data
+#' Adaption of \code{circlize::chordDiagramFromDataFrame()} for with defaults set to allow for more effective visualisation of directional origin-destination data
 #'
 #' @param x Data frame with origin in first column, destination in second column and bilateral measure in third column
 #' @param lab Named vector of labels for plot. If \code{NULL} will use names from \code{d}
 #' @param lab_bend1 Named vector of bending labels for plot. Note line breaks do not work with \code{facing = "bending"} in circlize.
 #' @param lab_bend2 Named vector of second row of bending labels for plot. 
 #' @param label_size Font size of label text.
+#' @param label_nudge Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis. 
 #' @param axis_size Font size on axis labels.
-#' @param ... Arguments for \code{circlize::chordDiagram()}.
+#' @param axis_breaks Numeric value for how often to add axis label breaks. Default not activated, uses default from \code{circlize::circos.axis()}
+#' @param ... Arguments for \code{circlize::chordDiagramFromDataFrame()}.
 #' @param no_labels Logical to indicate if to include plot labels. Set to \code{FALSE} by default.
 #' @param no_axis Logical to indicate if to include plot axis. Set to \code{FALSE} by default.
-#' @param zero_margin Set margins of the plotting graphics device to zero. Set to \code{FALSE} by default.
+#' @param zero_margin Set margins of the plotting graphics device to zero. Set to \code{TRUE} by default.
 #' @param clear_circos_par Logical to run \code{circlize::circos.clear()}. Set to \code{TRUE} by default. Set to \code{FALSE} if you wish to add further to the plot.
 #' @param start.degree Argument for \code{circlize::circos.par()}.
-#' @param gap.degree Argument for \code{circlize::chordDiagram()}.
-#' @param track.margin Argument for \code{circlize::chordDiagram()}.
-#' @param points.overflow.warning Argument for \code{circlize::chordDiagram()}.
+#' @param gap.degree Argument for \code{circlize::chordDiagramFromDataFrame()}.
+#' @param track.margin Argument for \code{circlize::chordDiagramFromDataFrame()}.
+#' @param points.overflow.warning Argument for \code{circlize::chordDiagramFromDataFrame()}.
 #'
-#' @return Chord diagram based on first three columns of \code{x}. The function tweaks the defaults of \code{circlize::chordDiagram()} for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the \code{circlize::chordDiagram()} arguments.
+#' @return Chord diagram based on first three columns of \code{x}. The function tweaks the defaults of \code{circlize::chordDiagramFromDataFrame()} for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the \code{circlize::chordDiagramFromDataFrame()} arguments.
 #' 
 #' The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the \code{pdf} function). See the end of the examples for converting PDFs to images. 
 #' 
-#' Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE}.
+#' Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks, \code{label_nudge}, track height in \code{preAllocateTracks} and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE} and \code{clear_circos_par = FALSE}.
 #' @export
 #'
 #' @examples
@@ -58,7 +60,7 @@
 #' # dev.off()
 #' # file.show("chord.pdf")
 #' 
-#' # pass arguments to circlize::chordDiagram
+#' # pass arguments to circlize::chordDiagramFromDataFrame
 #' # pdf(file = "chord.pdf")
 #' mig_chord(x = pb, 
 #'           # order of regions
@@ -67,7 +69,7 @@
 #'           preAllocateTracks = list(track.height = 0.3),
 #'           # colours
 #'           grid.col = c("blue", "royalblue", "navyblue", "skyblue", "cadetblue", "darkblue")
-#'           )
+#'           ) 
 #' # dev.off()
 #' # file.show("chord.pdf")
 #' 
@@ -116,7 +118,9 @@ mig_chord <- function(
   lab_bend1 = NULL,
   lab_bend2 = NULL,
   label_size = 1, 
+  label_nudge = 0,
   axis_size = 0.8,
+  axis_breaks = NULL,
   ..., 
   no_labels = FALSE,
   no_axis = FALSE,
@@ -128,7 +132,7 @@ mig_chord <- function(
   points.overflow.warning = FALSE
 ){
   z <- list(...)
-  z$x <- x[, 1:3]
+  z$df <- x[, 1:3]
   if(is.null(z$transparency))
     z$transparency = 0.25
   if(is.null(z$directional))
@@ -153,6 +157,10 @@ mig_chord <- function(
     keep_axis <- FALSE
   if(is.null(z$annotationTrack))
     z$annotationTrack = "grid"
+  
+  # y <- list()
+  # y[] <- z[!names(z) %in% formalArgs(chordDiagramFromDataFrame)]
+  # z <- z[names(z) %in% formalArgs(chordDiagramFromDataFrame)]
   
   h <- 0.2
   if(!is.null(lab_bend1) | !is.null(lab_bend2))
@@ -179,14 +187,30 @@ mig_chord <- function(
   if(zero_margin)
     graphics::par(mar = rep(0, 4))
   
-  do.call(what = circlize::chordDiagram, args = z)
+  do.call(what = circlize::chordDiagramFromDataFrame, args = z)
   
   if(keep_axis){
+    # if(is.null(y$h))
+    #   y$h <- "bottom"
+    # if(is.null(y$labels.cex))
+    #   y$labels.cex <- axis_size
     circlize::circos.trackPlotRegion(
       track.index = 1, 
       bg.border = NA, 
       panel.fun = function(x, y) {
-        circlize::circos.axis(h = "bottom", labels.cex = axis_size)
+        if(is.null(axis_breaks))
+          circlize::circos.axis(h = "bottom", labels.cex = axis_size, 
+                                labels.niceFacing = FALSE)
+          # do.call(what = circlize::circos.axis, args = y)
+        if(!is.null(axis_breaks)){
+          # if(is.null(y$major.at))
+          #   y$major.at <- seq(from = 0, to = sum(z$df[,3]), by = axis_breaks)
+          # do.call(what = circlize::circos.axis, args = y)
+          circlize::circos.axis(
+            h = "bottom", labels.cex = axis_size, labels.niceFacing = FALSE,
+            major.at = seq(from = 0, to = sum(z$df[,3]), by = axis_breaks)
+          )
+        }
       })
   }
     
@@ -202,7 +226,7 @@ mig_chord <- function(
           names(lab) <- s
         }
         if(is.null(lab_bend1) & is.null(lab_bend2)){
-          yy <- -0.5 + -0.55 * log(z$preAllocateTracks$track.height)
+          yy <- label_nudge + -0.5 + -0.55 * log(z$preAllocateTracks$track.height)
           if(!keep_axis)
             yy <- yy - 0.3
           circlize::circos.text(
@@ -210,20 +234,20 @@ mig_chord <- function(
             facing = "clockwise", adj = c(0, 0.5), niceFacing = TRUE)
         }
         if(!is.null(lab_bend1)){
-          yy <- 3
+          yy <- 3 + label_nudge
           if(is.null(lab_bend2))
-            yy <- 2
+            yy <- 2 +label_nudge
           if(!is.null(lab_bend2))
             if(is.na(lab_bend2[s]))
-              yy <- 2
+              yy <- 2 + label_nudge
           circlize::circos.text(
             x = mean(xx), y = yy, labels = lab_bend1[s], cex = label_size, 
             facing = "bending", niceFacing = FALSE)
         }
         if(!is.null(lab_bend2)){
           circlize::circos.text(
-            x = mean(xx), y = 2, labels = lab_bend2[s], cex = label_size, 
-            facing = "bending", niceFacing = FALSE)
+            x = mean(xx), y = 2 + label_nudge, labels = lab_bend2[s], 
+            cex = label_size, facing = "bending", niceFacing = FALSE)
         }
       }
     )

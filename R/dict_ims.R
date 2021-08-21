@@ -26,7 +26,6 @@
 #'   \item{region_a2018}{Region grouping used for global chord diagram plots by Abel (2018)}
 #'   \item{region_ac2021}{Region grouping used for global chord diagram plots by Abel and Cohen (2021)}
 #' }
-#' 
 #' @examples 
 #' \dontrun{
 #' library(tidyverse)
@@ -46,11 +45,6 @@
 #'   ) %>%
 #'   group_by(year0, orig, dest) %>%
 #'   summarise_all(sum)
-#'   
-#' # follow order in dictionary
-#' d %>%
-#'   mutate(orig = factor(orig, levels = unique(dict_ims$region)),
-#'          dest = factor(dest, levels = unique(dict_ims$region))) %>%
-#'   arrange(year0, orig, dest)
+#' d
 #' }
 "dict_ims"

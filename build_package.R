@@ -21,6 +21,9 @@ usethis::use_github_actions_badge()
 file.show("NEWS.md")
 
 # usethis::use_pkgdown()
+roxygen2::roxygenise()
+# devtools::build()
+# devtools::install()
 pkgdown::build_site(run_dont_run = TRUE)
 pkgdown::build_reference()
 
