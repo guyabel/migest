@@ -1,0 +1,24 @@
+<p>I have had a few emails recently regarding plots from my new <a href="http://www.oeaw.ac.at/fileadmin/subsites/Institute/VID/PDF/Publications/Working_Papers/WP2016_02.pdf" target="_blank">working paper</a> on global migration flows, which has received some media coverage <a href="http://www.spiegel.de/international/world/why-global-migration-statistics-do-not-add-up-a-1090736.html">here</a>, <a href="http://www.newscientist.com/article/mg23030680-700-the-truth-about-migration-how-it-will-reshape-our-world/" target="_blank">here</a> and <a href="http://www.bbc.co.uk/programmes/p03v1hm3/" target="_blank">here</a>. The plots were created using Zuguang Gu's excellent <a href="https://cran.r-project.org/web/packages/circlize/index.html" target="_blank">circlize</a> package and are a modified version of those discussed in an earlier <a href="https://gjabel.wordpress.com/2014/03/28/circular-migration-flow-plots-in-r/" target="_blank">blog post</a>. In particular, I have made four changes:</p>
+<ol>
+<li>I have added arrow heads to better indicate the direction of flows, following the example in <a href="http://www.scientificamerican.com/article/immigrants-move-up-the-wealth-ladder-in-steps/" target="_blank">Scientific American</a>.</li>
+<li>I have reorganized the sectors on the outside of the circle so that in each the outflows are plotted first (largest to smallest) followed by the inflows (again, in size order). I prefer this new layout (previously the inflows were plotted first) as it allows the time sequencing of migration events (a migrant has to leave before they can arrive) to match up with the natural tendency for most to read from left to right.</li>
+<li>I have cut out the white spaces that detached the chords from the outer sector. To my eye, this alteration helps indicate the direction of the flow and gives a cleaner look.</li>
+<li>I have kept the smallest flows in the plot, but plotted their chords last, so that the focus is maintained on the largest flows. Previously smaller flows were dropped according to an arbitrary cut off, which meant that the sector pieces on the outside of the circle no longer represented the total of the inflows and outflows.</li>
+</ol>
+<p>Combined, these four modifications have helped me when presenting the results at recent conferences, reducing the time I need to spend explaining the plots and avoiding some of the confusion that occasionally occurred with the direction of the migration flows.</p>
+<p>If you would like to replicate one of these plot, you can do so using estimates of the minimum migrant transition flows for the 2010-15 period and the demo R script in my migest package;</p>
+<p>[code language="r"]<br>
+# install.packages("migest")<br>
+# install.packages("circlize")<br>
+library("migest")<br>
+demo(cfplot_reg2, package = "migest", ask = FALSE)<br>
+[/code]</p>
+<p>which will give the following output:</p>
+<p><a href="https://gjabel.files.wordpress.com/2016/05/cfplot_reg2.png"><img class="alignnone size-full wp-image-1785" src="https://gjabel.files.wordpress.com/2016/05/cfplot_reg2.png" alt="Estimated Global Migration Flows 2010-15" width="600" ></a></p>
+<p>The code in the demo script uses the <code>chordDiagram</code> function, based on a recent update to the circlize package (0.3.7). Most likely you will need to either update or install the package (uncomment the <code>install.packages</code> lines in the code above).</p>
+<p>If you want to view the R script in detail to see which arguments I used, then take a look at the demo file on GitHub <a href="http://github.com/gjabel/migest/blob/master/demo/cfplot_reg2.R" target="_blank">here</a>. I provide some comments (in the script, below the function) to explain each of the argument values.</p>
+<p>Save and view a PDF version of the plot (which looks much better than what comes up in my non-square RStudio plot pane) using:</p>
+<p>[code language="r"]<br>
+dev.copy2pdf(file ="cfplot_reg2.pdf", height=10, width=10)<br>
+file.show("cfplot_reg2.pdf")<br>
+[/code]</p>
