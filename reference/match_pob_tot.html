@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quickly create IPF seed — ipf_seed • migest</title>
+<title>Adjust migrant stock tables to have matching place of birth totals — match_pob_tot • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Quickly create IPF seed — ipf_seed" />
-<meta property="og:description" content="This function is predominantly intended to be used within the ipf routines in the migest package." />
+<meta property="og:title" content="Adjust migrant stock tables to have matching place of birth totals — match_pob_tot" />
+<meta property="og:description" content="This function is predominantly intended to be used within the ffs routines in the migest package." />
 
 
 
@@ -140,41 +140,59 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Quickly create IPF seed</h1>
-    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/ipf_seed.R'><code>R/ipf_seed.R</code></a></small>
-    <div class="hidden name"><code>ipf_seed.Rd</code></div>
+    <h1>Adjust migrant stock tables to have matching place of birth totals</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/match_pob_tot.R'><code>R/match_pob_tot.R</code></a></small>
+    <div class="hidden name"><code>match_pob_tot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is predominantly intended to be used within the ipf routines in the migest package.</p>
+    <p>This function is predominantly intended to be used within the ffs routines in the migest package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ipf_seed</span><span class='op'>(</span>m <span class='op'>=</span> <span class='cn'>NULL</span>, R <span class='op'>=</span> <span class='cn'>NULL</span>, n_dim <span class='op'>=</span> <span class='cn'>NULL</span>, dn <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>match_pob_tot</span><span class='op'>(</span><span class='va'>m1</span>, <span class='va'>m2</span>, method <span class='op'>=</span> <span class='st'>"rescale"</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>m</th>
-      <td><p>Matrix, Array or NULL to build seed. If NULL seed will be 1 for all elements.</p></td>
+      <th>m1</th>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></td>
     </tr>
     <tr>
-      <th>R</th>
-      <td><p>Number of rows, columns and possibly n_dimensions for seed matrix or array.</p></td>
+      <th>m2</th>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></td>
     </tr>
     <tr>
-      <th>n_dim</th>
-      <td><p>Numeric integer for the number of n_dimensions - 2 for matrix, 3 or more for an array</p></td>
+      <th>method</th>
+      <td><p>Character string matching either <code>rescale</code>, <code>rescale-adjust-zero-fb</code>, <code>open</code> or <code>open-dr</code>. See details.</p></td>
     </tr>
     <tr>
-      <th>dn</th>
-      <td><p>Vector of character strings for n_dimension names</p></td>
+      <th>verbose</th>
+      <td><p>Logical value to indicate the print the parameter estimates at each iteration of the rescale, as used in <code>ipf2</code>. By default <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>array</code> or <code>matrix</code></p>
+    <p>Returns a <code>list</code> object with:</p>
+<dt>m1_adj </dt><dd><p>Matrix of adjusted <code>m1</code> where rows (place of births) match <code>m2_adj</code>.</p></dd>
+<dt>m2_adj </dt><dd><p>Matrix of adjusted <code>m2</code> where rows (place of births) match <code>m1_adj</code>.</p></dd>
+<dt>in_mat </dt><dd><p>Matrix of estimated inflows into the system.</p></dd>
+<dt>out_mat </dt><dd><p>Matrix of estimated outflows from the system.</p></dd>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code>rescale</code> and <code>rescale-adjust-zero-fb</code> method ensure flow estimates closely match the net migration totals implied by the changes in population totals, births and deaths - as introduced in the Science paper. The <code>rescale-adjust-zero-fb</code> can adjust for rare cases when row total margins that are smaller than native born totals in countries where there are no foreign born populations (e.g. South Sudan 1990-1995).
+The <code>open-dr</code> method allows for moves in and out of the global system - as introduced in the Demographic Research paper. The <code>open</code> method is a slight improvement over <code>open-dr</code> - the calculation of the moves and in and out using more sensible weights.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Abel and Cohen (2019) Bilateral international migration flow estimates for 200 countries <em>Scientific Data</em> 6 (1), 1-13</p>
+<p>Azose &amp; Raftery (2019) Estimation of emigration, return migration, and transit migration between all pairs of countries <em>Proceedings of the National Academy of Sciences</em> 116 (1) 116-122</p>
+<p>Abel, G. J. (2018). Estimates of Global Bilateral Migration Flows by Gender between 1960 and 2015. <em>International Migration Review</em> 52 (3), 809–852.</p>
+<p>Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Flows. <em>Science</em>, 343 (6178) 1520-1522</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='ipf3_qi.html'>ipf3_qi</a></code>, <code><a href='ffs_diff.html'>ffs_diff</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Guy J. Abel</p>

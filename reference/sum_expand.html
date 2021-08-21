@@ -278,8 +278,8 @@
 <span class='co'>## from large data frame</span>
 <span class='co'>##</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>tidyverse</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>countrycode</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://vincentarelbundock.github.io/countrycode/'>countrycode</a></span><span class='op'>)</span>
 
 <span class='co'># download Abel and Cohen (2019) estimates</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"https://ndownloader.figshare.com/files/26239945"</span><span class='op'>)</span>
@@ -292,9 +292,9 @@
 <span class='va'>f</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year0</span> <span class='op'>==</span> <span class='fl'>1990</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
-    orig_area <span class='op'>=</span> <span class='fu'>countrycode</span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>orig</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
+    orig_area <span class='op'>=</span> <span class='fu'><a href='https://vincentarelbundock.github.io/countrycode/reference/countrycode.html'>countrycode</a></span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>orig</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span>,
-    dest_area <span class='op'>=</span> <span class='fu'>countrycode</span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>dest</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
+    dest_area <span class='op'>=</span> <span class='fu'><a href='https://vincentarelbundock.github.io/countrycode/reference/countrycode.html'>countrycode</a></span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>dest</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span>
   <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_expand</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, return_matrix <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
@@ -302,9 +302,9 @@
 <span class='co'># by group (period)</span>
 <span class='va'>f</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
-    orig_area <span class='op'>=</span> <span class='fu'>countrycode</span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>orig</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
+    orig_area <span class='op'>=</span> <span class='fu'><a href='https://vincentarelbundock.github.io/countrycode/reference/countrycode.html'>countrycode</a></span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>orig</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span>,
-    dest_area <span class='op'>=</span> <span class='fu'>countrycode</span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>dest</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
+    dest_area <span class='op'>=</span> <span class='fu'><a href='https://vincentarelbundock.github.io/countrycode/reference/countrycode.html'>countrycode</a></span><span class='op'>(</span>sourcevar <span class='op'>=</span> <span class='va'>dest</span>, custom_match <span class='op'>=</span> <span class='va'>cm</span>,
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_expand</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, return_matrix <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>

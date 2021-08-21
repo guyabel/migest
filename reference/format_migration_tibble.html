@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quickly create IPF seed — ipf_seed • migest</title>
+<title>Helper function to format migration input — format_migration_tibble • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Quickly create IPF seed — ipf_seed" />
-<meta property="og:description" content="This function is predominantly intended to be used within the ipf routines in the migest package." />
+<meta property="og:title" content="Helper function to format migration input — format_migration_tibble" />
+<meta property="og:description" content="Helper function to format migration input" />
 
 
 
@@ -140,44 +140,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Quickly create IPF seed</h1>
-    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/ipf_seed.R'><code>R/ipf_seed.R</code></a></small>
-    <div class="hidden name"><code>ipf_seed.Rd</code></div>
+    <h1>Helper function to format migration input</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/format_migration_tibble.R'><code>R/format_migration_tibble.R</code></a></small>
+    <div class="hidden name"><code>format_migration_tibble.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is predominantly intended to be used within the ipf routines in the migest package.</p>
+    <p>Helper function to format migration input</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ipf_seed</span><span class='op'>(</span>m <span class='op'>=</span> <span class='cn'>NULL</span>, R <span class='op'>=</span> <span class='cn'>NULL</span>, n_dim <span class='op'>=</span> <span class='cn'>NULL</span>, dn <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>format_migration_tibble</span><span class='op'>(</span>
+  <span class='va'>m</span>,
+  orig_col <span class='op'>=</span> <span class='st'>"orig"</span>,
+  dest_col <span class='op'>=</span> <span class='st'>"dest"</span>,
+  flow_col <span class='op'>=</span> <span class='st'>"flow"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>m</th>
-      <td><p>Matrix, Array or NULL to build seed. If NULL seed will be 1 for all elements.</p></td>
+      <td><p>A <code>matrix</code> or data frame of origin-destination flows. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>flow_col</code>.</p></td>
     </tr>
     <tr>
-      <th>R</th>
-      <td><p>Number of rows, columns and possibly n_dimensions for seed matrix or array.</p></td>
+      <th>orig_col</th>
+      <td><p>Character string of the origin column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></td>
     </tr>
     <tr>
-      <th>n_dim</th>
-      <td><p>Numeric integer for the number of n_dimensions - 2 for matrix, 3 or more for an array</p></td>
+      <th>dest_col</th>
+      <td><p>Character string of the destination column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></td>
     </tr>
     <tr>
-      <th>dn</th>
-      <td><p>Vector of character strings for n_dimension names</p></td>
+      <th>flow_col</th>
+      <td><p>Character string of the flow column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>array</code> or <code>matrix</code></p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Guy J. Abel</p>
+    <p>Formatted tibble</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

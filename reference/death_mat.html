@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quickly create IPF seed — ipf_seed • migest</title>
+<title>Calculate deaths for each element of place of birth - place of residence stock matrix — death_mat • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Quickly create IPF seed — ipf_seed" />
-<meta property="og:description" content="This function is predominantly intended to be used within the ipf routines in the migest package." />
+<meta property="og:title" content="Calculate deaths for each element of place of birth - place of residence stock matrix — death_mat" />
+<meta property="og:description" content="This function is predominantly intended to be used within the ffs routines in the migest package." />
 
 
 
@@ -140,44 +140,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Quickly create IPF seed</h1>
-    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/ipf_seed.R'><code>R/ipf_seed.R</code></a></small>
-    <div class="hidden name"><code>ipf_seed.Rd</code></div>
+    <h1>Calculate deaths for each element of place of birth - place of residence stock matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/death_mat.R'><code>R/death_mat.R</code></a></small>
+    <div class="hidden name"><code>death_mat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is predominantly intended to be used within the ipf routines in the migest package.</p>
+    <p>This function is predominantly intended to be used within the <code>ffs</code> routines in the migest package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ipf_seed</span><span class='op'>(</span>m <span class='op'>=</span> <span class='cn'>NULL</span>, R <span class='op'>=</span> <span class='cn'>NULL</span>, n_dim <span class='op'>=</span> <span class='cn'>NULL</span>, dn <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>death_mat</span><span class='op'>(</span>
+  d_por <span class='op'>=</span> <span class='cn'>NULL</span>,
+  m1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  method <span class='op'>=</span> <span class='st'>"proportion"</span>,
+  m2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  b_por <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>m</th>
-      <td><p>Matrix, Array or NULL to build seed. If NULL seed will be 1 for all elements.</p></td>
+      <th>d_por</th>
+      <td><p>Vector of numeric values for deaths in each place of residence.</p></td>
     </tr>
     <tr>
-      <th>R</th>
-      <td><p>Number of rows, columns and possibly n_dimensions for seed matrix or array.</p></td>
+      <th>m1</th>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1. Used to distribute deaths proportionally to each migrant stock population. For use when <code>method = "accounting"</code></p></td>
     </tr>
     <tr>
-      <th>n_dim</th>
-      <td><p>Numeric integer for the number of n_dimensions - 2 for matrix, 3 or more for an array</p></td>
+      <th>method</th>
+      <td><p>Character string of either <code>"proportion"</code> or <code>"accounting"</code> to choose method to distrubte deaths. The <code>"proportion"</code> method assumes the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same. The <code>"accounting"</code> method ensures that the the deaths by place of birth matches that implied by demographic accounting. Still needs to be explored fully.</p></td>
     </tr>
     <tr>
-      <th>dn</th>
-      <td><p>Vector of character strings for n_dimension names</p></td>
+      <th>m2</th>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1. Used to distribute deaths proportionally to each migrant stock population.</p></td>
+    </tr>
+    <tr>
+      <th>b_por</th>
+      <td><p>Vector of numeric values for births in each place of residence. For use when <code>method = "accounting"</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>array</code> or <code>matrix</code></p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Guy J. Abel</p>
+    <p>Matrix of place of death by place of residence</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

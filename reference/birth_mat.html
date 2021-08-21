@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quickly create IPF seed — ipf_seed • migest</title>
+<title>Calculate births for each element of place of birth - place of residence stock matrix — birth_mat • migest</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Quickly create IPF seed — ipf_seed" />
-<meta property="og:description" content="This function is predominantly intended to be used within the ipf routines in the migest package." />
+<meta property="og:title" content="Calculate births for each element of place of birth - place of residence stock matrix — birth_mat" />
+<meta property="og:description" content="This function is predominantly intended to be used within the ffs routines in the migest package." />
 
 
 
@@ -140,44 +140,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Quickly create IPF seed</h1>
-    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/ipf_seed.R'><code>R/ipf_seed.R</code></a></small>
-    <div class="hidden name"><code>ipf_seed.Rd</code></div>
+    <h1>Calculate births for each element of place of birth - place of residence stock matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/guyabel/migest/blob/master/R/birth_mat.R'><code>R/birth_mat.R</code></a></small>
+    <div class="hidden name"><code>birth_mat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is predominantly intended to be used within the ipf routines in the migest package.</p>
+    <p>This function is predominantly intended to be used within the ffs routines in the migest package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ipf_seed</span><span class='op'>(</span>m <span class='op'>=</span> <span class='cn'>NULL</span>, R <span class='op'>=</span> <span class='cn'>NULL</span>, n_dim <span class='op'>=</span> <span class='cn'>NULL</span>, dn <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>birth_mat</span><span class='op'>(</span>b_por <span class='op'>=</span> <span class='cn'>NULL</span>, m2 <span class='op'>=</span> <span class='cn'>NULL</span>, non_negative <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>m</th>
-      <td><p>Matrix, Array or NULL to build seed. If NULL seed will be 1 for all elements.</p></td>
+      <th>b_por</th>
+      <td><p>Vector of numeric values for births in each place of residence</p></td>
     </tr>
     <tr>
-      <th>R</th>
-      <td><p>Number of rows, columns and possibly n_dimensions for seed matrix or array.</p></td>
+      <th>m2</th>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></td>
     </tr>
     <tr>
-      <th>n_dim</th>
-      <td><p>Numeric integer for the number of n_dimensions - 2 for matrix, 3 or more for an array</p></td>
-    </tr>
-    <tr>
-      <th>dn</th>
-      <td><p>Vector of character strings for n_dimension names</p></td>
+      <th>non_negative</th>
+      <td><p>Adjust birth matrix calculation to ensure all deductions from <code>m2</code> will result in positive population counts. On rare occasions when working with international stock data the number of births can exceed the increase in the number of native born population.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>array</code> or <code>matrix</code></p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>Guy J. Abel</p>
+    <p>Matrix of place of birth by place of residence for new-born’s</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
