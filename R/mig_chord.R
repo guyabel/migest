@@ -171,6 +171,9 @@ mig_chord <- function(
   if(is.null(z$grid.col)){
     region <- col <- NULL
     z$grid.col <- x %>%
+      dplyr::rename(orig = 1, 
+                    dest = 2, 
+                    flow = 3) %>%
       sum_turnover() %>%
       dplyr::mutate(col = grDevices::colorRampPalette(migest::umbrella)(dplyr::n())) %>%
       dplyr::select(region, col) %>%
