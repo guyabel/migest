@@ -1,6 +1,6 @@
 #' Chord diagram for directional origin-destination data
 #' 
-#' Adaption of \code{circlize::chordDiagramFromDataFrame()} for with defaults set to allow for more effective visualisation of directional origin-destination data
+#' Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 #'
 #' @param x Data frame with origin in first column, destination in second column and bilateral measure in third column
 #' @param lab Named vector of labels for plot. If \code{NULL} will use names from \code{d}

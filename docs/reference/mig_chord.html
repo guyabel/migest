@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Chord diagram for directional origin-destination data — mig_chord" />
-<meta property="og:description" content="Adaption of circlize::chordDiagramFromDataFrame() for with defaults set to allow for more effective visualisation of directional origin-destination data" />
+<meta property="og:description" content="Adaption of circlize::chordDiagramFromDataFrame() with defaults set to allow for more effective visualisation of directional origin-destination data" />
 
 
 
@@ -146,7 +146,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Adaption of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code> for with defaults set to allow for more effective visualisation of directional origin-destination data</p>
+    <p>Adaption of <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame()</a></code> with defaults set to allow for more effective visualisation of directional origin-destination data</p>
     </div>
 
     <pre class="usage"><span class='fu'>mig_chord</span><span class='op'>(</span>
@@ -194,7 +194,7 @@
     </tr>
     <tr>
       <th>label_nudge</th>
-      <td><p>Numeric value to nudge clockwise labels towards (negative number) or away (positive number) the sector axis.</p></td>
+      <td><p>Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis.</p></td>
     </tr>
     <tr>
       <th>axis_size</th>
@@ -202,7 +202,7 @@
     </tr>
     <tr>
       <th>axis_breaks</th>
-      <td><p>Numeric value for how often to add axis label breaks. Default not activated, uses default from <code><a href='https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html'>circlize::chordDiagramFromDataFrame</a></code></p></td>
+      <td><p>Numeric value for how often to add axis label breaks. Default not activated, uses default from <code><a href='https://rdrr.io/pkg/circlize/man/circos.axis.html'>circlize::circos.axis()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -328,14 +328,14 @@
   <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='va'>lab</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lab1"</span>, <span class='st'>"lab2"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>"\n"</span>, remove <span class='op'>=</span> <span class='cn'>FALSE</span>, fill <span class='op'>=</span> <span class='st'>"right"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Asking for more lines than words</span></div><div class='output co'>#&gt; <span class='message'>Asking for more lines than words</span></div><div class='output co'>#&gt; <span class='message'>Asking for more lines than words</span></div><div class='output co'>#&gt; <span class='message'>Asking for more lines than words</span></div><div class='input'><span class='va'>r</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 8</span>
-#&gt;   region                          in_mig out_mig  turn    net lab    lab1  lab2 
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> Africa                            2.65    4.97  7.62 -<span style='color: #BB0000;'>2.32</span>  <span style='color: #949494;'>"</span>Afri~ Afri~ <span style='color: #BB0000;'>NA</span>   
-#&gt; <span style='color: #BCBCBC;'>2</span> Asia                              7.17   15.8  23.0  -<span style='color: #BB0000;'>8.65</span>  <span style='color: #949494;'>"</span>Asia<span style='color: #949494;'>"</span> Asia  <span style='color: #BB0000;'>NA</span>   
-#&gt; <span style='color: #BCBCBC;'>3</span> Europe                           14.5     7.66 22.1   6.80  <span style='color: #949494;'>"</span>Euro~ Euro~ <span style='color: #BB0000;'>NA</span>   
-#&gt; <span style='color: #BCBCBC;'>4</span> Latin America and the Caribbean   4.09    6.70 10.8  -<span style='color: #BB0000;'>2.61</span>  <span style='color: #949494;'>"</span>Lati~ Lati~ and ~
-#&gt; <span style='color: #BCBCBC;'>5</span> Northern America                 13.2     7.17 20.3   5.98  <span style='color: #949494;'>"</span>Nort~ Nort~ Amer~
-#&gt; <span style='color: #BCBCBC;'>6</span> Oceania                           2.12    1.33  3.45  0.793 <span style='color: #949494;'>"</span>Ocea~ Ocea~ <span style='color: #BB0000;'>NA</span>   </div><div class='input'>
+#&gt;   region                          out_mig in_mig  turn    net lab    lab1  lab2 
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                             <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span> Africa                             4.97   2.65  7.62 -<span style='color: #BB0000;'>2.32</span>  <span style='color: #949494;'>"</span>Afri~ Afri~ <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>2</span> Asia                              15.8    7.17 23.0  -<span style='color: #BB0000;'>8.65</span>  <span style='color: #949494;'>"</span>Asia<span style='color: #949494;'>"</span> Asia  <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>3</span> Europe                             7.66  14.5  22.1   6.80  <span style='color: #949494;'>"</span>Euro~ Euro~ <span style='color: #BB0000;'>NA</span>   
+#&gt; <span style='color: #BCBCBC;'>4</span> Latin America and the Caribbean    6.70   4.09 10.8  -<span style='color: #BB0000;'>2.61</span>  <span style='color: #949494;'>"</span>Lati~ Lati~ and ~
+#&gt; <span style='color: #BCBCBC;'>5</span> Northern America                   7.17  13.2  20.3   5.98  <span style='color: #949494;'>"</span>Nort~ Nort~ Amer~
+#&gt; <span style='color: #BCBCBC;'>6</span> Oceania                            1.33   2.12  3.45  0.793 <span style='color: #949494;'>"</span>Ocea~ Ocea~ <span style='color: #BB0000;'>NA</span>   </div><div class='input'>
 <span class='co'># pdf(file = "chord.pdf")</span>
 <span class='fu'>mig_chord</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>pb</span>,
           lab <span class='op'>=</span> <span class='va'>r</span> <span class='op'>%&gt;%</span>

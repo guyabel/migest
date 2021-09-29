@@ -67,7 +67,7 @@ The layout of the plots are designed to specifically work on plotting images int
 Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks, \code{label_nudge}, track height in \code{preAllocateTracks} and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE} and \code{clear_circos_par = FALSE}.
 }
 \description{
-Adaption of \code{circlize::chordDiagramFromDataFrame()} for with defaults set to allow for more effective visualisation of directional origin-destination data
+Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 }
 \examples{
 \dontrun{
