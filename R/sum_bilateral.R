@@ -1,4 +1,4 @@
-#' Calculate counter-flow and net migration flow
+#' Summary of bilateral flows, counter-flow and net migration flow
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param label Character string for the prefix of the calculated columns. Can take values \code{flow} or \code{stream}
@@ -14,7 +14,8 @@
 #' r <- LETTERS[1:4]
 #' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
 #'             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
-#' counter(m)
+#' m           
+#' sum_bilateral(m)
 #' 
 #' # data frame
 #' library(dplyr)
@@ -26,8 +27,8 @@
 #' # use group_by to distinguish od tables
 #' d %>%
 #'   group_by(sex) %>%
-#'   counter()
-counter <- function(m, label = "flow",
+#'   sum_bilateral()
+sum_bilateral <- function(m, label = "flow",
                        orig_col = "orig", dest_col = "dest", flow_col = "flow"){
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"
   if(!label %in% c("flow", "stream"))

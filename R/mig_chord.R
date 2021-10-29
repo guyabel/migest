@@ -75,7 +75,7 @@
 #' 
 #' # multiple line labels to fit on longer labels
 #' r <- pb %>%
-#'   sum_turnover() %>%
+#'   sum_region() %>%
 #'   mutate(lab = str_wrap_n(string = region, n = 2)) %>%
 #'   separate(col = lab, into = c("lab1", "lab2"), sep = "\n", remove = FALSE, fill = "right")
 #' r
@@ -174,7 +174,7 @@ mig_chord <- function(
       dplyr::rename(orig = 1, 
                     dest = 2, 
                     flow = 3) %>%
-      sum_turnover() %>%
+      sum_region() %>%
       dplyr::mutate(col = grDevices::colorRampPalette(migest::umbrella)(dplyr::n())) %>%
       dplyr::select(region, col) %>%
       tibble::deframe()

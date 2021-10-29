@@ -7,7 +7,6 @@
 #' 
 #' @return Returns a numeric value of the sum of a single block.
 #' @author Guy J. Abel
-#' @seealso \code{\link{sum_turnover}}
 #' @export
 #'
 #' @examples

@@ -289,14 +289,8 @@
 <span class='va'>s1</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fl'>55</span>, <span class='fl'>40</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>25</span>, <span class='fl'>140</span>, <span class='fl'>20</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>65</span>, <span class='fl'>200</span><span class='op'>)</span>
 <span class='va'>s2</span><span class='op'>[</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>25</span>, <span class='fl'>10</span>, <span class='fl'>40</span>, <span class='fl'>30</span>, <span class='fl'>60</span>, <span class='fl'>55</span>, <span class='fl'>45</span>, <span class='fl'>10</span>, <span class='fl'>10</span>, <span class='fl'>140</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>50</span>, <span class='fl'>180</span><span class='op'>)</span>
 <span class='va'>e1</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span>
-<span class='va'>e1</span><span class='op'>$</span><span class='va'>od_flow</span>
-</div><div class='output co'>#&gt;      dest
-#&gt; orig         A        B          C         D       Sum
-#&gt;   A    0.00000 20.06112 0.04438808  9.998155  30.10366
-#&gt;   B    0.00000  0.00000 0.00000000  0.000000   0.00000
-#&gt;   C   15.05250 14.71183 0.00000000  5.049044  34.81337
-#&gt;   D   10.07641 24.72465 0.72202599  0.000000  35.52308
-#&gt;   Sum 25.12891 59.49760 0.76641407 15.047199 100.44012</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m, verbose = verbose,     ...): row and column totals are not equal for one or more sub-tables, ensure colSums(row_tot)==rowSums(col_tot)</span></div><div class='input'><span class='va'>e1</span><span class='op'>$</span><span class='va'>od_flow</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'e1' not found</span></div><div class='input'>
 <span class='co'># international migration review supp. material example</span>
 <span class='co'># distance matrix</span>
 <span class='va'>dd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5</span>, <span class='fl'>50</span>, <span class='fl'>500</span>, <span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>45</span>, <span class='fl'>495</span>, <span class='fl'>50</span>, <span class='fl'>45</span>, <span class='fl'>0</span>, <span class='fl'>450</span>, <span class='fl'>500</span>, <span class='fl'>495</span>, <span class='fl'>450</span>, <span class='fl'>0</span><span class='op'>)</span>, 
@@ -311,12 +305,12 @@
 #&gt;    D 500 495 450   0</div><div class='input'><span class='va'>e3</span> <span class='op'>&lt;-</span> <span class='fu'>ffs_demo</span><span class='op'>(</span>m1 <span class='op'>=</span> <span class='va'>s1</span>, m2 <span class='op'>=</span> <span class='va'>s2</span>, b_por <span class='op'>=</span> <span class='va'>b</span>, d_por <span class='op'>=</span> <span class='va'>d</span>, m <span class='op'>=</span> <span class='va'>dd</span><span class='op'>)</span>
 <span class='va'>e3</span><span class='op'>$</span><span class='va'>od_flow</span>
 </div><div class='output co'>#&gt;      dest
-#&gt; orig          A        B           C         D      Sum
-#&gt;   A    0.000000 19.81928 0.000000000  9.973302 29.79258
-#&gt;   B    0.000000  0.00000 0.000000000  0.000000  0.00000
-#&gt;   C   15.420677 14.50351 0.000000000  5.060804 34.98499
-#&gt;   D    9.820779 25.18190 0.006799172  0.000000 35.00948
-#&gt;   Sum 25.241456 59.50469 0.006799172 15.034106 99.78705</div><div class='input'>
+#&gt; orig         A        B C  D Sum
+#&gt;   A    0.00000 20.00000 0 10  30
+#&gt;   B    0.00000  0.00000 0  0   0
+#&gt;   C   15.23823 14.76177 0  5  35
+#&gt;   D    9.76177 25.23823 0  0  35
+#&gt;   Sum 25.00000 60.00000 0 15 100</div><div class='input'>
 <span class='co'>##</span>
 <span class='co'>## with births and deaths over period</span>
 <span class='co'>##</span>
@@ -356,11 +350,11 @@
 <span class='va'>e7</span><span class='op'>$</span><span class='va'>od_flow</span>
 </div><div class='output co'>#&gt;      dest
 #&gt; orig         A        B         C        D       Sum
-#&gt;   A    0.00000 8.258457  0.000000 0.000000  8.258457
-#&gt;   B   15.33488 0.000000 18.687672 5.780648 39.803204
-#&gt;   C    0.00000 1.051386  0.000000 0.000000  1.051386
-#&gt;   D   17.48830 0.000000  8.343697 0.000000 25.831999
-#&gt;   Sum 32.82319 9.309843 27.031369 5.780648 74.945047</div></pre>
+#&gt;   A    0.00000 7.912363  0.000000 0.000000  7.912363
+#&gt;   B   15.62572 0.000000 17.798757 5.691586 39.116065
+#&gt;   C    0.00000 1.209485  0.000000 0.000000  1.209485
+#&gt;   D   17.84553 0.000000  7.892298 0.000000 25.737830
+#&gt;   Sum 33.47125 9.121848 25.691055 5.691586 73.975743</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

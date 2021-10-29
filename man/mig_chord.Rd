@@ -117,7 +117,7 @@ mig_chord(x = pb,
 
 # multiple line labels to fit on longer labels
 r <- pb \%>\%
-  sum_turnover() \%>\%
+  sum_region() \%>\%
   mutate(lab = str_wrap_n(string = region, n = 2)) \%>\%
   separate(col = lab, into = c("lab1", "lab2"), sep = "\n", remove = FALSE, fill = "right")
 r

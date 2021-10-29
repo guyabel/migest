@@ -1,4 +1,4 @@
-#' Calculate turnover and total in-, out- and net-migration totals from an origin-destination migration flow matrix or data frame.
+#' Calculate total in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param drop_diagonal Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.
@@ -19,10 +19,10 @@
 #' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
 #'             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
 #' m
-#' sum_turnover(m)
+#' sum_region(m)
 #'   
 #' # different labels
-#' sum_turnover(m, international = TRUE)
+#' sum_region(m, international = TRUE)
 #' 
 #' \dontrun{
 #' # data frame (tidy) format
@@ -34,14 +34,14 @@
 #' # turnover for single period
 #' f %>% 
 #'   filter(year0 == 1990) %>%
-#'   sum_turnover(flow_col = "da_pb_closed", type = "international")
+#'   sum_region(flow_col = "da_pb_closed", type = "international")
 #' 
 #' # turnover for all periods using group_by
 #' f %>% 
 #'   group_by(year0) %>%
-#'   sum_turnover(flow_col = "da_pb_closed", type = "international")
+#'   sum_region(flow_col = "da_pb_closed", type = "international")
 #' }   
-sum_turnover <- function(
+sum_region <- function(
   m, drop_diagonal = TRUE, include_net = TRUE, 
   orig_col = "orig", dest_col = "dest", flow_col = "flow",
   type = "internal", international = FALSE, name_tot = FALSE){
@@ -54,7 +54,7 @@ sum_turnover <- function(
     stop("type must be set to internal or international")
   
   # fmt <- migest:::format_migration_tibble(
-  fmt <- migest:::format_migration_tibble(
+  fmt <- format_migration_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
   d <- fmt$d
@@ -112,8 +112,8 @@ sum_turnover <- function(
 #   orig = LETTERS[1:4], 
 #   dest = LETTERS[1:4]) %>%
 #   mutate(flow = 1:16)
-# sum_turnover(d0)
+# sum_region(d0)
 # 
 # m0 <- xtabs(formula = flow ~ orig + dest, data = d0)
 # addmargins(m0)
-# sum_turnover(d0, drop_diagonal = FALSE)
+# sum_region(d0, drop_diagonal = FALSE)

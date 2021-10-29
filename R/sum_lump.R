@@ -4,7 +4,7 @@
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param threshold Numeric value used to determine small flows, origins or destinations that will be grouped (lumped) together. 
-#' @param lump Character string to indicate where to apply the threshold. Choose from the \code{flow} values, \code{in} migration totals and/or \code{out} migration totals.
+#' @param lump Character string to indicate where to apply the threshold. Choose from the \code{flow} values, \code{in} migration region and/or \code{out} migration region.
 #' @param other_level Character string for the origin and/or destination label for the lumped values below the \code{threshold}. Default \code{"other"}.
 #' @param complete Logical value to return a \code{tibble} with complete the origin-destination combinations
 #' @param fill Numeric value for to fill small cells below the \code{threshold} when \code{complete = TRUE}. Default of zero.
@@ -15,7 +15,7 @@
 #'
 #' @return A \code{tibble} with an additional \code{other} origins and/or destinations region based on the grouping together of small values below the \code{threshold} argument and the \code{lump} argument to indicate on where to apply the threshold. 
 #' 
-#' @details The \code{lump} argument can take values \code{flow} or \code{bilat} to apply the threshold to the data values for between region migration, \code{in} or \code{imm} to apply the threshold to the incoming region totals and \code{out} or \code{emi} to apply the threshold to outgoing region totals.
+#' @details The \code{lump} argument can take values \code{flow} or \code{bilat} to apply the threshold to the data values for between region migration, \code{in} or \code{imm} to apply the threshold to the incoming region region and \code{out} or \code{emi} to apply the threshold to outgoing region region.
 #' @export
 #'
 #' @examples
@@ -24,7 +24,7 @@
 #'             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
 #' m
 #' 
-#' # threshold on in and out totals
+#' # threshold on in and out region
 #' sum_lump(m, threshold = 100, lump = c("in", "out"))
 #' 
 #' # threshold on flows (default)
@@ -77,13 +77,13 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   imm_lump <- emi_lump <- flow_lump <- NULL
   if(any(lump %in% c("in", "imm"))){
     imm_lump <- d %>%
-      sum_turnover() %>%
+      sum_region() %>%
       dplyr::filter(in_mig < threshold) %>%
       dplyr::pull(region)
   }
   if(any(lump %in% c("out", "emi"))){
     emi_lump <- d %>%
-      sum_turnover() %>%
+      sum_region() %>%
       dplyr::filter(out_mig < threshold) %>%
       dplyr::pull(region)
   }

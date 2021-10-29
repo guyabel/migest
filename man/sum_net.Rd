@@ -24,9 +24,6 @@ m <- matrix(data = 1:16, nrow = 4, ncol = 4,
 m
 sum_net(m)
 }
-\seealso{
-\code{\link{sum_turnover}}
-}
 \author{
 Guy J. Abel
 }

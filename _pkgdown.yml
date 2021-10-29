@@ -1,10 +1,10 @@
 reference:
 - title: "Migration data summaries"
 - contents:
-  - sum_turnover
+  - sum_bilateral
+  - sum_region
   - sum_lump
   - sum_expand
-  - counter
   - multi_comp
   - multi_comp2
 - title: "Migration indices"

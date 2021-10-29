@@ -7,4 +7,6 @@
 * Added `str_wrap_n()`
 * Added `mig_chord()`
 * Added `dict_ims`
+* Replace `sum_turnover()` with `sum_region()`
+* Replace `counter()` with `sum_bilat()`
 

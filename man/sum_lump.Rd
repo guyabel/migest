@@ -22,7 +22,7 @@ sum_lump(
 
 \item{threshold}{Numeric value used to determine small flows, origins or destinations that will be grouped (lumped) together.}
 
-\item{lump}{Character string to indicate where to apply the threshold. Choose from the \code{flow} values, \code{in} migration totals and/or \code{out} migration totals.}
+\item{lump}{Character string to indicate where to apply the threshold. Choose from the \code{flow} values, \code{in} migration region and/or \code{out} migration region.}
 
 \item{other_level}{Character string for the origin and/or destination label for the lumped values below the \code{threshold}. Default \code{"other"}.}
 
@@ -45,7 +45,7 @@ A \code{tibble} with an additional \code{other} origins and/or destinations regi
 Lump together regions/countries if their flows are below a given threshold.
 }
 \details{
-The \code{lump} argument can take values \code{flow} or \code{bilat} to apply the threshold to the data values for between region migration, \code{in} or \code{imm} to apply the threshold to the incoming region totals and \code{out} or \code{emi} to apply the threshold to outgoing region totals.
+The \code{lump} argument can take values \code{flow} or \code{bilat} to apply the threshold to the data values for between region migration, \code{in} or \code{imm} to apply the threshold to the incoming region region and \code{out} or \code{emi} to apply the threshold to outgoing region region.
 }
 \examples{
 r <- LETTERS[1:4]
@@ -53,7 +53,7 @@ m <- matrix(data = c(0, 100, 30, 10, 50, 0, 50, 5, 10, 40, 0, 40, 20, 25, 20, 0)
             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
 m
 
-# threshold on in and out totals
+# threshold on in and out region
 sum_lump(m, threshold = 100, lump = c("in", "out"))
 
 # threshold on flows (default)

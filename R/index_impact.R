@@ -63,7 +63,7 @@ index_impact <- function(m, p,
 
   
   m %>%
-    sum_turnover() %>%
+    sum_region() %>%
     dplyr::summarise(
       effectivness = 100 * sum(abs(net)) / sum(turn),
       anmr = 100 * 0.5 * sum(abs(net)) / sum(p$pop),
