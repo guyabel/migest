@@ -90,6 +90,8 @@ cm_net_tot <- function(net_tot = NULL, tot = NULL, m = NULL, tol = 1e-06, maxit 
                          b = net_tot[i], 
                          c = -sum(alpha_old * m[,i] * lambda_old))
       p <- p[p>0]
+      if(length(p) == 0)
+        p <- 1
       if(is.infinite(p) | is.na(p) | is.nan(p))
         p <- 1
       alpha[i] <- p

@@ -68,6 +68,7 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
       }
       alpha_old <- alpha
       
+      # m <- s1/sum(s1)
       for(i in 1:R){
          # peter's code
          # (-net_tot[h] + sqrt(net_tot[h]^2 + 4 * sum(1/alpha[, (i-1)] * m[h,]) * sum(alpha[,(i-1)] * m[,h]))) / (2 * sum(1/alpha[, (i-1)] * m[h,]))
@@ -76,8 +77,10 @@ cm_net <- function(net_tot = NULL, m = NULL, tol = 1e-06, maxit = 500, verbose =
                             b = net_tot[i], 
                             c = -sum(alpha_old * m[,i]))
          p <- p[p>0]
+         if(length(p) == 0)
+           p <- 1
          if(is.infinite(p) | is.na(p) | is.nan(p))
-            p <- 1
+           p <- 1
          alpha[i] <- p
       }
       d_max <- max(abs(alpha_old - alpha))
