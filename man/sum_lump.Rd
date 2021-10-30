@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_lump.R
 \name{sum_lump}
 \alias{sum_lump}
-\title{Sum and lump together small flows into "other"}
+\title{Sum and lump together small flows into a "other" category}
 \usage{
 sum_lump(
   m,

@@ -34,6 +34,7 @@ Summary of bilateral flows, counter-flow and net migration flow
 r <- LETTERS[1:4]
 m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
+m           
 sum_bilateral(m)
 
 # data frame

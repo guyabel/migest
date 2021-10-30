@@ -8,7 +8,7 @@
 An object of class \code{matrix} (inherits from \code{array}) with 17 rows and 17 columns.
 }
 \source{
-Robin Edwards, Maksym Bondarenko, Andrew J. Tatem and Alessandro Sorichetta. Unconstrained subnational Population Weighted Density in 2000, 2005, 2010, 2015 and 2020 ( 100m resolution ). WorldPop, University of Southampton, UK. \url{https://doi.org/10.5258/SOTON/WP00703}
+Robin Edwards, Maksym Bondarenko, Andrew J. Tatem and Alessandro Sorichetta. Unconstrained subnational Population Weighted Density in 2000, 2005, 2010, 2015 and 2020 ( 100m resolution ). WorldPop, University of Southampton, UK.
 }
 \usage{
 korea_dist

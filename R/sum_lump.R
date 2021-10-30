@@ -1,4 +1,4 @@
-#' Sum and lump together small flows into "other"
+#' Sum and lump together small flows into a "other" category
 #'
 #' @description Lump together regions/countries if their flows are below a given threshold.
 #'

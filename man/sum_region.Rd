@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_region.R
 \name{sum_region}
 \alias{sum_region}
-\title{Calculate total in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
+\title{Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_region(
   m,
@@ -39,7 +39,7 @@ sum_region(
 A \code{tibble} with total in-, out- and turnover of flows for each region.
 }
 \description{
-Calculate total in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
+Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
 }
 \examples{
 # matrix

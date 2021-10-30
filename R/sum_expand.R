@@ -1,4 +1,4 @@
-#' Expand flow data to include aggregate sums for origin and destination meta-regions
+#' Sum bilateral data to include aggregate bilateral totals for origin and destination meta areas
 #' 
 #' @description Expand matrix of data frame of migration data to include aggregate sums for corresponding origin and destination meta regions.
 #'

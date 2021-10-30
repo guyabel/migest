@@ -12,5 +12,5 @@
 #' }
 #' @source Minnesota Population Center. (2015). Integrated Public Use Microdata Series, International: Version 6.4 [Machine-readable database]. \url{https://international.ipums.org/international/}
 #' 
-#' @source Bernard, A., Bell, M., & Charles-Edwards, E. (2014). Improved measures for the cross-national comparison of age profiles of internal migration. Population Studies, 68(2), 179–195. \url{https://doi.org/10.1080/00324728.2014.890243}
+#' @source Bernard, A., Bell, M., & Charles-Edwards, E. (2014). Improved measures for the cross-national comparison of age profiles of internal migration. Population Studies, 68(2), 179–195.
 "ipumsi_age"

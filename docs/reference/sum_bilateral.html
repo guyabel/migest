@@ -191,7 +191,13 @@
 <span class='va'>r</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>100</span>, <span class='fl'>30</span>, <span class='fl'>70</span>, <span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>45</span>, <span class='fl'>5</span>, <span class='fl'>60</span>, <span class='fl'>35</span>, <span class='fl'>0</span>, <span class='fl'>40</span>, <span class='fl'>20</span>, <span class='fl'>25</span>, <span class='fl'>20</span>, <span class='fl'>0</span><span class='op'>)</span>,
             nrow <span class='op'>=</span> <span class='fl'>4</span>, ncol <span class='op'>=</span> <span class='fl'>4</span>, dimnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>orig <span class='op'>=</span> <span class='va'>r</span>, dest <span class='op'>=</span> <span class='va'>r</span><span class='op'>)</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'>sum_bilateral</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='va'>m</span>           
+</div><div class='output co'>#&gt;     dest
+#&gt; orig  A   B  C  D
+#&gt;    A  0 100 30 70
+#&gt;    B 50   0 45  5
+#&gt;    C 60  35  0 40
+#&gt;    D 20  25 20  0</div><div class='input'><span class='fu'>sum_bilateral</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 12 x 8</span>
 #&gt;    orig  dest  corridor pair   flow counter_flow net_flow interchange
 #&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>

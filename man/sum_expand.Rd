@@ -2,7 +2,7 @@
 % Please edit documentation in R/sum_expand.R
 \name{sum_expand}
 \alias{sum_expand}
-\title{Expand flow data to include aggregate sums for origin and destination meta-regions}
+\title{Sum bilateral data to include aggregate bilateral totals for origin and destination meta areas}
 \usage{
 sum_expand(
   m,
