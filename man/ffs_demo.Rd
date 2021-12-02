@@ -14,6 +14,7 @@ ffs_demo(
   stayer_assumption = TRUE,
   match_global = "before-demo-adjust",
   match_pob_tot_method = "rescale",
+  birth_method = "native",
   birth_non_negative = TRUE,
   death_method = "proportion",
   verbose = FALSE,
@@ -36,6 +37,8 @@ ffs_demo(
 \item{match_global}{Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_pob_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.}
 
 \item{match_pob_tot_method}{Character string passed to \code{method} argument in \code{match_pob_tot} to ensure place of birth margins in stock tables match.}
+
+\item{birth_method}{Character string passed to \code{method} argument in \code{birth_mat}.}
 
 \item{birth_non_negative}{Logical value passed to \code{non_negative} argument in \code{birth_mat}.}
 

@@ -2,13 +2,11 @@
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
 #' @param drop_diagonal Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.
-#' @param include_net Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}. 
 #' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
-#' @param type Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in_mig}, \code{tot_out_mig} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.
+#' @param include_net Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}. 
 #' @param international Logical to indicate if flows are international.
-#' @param name_tot Logical to prefix column names with `"tot_"` to match older versions. Default `FALSE`.
 #'
 #' @return A \code{tibble} with total in-, out- and turnover of flows for each region. 
 #' 
@@ -21,9 +19,6 @@
 #' m
 #' sum_region(m)
 #'   
-#' # different labels
-#' sum_region(m, international = TRUE)
-#' 
 #' \dontrun{
 #' # data frame (tidy) format
 #' library(tidyverse)
@@ -42,17 +37,14 @@
 #'   sum_region(flow_col = "da_pb_closed", type = "international")
 #' }   
 sum_region <- function(
-  m, drop_diagonal = TRUE, include_net = TRUE, 
+  m, drop_diagonal = TRUE, 
   orig_col = "orig", dest_col = "dest", flow_col = "flow",
-  type = "internal", international = FALSE, name_tot = FALSE){
+  international = FALSE, include_net = TRUE){
   # m = d0; drop_diagonal = FALSE; include_net = TRUE
   # m <- xtabs(formula = da_pb_closed ~ orig + dest, data = d0, subset = year0 == 1990)
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
   # flow_col = "flow"
   orig <- dest <- flow <- region <- tot_in_mig <- tot_out_mig <- NULL
-  if(!type %in% c("internal", "international"))
-    stop("type must be set to internal or international")
-  
   # fmt <- migest:::format_migration_tibble(
   fmt <- format_migration_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
@@ -88,18 +80,33 @@ sum_region <- function(
     d <- d %>%
       dplyr::mutate(tot_net = tot_in_mig - tot_out_mig)
   }
-  if(type == "international" | international == TRUE){
+  if(international == TRUE){
     d <- d %>%
       dplyr::rename(country = region, 
                     tot_imm = tot_in_mig,
                     tot_emi = tot_out_mig)
   }
-  if(!name_tot){
-    d <- d %>%
-      stats::setNames(stringr::str_remove(names(.), pattern = "tot_"))
-  }
+  d <- d %>%
+    stats::setNames(stringr::str_remove(names(.), pattern = "tot_"))
   return(d)
 }
+
+#' @rdname sum_region
+#' @export
+sum_turnover <- sum_region
+
+#' @rdname sum_region
+#' @export
+sum_country <- function(m, drop_diagonal = TRUE, 
+                       orig_col = "orig", dest_col = "dest", flow_col = "flow",
+                       include_net = TRUE, international = TRUE){
+  sum_region(m = m, drop_diagonal = drop_diagonal, 
+             orig_col = orig_col, dest_col = dest_col, flow_col = flow_col,
+             include_net = include_net, international = international)
+}
+  
+
+
 # library(tidyverse)
 # library(migest)
 # d0 <- expand_grid(

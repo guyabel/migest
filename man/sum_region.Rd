@@ -2,18 +2,38 @@
 % Please edit documentation in R/sum_region.R
 \name{sum_region}
 \alias{sum_region}
+\alias{sum_turnover}
+\alias{sum_country}
 \title{Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_region(
   m,
   drop_diagonal = TRUE,
-  include_net = TRUE,
   orig_col = "orig",
   dest_col = "dest",
   flow_col = "flow",
-  type = "internal",
   international = FALSE,
-  name_tot = FALSE
+  include_net = TRUE
+)
+
+sum_turnover(
+  m,
+  drop_diagonal = TRUE,
+  orig_col = "orig",
+  dest_col = "dest",
+  flow_col = "flow",
+  international = FALSE,
+  include_net = TRUE
+)
+
+sum_country(
+  m,
+  drop_diagonal = TRUE,
+  orig_col = "orig",
+  dest_col = "dest",
+  flow_col = "flow",
+  include_net = TRUE,
+  international = TRUE
 )
 }
 \arguments{
@@ -21,19 +41,15 @@ sum_region(
 
 \item{drop_diagonal}{Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.}
 
-\item{include_net}{Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}.}
-
 \item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{type}{Character string to indicate if flows are \code{internal} or \code{international} to indicate if to use \code{region}, \code{tot_in_mig}, \code{tot_out_mig} or \code{country}, \code{tot_imm} and \code{tot_emi} in output.}
-
 \item{international}{Logical to indicate if flows are international.}
 
-\item{name_tot}{Logical to prefix column names with `"tot_"` to match older versions. Default `FALSE`.}
+\item{include_net}{Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}.}
 }
 \value{
 A \code{tibble} with total in-, out- and turnover of flows for each region.
@@ -49,9 +65,6 @@ m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0)
 m
 sum_region(m)
   
-# different labels
-sum_region(m, international = TRUE)
-
 \dontrun{
 # data frame (tidy) format
 library(tidyverse)

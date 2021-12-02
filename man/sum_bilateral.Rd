@@ -2,9 +2,18 @@
 % Please edit documentation in R/sum_bilateral.R
 \name{sum_bilateral}
 \alias{sum_bilateral}
+\alias{sum_bilat}
 \title{Summary of bilateral flows, counter-flow and net migration flow}
 \usage{
 sum_bilateral(
+  m,
+  label = "flow",
+  orig_col = "orig",
+  dest_col = "dest",
+  flow_col = "flow"
+)
+
+sum_bilat(
   m,
   label = "flow",
   orig_col = "orig",

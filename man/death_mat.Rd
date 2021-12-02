@@ -15,11 +15,11 @@ death_mat(
 \arguments{
 \item{d_por}{Vector of numeric values for deaths in each place of residence.}
 
-\item{m1}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Used to distribute deaths proportionally to each migrant stock population. For use when \code{method = "accounting"}}
+\item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}. Used to distribute deaths proportionally to each migrant stock population.}
 
-\item{method}{Character string of either \code{"proportion"} or \code{"accounting"} to choose method to distrubte deaths. The \code{"proportion"} method assumes the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same. The \code{"accounting"} method ensures that the the deaths by place of birth matches that implied by demographic accounting. Still needs to be explored fully.}
+\item{method}{Character string of either \code{"proportion"} or \code{"accounting"} to choose method to distribute deaths. The \code{"proportion"} method assumes the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same. The \code{"accounting"} method ensures that the the deaths by place of birth matches that implied by demographic accounting. Still needs to be explored fully.}
 
-\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Used to distribute deaths proportionally to each migrant stock population.}
+\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Used to distribute deaths proportionally to each migrant stock population. For use when \code{method = "accounting"}}
 
 \item{b_por}{Vector of numeric values for births in each place of residence. For use when \code{method = "accounting"}.}
 }

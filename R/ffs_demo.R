@@ -9,6 +9,7 @@
 #' @param stayer_assumption Logical value to indicate whether to use \code{\link{ipf3}} or \code{ipf3_qi} to estimate flows. By default uses \code{ipf3_qi}, i.e. is set to \code{TRUE}. The \code{ipf} function is useful for replicating method of Azose and Raftery.
 #' @param match_global Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_pob_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.
 #' @param match_pob_tot_method Character string passed to \code{method} argument in \code{match_pob_tot} to ensure place of birth margins in stock tables match.
+#' @param birth_method Character string passed to \code{method} argument in \code{birth_mat}.
 #' @param birth_non_negative Logical value passed to \code{non_negative} argument in \code{birth_mat}.
 #' @param death_method Character string passed to \code{method} argument in \code{death_mat}.
 #' @param verbose Logical value to indicate the print the parameter estimates at each iteration of the various IPF routines. By default \code{FALSE}.
@@ -107,6 +108,7 @@
 # m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
 # m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
 # stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"; match_global = "after-demo-adjust"; verbose = FALSE
+# birth_method = "proportion"
 # match_pob_tot_method = "open";
 ffs_demo <- function(m1 = NULL,
                      m2 = NULL, 
@@ -116,6 +118,7 @@ ffs_demo <- function(m1 = NULL,
                      stayer_assumption = TRUE,
                      match_global = "before-demo-adjust",
                      match_pob_tot_method = "rescale",
+                     birth_method = "native",
                      birth_non_negative = TRUE,
                      death_method = "proportion",
                      verbose = FALSE,
@@ -143,6 +146,7 @@ ffs_demo <- function(m1 = NULL,
   # set up m and y to store results
   if(is.null(m) | length(dim(m) == 2)){
     m <- ipf_seed(m = m, R = R, n_dim = 3, dn = dn)
+    # m <- migest:::ipf_seed(m = m, R = R, n_dim = 3, dn = dn)
   }
   y <- array(0, dim(m) + c(2, 2, 0))
   dimnames(y) <- list(orig = c(dn, "birth", "outside"),
@@ -161,8 +165,10 @@ ffs_demo <- function(m1 = NULL,
   if(verbose)
     message("Adjust stock tables for changes in births and deaths...")
   
-  b_mat <- birth_mat(b_por = b, m2 = m2_a, non_negative = birth_non_negative)
+  b_mat <- birth_mat(b_por = b, m2 = m2_a, method = birth_method, non_negative = birth_non_negative)
   d_mat <- death_mat(d_por = d, m1 = m1_a, method = death_method, m2 = m2_a, b_por = b)
+  # b_mat <- migest:::birth_mat(b_por = b, m2 = m2_a, method = birth_method, non_negative = birth_non_negative)
+  # d_mat <- migest:::death_mat(d_por = d, m1 = m1_a, method = death_method, m2 = m2_a, b_por = b)
   m1_b <- m1_a - d_mat
   m2_b <- m2_a - b_mat
   
@@ -183,6 +189,7 @@ ffs_demo <- function(m1 = NULL,
   if(verbose)
     message("Rescale stock tables for equal place of birth totals...")
   x <- match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method, verbose = verbose)
+  # x <- migest:::match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method, verbose = verbose)
   m1_d <- x$m1_adj
   m2_d <- x$m2_adj
   # round(rowSums(m1_d)); round(rowSums(m2_d));

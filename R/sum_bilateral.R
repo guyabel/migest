@@ -71,3 +71,8 @@ sum_bilateral <- function(m, label = "flow",
   }
   return(d)
 }
+
+
+#' @rdname sum_bilateral
+#' @export
+sum_bilat <- sum_bilateral
