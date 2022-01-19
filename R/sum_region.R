@@ -26,15 +26,15 @@
 #' # download Abel and Cohen (2019) estimates
 #' f <- read_csv("https://ndownloader.figshare.com/files/26239945")
 #' 
-#' # turnover for single period
+#' # single period
 #' f %>% 
 #'   filter(year0 == 1990) %>%
-#'   sum_region(flow_col = "da_pb_closed", type = "international")
+#'   sum_region(flow_col = "da_pb_closed")
 #' 
-#' # turnover for all periods using group_by
+#' # all periods using group_by
 #' f %>% 
 #'   group_by(year0) %>%
-#'   sum_region(flow_col = "da_pb_closed", type = "international")
+#'   sum_region(flow_col = "da_pb_closed")
 #' }   
 sum_region <- function(
   m, drop_diagonal = TRUE, 
@@ -90,10 +90,6 @@ sum_region <- function(
     stats::setNames(stringr::str_remove(names(.), pattern = "tot_"))
   return(d)
 }
-
-#' @rdname sum_region
-#' @export
-sum_turnover <- sum_region
 
 #' @rdname sum_region
 #' @export

@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
       </span>
     </div>
 
@@ -166,15 +166,15 @@
     </tr>
     <tr>
       <th>m1</th>
-      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1. Used to distribute deaths proportionally to each migrant stock population. For use when <code>method = "accounting"</code></p></td>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>. Used to distribute deaths proportionally to each migrant stock population.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Character string of either <code>"proportion"</code> or <code>"accounting"</code> to choose method to distrubte deaths. The <code>"proportion"</code> method assumes the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same. The <code>"accounting"</code> method ensures that the the deaths by place of birth matches that implied by demographic accounting. Still needs to be explored fully.</p></td>
+      <td><p>Character string of either <code>"proportion"</code> or <code>"accounting"</code> to choose method to distribute deaths. The <code>"proportion"</code> method assumes the mortality rate in each place of birth sub-group (native born and all foreign born stocks) is the same. The <code>"accounting"</code> method ensures that the the deaths by place of birth matches that implied by demographic accounting. Still needs to be explored fully.</p></td>
     </tr>
     <tr>
       <th>m2</th>
-      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1. Used to distribute deaths proportionally to each migrant stock population.</p></td>
+      <td><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1. Used to distribute deaths proportionally to each migrant stock population. For use when <code>method = "accounting"</code></p></td>
     </tr>
     <tr>
       <th>b_por</th>

@@ -89,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
       </span>
     </div>
 
@@ -158,6 +158,7 @@
   stayer_assumption <span class='op'>=</span> <span class='cn'>TRUE</span>,
   match_global <span class='op'>=</span> <span class='st'>"before-demo-adjust"</span>,
   match_pob_tot_method <span class='op'>=</span> <span class='st'>"rescale"</span>,
+  birth_method <span class='op'>=</span> <span class='st'>"native"</span>,
   birth_non_negative <span class='op'>=</span> <span class='cn'>TRUE</span>,
   death_method <span class='op'>=</span> <span class='st'>"proportion"</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -198,6 +199,10 @@
     <tr>
       <th>match_pob_tot_method</th>
       <td><p>Character string passed to <code>method</code> argument in <code>match_pob_tot</code> to ensure place of birth margins in stock tables match.</p></td>
+    </tr>
+    <tr>
+      <th>birth_method</th>
+      <td><p>Character string passed to <code>method</code> argument in <code>birth_mat</code>.</p></td>
     </tr>
     <tr>
       <th>birth_non_negative</th>

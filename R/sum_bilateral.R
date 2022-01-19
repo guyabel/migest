@@ -15,7 +15,7 @@
 #' m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0),
 #'             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
 #' m           
-#' sum_bilateral(m)
+#' sum_bilat(m)
 #' 
 #' # data frame
 #' library(dplyr)
@@ -27,8 +27,8 @@
 #' # use group_by to distinguish od tables
 #' d %>%
 #'   group_by(sex) %>%
-#'   sum_bilateral()
-sum_bilateral <- function(m, label = "flow",
+#'   sum_bilat()
+sum_bilat <- function(m, label = "flow",
                        orig_col = "orig", dest_col = "dest", flow_col = "flow"){
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"
   if(!label %in% c("flow", "stream"))
@@ -72,7 +72,3 @@ sum_bilateral <- function(m, label = "flow",
   return(d)
 }
 
-
-#' @rdname sum_bilateral
-#' @export
-sum_bilat <- sum_bilateral

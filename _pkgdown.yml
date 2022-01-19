@@ -1,7 +1,7 @@
 reference:
 - title: "Migration data summaries"
 - contents:
-  - sum_bilateral
+  - sum_bilat
   - sum_region
   - sum_lump
   - sum_expand
