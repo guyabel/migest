@@ -209,9 +209,12 @@ mig_chord <- function(
           # if(is.null(y$major.at))
           #   y$major.at <- seq(from = 0, to = sum(z$df[,3]), by = axis_breaks)
           # do.call(what = circlize::circos.axis, args = y)
+          mm <- sum(z$df[,3])
+            if(!is.null(z$xmax))
+              mm <- max(z$xmax)*2
           circlize::circos.axis(
             h = "bottom", labels.cex = axis_size, labels.niceFacing = FALSE,
-            major.at = seq(from = 0, to = sum(z$df[,3]), by = axis_breaks)
+            major.at = seq(from = 0, to = mm, by = axis_breaks)
           )
         }
       })

@@ -48,7 +48,7 @@ index_impact <- function(m, p,
                          long = TRUE){
   orig <- dest <- flow <- pop <- reg <- net <- turn <- NULL
   if(!is.matrix(m)){
-    m <- format_migration_matrix(m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col)
+    m <- mig_matrix(m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col)
     diag(m) <- 0
   }
   r <- unique(row.names(m), colnames(m))

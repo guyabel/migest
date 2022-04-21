@@ -45,8 +45,8 @@ sum_region <- function(
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
   # flow_col = "flow"
   orig <- dest <- flow <- region <- tot_in_mig <- tot_out_mig <- NULL
-  # fmt <- migest:::format_migration_tibble(
-  fmt <- format_migration_tibble(
+  # fmt <- migest:::mig_tibble(
+  fmt <- mig_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
   d <- fmt$d

@@ -29,7 +29,7 @@ multi_comp <- function(m){
   obs <- fit <- prop <- interact <- comp <- NULL
   
   if(!is.matrix(m)){
-    m <- format_migration_matrix(m, array = TRUE)
+    m <- mig_matrix(m, array = TRUE)
   }
     
   

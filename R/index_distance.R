@@ -44,15 +44,15 @@ index_distance <- function(m = NULL,
                            ){
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"; pop_col = "pop"; dist_col = "dist"
   orig <- dest <- flow <- dist <- NULL
-  ff <- format_migration_tibble(
+  ff <- mig_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
   d0 <- ff$d
   g <- ff$g
   
   m_reg <- as.character(unique(c(d0$orig, d0$dest)))
-  # dd <- format_migration_tibble(m = korea_dist, flow_col = "dist")$d
-  d1 <- format_migration_tibble(m = d, flow_col = "dist")$d
+  # dd <- mig_tibble(m = korea_dist, flow_col = "dist")$d
+  d1 <- mig_tibble(m = d, flow_col = "dist")$d
   d_reg <- as.character(unique(c(d1$orig, d1$dest)))
   if(!setequal(m_reg, d_reg))
     stop("different region names in m and d")
