@@ -238,42 +238,36 @@
 <span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>, times <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>a</span>
 </div><div class='output co'>#&gt;  [1] "A" "A" "B" "B" "B" "C" "C" "C" "C" "D" "D"</div><div class='input'><span class='fu'>sum_expand</span><span class='op'>(</span>m <span class='op'>=</span> <span class='va'>m</span>, orig_area <span class='op'>=</span> <span class='va'>a</span>, dest_area <span class='op'>=</span> <span class='va'>a</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     dest
-#&gt; orig  A A1 A2  B B1 B2 B3   C C1 C2 C3 C4   D D1 D2
-#&gt;   A   4  2  2 30 10 10 10  72 18 18 18 18  52 26 26
-#&gt;   A1  2  1  1 15  5  5  5  36  9  9  9  9  26 13 13
-#&gt;   A2  2  1  1 15  5  5  5  36  9  9  9  9  26 13 13
-#&gt;   B  12  6  6 54 18 18 18 120 30 30 30 30  84 42 42
-#&gt;   B1  4  2  2 18  6  6  6  40 10 10 10 10  28 14 14
-#&gt;   B2  4  2  2 18  6  6  6  40 10 10 10 10  28 14 14
-#&gt;   B3  4  2  2 18  6  6  6  40 10 10 10 10  28 14 14
-#&gt;   C  24 12 12 84 28 28 28 176 44 44 44 44 120 60 60
-#&gt;   C1  6  3  3 21  7  7  7  44 11 11 11 11  30 15 15
-#&gt;   C2  6  3  3 21  7  7  7  44 11 11 11 11  30 15 15
-#&gt;   C3  6  3  3 21  7  7  7  44 11 11 11 11  30 15 15
-#&gt;   C4  6  3  3 21  7  7  7  44 11 11 11 11  30 15 15
-#&gt;   D  16  8  8 48 16 16 16  96 24 24 24 24  64 32 32
-#&gt;   D1  8  4  4 24  8  8  8  48 12 12 12 12  32 16 16
-#&gt;   D2  8  4  4 24  8  8  8  48 12 12 12 12  32 16 16</div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 225 x 3</span>
+#&gt;    orig  dest   flow
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> A     A         4
+#&gt; <span style='color: #BCBCBC;'> 2</span> A     A1        2
+#&gt; <span style='color: #BCBCBC;'> 3</span> A     A2        2
+#&gt; <span style='color: #BCBCBC;'> 4</span> A     B        30
+#&gt; <span style='color: #BCBCBC;'> 5</span> A     B1       10
+#&gt; <span style='color: #BCBCBC;'> 6</span> A     B2       10
+#&gt; <span style='color: #BCBCBC;'> 7</span> A     B3       10
+#&gt; <span style='color: #BCBCBC;'> 8</span> A     C        72
+#&gt; <span style='color: #BCBCBC;'> 9</span> A     C1       18
+#&gt; <span style='color: #BCBCBC;'>10</span> A     C2       18
+#&gt; <span style='color: #949494;'># ... with 215 more rows</span></div><div class='input'>
 <span class='co'># place area sums after regions</span>
 <span class='fu'>sum_expand</span><span class='op'>(</span>m <span class='op'>=</span> <span class='va'>m</span>, orig_area <span class='op'>=</span> <span class='va'>a</span>, dest_area <span class='op'>=</span> <span class='va'>a</span>, area_first <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;     dest
-#&gt; orig A1 A2  A B1 B2 B3  B C1 C2 C3 C4   C D1 D2   D
-#&gt;   A1  1  1  2  5  5  5 15  9  9  9  9  36 13 13  26
-#&gt;   A2  1  1  2  5  5  5 15  9  9  9  9  36 13 13  26
-#&gt;   A   2  2  4 10 10 10 30 18 18 18 18  72 26 26  52
-#&gt;   B1  2  2  4  6  6  6 18 10 10 10 10  40 14 14  28
-#&gt;   B2  2  2  4  6  6  6 18 10 10 10 10  40 14 14  28
-#&gt;   B3  2  2  4  6  6  6 18 10 10 10 10  40 14 14  28
-#&gt;   B   6  6 12 18 18 18 54 30 30 30 30 120 42 42  84
-#&gt;   C1  3  3  6  7  7  7 21 11 11 11 11  44 15 15  30
-#&gt;   C2  3  3  6  7  7  7 21 11 11 11 11  44 15 15  30
-#&gt;   C3  3  3  6  7  7  7 21 11 11 11 11  44 15 15  30
-#&gt;   C4  3  3  6  7  7  7 21 11 11 11 11  44 15 15  30
-#&gt;   C  12 12 24 28 28 28 84 44 44 44 44 176 60 60 120
-#&gt;   D1  4  4  8  8  8  8 24 12 12 12 12  48 16 16  32
-#&gt;   D2  4  4  8  8  8  8 24 12 12 12 12  48 16 16  32
-#&gt;   D   8  8 16 16 16 16 48 24 24 24 24  96 32 32  64</div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 225 x 3</span>
+#&gt;    orig  dest   flow
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> A1    A1        1
+#&gt; <span style='color: #BCBCBC;'> 2</span> A1    A2        1
+#&gt; <span style='color: #BCBCBC;'> 3</span> A1    A         2
+#&gt; <span style='color: #BCBCBC;'> 4</span> A1    B1        5
+#&gt; <span style='color: #BCBCBC;'> 5</span> A1    B2        5
+#&gt; <span style='color: #BCBCBC;'> 6</span> A1    B3        5
+#&gt; <span style='color: #BCBCBC;'> 7</span> A1    B        15
+#&gt; <span style='color: #BCBCBC;'> 8</span> A1    C1        9
+#&gt; <span style='color: #BCBCBC;'> 9</span> A1    C2        9
+#&gt; <span style='color: #BCBCBC;'>10</span> A1    C3        9
+#&gt; <span style='color: #949494;'># ... with 215 more rows</span></div><div class='input'>
 <span class='co'>##</span>
 <span class='co'>## from large data frame</span>
 <span class='co'>##</span>
@@ -283,7 +277,12 @@
 
 <span class='co'># download Abel and Cohen (2019) estimates</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"https://ndownloader.figshare.com/files/26239945"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in (function (con, what, n = 1L, size = NA_integer_, signed = TRUE,     endian = .Platform$endian) {    if (!endian %in% c("big", "little", "swap"))         stop("invalid 'endian' argument")    if (is.character(con)) {        con &lt;- file(con, "rb")        on.exit(close(con))    }    swap &lt;- endian != .Platform$endian    if (!is.character(what) || is.na(what) || length(what) !=         1L || !any(what == c("numeric", "double", "integer",         "int", "logical", "complex", "character", "raw")))         what &lt;- typeof(what)    .Internal(readBin(con, what, n, size, signed, swap))})(structure(6L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x0000000000001ab8&gt;),     raw(0), 131071L): Send failure: Connection was reset</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>235236</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>9</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>--</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>--------------------------------------------------------</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (2): orig, dest</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (7): year0, sd_drop_neg, sd_rev_neg, mig_rate, da_min_open, da_min_close...</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>i</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>i</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='input'>
 <span class='va'>cm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CHI"</span> <span class='op'>=</span> <span class='st'>"Europe"</span>,
         <span class='st'>"SCG"</span> <span class='op'>=</span> <span class='st'>"Europe"</span>, 
         <span class='st'>"SUD"</span> <span class='op'>=</span> <span class='st'>"Africa"</span><span class='op'>)</span>
@@ -298,7 +297,20 @@
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span>
   <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_expand</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, return_matrix <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in filter(., year0 == 1990): object 'f' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 40,804 x 3</span>
+#&gt;    orig   dest      flow
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> Africa Africa 9<span style='text-decoration: underline;'>733</span>640
+#&gt; <span style='color: #BCBCBC;'> 2</span> Africa BDI      <span style='text-decoration: underline;'>60</span>436
+#&gt; <span style='color: #BCBCBC;'> 3</span> Africa COM       <span style='text-decoration: underline;'>6</span>434
+#&gt; <span style='color: #BCBCBC;'> 4</span> Africa DJI      <span style='text-decoration: underline;'>10</span>274
+#&gt; <span style='color: #BCBCBC;'> 5</span> Africa ERI      <span style='text-decoration: underline;'>10</span>938
+#&gt; <span style='color: #BCBCBC;'> 6</span> Africa ETH    1<span style='text-decoration: underline;'>421</span>749
+#&gt; <span style='color: #BCBCBC;'> 7</span> Africa KEN     <span style='text-decoration: underline;'>238</span>693
+#&gt; <span style='color: #BCBCBC;'> 8</span> Africa MDG       <span style='text-decoration: underline;'>2</span>743
+#&gt; <span style='color: #BCBCBC;'> 9</span> Africa MWI     <span style='text-decoration: underline;'>105</span>518
+#&gt; <span style='color: #BCBCBC;'>10</span> Africa MUS        788
+#&gt; <span style='color: #949494;'># ... with 40,794 more rows</span></div><div class='input'>
 <span class='co'># by group (period)</span>
 <span class='va'>f</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>
@@ -308,7 +320,21 @@
                             origin <span class='op'>=</span> <span class='st'>"iso3c"</span>, destination <span class='op'>=</span> <span class='st'>"un.region.name"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_expand</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, return_matrix <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in mutate(., orig_area = countrycode(sourcevar = orig, custom_match = cm,     origin = "iso3c", destination = "un.region.name"), dest_area = countrycode(sourcevar = dest,     custom_match = cm, origin = "iso3c", destination = "un.region.name")): object 'f' not found</span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 247,266 x 4</span>
+#&gt; <span style='color: #949494;'># Groups:   year0 [6]</span>
+#&gt;    year0 orig   dest      flow
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span>  <span style='text-decoration: underline;'>1</span>990 Africa Africa 9<span style='text-decoration: underline;'>733</span>640
+#&gt; <span style='color: #BCBCBC;'> 2</span>  <span style='text-decoration: underline;'>1</span>995 Africa Africa 7<span style='text-decoration: underline;'>366</span>877
+#&gt; <span style='color: #BCBCBC;'> 3</span>  <span style='text-decoration: underline;'>2</span>000 Africa Africa 6<span style='text-decoration: underline;'>642</span>723
+#&gt; <span style='color: #BCBCBC;'> 4</span>  <span style='text-decoration: underline;'>2</span>005 Africa Africa 6<span style='text-decoration: underline;'>654</span>457
+#&gt; <span style='color: #BCBCBC;'> 5</span>  <span style='text-decoration: underline;'>2</span>010 Africa Africa 8<span style='text-decoration: underline;'>776</span>877
+#&gt; <span style='color: #BCBCBC;'> 6</span>  <span style='text-decoration: underline;'>2</span>015 Africa Africa 8<span style='text-decoration: underline;'>455</span>447
+#&gt; <span style='color: #BCBCBC;'> 7</span>  <span style='text-decoration: underline;'>1</span>990 Africa BDI      <span style='text-decoration: underline;'>60</span>436
+#&gt; <span style='color: #BCBCBC;'> 8</span>  <span style='text-decoration: underline;'>1</span>995 Africa BDI      <span style='text-decoration: underline;'>64</span>031
+#&gt; <span style='color: #BCBCBC;'> 9</span>  <span style='text-decoration: underline;'>2</span>000 Africa BDI     <span style='text-decoration: underline;'>117</span>710
+#&gt; <span style='color: #BCBCBC;'>10</span>  <span style='text-decoration: underline;'>2</span>005 Africa BDI     <span style='text-decoration: underline;'>158</span>228
+#&gt; <span style='color: #949494;'># ... with 247,256 more rows</span></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

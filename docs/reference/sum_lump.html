@@ -227,72 +227,39 @@
 #&gt;    D 20  25 20  0</div><div class='input'>
 <span class='co'># threshold on in and out region</span>
 <span class='fu'>sum_lump</span><span class='op'>(</span><span class='va'>m</span>, threshold <span class='op'>=</span> <span class='fl'>100</span>, lump <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"in"</span>, <span class='st'>"out"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 9 x 3</span>
-#&gt;   orig  dest   flow
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A     B       100
-#&gt; <span style='color: #BCBCBC;'>2</span> A     C        30
-#&gt; <span style='color: #BCBCBC;'>3</span> A     other    10
-#&gt; <span style='color: #BCBCBC;'>4</span> B     B         0
-#&gt; <span style='color: #BCBCBC;'>5</span> B     C        50
-#&gt; <span style='color: #BCBCBC;'>6</span> B     other    55
-#&gt; <span style='color: #BCBCBC;'>7</span> other B        65
-#&gt; <span style='color: #BCBCBC;'>8</span> other C        20
-#&gt; <span style='color: #BCBCBC;'>9</span> other other    70</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in sum_lump(m, threshold = 100, lump = c("in", "out")): object 'x0' not found</span></div><div class='input'>
 <span class='co'># threshold on flows (default)</span>
 <span class='fu'>sum_lump</span><span class='op'>(</span><span class='va'>m</span>, threshold <span class='op'>=</span> <span class='fl'>40</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 3</span>
-#&gt;   orig  dest   flow
-#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'>1</span> A     B       100
-#&gt; <span style='color: #BCBCBC;'>2</span> B     A        50
-#&gt; <span style='color: #BCBCBC;'>3</span> B     C        50
-#&gt; <span style='color: #BCBCBC;'>4</span> C     B        40
-#&gt; <span style='color: #BCBCBC;'>5</span> C     D        40
-#&gt; <span style='color: #BCBCBC;'>6</span> other other   120</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error: `x` and `y` must share the same src, set `copy` = TRUE (may be slow).</span></div><div class='input'>
 <span class='co'># return a matrix (only possible when input is a matrix and </span>
 <span class='co'># complete = TRUE) with small values replaced by zeros</span>
 <span class='fu'>sum_lump</span><span class='op'>(</span><span class='va'>m</span>, threshold <span class='op'>=</span> <span class='fl'>50</span>, complete <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;        dest
-#&gt; orig      A   B   C   D other
-#&gt;   A       0 100   0   0     0
-#&gt;   B      50   0  50   0     0
-#&gt;   C       0   0   0   0     0
-#&gt;   D       0   0   0   0     0
-#&gt;   other   0   0   0   0   200</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error: `x` and `y` must share the same src, set `copy` = TRUE (may be slow).</span></div><div class='input'>
 <span class='co'># return a data frame with small values replaced with zero</span>
 <span class='fu'>sum_lump</span><span class='op'>(</span><span class='va'>m</span>, threshold <span class='op'>=</span> <span class='fl'>80</span>, complete <span class='op'>=</span> <span class='cn'>TRUE</span>, return_matrix <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 25 x 3</span>
-#&gt;    orig  dest   flow
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> A     A         0
-#&gt; <span style='color: #BCBCBC;'> 2</span> A     B       100
-#&gt; <span style='color: #BCBCBC;'> 3</span> A     C         0
-#&gt; <span style='color: #BCBCBC;'> 4</span> A     D         0
-#&gt; <span style='color: #BCBCBC;'> 5</span> A     other     0
-#&gt; <span style='color: #BCBCBC;'> 6</span> B     A         0
-#&gt; <span style='color: #BCBCBC;'> 7</span> B     B         0
-#&gt; <span style='color: #BCBCBC;'> 8</span> B     C         0
-#&gt; <span style='color: #BCBCBC;'> 9</span> B     D         0
-#&gt; <span style='color: #BCBCBC;'>10</span> B     other     0
-#&gt; <span style='color: #949494;'># ... with 15 more rows</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error: `x` and `y` must share the same src, set `copy` = TRUE (may be slow).</span></div><div class='input'>
 <span class='co'># \dontrun{</span>
 <span class='co'># data frame (tidy) format</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 
 <span class='co'># download Abel and Cohen (2019) estimates</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"https://ndownloader.figshare.com/files/26239945"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in (function (con, what, n = 1L, size = NA_integer_, signed = TRUE,     endian = .Platform$endian) {    if (!endian %in% c("big", "little", "swap"))         stop("invalid 'endian' argument")    if (is.character(con)) {        con &lt;- file(con, "rb")        on.exit(close(con))    }    swap &lt;- endian != .Platform$endian    if (!is.character(what) || is.na(what) || length(what) !=         1L || !any(what == c("numeric", "double", "integer",         "int", "logical", "complex", "character", "raw")))         what &lt;- typeof(what)    .Internal(readBin(con, what, n, size, signed, swap))})(structure(7L, class = c("curl", "connection"), conn_id = &lt;pointer: 0x0000000000001bb0&gt;),     raw(0), 131071L): Send failure: Connection was reset</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'><span style='font-weight: bold;'>Rows: </span><span style='color: #0000BB;'>235236</span> <span style='font-weight: bold;'>Columns: </span><span style='color: #0000BB;'>9</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>--</span> <span style='font-weight: bold;'>Column specification</span> <span style='color: #00BBBB;'>--------------------------------------------------------</span></span>
+#&gt; <span class='message'><span style='font-weight: bold;'>Delimiter:</span> ","</span>
+#&gt; <span class='message'><span style='color: #BB0000;'>chr</span> (2): orig, dest</span>
+#&gt; <span class='message'><span style='color: #00BB00;'>dbl</span> (7): year0, sd_drop_neg, sd_rev_neg, mig_rate, da_min_open, da_min_close...</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>i</span> Use <span style='color: #262626; background-color: #DADADA;'>`spec()`</span> to retrieve the full column specification for this data.</span>
+#&gt; <span class='message'><span style='color: #00BBBB;'>i</span> Specify the column types or set <span style='color: #262626; background-color: #DADADA;'>`show_col_types = FALSE`</span> to quiet this message.</span></div><div class='input'>
 <span class='co'># large 1990-1995 flow estimates</span>
 <span class='va'>f</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year0</span> <span class='op'>==</span> <span class='fl'>1990</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_lump</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, threshold <span class='op'>=</span> <span class='fl'>1e5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in filter(., year0 == 1990): object 'f' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error: `x` and `y` must share the same src, set `copy` = TRUE (may be slow).</span></div><div class='input'>
 <span class='co'># large flow estimates for each year</span>
 <span class='va'>f</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>year0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>sum_lump</span><span class='op'>(</span>flow_col <span class='op'>=</span> <span class='st'>"da_pb_closed"</span>, threshold <span class='op'>=</span> <span class='fl'>1e5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in group_by(., year0): object 'f' not found</span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='error'>Error: `x` and `y` must share the same src, set `copy` = TRUE (may be slow).</span></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
