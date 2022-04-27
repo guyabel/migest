@@ -1,3 +1,9 @@
+# migest 2.0.3
+
+* Dropped `sum_turnover()` and `sum_bilateral()`
+* Fixed axis upper limits in `mig_chord()`
+* Added `region_ac2022` and `region_wb` column to `dict_ims`
+
 # migest 2.0.2
 
 * Added method option to `birth_mat()`
