@@ -206,12 +206,12 @@ Returns a <code>list</code> object with:</p>
 <span class="r-in"><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">e1</span><span class="op">$</span><span class="va">od_flow</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig          A        B C         D       Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.000000 19.95517 0  9.997148  29.95231</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B    0.000000  0.00000 0  0.000000   0.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C   15.091265 15.82438 0  5.051703  35.96735</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D    9.860228 24.22869 0  0.000000  34.08892</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 24.951493 60.00824 0 15.048851 100.00858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig   A  B C  D Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0 20 0 10  30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B    0  0 0  0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C   15 15 0  5  35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D   10 25 0  0  35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 25 60 0 15 100</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># international migration review supp. material example</span></span>
 <span class="r-in"><span class="co"># distance matrix</span></span>
@@ -226,9 +226,14 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C  50  45   0 450</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    D 500 495 450   0</span>
 <span class="r-in"><span class="va">e3</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, m <span class="op">=</span> <span class="va">dd</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ipf3_qi(row_tot = t(m1_d), col_tot = m2_d, m = m, verbose = verbose,     ...):</span> row and column totals are not equal for one or more sub-tables, ensure colSums(row_tot)==rowSums(col_tot)</span>
 <span class="r-in"><span class="va">e3</span><span class="op">$</span><span class="va">od_flow</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'e3' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig          A        B           C         D      Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.000000 19.97760 0.002896973 10.017848 29.99834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B    0.000000  0.00000 0.000000000  0.000000  0.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C   15.508132 14.30804 0.000000000  5.171696 34.98787</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D    9.510465 24.72228 0.000000000  0.000000 34.23274</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 25.018597 59.00791 0.002896973 15.189544 99.21895</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">##</span></span>
 <span class="r-in"><span class="co">## with births and deaths over period</span></span>
@@ -271,11 +276,11 @@ Returns a <code>list</code> object with:</p>
 <span class="r-in"><span class="va">e7</span><span class="op">$</span><span class="va">od_flow</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig         A        B        C        D       Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000 8.276308  0.00000 0.000000  8.276308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B   15.27679 0.000000 18.33484 5.724116 39.335745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 1.066006  0.00000 0.000000  1.066006</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D   17.56331 0.000000  8.21156 0.000000 25.774874</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 32.84011 9.342314 26.54640 5.724116 74.452933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000 8.125564  0.00000 0.000000  8.125564</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   15.28970 0.000000 18.26647 5.684506 39.240671</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 1.121124  0.00000 0.000000  1.121124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D   17.89565 0.000000  8.33545 0.000000 26.231103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 33.18535 9.246688 26.60192 5.684506 74.718463</span>
 </code></pre></div>
     </div>
   </div>

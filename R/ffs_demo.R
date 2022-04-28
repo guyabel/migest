@@ -53,12 +53,10 @@
 #' r <- LETTERS[1:4]
 #' dimnames(s1) <- dimnames(s2) <- list(pob = r, por = r)
 #' names(b) <- names(d) <- r
+#' 
 #' s1
-#' 
 #' s2
-#' 
 #' b
-#' 
 #' d
 #' 
 #' # demographic research and science paper example
@@ -68,17 +66,20 @@
 #' # international migration review paper example
 #' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
 #' s2[,] <- c(70, 25, 10, 40, 30, 60, 55, 45, 10, 10, 140, 0, 10, 15, 50, 180)
+#' s1
+#' s2
+#' 
 #' e1 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 #' e1$od_flow
 #' 
 #' # international migration review supp. material example
 #' # distance matrix
-#' dd <- matrix(data = c(0, 5, 50, 500, 5, 0, 45, 495, 50, 45, 0, 450, 500, 495, 450, 0), 
+#' dd <- matrix(data = c(0, 5, 50, 500, 5, 0, 45, 495, 50, 45, 0, 450, 500, 495, 450, 0),
 #'              nrow = 4, ncol = 4, byrow = TRUE)
 #' dimnames(dd) <- list(orig = r, dest = r)
 #' dd
-#' e3 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, m = dd)
-#' e3$od_flow
+#' e2 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, m = dd)
+#' e2$od_flow
 #' 
 #' ##
 #' ## with births and deaths over period
@@ -88,23 +89,23 @@
 #' s2[,] <- c(1060, 45, 70, 30, 60, 540, 75, 30, 10, 40, 770, 20, 10, 0, 70, 230)
 #' b[] <- c(80, 20, 40, 60)
 #' d[] <- c(70, 30, 50, 10)
-#' e4 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
+#' e3 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
 #' # makes more sense to use this method
-#' e5 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open")
-#' e5$od_flow
+#' e4 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open")
+#' e4$od_flow
 #' 
 #' # science paper  supp. material example
 #' b[] <- c(80, 20, 60, 60)
-#' e6 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e6$od_flow
+#' e5 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+#' e5$od_flow
 #' 
 #' # international migration review supp. material example (with births and deaths)
 #' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
 #' s2[,] <- c(75, 20, 30, 30, 25, 45, 40, 30, 5, 30, 150, 20, 0, 15, 60, 230)
 #' b[] <- c(10, 50, 25, 60)
 #' d[] <- c(30, 10, 40, 10)
-#' e7 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e7$od_flow
+#' e6 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+#' e6$od_flow
 # m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
 # m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
 # stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; death_method = "proportion"; match_global = "after-demo-adjust"; verbose = FALSE
