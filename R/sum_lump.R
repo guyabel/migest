@@ -76,6 +76,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   g <- dd$g
   
   imm_lump <- emi_lump <- flow_lump <- turn_imm_lump <- turn_emi_lump <- NULL
+  turn <- orig_new <- dest_new <- NULL
   if(any(lump %in% c("in", "imm"))){
     imm_lump <- d %>%
       sum_region() %>%
