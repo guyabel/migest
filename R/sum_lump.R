@@ -106,6 +106,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   }
   
   # not really tested these 
+  x <- NULL
   if(length(imm_lump)==0){
     x0 <- d %>%
       dplyr::left_join(imm_lump) %>%
@@ -123,7 +124,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
       dplyr::select(-orig_new)
   }
   
-  # not really tested these 
+  # not thoroughly tested these 
   if(length(turn_emi_lump)==0){
     if(is.null(x0))
       x0 <- d
