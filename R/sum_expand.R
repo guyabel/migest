@@ -150,8 +150,8 @@ sum_expand <- function(m, return_matrix = FALSE, guess_order = TRUE, area_first 
                  names_to = "orig_type", values_to = "orig") %>%
     tidyr::pivot_longer(cols = c(dest, dest_area), 
                  names_to = "dest_type", values_to = "dest") %>%
-    mutate(orig = fct_inorder(orig), 
-           dest = fct_inorder(dest)) %>%
+    dplyr::mutate(orig = forcats::fct_inorder(orig), 
+                  dest = forcats::fct_inorder(dest)) %>%
     dplyr::group_by_at(c({{g}}, "orig", "dest")) %>%
     dplyr::summarise(flow = sum(flow), .groups = "drop") %>%
     dplyr::ungroup() %>%
