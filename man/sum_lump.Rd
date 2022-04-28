@@ -59,7 +59,7 @@ sum_lump(m, threshold = 100, lump = c("in", "out"))
 # threshold on flows (default)
 sum_lump(m, threshold = 40)
 
-# return a matrix (only possible when input is a matrix and 
+# return a matrix (only possible when input is a matrix and
 # complete = TRUE) with small values replaced by zeros
 sum_lump(m, threshold = 50, complete = TRUE)
 

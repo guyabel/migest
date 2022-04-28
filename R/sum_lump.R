@@ -30,7 +30,7 @@
 #' # threshold on flows (default)
 #' sum_lump(m, threshold = 40)
 #' 
-#' # return a matrix (only possible when input is a matrix and 
+#' # return a matrix (only possible when input is a matrix and
 #' # complete = TRUE) with small values replaced by zeros
 #' sum_lump(m, threshold = 50, complete = TRUE)
 #' 
@@ -61,7 +61,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   # m = m0filter(f, year0 == 1990) 
   # threshold = 1e3; lump = c("in", "out");
   # lump = "flow"
-  # other_level = "other"; complete = TRUE; fill = 0
+  # other_level = "other"; complete = FALSE; fill = 0
   # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
   # flow_col = "flow"
   orig <- dest <- flow <- region <- in_mig <- out_mig <- NULL
@@ -69,12 +69,13 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
     stop("lump is not recognised")
   
   #m 
+  # dd <- migest:::mig_tibble(
   dd <- mig_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
   d <- dd$d
   g <- dd$g
-  
+
   imm_lump <- emi_lump <- flow_lump <- turn_imm_lump <- turn_emi_lump <- NULL
   turn <- orig_new <- dest_new <- NULL
   if(any(lump %in% c("in", "imm"))){
@@ -107,15 +108,15 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   }
   
   # not really tested these 
-  x <- NULL
-  if(length(imm_lump)==0){
+  x0 <- NULL
+  if(length(imm_lump)!=0){
     x0 <- d %>%
       dplyr::left_join(imm_lump) %>%
       dplyr::mutate(dest_new = ifelse(is.na(dest_new), dest, dest_new)) %>%
       dplyr::mutate(dest = dest_new) %>%
       dplyr::select(-dest_new)
   }
-  if(length(emi_lump)==0){
+  if(length(emi_lump)!=0){
     if(is.null(x0))
       x0 <- d
     x0 <- x0 %>%
@@ -126,7 +127,7 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   }
   
   # not thoroughly tested these 
-  if(length(turn_emi_lump)==0){
+  if(length(turn_emi_lump)!=0){
     if(is.null(x0))
       x0 <- d
     x0 <- x0 %>%
@@ -142,6 +143,8 @@ sum_lump <- function(m, threshold = 1, lump = "flow",
   
   if(any(lump %in% c("flow", "bilat")))
     flow_lump <- TRUE
+  if(is.null(x0))
+    x0 <- d
   x1 <- x0 %>%
     if(is.null(flow_lump)) . else dplyr::mutate(., orig = ifelse(flow < threshold, other_level, orig)) %>%
     if(is.null(flow_lump)) . else dplyr::mutate(., dest = ifelse(flow < threshold, other_level, dest))
