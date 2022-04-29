@@ -11,6 +11,7 @@ mig_chord(
   lab_bend2 = NULL,
   label_size = 1,
   label_nudge = 0,
+  label_squeeze = 0,
   axis_size = 0.8,
   axis_breaks = NULL,
   ...,
@@ -36,6 +37,8 @@ mig_chord(
 \item{label_size}{Font size of label text.}
 
 \item{label_nudge}{Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis.}
+
+\item{label_squeeze}{Numeric value to nudge \code{lab_bend1} and \code{lab_bend2} labels apart (negative number) or together (positive number).}
 
 \item{axis_size}{Font size on axis labels.}
 

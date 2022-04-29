@@ -7,7 +7,8 @@
 #' @param lab_bend1 Named vector of bending labels for plot. Note line breaks do not work with \code{facing = "bending"} in circlize.
 #' @param lab_bend2 Named vector of second row of bending labels for plot. 
 #' @param label_size Font size of label text.
-#' @param label_nudge Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis. 
+#' @param label_nudge Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis.
+#' @param label_squeeze Numeric value to nudge \code{lab_bend1} and \code{lab_bend2} labels apart (negative number) or together (positive number).  
 #' @param axis_size Font size on axis labels.
 #' @param axis_breaks Numeric value for how often to add axis label breaks. Default not activated, uses default from \code{circlize::circos.axis()}
 #' @param ... Arguments for \code{circlize::chordDiagramFromDataFrame()}.
@@ -119,6 +120,7 @@ mig_chord <- function(
   lab_bend2 = NULL,
   label_size = 1, 
   label_nudge = 0,
+  label_squeeze = 0,
   axis_size = 0.8,
   axis_breaks = NULL,
   ..., 
@@ -252,7 +254,7 @@ mig_chord <- function(
         }
         if(!is.null(lab_bend2)){
           circlize::circos.text(
-            x = mean(xx), y = 2 + label_nudge, labels = lab_bend2[s], 
+            x = mean(xx), y = 2 + label_nudge - label_squeeze, labels = lab_bend2[s], 
             cex = label_size, facing = "bending", niceFacing = FALSE)
         }
       }

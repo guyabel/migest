@@ -2,6 +2,7 @@
 
 * Dropped `sum_turnover()` and `sum_bilateral()`
 * Fixed axis upper limits in `mig_chord()`
+* Added `label_squeeze` option to `mig_chord()`
 * Added `region_ac2022` and `region_wb` column to `dict_ims`
 * Replaced `ipf` functions in `ffs_demo` and sub-functions with `mipfp::Ipfp`
 
