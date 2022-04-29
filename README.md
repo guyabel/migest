@@ -14,7 +14,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![R-CMD-check](https://github.com/guyabel/migest/workflows/R-CMD-check/badge.svg)](https://github.com/guyabel/migest/actions)
 <!-- badges: end -->
 
-<img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="180" style="padding-left: 20px; padding-bottom: 20px;" />
+<img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="200" style="float:right; height:200px;"/>
 
 Tools for estimating, measuring and working with migration data.
 

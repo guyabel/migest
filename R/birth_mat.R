@@ -8,22 +8,27 @@
 #'
 #' @return Matrix of place of birth by place of residence for new-born’s
 birth_mat <- function(b_por = NULL, m2 = NULL, method = "native", non_negative = TRUE){
-  # m2 = m2_b
+  # m2 = m2_a; b_por = b
   bb <- m2
   if(method == "native"){
     bb[,] <- diag(b_por)
     if(non_negative){
       # check that deduction of bb will not lead to negative populations
       xx <- diag(m2) - b_por < 0
-      if (sum(xx) > 0)
-        bb[, xx] <- ipf2(col_tot = b_por, m = m2)$mu[, xx]
-      # bb[, xx] <- mipfp::Ipfp(seed = m2,
-      #                         target.list = list(2),
-      #                         target.data = b_por)$x.hat[, xx]
+      if (sum(xx) > 0){
+        message(paste0("Too many births in region ", names(b_por)[xx], ". Subtracted proportionally for this country. Might want to check the input data"))
+        bb[, xx] <- mipfp::Ipfp(seed = m2,
+                                target.list = list(2),
+                                target.data = list(b_por))$x.hat[, xx]
+      }
     }
   }
   if(method == "proportion"){
-    bb <- ipf2(col_tot = b_por, m = m2)$mu
+    bb <- mipfp::Ipfp(seed = m2,
+                      target.list = list(2),
+                      target.data = list(b_por)) %>%
+      suppressMessages() %>%
+      .$x.hat
   }
   return(bb)
 }

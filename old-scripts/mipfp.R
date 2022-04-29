@@ -102,7 +102,9 @@ addmargins(m$x.hat)
 
 ##
 ## place of birth data situation with known diagonals 
-## (can just take them out, set as strucual zero and then add back in)
+## (can just take them out, set as structural zero and then add back in)... 
+##
+## ... did more later (see further down) before adding to ffs_demo
 ##
 m0 <- array(data = 1, dim = c(4, 4, 4),
             dimnames = list(orig = LETTERS[1:4], 
@@ -218,3 +220,84 @@ results.ml <- ObtainModelEstimates(seed, target.list, target.data,
                                    compute.cov = TRUE)
 print(results.ml)
 addmargins(results.ml$x.hat)
+
+
+
+###
+### more playing around with quasi indpendence
+###
+
+library(mipfp)
+
+# independence
+Ipfp(
+  seed = matrix(1, 4, 4), 
+  target.list = list(1, 2), 
+  target.data = list(c(100, 10, 10, 0), 
+                     c(70, 30, 10, 10))
+)
+
+# quasi independence
+Ipfp(
+  seed = matrix(data = c(70, 1, 1, 1, 
+                         1, 10, 1, 1, 
+                         1, 1, 10, 1, 
+                         1, 1, 1, 0), nrow = 4, ncol = 4), 
+  target.list = list(c(1, 2), 1, 2), 
+  target.data = list(c(70, NA, NA, NA, 
+                       NA, 10, NA, NA, 
+                       NA, NA, 10, NA, 
+                       NA, NA, NA, 0),
+                     c(100, 10, 10, 0),
+                     c(70, 30, 10, 10)),
+  na.target = TRUE, tol = 0.0001, print = FALSE
+)
+
+# quasi independence - if seed is all 1 makes no difference
+Ipfp(
+  seed = matrix(1, nrow = 4, ncol = 4),
+  target.list = list(c(1, 2), 1, 2), 
+  target.data = list(c(70, NA, NA, NA, 
+                       NA, 10, NA, NA, 
+                       NA, NA, 10, NA, 
+                       NA, NA, NA, 0),
+                     c(100, 10, 10, 0),
+                     c(70, 30, 10, 10)),
+  na.target = TRUE, tol = 0.0001, print = FALSE
+)
+
+
+# different, more challenging matrix
+Ipfp(
+  seed = matrix(1, nrow = 4, ncol = 4),
+  target.list = list(c(1, 2), 1, 2), 
+  target.data = list(c(20, NA, NA, NA, 
+                       NA, 55, NA, NA, 
+                       NA, NA, 10, NA, 
+                       NA, NA, NA, 10),
+                     c(20, 55, 25, 10),
+                     c(25, 60, 10, 15)),
+  na.target = TRUE, tol = 0.0001, print = FALSE
+) %>%
+  suppressWarnings()
+
+# better than currrent ipf3_qi
+orig            A       B      C       D death outside
+A       20.1743  0.0000 0.0000  0.0000     0       0
+B        0.0000 55.1739 0.0000  0.0000     0       0
+C        4.6737  5.5911 9.9548  4.8870     0       0
+D        0.0000  0.0000 0.0000 10.0452     0       0
+
+# try zero diagonals to see if improve
+s <- matrix(1, nrow = 4, ncol = 4)
+diag(s) <- 0
+row_tot <- c(20, 55, 25, 10) - c(20, 55, 10, 10)
+col_tot <- c(25, 60, 10, 15) - c(20, 55, 10, 10)
+
+e0 <- Ipfp(
+  seed = s,
+  target.list = list(1, 2), 
+  target.data = list(row_tot, col_tot)
+)
+e0$x.hat + diag(c(20, 55, 10, 10))
+

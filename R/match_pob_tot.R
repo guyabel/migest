@@ -30,6 +30,7 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   if (!(method %in% c("open", "open-dr", "rescale-adjust-zero-fb", "rescale")) | length(method) != 1)
     stop("method must be open, open-dr, rescale-adjust-zero-fb or rescale")
   # m1 = m1_c; m2 = m2_c
+  # method = "rescale"
   dd <- rowSums(m1) - rowSums(m2)
   # round(sum(dd))
   pob1 <- nb1 <- pob2 <- nb2 <- value <- mid_target <- target <- fb1 <- fb2 <- NULL
@@ -60,9 +61,17 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
     dd_wz <- rowSums(m1_wz) - rowSums(m2_wz)
     # sum(dd_wz)
 
-    m1_wz_adj <- ipf2(row_tot = rowSums(m1_wz) - dd_wz, col_tot = colSums(m1_wz), m = m1_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
-    m2_wz_adj <- ipf2(row_tot = rowSums(m2_wz) + dd_wz, col_tot = colSums(m2_wz), m = m2_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
-
+    # m1_wz_adj <- ipf2(row_tot = rowSums(m1_wz) - dd_wz, col_tot = colSums(m1_wz), m = m1_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
+    # m2_wz_adj <- ipf2(row_tot = rowSums(m2_wz) + dd_wz, col_tot = colSums(m2_wz), m = m2_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
+    
+    m1_wz_adj <- mipfp::Ipfp(seed = m1_wz, 
+                      target.list = list(1, 2), 
+                      target.data = list(rowSums(m1_wz) - dd_wz, 
+                                         colSums(m1_wz)))
+    m2_wz_adj <- mipfp::Ipfp(seed = m2_wz, 
+                      target.list = list(1, 2), 
+                      target.data = list(rowSums(m2_wz) + dd_wz, 
+                                         colSums(m2_wz)))
     m1_z <- m1[zid,]
     m2_z <- m2[zid,]
     if(length(zid) == 1){
@@ -84,72 +93,77 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   }
 
 
-  # if(method == "rescale"){
-  #   m1_adj <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-  #                         # print = TRUE,
-  #                         target.list = list(1, 2),
-  #                         target.data = list(rowSums(m1) - dd / 2, colSums(m1)))
-  #   m2_adj <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-  #                         # print = TRUE,
-  #                         target.list = list(1, 2),
-  #                         target.data = list(rowSums(m2) + dd / 2, colSums(m2)))
-  #   m1_adj <- m1_adj$x.hat
-  #   m2_adj <- m2_adj$x.hat
-  #   # zeros for in and out matrices for return object
-  #   zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0))
-  #   in_mat <- out_mat <- zeros$x.hat
-  # }
-  # if(method == "open"){
-  #   in_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-  #                         target.list = list(1),
-  #                         target.data = list(pmax(-dd, 0)))
-  #   out_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-  #                         target.list = list(1),
-  #                         target.data = list(pmax(dd, 0)))
-  #   m1_adj <- m1 - out_mat$x.hat
-  #   m2_adj <- m2 - in_mat$x.hat
-  # }
-  # if(method == "open-dr"){
-  #   in_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-  #                         target.list = list(1),
-  #                         target.data = list(pmax(-dd, 0)))
-  #   out_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-  #                          target.list = list(1),
-  #                          target.data = list(pmax(dd, 0)))
-  #   m1_adj <- m1 - out_mat$x.hat
-  #   m2_adj <- m2 - in_mat$x.hat
-  # }
-
   if(method == "rescale"){
-    m1_adj <- ipf2(row_tot = rowSums(m1) - dd/2, col_tot = colSums(m1), m = m1, maxit = 1e05, tol = 0.1, verbose = verbose)
-    m2_adj <- ipf2(row_tot = rowSums(m2) + dd/2, col_tot = colSums(m2), m = m2, maxit = 1e05, tol = 0.1, verbose = verbose)
-
-    # round(rowSums(m1) - dd/2)
-    # round(rowSums(m2) + dd/2)
-
-    # zeros for in and out matrices
-    in_mat <- ipf2(row_tot = 0, m = m1)$mu
-    out_mat <- ipf2(row_tot = 0, m = m2)$mu
-
-    if(min(m1_adj$mu) < 0 | min(m2_adj$mu) < 0)
+    m1_adj <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
+                          # print = TRUE,
+                          target.list = list(1, 2),
+                          target.data = list(rowSums(m1) - dd / 2, colSums(m1)))
+    m2_adj <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
+                          # print = TRUE,
+                          target.list = list(1, 2),
+                          target.data = list(rowSums(m2) + dd / 2, colSums(m2)))
+    if(min(m1_adj$x.hat) < 0 | min(m2_adj$x.hat) < 0)
       message("negative flows from rescale")
-    if(m1_adj$tol > 1 | m2_adj$tol > 1)
+    if(m1_adj$conv == FALSE | m2_adj$conv == FALSE)
       message("no convergence in rescaling")
-    m1_adj <- m1_adj$mu
-    m2_adj <- m2_adj$mu
+    
+    m1_adj <- m1_adj$x.hat
+    m2_adj <- m2_adj$x.hat
   }
+  # zeros for in and out matrices for return object
+  zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0))
+  in_mat <- out_mat <- zeros
   if(method == "open"){
-    in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m1, verbose = verbose)$mu
-    out_mat <- ipf2(row_tot = pmax(dd, 0), m = m2, verbose = verbose)$mu
-    m1_adj <- m1 - out_mat
-    m2_adj <- m2 - in_mat
+    in_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
+                          target.list = list(1),
+                          target.data = list(pmax(-dd, 0)))
+    out_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
+                          target.list = list(1),
+                          target.data = list(pmax(dd, 0)))
+    m1_adj <- m1 - out_mat$x.hat
+    m2_adj <- m2 - in_mat$x.hat
   }
   if(method == "open-dr"){
-    in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m2, verbose = verbose)$mu
-    out_mat <- ipf2(row_tot = pmax(dd, 0), m = m1, verbose = verbose)$mu
-    m1_adj <- m1 - out_mat
-    m2_adj <- m2 - in_mat
+    in_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
+                          target.list = list(1),
+                          target.data = list(pmax(-dd, 0)))
+    out_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
+                           target.list = list(1),
+                           target.data = list(pmax(dd, 0)))
+    m1_adj <- m1 - out_mat$x.hat
+    m2_adj <- m2 - in_mat$x.hat
   }
+
+  # if(method == "rescale"){
+  #   m1_adj <- ipf2(row_tot = rowSums(m1) - dd/2, col_tot = colSums(m1), m = m1, maxit = 1e05, tol = 0.1, verbose = verbose)
+  #   m2_adj <- ipf2(row_tot = rowSums(m2) + dd/2, col_tot = colSums(m2), m = m2, maxit = 1e05, tol = 0.1, verbose = verbose)
+  # 
+  #   # round(rowSums(m1) - dd/2)
+  #   # round(rowSums(m2) + dd/2)
+  # 
+  #   # zeros for in and out matrices
+  #   in_mat <- ipf2(row_tot = 0, m = m1)$mu
+  #   out_mat <- ipf2(row_tot = 0, m = m2)$mu
+  # 
+  #   if(min(m1_adj$mu) < 0 | min(m2_adj$mu) < 0)
+  #     message("negative flows from rescale")
+  #   if(m1_adj$tol > 1 | m2_adj$tol > 1)
+  #     message("no convergence in rescaling")
+  #   m1_adj <- m1_adj$mu
+  #   m2_adj <- m2_adj$mu
+  # }
+  # if(method == "open"){
+  #   in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m1, verbose = verbose)$mu
+  #   out_mat <- ipf2(row_tot = pmax(dd, 0), m = m2, verbose = verbose)$mu
+  #   m1_adj <- m1 - out_mat
+  #   m2_adj <- m2 - in_mat
+  # }
+  # if(method == "open-dr"){
+  #   in_mat <- ipf2(row_tot = pmax(-dd, 0), m = m2, verbose = verbose)$mu
+  #   out_mat <- ipf2(row_tot = pmax(dd, 0), m = m1, verbose = verbose)$mu
+  #   m1_adj <- m1 - out_mat
+  #   m2_adj <- m2 - in_mat
+  # }
   # open-dr not preferred.. using m2 as offset for leavers.. i.e. distribution at end of period, not start of period (as in open)
-  return(list(m1_adj = m1_adj, m2_adj = m2_adj, in_mat = in_mat, out_mat = out_mat))
+  return(list(m1_adj = m1_adj, m2_adj = m2_adj, in_mat = in_mat$x.hat, out_mat = out_mat$x.hat))
 }

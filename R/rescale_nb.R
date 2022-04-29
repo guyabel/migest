@@ -43,13 +43,14 @@
 #' }
 rescale_nb <- function(m1, m2, b, d, verbose = FALSE){
   # m1 = m1_c; m2 = m2_c; b = 0; d = 0
+  # m1 = m1_a; m2 = m2_a; b = 0; d = 0
   pop_grow <- sum(m2 - m1)
   nat_grow <- sum(b - d)
   dd <- nat_grow - pop_grow
   tot1 <- sum(diag(m1))
   tot2 <- sum(diag(m2))
   # if dd is an odd number
-  if(round(dd %% 2) == 0){
+  if(round(dd %% 2) == 0 & dd %% 2 != 0){
     diag(m2) <- rescale_integer_sum(x = diag(m2), tot = tot2 + 1)
     pop_grow <- sum(m2 - m1)
     dd <- nat_grow - pop_grow
