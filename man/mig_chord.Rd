@@ -72,3 +72,90 @@ Fitting the sector labels on the page is usually the most time consuming task. U
 \description{
 Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 }
+\examples{
+\dontrun{
+library(tidyverse)
+library(countrycode)
+# download Abel and Cohen (2019) estimates
+f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+
+# use dictionary to get region to region flows
+d <- f \%>\%
+  mutate(
+    orig = countrycode(
+      sourcevar = orig, custom_dict = dict_ims,
+      origin = "iso3c", destination = "region"),
+    dest = countrycode(
+      sourcevar = dest, custom_dict = dict_ims,
+      origin = "iso3c", destination = "region")
+  ) \%>\%
+group_by(year0, orig, dest) \%>\%
+summarise_all(sum) \%>\%
+ungroup()
+d
+
+# 2015-2020 pseudo-Bayesian estimates for plotting
+pb <- d \%>\%
+    filter(year0 == 2015) \%>\%
+    mutate(flow = da_pb_closed/1e6) \%>\%
+    select(orig, dest, flow)
+pb
+    
+# pdf(file = "chord.pdf")
+mig_chord(x = pb)
+# dev.off()
+# file.show("chord.pdf")
+
+# pass arguments to circlize::chordDiagramFromDataFrame
+# pdf(file = "chord.pdf")
+mig_chord(x = pb, 
+          # order of regions
+          order = rev(unique(pb$orig)),
+          # spacing for labels
+          preAllocateTracks = list(track.height = 0.3),
+          # colours
+          grid.col = c("blue", "royalblue", "navyblue", "skyblue", "cadetblue", "darkblue")
+          ) 
+# dev.off()
+# file.show("chord.pdf")
+
+# multiple line labels to fit on longer labels
+r <- pb \%>\%
+  sum_region() \%>\%
+  mutate(lab = str_wrap_n(string = region, n = 2)) \%>\%
+  separate(col = lab, into = c("lab1", "lab2"), sep = "\n", remove = FALSE, fill = "right")
+r
+
+# pdf(file = "chord.pdf")
+mig_chord(x = pb,
+          lab = r \%>\%
+            select(region, lab) \%>\%
+            deframe(),
+          preAllocateTracks = list(track.height = 0.25),
+          label_size = 0.8,
+          axis_size = 0.7
+          )
+# dev.off()
+# file.show("chord.pdf")
+
+# bending labels
+# pdf(file = "chord.pdf")
+mig_chord(x = pb,
+          lab_bend1 = r \%>\%
+            select(region, lab1) \%>\%
+            deframe(),
+          lab_bend2 = r \%>\%
+            select(region, lab2) \%>\%
+            deframe()
+          )
+# dev.off()
+# file.show("chord.pdf")
+
+
+# convert pdf to image file
+# library(magick)
+# p <- image_read_pdf("chord.pdf")
+# image_write(image = p, path = "chord.png")
+# file.show("chord.png")
+}
+}

@@ -113,6 +113,7 @@
 #' # p <- image_read_pdf("chord.pdf")
 #' # image_write(image = p, path = "chord.png")
 #' # file.show("chord.png")
+#' }
 mig_chord <- function(
   x, 
   lab = NULL,

@@ -94,7 +94,7 @@ dict_ims <- migest::dict_ims %>%
          name_short = case_when(
            iso3c == "CHI" ~ "Channel Islands",
            iso3c == "SCG" ~ "Serbia & Montenegro",
-           iso3c == "SUD" ~ "Sudan",
+           iso3c == "SUD" ~ "Sudan*",
            iso3c == "MMR" ~ name,
            iso3c == "FSM" ~ "FS Micronesia",
            iso3c == "MAF" ~ "Saint Martin",
