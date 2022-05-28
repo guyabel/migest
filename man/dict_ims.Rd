@@ -5,14 +5,15 @@
 \alias{dict_ims}
 \title{Dictionary to look up region geographies based on countries used in UN DESA International Migrant Stock.}
 \format{
-Data frame with 237 rows and 13 columns. One of first three columns intended as input for \code{origin} in \code{countrycode}.
+Data frame with 237 rows and 18 columns. One of first three columns intended as input for \code{origin} in \code{countrycode}.
 \describe{
   \item{name}{Country name}
-  \item{iso3n}{ISO 3 letter code}
   \item{iso3c}{ISO numeric code}
+  \item{iso3n}{ISO 3 letter code}
 }
 Remaining columns intended as input for \code{destination} in \code{countrycode}.
 \describe{
+  \item{name_short}{Short country name }
   \item{region}{Geographic region of country (6)}
   \item{region_sub}{Geographic sub region of country (22). Filled using \code{region} if none given in original data}
   \item{region_sdg}{SDG region of country (8)}
@@ -23,9 +24,10 @@ Remaining columns intended as input for \code{destination} in \code{countrycode}
   \item{lldc}{Indicator variable for Land-Locked Developing Countries (32)}
   \item{sids}{Indicator variable for Small Island Developing States (58)}
   \item{region_as2014}{Region grouping used for global chord diagram plots by Abel and Sander (2014)}
-  \item{region_sba2014}{Region grouping used for global chord diagram plots by Sander, Abel and Bauer (2014)}
+  \item{region_sab2014}{Region grouping used for global chord diagram plots by Sander, Abel and Bauer (2014)}
   \item{region_a2018}{Region grouping used for global chord diagram plots by Abel (2018)}
-  \item{region_ac2021}{Region grouping used for global chord diagram plots by Abel and Cohen (2021)}
+  \item{region_ac2022}{Region grouping used for global chord diagram plots by Abel and Cohen (2022)}
+  \item{region_wb}{World Bank region}
 }
 }
 \source{

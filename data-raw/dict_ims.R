@@ -77,7 +77,7 @@ a <- read_excel("I:/ADRI/project/data-unpd/tims/data-raw/tims2020/aggregates_cor
 #   select(1,3,4,10,16,14,contains("_develop"), lldc, sids)
 
 dict_ims <- migest::dict_ims %>%
-  rename(region_ac2022 = region_ac2021) %>%
+  # rename(region_ac2022 = region_ac2021) %>%
   mutate(region_wb = countrycode(sourcevar = iso3c, origin = "iso3c", destination = "region"),
          region_wb = case_when(
            iso3c == "CHI" ~ "Europe & Central Asia",
@@ -89,7 +89,23 @@ dict_ims <- migest::dict_ims %>%
            iso3c == "SUD" ~ "Sub-Saharan Africa", 
            iso3c == "WLF" ~ "East Asia & Pacific",
            TRUE ~ region_wb
-         ))
+         ),
+         name_short = countrycode(sourcevar = iso3c, origin = "iso3c", destination = "country.name.en"),
+         name_short = case_when(
+           iso3c == "CHI" ~ "Channel Islands",
+           iso3c == "SCG" ~ "Serbia & Montenegro",
+           iso3c == "SUD" ~ "Sudan",
+           iso3c == "MMR" ~ name,
+           iso3c == "FSM" ~ "FS Micronesia",
+           iso3c == "MAF" ~ "Saint Martin",
+           iso3c == "COG" ~ name,
+           iso3c == "COD" ~ "DR Congo",
+           iso3c == "HKG" ~ "Hong Kong SAR",
+           iso3c == "MAC" ~ "Macao SAR",
+           iso3c == "PSE" ~ "Palestine",
+           TRUE ~ name_short
+         )) %>%
+  relocate(name, iso3c, iso3n, name_short)
 
 usethis::use_data(dict_ims, overwrite = TRUE)
 

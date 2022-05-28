@@ -1,3 +1,7 @@
+# migest 2.0.4
+
+* Added `name_short` column to `dict_ims`
+
 # migest 2.0.3
 
 * Dropped `sum_turnover()` and `sum_bilateral()`
