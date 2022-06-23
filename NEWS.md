@@ -1,7 +1,3 @@
-# migest 2.0.4
-
-* Added `name_short` column to `dict_ims`
-
 # migest 2.0.3
 
 * Dropped `sum_turnover()` and `sum_bilateral()`
@@ -9,6 +5,7 @@
 * Added `label_squeeze` option to `mig_chord()`
 * Added `region_ac2022` and `region_wb` column to `dict_ims`
 * Replaced `ipf` functions in `ffs_demo` and sub-functions with `mipfp::Ipfp`
+* Added `name_short` column to `dict_ims`
 
 # migest 2.0.2
 

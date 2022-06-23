@@ -135,8 +135,8 @@
     <div id="value">
     <h2>Value</h2>
     <p>Chord diagram based on first three columns of <code>x</code>. The function tweaks the defaults of <code><a href="https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html" class="external-link">circlize::chordDiagramFromDataFrame()</a></code> for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the <code><a href="https://rdrr.io/pkg/circlize/man/chordDiagramFromDataFrame.html" class="external-link">circlize::chordDiagramFromDataFrame()</a></code> arguments.
-The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the <code>pdf</code> function). See the end of the examples for converting PDFs to images. 
-Fitting all the labels on the page is usually the most time consuming task. Use the different label options, including line breaks, <code>label_nudge</code>, track height in <code>preAllocateTracks</code> and font sizes in <code>label_size</code> and <code>axis_size</code> to find the best fit. If none of the label options produce desirable results, plot your own using <code><a href="https://rdrr.io/pkg/circlize/man/circos.text.html" class="external-link">circlize::circos.text</a></code> having set <code>no_labels = TRUE</code> and <code>clear_circos_par = FALSE</code>.</p>
+The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the <code>pdf</code> function). See the end of the examples for converting PDF to PNG images in R. 
+Fitting the sector labels on the page is usually the most time consuming task. Use the different label options, including line breaks, <code>label_nudge</code>, track height in <code>preAllocateTracks</code> and font sizes in <code>label_size</code> and <code>axis_size</code> to find the best fit. If none of the label options produce desirable results, plot your own using <code><a href="https://rdrr.io/pkg/circlize/man/circos.text.html" class="external-link">circlize::circos.text</a></code> having set <code>no_labels = TRUE</code> and <code>clear_circos_par = FALSE</code>.</p>
     </div>
 
     <div id="ref-examples">
@@ -189,6 +189,21 @@ Fitting all the labels on the page is usually the most time consuming task. Use 
 <span class="r-in">    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year0</span> <span class="op">==</span> <span class="fl">2015</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>flow <span class="op">=</span> <span class="va">da_pb_closed</span><span class="op">/</span><span class="fl">1e6</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
 <span class="r-in">    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">orig</span>, <span class="va">dest</span>, <span class="va">flow</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">pb</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 36 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    orig   dest                               flow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Africa Africa                           8.46  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Africa Asia                             0.984 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Africa Europe                           2.72  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Africa Latin America and the Caribbean  0.020<span style="text-decoration: underline;">7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Africa Northern America                 1.13  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Africa Oceania                          0.118 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Asia   Africa                           0.895 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Asia   Asia                            22.4   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Asia   Europe                           7.83  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Asia   Latin America and the Caribbean  0.215 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 26 more rows</span></span>
 <span class="r-in">    </span>
 <span class="r-in"><span class="co"># pdf(file = "chord.pdf")</span></span>
 <span class="r-in"><span class="fu">mig_chord</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pb</span><span class="op">)</span></span>

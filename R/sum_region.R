@@ -24,17 +24,18 @@
 #' library(tidyverse)
 #' 
 #' # download Abel and Cohen (2019) estimates
-#' f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+#' f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+#' f
 #' 
 #' # single period
 #' f %>% 
 #'   filter(year0 == 1990) %>%
-#'   sum_region(flow_col = "da_pb_closed")
+#'   sum_country(flow_col = "da_pb_closed")
 #' 
 #' # all periods using group_by
 #' f %>% 
 #'   group_by(year0) %>%
-#'   sum_region(flow_col = "da_pb_closed")
+#'   sum_country(flow_col = "da_pb_closed")
 #' }   
 sum_region <- function(
   m, drop_diagonal = TRUE, 

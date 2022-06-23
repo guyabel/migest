@@ -76,17 +76,20 @@
 
     <div id="format">
     <h2>Format</h2>
-    <p>Data frame with 237 rows and 13 columns. One of first three columns intended as input for <code>origin</code> in <code>countrycode</code>.</p><dl><dt>name</dt>
+    <p>Data frame with 237 rows and 18 columns. One of first three columns intended as input for <code>origin</code> in <code>countrycode</code>.</p><dl><dt>name</dt>
 <dd><p>Country name</p></dd>
-
-  <dt>iso3n</dt>
-<dd><p>ISO 3 letter code</p></dd>
 
   <dt>iso3c</dt>
 <dd><p>ISO numeric code</p></dd>
 
+  <dt>iso3n</dt>
+<dd><p>ISO 3 letter code</p></dd>
 
-</dl><p>Remaining columns intended as input for <code>destination</code> in <code>countrycode</code>.</p><dl><dt>region</dt>
+
+</dl><p>Remaining columns intended as input for <code>destination</code> in <code>countrycode</code>.</p><dl><dt>name_short</dt>
+<dd><p>Short country name</p></dd>
+
+  <dt>region</dt>
 <dd><p>Geographic region of country (6)</p></dd>
 
   <dt>region_sub</dt>
@@ -116,14 +119,17 @@
   <dt>region_as2014</dt>
 <dd><p>Region grouping used for global chord diagram plots by Abel and Sander (2014)</p></dd>
 
-  <dt>region_sba2014</dt>
+  <dt>region_sab2014</dt>
 <dd><p>Region grouping used for global chord diagram plots by Sander, Abel and Bauer (2014)</p></dd>
 
   <dt>region_a2018</dt>
 <dd><p>Region grouping used for global chord diagram plots by Abel (2018)</p></dd>
 
-  <dt>region_ac2021</dt>
-<dd><p>Region grouping used for global chord diagram plots by Abel and Cohen (2021)</p></dd>
+  <dt>region_ac2022</dt>
+<dd><p>Region grouping used for global chord diagram plots by Abel and Cohen (2022)</p></dd>
+
+  <dt>region_wb</dt>
+<dd><p>World Bank region</p></dd>
 
 
 </dl></div>
@@ -137,8 +143,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \dontrun{</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.1 ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2</span> 3.3.5     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr  </span> 0.3.4</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble </span> 3.1.6     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr  </span> 1.0.8</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">ggplot2</span> 3.3.6     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">purrr  </span> 0.3.4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tibble </span> 3.1.7     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr  </span> 1.0.9</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">tidyr  </span> 1.2.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr</span> 1.4.0</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr  </span> 2.1.2     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats</span> 0.5.1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
