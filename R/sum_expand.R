@@ -40,30 +40,28 @@
 #' library(countrycode)
 #' 
 #' # download Abel and Cohen (2019) estimates
-#' f <- read_csv("https://ndownloader.figshare.com/files/26239945")
-#' 
-#' cm <- c("CHI" = "Europe",
-#'         "SCG" = "Europe", 
-#'         "SUD" = "Africa")
+#' f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+#' f
 #' 
 #' # 1990-1995 flow estimates
 #' f %>%
 #'   filter(year0 == 1990) %>%
 #'   mutate(
-#'     orig_area = countrycode(sourcevar = orig, custom_match = cm,
-#'                             origin = "iso3c", destination = "un.region.name"),
-#'     dest_area = countrycode(sourcevar = dest, custom_match = cm,
-#'                             origin = "iso3c", destination = "un.region.name")
+#'     orig_area = countrycode(sourcevar = orig, custom_dict = dict_ims,
+#'                             origin = "iso3c", destination = "region"),
+#'     dest_area = countrycode(sourcevar = dest, custom_dict = dict_ims,
+#'                             origin = "iso3c", destination = "region")
 #'   ) %>%
 #'   sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
 #' 
 #' # by group (period)
 #' f %>%
 #'   mutate(
-#'     orig_area = countrycode(sourcevar = orig, custom_match = cm,
-#'                             origin = "iso3c", destination = "un.region.name"),
-#'     dest_area = countrycode(sourcevar = dest, custom_match = cm,
-#'                             origin = "iso3c", destination = "un.region.name")) %>%
+#'     orig_area = countrycode(sourcevar = orig, custom_dict = dict_ims,
+#'                             origin = "iso3c", destination = "region"),
+#'     dest_area = countrycode(sourcevar = dest, custom_dict = dict_ims,
+#'                             origin = "iso3c", destination = "region")
+#'   ) %>%
 #'   group_by(year0) %>%
 #'   sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
 #' }

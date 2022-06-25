@@ -71,7 +71,8 @@ sum_lump(m, threshold = 80, complete = TRUE, return_matrix = FALSE)
 library(tidyverse)
 
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+f
 
 # large 1990-1995 flow estimates
 f \%>\%

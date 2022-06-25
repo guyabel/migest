@@ -44,7 +44,8 @@ Intended for use as a custom dictionary with the countrycode package, where the 
 library(tidyverse)
 library(countrycode)
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+f
 
 # use dictionary to get region to region flows
 d <- f \%>\%

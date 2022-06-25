@@ -77,21 +77,20 @@ Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to al
 library(tidyverse)
 library(countrycode)
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/26239945")
+f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+f
 
 # use dictionary to get region to region flows
 d <- f \%>\%
   mutate(
-    orig = countrycode(
-      sourcevar = orig, custom_dict = dict_ims,
-      origin = "iso3c", destination = "region"),
-    dest = countrycode(
-      sourcevar = dest, custom_dict = dict_ims,
-      origin = "iso3c", destination = "region")
+    orig_area = countrycode(sourcevar = orig, custom_dict = dict_ims,
+                            origin = "iso3c", destination = "region"),
+    dest_area = countrycode(sourcevar = dest, custom_dict = dict_ims,
+                            origin = "iso3c", destination = "region")
   ) \%>\%
-group_by(year0, orig, dest) \%>\%
-summarise_all(sum) \%>\%
-ungroup()
+  group_by(year0, orig, dest) \%>\%
+  summarise_all(sum) \%>\%
+  ungroup()
 d
 
 # 2015-2020 pseudo-Bayesian estimates for plotting
