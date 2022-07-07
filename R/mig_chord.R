@@ -39,10 +39,10 @@
 #' # use dictionary to get region to region flows
 #' d <- f %>%
 #'   mutate(
-#'     orig_area = countrycode(sourcevar = orig, custom_dict = dict_ims,
-#'                             origin = "iso3c", destination = "region"),
-#'     dest_area = countrycode(sourcevar = dest, custom_dict = dict_ims,
-#'                             origin = "iso3c", destination = "region")
+#'     orig = countrycode(sourcevar = orig, custom_dict = dict_ims,
+#'                        origin = "iso3c", destination = "region"),
+#'     dest = countrycode(sourcevar = dest, custom_dict = dict_ims,
+#'                        origin = "iso3c", destination = "region")
 #'   ) %>%
 #'   group_by(year0, orig, dest) %>%
 #'   summarise_all(sum) %>%
