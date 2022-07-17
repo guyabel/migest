@@ -19,16 +19,21 @@ birth_mat <- function(b_por = NULL, m2 = NULL, method = "native", non_negative =
         message(paste0("Too many births in region ", names(b_por)[xx], ". Subtracted proportionally for this country. Might want to check the input data"))
         bb[, xx] <- mipfp::Ipfp(seed = m2,
                                 target.list = list(2),
-                                target.data = list(b_por))$x.hat[, xx]
+                                target.data = list(b_por),
+                                tol = 1e-05)$x.hat[, xx]
       }
     }
   }
   if(method == "proportion"){
     bb <- mipfp::Ipfp(seed = m2,
                       target.list = list(2),
-                      target.data = list(b_por)) %>%
+                      target.data = list(b_por),
+                      tol = 1e-05) %>%
       suppressMessages() %>%
       .$x.hat
   }
   return(bb)
 }
+
+x <- matrix(c(4, 5,6,7), nrow = 2)
+mipfp::Ipfp(seed = x, target.list = (2), target.data = list(c(10, 11)))

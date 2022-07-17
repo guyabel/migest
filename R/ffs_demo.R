@@ -115,6 +115,12 @@
 #' d[] <- c(0, 0, 0, 0)
 #' e7 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
 #' e7$od
+# source("C:/Users/Guy/Documents/GitHub/migest/R/ipf_seed.R")
+# source("C:/Users/Guy/Documents/GitHub/migest/R/birth_mat.R");
+# source("C:/Users/Guy/Documents/GitHub/migest/R/death_mat.R")
+# source("C:/Users/Guy/Documents/GitHub/migest/R/match_pob_tot.R"); 
+# source("C:/Users/Guy/Documents/GitHub/migest/R/rescale_nb.R")
+
 # source("./R/ipf_seed.R")
 # source("./R/birth_mat.R"); source("./R/death_mat.R")
 # source("./R/match_pob_tot.R"); source("./R/rescale_nb.R")
@@ -122,7 +128,8 @@
 # m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
 # stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; birth_method = "native"; death_method = "proportion"; match_global = "after-demo-adjust"; verbose = FALSE
 # birth_method = "proportion"
-# match_pob_tot_method = "open";
+# birth_method = "native"
+# match_pob_tot_method = "open-dr";
 ffs_demo <- function(m1 = NULL,
                      m2 = NULL, 
                      b_por = NULL, 
@@ -226,7 +233,8 @@ ffs_demo <- function(m1 = NULL,
       # print = TRUE,
       target.list = list(c(1, 3), c(2,3)),
       target.data = list(t(m1_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum),
-                         t(m2_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum)))
+                         t(m2_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum)),
+      tol = 1e-05)
     f0 <- a0$x.hat + diag_count
   }
 
@@ -235,7 +243,8 @@ ffs_demo <- function(m1 = NULL,
     f0 <- mipfp::Ipfp(seed = m, tol = 1e-03, iter = 1e05,
                       # print = TRUE,
                       target.list = list(c(1, 3), c(2,3)),
-                      target.data = list(t(m1_d), m2_d))$x.hat
+                      target.data = list(t(m1_d), m2_d),
+                      tol = 1e-05)$x.hat
     
   }
     

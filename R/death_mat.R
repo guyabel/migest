@@ -13,16 +13,19 @@ death_mat <- function(d_por = NULL, m1 = NULL, method = "proportion",
                       m2 = NULL, b_por = NULL){
   if (method == "proportion")
     # d_por = d, m1 = m1_a, method = death_method, m2 = m2_a, b_por = b
-    # dd <- ipf2(col_tot = d_por, m = m1)$mu
+    # dd0 <- ipf2(col_tot = d_por, m = m1)$mu
     dd <- mipfp::Ipfp(seed = m1,
                       target.list = list(2),
-                      target.data = list(d_por))$x.hat
+                      target.data = list(d_por), print = TRUE,
+                      tol = 1e-05,
+                      )$x.hat
 
   if (method == "accounting"){
     d_pob <- rowSums(m1) + b_por - rowSums(m2)
     dd <- mipfp::Ipfp(seed = m1,
                       target.list = list(1, 2),
-                      target.data = list(d_pob, d_por))$x.hat
+                      target.data = list(d_pob, d_por),
+                      tol = 1e-05)$x.hat
     # dd <- ipf2(col_tot = d_por, row_tot = d_pob, m = m1)$mu
   }
   return(dd)

@@ -67,11 +67,13 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
     m1_wz_adj <- mipfp::Ipfp(seed = m1_wz, 
                       target.list = list(1, 2), 
                       target.data = list(rowSums(m1_wz) - dd_wz, 
-                                         colSums(m1_wz)))
+                                         colSums(m1_wz)),
+                      tol = 1e-05)
     m2_wz_adj <- mipfp::Ipfp(seed = m2_wz, 
                       target.list = list(1, 2), 
                       target.data = list(rowSums(m2_wz) + dd_wz, 
-                                         colSums(m2_wz)))
+                                         colSums(m2_wz)),
+                      tol = 1e-05)
     m1_z <- m1[zid,]
     m2_z <- m2[zid,]
     if(length(zid) == 1){
@@ -97,11 +99,13 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
     m1_adj <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
                           # print = TRUE,
                           target.list = list(1, 2),
-                          target.data = list(rowSums(m1) - dd / 2, colSums(m1)))
+                          target.data = list(rowSums(m1) - dd / 2, colSums(m1)),
+                          tol = 1e-05)
     m2_adj <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
                           # print = TRUE,
                           target.list = list(1, 2),
-                          target.data = list(rowSums(m2) + dd / 2, colSums(m2)))
+                          target.data = list(rowSums(m2) + dd / 2, colSums(m2)),
+                          tol = 1e-05)
     if(min(m1_adj$x.hat) < 0 | min(m2_adj$x.hat) < 0)
       message("negative flows from rescale")
     if(m1_adj$conv == FALSE | m2_adj$conv == FALSE)
@@ -111,7 +115,7 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
     m2_adj <- m2_adj$x.hat
   }
   # zeros for in and out matrices for return object
-  zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0))
+  zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0), tol = 1e-05)
   in_mat <- out_mat <- zeros
   if(method == "open"){
     in_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
