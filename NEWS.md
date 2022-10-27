@@ -4,8 +4,11 @@
 * Fixed axis upper limits in `mig_chord()`
 * Added `label_squeeze` option to `mig_chord()`
 * Added `region_ac2022` and `region_wb` column to `dict_ims`
-* Replaced `ipf` functions in `ffs_demo` and sub-functions with `mipfp::Ipfp`
+* Replaced `ipf` functions in `ffs_demo()` and sub-functions with `mipfp::Ipfp`
+* Added `return` option in `ffs_demo()` to output only estimted flow array unless otherwise stated
 * Added `name_short` column to `dict_ims`
+* Simplified `sum_od()` code to directly work with outputs from `ffs_demo()` and provide margin sums
+
 
 # migest 2.0.2
 

@@ -8,6 +8,7 @@
 #' @return Returns a numeric value of the sum of a single block.
 #' @author Guy J. Abel
 #' @export
+#' 
 #'
 #' @examples
 #' r <- LETTERS[1:4]

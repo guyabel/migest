@@ -25,7 +25,7 @@ as introduced by Abel (2005). The \(\alpha_{i}\) and  \(\beta_{j}\) represent ba
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -75,40 +75,59 @@ as introduced by Abel (2005). The \(\alpha_{i}\) and  \(\beta_{j}\) represent ba
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cm3</span><span class="op">(</span>
-  row_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  col_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  tol <span class="op">=</span> <span class="fl">1e-06</span>,
-  maxit <span class="op">=</span> <span class="fl">500</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cm3</span><span class="op">(</span></span>
+<span>  row_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-06</span>,</span>
+<span>  maxit <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>row_tot</dt>
 <dd><p>Vector of origin totals to constrain the sum of the imputed cell rows.</p></dd>
+
+
 <dt>col_tot</dt>
 <dd><p>Vector of destination totals to constrain the sum of the imputed cell columns.</p></dd>
+
+
 <dt>m</dt>
 <dd><p>Array of auxiliary data. By default set to 1 for all origin-destination-migrant typology combinations.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>Numeric value for the tolerance level used in the parameter estimation.</p></dd>
+
+
 <dt>maxit</dt>
 <dd><p>Numeric value for the maximum number of iterations used in the parameter estimation.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Parameter estimates were obtained using the conditional maximization of the likelihood, as discussed by Abel (2005) and Raymer et. al. (2007). 
-The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the row and column dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.
-Returns a <code>list</code> object with</p>
+    
+
+<p>Parameter estimates were obtained using the conditional maximization of the likelihood, as discussed by Abel (2005) and Raymer et. al. (2007).</p>
+
+
+<p>The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the row and column dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.</p>
+
+
+<p>Returns a <code>list</code> object with</p>
 <dl><dt>N </dt>
 <dd><p>Origin-Destination matrix of indirect estimates</p></dd>
+
 <dt>theta </dt>
 <dd><p>Collection of parameter estimates</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -126,11 +145,11 @@ Returns a <code>list</code> object with</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## over two tables</span></span>
-<span class="r-in"><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">cm3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>,</span>
-<span class="r-in">         m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">                   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ILL"</span>, <span class="st">"HEALTHY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## over two tables</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">cm3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span> <span class="op">*</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>         m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ILL"</span>, <span class="st">"HEALTHY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> iteration: 0 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha parameters: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> beta parameters: 1 1 </span>
@@ -185,8 +204,8 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> beta parameters: 1.255043 0.86449 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> max difference: 2.922594e-07 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># display with row, col and table totals</span></span>
-<span class="r-in"><span class="va">y</span></span>
+<span class="r-in"><span><span class="co"># display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="va">y</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , type = ILL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -207,14 +226,14 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   alpha1   alpha2    beta1    beta2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2.075309 2.273119 1.255043 0.864490 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## over three tables</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">cm3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">170</span>, <span class="fl">120</span>, <span class="fl">410</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">140</span>, <span class="fl">60</span><span class="op">)</span>,</span>
-<span class="r-in">         m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>,  <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">9</span>,  <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span>
-<span class="r-in">                   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0--15"</span>, <span class="st">"15-60"</span>, <span class="st">"&gt;60"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                   verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># display with row, col and table totals</span></span>
-<span class="r-in"><span class="va">y</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## over three tables</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">cm3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">170</span>, <span class="fl">120</span>, <span class="fl">410</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">140</span>, <span class="fl">60</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>         m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span>,  <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">9</span>,  <span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"0--15"</span>, <span class="st">"15-60"</span>, <span class="st">"&gt;60"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                   verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="va">y</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , type = 0--15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -256,7 +275,7 @@ Returns a <code>list</code> object with</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

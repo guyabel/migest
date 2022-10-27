@@ -4,6 +4,7 @@
 #' @param w Character string vector of words
 #'
 #' @return List with vectors for number of characters per line and the number of words per line
+#' 
 nchars_wrap <- function(b, w){
   n <- y <- NULL
   for(i in 0:length(b) + 1){

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,19 +71,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>string</dt>
 <dd><p>Character string to be broken up</p></dd>
+
+
 <dt>n</dt>
 <dd><p>Number of lines to break the string over</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The original <code>string</code> with line breaks inserted at optimal positions.</p>
+    
+
+<p>The original <code>string</code> with line breaks inserted at optimal positions.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -93,14 +98,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a bb ccc dddd\neeee ffffff"</span>
-<span class="r-in"><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a bb\nccc dddd\neeee\nffffff"</span>
-<span class="r-in"><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Asking for more lines than words</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a\nbb\nccc\ndddd\neeee\nffffff"</span>
-<span class="r-in"><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a bb"</span>, <span class="st">"a bb ccc"</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a bb"</span>, <span class="st">"a bb ccc"</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a\nbb"     "a bb\nccc"</span>
 </code></pre></div>
     </div>
@@ -116,7 +121,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

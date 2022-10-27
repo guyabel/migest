@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,25 +71,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rescale_nb</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, <span class="va">b</span>, <span class="va">d</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rescale_nb</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, <span class="va">b</span>, <span class="va">d</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m1</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em></p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>b</dt>
 <dd><p>Vector of the number of births between time <em>t</em> and <em>t</em>+1 in each region.</p></dd>
+
+
 <dt>d</dt>
 <dd><p>Vector of the number of deaths between time <em>t</em> and <em>t</em>+1 in each region.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>List with adjusted <code>m1</code> and <code>m2</code>.</p>
+    
+
+<p>List with adjusted <code>m1</code> and <code>m2</code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -102,14 +113,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">55</span>, <span class="fl">555</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">80</span>, <span class="fl">40</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>, <span class="fl">60</span>, <span class="fl">0</span>, <span class="fl">80</span>, <span class="fl">505</span>, <span class="fl">75</span>, <span class="fl">5</span>, <span class="fl">90</span>, <span class="fl">30</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># display with row and col totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">P1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">55</span>, <span class="fl">555</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">80</span>, <span class="fl">40</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>, <span class="fl">60</span>, <span class="fl">0</span>, <span class="fl">80</span>, <span class="fl">505</span>, <span class="fl">75</span>, <span class="fl">5</span>, <span class="fl">90</span>, <span class="fl">30</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># display with row and col totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">P1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   1000 100  10   0 1110</span>
@@ -117,7 +128,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     80  40 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     20  25  20 200  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1155 720 880 245 3000</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">P2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">P2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    950 100  60   0 1110</span>
@@ -125,28 +136,28 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     90  30 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     40  45   0 180  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160 680 935 225 3000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># births and deaths</span></span>
-<span class="r-in"><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># no change in stocks, but 20 more births than deaths...</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P2</span> <span class="op">-</span> <span class="va">P1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">d</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># births and deaths</span></span></span>
+<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># no change in stocks, but 20 more births than deaths...</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P2</span> <span class="op">-</span> <span class="va">P1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-in"><span class="co"># rescale</span></span>
-<span class="r-in"><span class="co"># y &lt;- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)</span></span>
-<span class="r-in"><span class="co"># y</span></span>
-<span class="r-in"><span class="co"># sum(y$m1_adj - y$m2_adj) + sum(b - d)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># check for when extra is positive and odd</span></span>
-<span class="r-in"><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">31</span></span>
-<span class="r-in"><span class="va">d</span></span>
+<span class="r-in"><span><span class="co"># rescale</span></span></span>
+<span class="r-in"><span><span class="co"># y &lt;- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)</span></span></span>
+<span class="r-in"><span><span class="co"># y</span></span></span>
+<span class="r-in"><span><span class="co"># sum(y$m1_adj - y$m2_adj) + sum(b - d)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># check for when extra is positive and odd</span></span></span>
+<span class="r-in"><span><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">31</span></span></span>
+<span class="r-in"><span><span class="va">d</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 31  5  5  5</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P2</span> <span class="op">-</span> <span class="va">P1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">d</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">P2</span> <span class="op">-</span> <span class="va">P1</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">b</span> <span class="op">-</span> <span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
-<span class="r-in"><span class="co"># rescale</span></span>
-<span class="r-in"><span class="co"># y &lt;- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)</span></span>
-<span class="r-in"><span class="co"># sum(y$m1_adj - y$m2_adj) - sum(b - d)</span></span>
-<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span><span class="co"># rescale</span></span></span>
+<span class="r-in"><span><span class="co"># y &lt;- rescale_nb(m1 = P1, m2 = P2, b = b, d = d)</span></span></span>
+<span class="r-in"><span><span class="co"># sum(y$m1_adj - y$m2_adj) - sum(b - d)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -161,7 +172,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

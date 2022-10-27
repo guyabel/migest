@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,23 +71,32 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">mig_tibble</span><span class="op">(</span><span class="va">m</span>, orig_col <span class="op">=</span> <span class="st">"orig"</span>, dest_col <span class="op">=</span> <span class="st">"dest"</span>, flow_col <span class="op">=</span> <span class="st">"flow"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">mig_tibble</span><span class="op">(</span><span class="va">m</span>, orig_col <span class="op">=</span> <span class="st">"orig"</span>, dest_col <span class="op">=</span> <span class="st">"dest"</span>, flow_col <span class="op">=</span> <span class="st">"flow"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m</dt>
 <dd><p>A <code>matrix</code> or data frame of origin-destination flows. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>flow_col</code>.</p></dd>
+
+
 <dt>orig_col</dt>
 <dd><p>Character string of the origin column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>dest_col</dt>
 <dd><p>Character string of the destination column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>flow_col</dt>
 <dd><p>Character string of the flow column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Formatted tibble</p>
+    
+
+<p>Formatted tibble</p>
     </div>
 
   </div>
@@ -102,7 +111,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

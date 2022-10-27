@@ -25,7 +25,7 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -75,42 +75,62 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ipf3</span><span class="op">(</span>
-  row_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  col_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  tol <span class="op">=</span> <span class="fl">1e-05</span>,
-  maxit <span class="op">=</span> <span class="fl">500</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ipf3</span><span class="op">(</span></span>
+<span>  row_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-05</span>,</span>
+<span>  maxit <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>row_tot</dt>
 <dd><p>Vector of origin totals to constrain the sum of the imputed cell rows.</p></dd>
+
+
 <dt>col_tot</dt>
 <dd><p>Vector of destination totals to constrain the sum of the imputed cell columns.</p></dd>
+
+
 <dt>m</dt>
 <dd><p>Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>Numeric value for the tolerance level used in the parameter estimation.</p></dd>
+
+
 <dt>maxit</dt>
 <dd><p>Numeric value for the maximum number of iterations used in the parameter estimation.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). The arguments <code>row_tot</code> and <code>col_tot</code> take the row-table and column-table specific known margins.
-The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.
-Returns a <code>list</code> object with</p>
+    
+
+<p>Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). The arguments <code>row_tot</code> and <code>col_tot</code> take the row-table and column-table specific known margins.</p>
+
+
+<p>The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.</p>
+
+
+<p>Returns a <code>list</code> object with</p>
 <dl><dt>mu </dt>
 <dd><p>Array of indirect estimates of origin-destination matrices by migrant characteristic</p></dd>
+
 <dt>it </dt>
 <dd><p>Iteration count</p></dd>
+
 <dt>tol </dt>
 <dd><p>Tolerance level at final iteration</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -130,22 +150,22 @@ Returns a <code>list</code> object with</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## create row-table and column-table specific known margins.</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>,  <span class="fl">10</span>,   <span class="fl">0</span>, </span>
-<span class="r-in">               <span class="fl">55</span>,   <span class="fl">555</span>,  <span class="fl">50</span>,   <span class="fl">5</span>, </span>
-<span class="r-in">               <span class="fl">80</span>,    <span class="fl">40</span>, <span class="fl">800</span> , <span class="fl">40</span>, </span>
-<span class="r-in">               <span class="fl">20</span>,    <span class="fl">25</span>,  <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>, </span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>,  <span class="fl">60</span>,   <span class="fl">0</span>, </span>
-<span class="r-in">                <span class="fl">80</span>, <span class="fl">505</span>,  <span class="fl">75</span>,   <span class="fl">5</span>, </span>
-<span class="r-in">                <span class="fl">90</span>,  <span class="fl">30</span>, <span class="fl">800</span>,  <span class="fl">40</span>, </span>
-<span class="r-in">                <span class="fl">40</span>,  <span class="fl">45</span>,   <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>, </span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># display with row and col totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## create row-table and column-table specific known margins.</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>,  <span class="fl">10</span>,   <span class="fl">0</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">55</span>,   <span class="fl">555</span>,  <span class="fl">50</span>,   <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">80</span>,    <span class="fl">40</span>, <span class="fl">800</span> , <span class="fl">40</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">20</span>,    <span class="fl">25</span>,  <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>,  <span class="fl">60</span>,   <span class="fl">0</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">80</span>, <span class="fl">505</span>,  <span class="fl">75</span>,   <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">90</span>,  <span class="fl">30</span>, <span class="fl">800</span>,  <span class="fl">40</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">40</span>,  <span class="fl">45</span>,   <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># display with row and col totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   1000 100  10   0 1110</span>
@@ -153,7 +173,7 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     80  40 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     20  25  20 200  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1155 720 880 245 3000</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    950 100  60   0 1110</span>
@@ -161,13 +181,13 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     90  30 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     40  45   0 180  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160 680 935 225 3000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># run ipf</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="va">P2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># run ipf</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="va">P2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 996 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 1.136868e-13 </span>
-<span class="r-in"><span class="co"># display with row, col and table totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = A</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
@@ -218,18 +238,19 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     34.5  39.0  33.9 137.6  245</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160.0 680.0 935.0 225.0 3000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># origin-destination flow table</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig     A     B     C    D</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    A   0.0 137.8 126.9 17.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    B 159.9   0.0 101.3 22.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    C  92.6  67.3   0.0 47.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    D  34.5  39.0  33.9  0.0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## with alternative offset term</span></span>
-<span class="r-in"><span class="va">dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="va">P2</span>, m <span class="op">=</span> <span class="va">dis</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># origin-destination flow table</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig      A     B     C    D   Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A     0.0 137.8 126.9 17.3 282.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   159.9   0.0 101.3 22.8 284.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C    92.6  67.3   0.0 47.3 207.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D    34.5  39.0  33.9  0.0 107.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 287.0 244.0 262.2 87.4 880.6</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## with alternative offset term</span></span></span>
+<span class="r-in"><span><span class="va">dis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf3</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="va">P2</span>, m <span class="op">=</span> <span class="va">dis</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 990 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 267.9774 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 13.70557 </span>
@@ -240,8 +261,8 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8 0.000227895 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9 2.480023e-05 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 2.698833e-06 </span>
-<span class="r-in"><span class="co"># display with row, col and table totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = A</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
@@ -292,14 +313,15 @@ Returns a <code>list</code> object with</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     39.6  48.2  38.9 118.4  245</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160.0 680.0 935.0 225.0 3000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co"># origin-destination flow table</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig     A     B     C    D</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    A   0.0 146.8 136.6 20.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    B 169.6   0.0 113.8 29.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    C  99.3  77.7   0.0 57.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    D  39.6  48.2  38.9  0.0</span>
+<span class="r-in"><span><span class="co"># origin-destination flow table</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig      A     B     C     D   Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A     0.0 146.8 136.6  20.1 303.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   169.6   0.0 113.8  29.3 312.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C    99.3  77.7   0.0  57.3 234.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D    39.6  48.2  38.9   0.0 126.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 308.5 272.6 289.2 106.6 977.0</span>
 </code></pre></div>
     </div>
   </div>
@@ -314,7 +336,7 @@ Returns a <code>list</code> object with</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

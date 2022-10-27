@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,16 +71,16 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">index_connectivity</span><span class="op">(</span>
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  gini_orig_all <span class="op">=</span> <span class="cn">FALSE</span>,
-  gini_dest_all <span class="op">=</span> <span class="cn">FALSE</span>,
-  gini_corrected <span class="op">=</span> <span class="cn">TRUE</span>,
-  orig_col <span class="op">=</span> <span class="st">"orig"</span>,
-  dest_col <span class="op">=</span> <span class="st">"dest"</span>,
-  flow_col <span class="op">=</span> <span class="st">"flow"</span>,
-  long <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">index_connectivity</span><span class="op">(</span></span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  gini_orig_all <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  gini_dest_all <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  gini_corrected <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  orig_col <span class="op">=</span> <span class="st">"orig"</span>,</span>
+<span>  dest_col <span class="op">=</span> <span class="st">"dest"</span>,</span>
+<span>  flow_col <span class="op">=</span> <span class="st">"flow"</span>,</span>
+<span>  long <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="source">
@@ -94,54 +94,82 @@
     <h2>Arguments</h2>
     <dl><dt>m</dt>
 <dd><p>A <code>matrix</code> or data frame of origin-destination flows. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>flow_col</code>.</p></dd>
+
+
 <dt>gini_orig_all</dt>
 <dd><p>Logical to include gini index values for all origin regions. Default <code>FALSE</code>.</p></dd>
+
+
 <dt>gini_dest_all</dt>
 <dd><p>Logical to include gini index values for all destination regions. Default <code>FALSE</code>.</p></dd>
+
+
 <dt>gini_corrected</dt>
 <dd><p>Logical to use corrected denominator in Gini index of Bell (2002) or original of David A. Plane and Mulligan (1997)</p></dd>
+
+
 <dt>orig_col</dt>
 <dd><p>Character string of the origin column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>dest_col</dt>
 <dd><p>Character string of the destination column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>flow_col</dt>
 <dd><p>Character string of the flow column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>long</dt>
 <dd><p>Logical to return a long data frame with index values all in one column</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble with 12 summary measures:</p>
+    
+
+<p>A tibble with 12 summary measures:</p>
 <dl><dt>connectivity</dt>
 <dd><p>I_mc of Bell et. al. (2002) for the share of non-zero flows. A value of 0 means no connections (all zero flows) and 1 shows that all regions are connected by migrants.</p></dd>
+
 <dt>inequality_equal</dt>
 <dd><p>I_mi of Bell et. al. (2002) based on a distributions of flows compared to equal distributions of expected flows . A value of 0 shows complete equality in flows and 1 shows maximum inequality.</p></dd>
+
 <dt>inequality_sim</dt>
 <dd><p>I_mi of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit <code>flow ~ orig +  dest</code>. A value of 0 shows complete equality in flows and 1 shows maximum inequality.</p></dd>
+
 <dt>gini_total</dt>
 <dd><p>Overall concentration of migration from Bell (2002), corrected from Plane and Mulligan (1997). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one single flow. Calculated using <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.gini.total.html" class="external-link">migration.indices::migration.gini.total()</a></code></p></dd>
+
 <dt>gini_orig_standardized</dt>
 <dd><p>Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.gini.row.standardized.html" class="external-link">migration.indices::migration.gini.row.standardized()</a></code>.</p></dd>
+
 <dt>gini_dest_standardized</dt>
 <dd><p>Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.gini.col.standardized.html" class="external-link">migration.indices::migration.gini.col.standardized()</a></code>.</p></dd>
+
 <dt>mwg_orig</dt>
 <dd><p>Origin spatial focusing, from Bell et. al. (2002). Calculated using <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.out.html" class="external-link">migration.indices::migration.weighted.gini.out()</a></code></p></dd>
+
 <dt>mwg_dest</dt>
 <dd><p>Destination spatial focusing, from Bell et. al. (2002). Calculated using <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.in.html" class="external-link">migration.indices::migration.weighted.gini.in()</a></code></p></dd>
+
 <dt>mwg_mean</dt>
 <dd><p>Mean spatial focusing, from Bell et. al. (2002). Average of the origin and destination migration weighted Gini indices (<code>mwg_orig</code> and <code>mwg_dest</code>). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one region. Calculated using <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.weighted.gini.mean.html" class="external-link">migration.indices::migration.weighted.gini.mean()</a></code></p></dd>
+
 <dt>cv</dt>
 <dd><p>Coefficient of variation from Rogers and Raymer (1998).</p></dd>
+
 <dt>acv</dt>
 <dd><p>Aggregated system-wide coefficient of variation from Rogers and Sweeney (1998), using <code><a href="https://rdrr.io/pkg/migration.indices/man/migration.acv.html" class="external-link">migration.indices::migration.acv()</a></code></p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">korea_reg</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">index_connectivity</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">korea_reg</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">index_connectivity</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 11 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    measure                  value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -170,7 +198,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

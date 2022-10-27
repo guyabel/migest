@@ -12,6 +12,7 @@
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
 #' 
+#' 
 #' @examples
 #' \donttest{
 #' dn <- LETTERS[1:4]

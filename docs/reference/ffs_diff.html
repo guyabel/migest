@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,25 +71,38 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ffs_diff</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, decrease <span class="op">=</span> <span class="st">"return"</span>, include_native_born <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ffs_diff</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, decrease <span class="op">=</span> <span class="st">"return"</span>, include_native_born <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m1</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em></p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>decrease</dt>
 <dd><p>How to treat decreases in bilateral stocks over the <em>t</em> to <em>t</em>+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Default is <code>return</code></p></dd>
+
+
 <dt>include_native_born</dt>
 <dd><p>Logical value to indicate whether to include diagonal elements of <code>m1</code> and <code>m2</code>. Default of <code>FALSE</code> - not include.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Estimates migrant transitions flows between two sequential migrant stock tables. 
-When <code>decrease = "zero"</code> all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015) 
-When <code>decrease = "return"</code> all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)</p>
+    
+
+<p>Estimates migrant transitions flows between two sequential migrant stock tables.</p>
+
+
+<p>When <code>decrease = "zero"</code> all decreases in migrant stocks over there period are set to zero, following the approach of Bertoli and Fernandez-Huertas Moraga (2015)</p>
+
+
+<p>When <code>decrease = "return"</code> all decreases in migrant stocks are assumed to correspond to return flows back to their place of birth, following the approach of Beine and Parsons (2015)</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -106,13 +119,13 @@ When <code>decrease = "return"</code> all decreases in migrant stocks are assume
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">55</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">140</span>, <span class="fl">65</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">30</span>, <span class="fl">15</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">150</span>, <span class="fl">35</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">r</span>, por <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s1</span>; <span class="va">s2</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">55</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">140</span>, <span class="fl">65</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">30</span>, <span class="fl">15</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">150</span>, <span class="fl">35</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">r</span>, por <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s1</span>; <span class="va">s2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob   A  B   C   D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A 100 10  10   0</span>
@@ -125,15 +138,15 @@ When <code>decrease = "return"</code> all decreases in migrant stocks are assume
 <span class="r-out co"><span class="r-pr">#&gt;</span>   B 20 45  30  15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C 30 40 150  35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D 10 50   5 200</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">ffs_diff</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, decrease <span class="op">=</span> <span class="st">"zero"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">ffs_diff</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, decrease <span class="op">=</span> <span class="st">"zero"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig  A  B C  D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A  0 15 0 15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    B  0  0 5  5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C 20  0 0  0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    D  0 25 0  0</span>
-<span class="r-in"><span class="fu">ffs_diff</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, decrease <span class="op">=</span> <span class="st">"return"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">ffs_diff</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, decrease <span class="op">=</span> <span class="st">"return"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig  A  B  C  D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A  0 15  0 25</span>
@@ -154,7 +167,7 @@ When <code>decrease = "return"</code> all decreases in migrant stocks are assume
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,69 +71,86 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ffs_demo</span><span class="op">(</span>
-  m1 <span class="op">=</span> <span class="cn">NULL</span>,
-  m2 <span class="op">=</span> <span class="cn">NULL</span>,
-  b_por <span class="op">=</span> <span class="cn">NULL</span>,
-  d_por <span class="op">=</span> <span class="cn">NULL</span>,
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  stayer_assumption <span class="op">=</span> <span class="cn">TRUE</span>,
-  match_global <span class="op">=</span> <span class="st">"before-demo-adjust"</span>,
-  match_pob_tot_method <span class="op">=</span> <span class="st">"rescale"</span>,
-  birth_method <span class="op">=</span> <span class="st">"native"</span>,
-  birth_non_negative <span class="op">=</span> <span class="cn">TRUE</span>,
-  death_method <span class="op">=</span> <span class="st">"proportion"</span>,
-  verbose <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ffs_demo</span><span class="op">(</span></span>
+<span>  m1 <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  b_por <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  d_por <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stayer_assumption <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  match_global <span class="op">=</span> <span class="st">"before-demo-adjust"</span>,</span>
+<span>  match_pob_tot_method <span class="op">=</span> <span class="st">"rescale"</span>,</span>
+<span>  birth_method <span class="op">=</span> <span class="st">"native"</span>,</span>
+<span>  birth_non_negative <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  death_method <span class="op">=</span> <span class="st">"proportion"</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  return <span class="op">=</span> <span class="st">"flow"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m1</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em></p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>b_por</dt>
 <dd><p>Vector of the number of births between time <em>t</em> and <em>t</em>+1 in each region.</p></dd>
+
+
 <dt>d_por</dt>
 <dd><p>Vector of the number of deaths between time <em>t</em> and <em>t</em>+1 in each region.</p></dd>
+
+
 <dt>m</dt>
 <dd><p>Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.</p></dd>
+
+
 <dt>stayer_assumption</dt>
-<dd><p>Logical value to indicate whether to use <code><a href="ipf3.html">ipf3</a></code> or <code>ipf3_qi</code> to estimate flows. By default uses <code>ipf3_qi</code>, i.e. is set to <code>TRUE</code>. The <code>ipf</code> function is useful for replicating method of Azose and Raftery.</p></dd>
+<dd><p>Logical value to indicate whether to use a quasi-independent or independent IPFP to estimate flows. By default uses quasi-independent, i.e. is set to <code>TRUE</code> and estimates the minimum migration. When set to <code>FALSE</code> estimates flows under the independent model as used as part of Azose and Raftery (2019).</p></dd>
+
+
 <dt>match_global</dt>
 <dd><p>Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when <code>match_pob_tot_method</code> is either <code>rescale</code> or <code>rescale-adjust-zero-fb</code>. By default uses <code>after-demo-adjust</code> rather than <code>before-demo-adjust</code> which I think minimises risk of negative values.</p></dd>
+
+
 <dt>match_pob_tot_method</dt>
 <dd><p>Character string passed to <code>method</code> argument in <code>match_pob_tot</code> to ensure place of birth margins in stock tables match.</p></dd>
+
+
 <dt>birth_method</dt>
 <dd><p>Character string passed to <code>method</code> argument in <code>birth_mat</code>.</p></dd>
+
+
 <dt>birth_non_negative</dt>
 <dd><p>Logical value passed to <code>non_negative</code> argument in <code>birth_mat</code>.</p></dd>
+
+
 <dt>death_method</dt>
 <dd><p>Character string passed to <code>method</code> argument in <code>death_mat</code>.</p></dd>
+
+
 <dt>verbose</dt>
-<dd><p>Logical value to indicate the print the parameter estimates at each iteration of the various IPF routines. By default <code>FALSE</code>.</p></dd>
-<dt>...</dt>
-<dd><p>Additional arguments passes to <code><a href="ipf3_qi.html">ipf3_qi</a></code> or <code><a href="ipf3.html">ipf3</a></code>.</p></dd>
+<dd><p>Logical value to show progress of the estimation procedure. By default <code>FALSE</code>.</p></dd>
+
+
+<dt>return</dt>
+<dd><p>Character string used to indicate whether to return the array of estimated flows when set to <code>flow</code> (default), array of demographic accounts when set to <code>account</code> or the demographic account, list of input settings and the origin-destination matrix when set to <code>classic</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Estimates migrant transitions flows between two sequential migrant stock tables using various methods. See the example section for possible variations on estimation methods.
-Returns a <code>list</code> object with:</p>
-<dl><dt>mu </dt>
-<dd><p>Array of indirect estimates of origin-destination matrices by place of birth.</p></dd>
-<dt>it </dt>
-<dd><p>Iteration count.</p></dd>
-<dt>tol </dt>
-<dd><p>Tolerance level at final iteration.</p></dd>
-<dt>y </dt>
-<dd><p>Array of indirect estimates of origin-destination matrices by place of birth with additional rows and columns for births, deaths and moves to other regions.</p></dd>
-<dt>...</dt>
-<dd><p>Slots to record which estimation method was used (as set by arguments above)</p></dd>
-<dt>od_flow </dt>
-<dd><p>Matrix of estimated origin-destination flows</p></dd>
-</dl></div>
+    
+
+<p>Estimates migrant transitions flows between two sequential migrant stock tables using various methods. See the example section for possible variations on estimation methods.</p>
+
+
+<p>Detail of returned object varies depending on the setting used in the <code>return</code> argument.</p>
+    </div>
     <div id="references">
     <h2>References</h2>
     <p>Abel and Cohen (2019) Bilateral international migration flow estimates for 200 countries <em>Scientific Data</em> 6 (1), 1-13</p>
@@ -153,20 +170,20 @@ Returns a <code>list</code> object with:</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">##</span></span>
-<span class="r-in"><span class="co">## without births and deaths over period</span></span>
-<span class="r-in"><span class="co">##</span></span>
-<span class="r-in"><span class="co"># data as in demographic research and science paper papers</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">55</span>, <span class="fl">555</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">80</span>, <span class="fl">40</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>, <span class="fl">60</span>, <span class="fl">0</span>, <span class="fl">80</span>, <span class="fl">505</span>, <span class="fl">75</span>, <span class="fl">5</span>, <span class="fl">90</span>, <span class="fl">30</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>birth <span class="op">=</span>  <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">##</span></span></span>
+<span class="r-in"><span><span class="co">## without births and deaths over period</span></span></span>
+<span class="r-in"><span><span class="co">##</span></span></span>
+<span class="r-in"><span><span class="co"># data as in demographic research and science paper papers</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">55</span>, <span class="fl">555</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">80</span>, <span class="fl">40</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>, <span class="fl">60</span>, <span class="fl">0</span>, <span class="fl">80</span>, <span class="fl">505</span>, <span class="fl">75</span>, <span class="fl">5</span>, <span class="fl">90</span>, <span class="fl">30</span>, <span class="fl">800</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>birth <span class="op">=</span>  <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> birth    A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   1000 100  10   0 1110</span>
@@ -174,7 +191,7 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     80  40 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     20  25  20 200  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1155 720 880 245 3000</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> birth    A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    950 100  60   0 1110</span>
@@ -182,16 +199,53 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     90  30 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     40  45   0 180  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160 680 935 225 3000</span>
-<span class="r-in"><span class="va">b</span></span>
+<span class="r-in"><span><span class="va">b</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A B C D </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0 0 0 0 </span>
-<span class="r-in"><span class="va">d</span></span>
+<span class="r-in"><span><span class="va">d</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A B C D </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0 0 0 0 </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># demographic research and science paper example</span></span>
-<span class="r-in"><span class="va">e0</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e0</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># demographic research and science paper example</span></span></span>
+<span class="r-in"><span><span class="va">e0</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e0</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = A</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig   A   B  C D</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    A 950   0 50 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    B   0 100  0 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C   0   0 10 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    D   0   0  0 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig  A   B  C D</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    A 55   0  0 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    B 25 505 25 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C  0   0 50 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    D  0   0  0 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig  A  B   C  D</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    A 80  0   0  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    B 10 30   0  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C  0  0 800  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    D  0  0   0 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> , , pob = D</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig  A  B C   D</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    A 20  0 0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    B  0 25 0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    C 10 10 0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    D 10 10 0 180</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig   A  B  C D Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    0  0 50 0  50</span>
@@ -199,11 +253,11 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C   10 10  0 0  20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D   10 10  0 0  20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 55 20 75 0 150</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># international migration review paper example</span></span>
-<span class="r-in"><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">140</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">65</span>, <span class="fl">200</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">55</span>, <span class="fl">45</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">140</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">50</span>, <span class="fl">180</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># international migration review paper example</span></span></span>
+<span class="r-in"><span><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">140</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">65</span>, <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">55</span>, <span class="fl">45</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">140</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">50</span>, <span class="fl">180</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> birth   A   B   C   D Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   100  10  10   0 120</span>
@@ -211,7 +265,7 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C    10  40 140  65 255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D    20  25  20 200 265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 150 130 195 275 750</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> birth   A   B   C   D Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    70  30  10  10 120</span>
@@ -219,9 +273,9 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C    10  55 140  50 255</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D    40  45   0 180 265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 145 190 160 255 750</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e1</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig   A  B C  D Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    0 20 0 10  30</span>
@@ -229,39 +283,39 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C   15 15 0  5  35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D   10 25 0  0  35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 25 60 0 15 100</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># international migration review supp. material example</span></span>
-<span class="r-in"><span class="co"># distance matrix</span></span>
-<span class="r-in"><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">50</span>, <span class="fl">500</span>, <span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">45</span>, <span class="fl">495</span>, <span class="fl">50</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">450</span>, <span class="fl">500</span>, <span class="fl">495</span>, <span class="fl">450</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">dd</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">dd</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># international migration review supp. material example</span></span></span>
+<span class="r-in"><span><span class="co"># distance matrix</span></span></span>
+<span class="r-in"><span><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">50</span>, <span class="fl">500</span>, <span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">45</span>, <span class="fl">495</span>, <span class="fl">50</span>, <span class="fl">45</span>, <span class="fl">0</span>, <span class="fl">450</span>, <span class="fl">500</span>, <span class="fl">495</span>, <span class="fl">450</span>, <span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">dd</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">r</span>, dest <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dd</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig   A   B   C   D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A   0   5  50 500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    B   5   0  45 495</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C  50  45   0 450</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    D 500 495 450   0</span>
-<span class="r-in"><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, m <span class="op">=</span> <span class="va">dd</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e2</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-in"><span><span class="va">e2</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, m <span class="op">=</span> <span class="va">dd</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig         A        B C  D Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000 20.00000 0 10  30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B    0.00000  0.00000 0  0   0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C   15.23823 14.76177 0  5  35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D    9.76177 25.23823 0  0  35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 25.00000 60.00000 0 15 100</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">##</span></span>
-<span class="r-in"><span class="co">## with births and deaths over period</span></span>
-<span class="r-in"><span class="co">##</span></span>
-<span class="r-in"><span class="co"># demographic research paper example (with births and deaths)</span></span>
-<span class="r-in"><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">55</span>, <span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">100</span>, <span class="fl">555</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">800</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">40</span>, <span class="fl">200</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1060</span>, <span class="fl">45</span>, <span class="fl">70</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">540</span>, <span class="fl">75</span>, <span class="fl">30</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">770</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">70</span>, <span class="fl">230</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">60</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">30</span>, <span class="fl">50</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e3</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, match_pob_tot_method <span class="op">=</span> <span class="st">"open-dr"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e3</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig   A  B C  D Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0 20 0 10  30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B    0  0 0  0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C   15 15 0  5  35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D   10 25 0  0  35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 25 60 0 15 100</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">##</span></span></span>
+<span class="r-in"><span><span class="co">## with births and deaths over period</span></span></span>
+<span class="r-in"><span><span class="co">##</span></span></span>
+<span class="r-in"><span><span class="co"># demographic research paper example (with births and deaths)</span></span></span>
+<span class="r-in"><span><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">55</span>, <span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">100</span>, <span class="fl">555</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">800</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">40</span>, <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1060</span>, <span class="fl">45</span>, <span class="fl">70</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">540</span>, <span class="fl">75</span>, <span class="fl">30</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">770</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">70</span>, <span class="fl">230</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">60</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">30</span>, <span class="fl">50</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e3</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, match_pob_tot_method <span class="op">=</span> <span class="st">"open-dr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig         A         B         C         D       Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000  8.502866 0.0000000  3.695332  12.19820</span>
@@ -269,9 +323,9 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 34.183358 0.0000000 25.077888  59.26125</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D   11.46761 10.933241 1.3928875  0.000000  23.79374</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 37.89057 53.619464 1.8163437 38.628494 131.95487</span>
-<span class="r-in"><span class="co"># makes more sense to use this method</span></span>
-<span class="r-in"><span class="va">e4</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, match_pob_tot_method <span class="op">=</span> <span class="st">"open"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e4</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-in"><span><span class="co"># makes more sense to use this method</span></span></span>
+<span class="r-in"><span><span class="va">e4</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span>, match_pob_tot_method <span class="op">=</span> <span class="st">"open"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig         A         B         C         D       Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000  8.897732 0.0000000  3.852711  12.75044</span>
@@ -279,42 +333,42 @@ Returns a <code>list</code> object with:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 35.677466 0.0000000 26.145924  61.82339</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D   11.62571 11.251175 1.4120903  0.000000  24.28898</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 38.43669 55.826373 1.8417650 39.998635 136.10346</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># science paper  supp. material example</span></span>
-<span class="r-in"><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">60</span>, <span class="fl">60</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e5</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e5</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># science paper  supp. material example</span></span></span>
+<span class="r-in"><span><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">20</span>, <span class="fl">60</span>, <span class="fl">60</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e5</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig             A         B        C         D        Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.000000000  3.328622 0.000000  3.243047   6.571669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B   34.120786747  0.000000 0.583871  9.809288  44.513946</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.004364695 27.128046 0.000000 25.711789  52.844199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D   12.446400974  9.057494 2.259579  0.000000  23.763474</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 46.571552416 39.514162 2.843450 38.764124 127.693289</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># international migration review supp. material example (with births and deaths)</span></span>
-<span class="r-in"><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">140</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">65</span>, <span class="fl">200</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">25</span>, <span class="fl">45</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">5</span>, <span class="fl">30</span>, <span class="fl">150</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">60</span>, <span class="fl">230</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">25</span>, <span class="fl">60</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e6</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Too many births in region B. Subtracted proportionally for this country. Might want to check the input data</span>
-<span class="r-in"><span class="va">e6</span><span class="op">$</span><span class="va">od_flow</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig             A         B         C         D        Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.000000000  3.328563 0.0000000  3.242990   6.571552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   34.120952437  0.000000 0.5838738  9.809336  44.514162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.004365738 27.127753 0.0000000 25.711331  52.843450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D   12.446119999  9.058478 2.2595262  0.000000  23.764124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 46.571438174 39.514794 2.8434001 38.763657 127.693289</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># international migration review supp. material example (with births and deaths)</span></span></span>
+<span class="r-in"><span><span class="va">s1</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">55</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">25</span>, <span class="fl">140</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">65</span>, <span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span><span class="op">[</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">25</span>, <span class="fl">45</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">5</span>, <span class="fl">30</span>, <span class="fl">150</span>, <span class="fl">20</span>, <span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">60</span>, <span class="fl">230</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">25</span>, <span class="fl">60</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e6</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Too many births in region B. Subtracted births proportionally for this region. Might want to check the input data.</span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e6</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orig         A        B         C       D       Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000 8.124595  0.000000 0.00000  8.124595</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   B   15.45576 0.000000 18.081822 5.71277 39.250352</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 1.125455  0.000000 0.00000  1.125455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   D   17.67046 0.000000  8.043857 0.00000 25.714312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 33.12622 9.250050 26.125679 5.71277 74.214715</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># scientific data 2019 paper</span></span>
-<span class="r-in"><span class="va">s1</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">80</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">10</span>, <span class="fl">180</span>, <span class="fl">10</span>, <span class="fl">70</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">140</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">90</span>, <span class="fl">40</span>, <span class="fl">160</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">75</span>, <span class="fl">55</span>, <span class="fl">35</span>, <span class="fl">5</span>, <span class="fl">225</span>, <span class="fl">0</span>, <span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">5</span>, <span class="fl">115</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">55</span>, <span class="fl">50</span>, <span class="fl">215</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e7</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e7</span><span class="op">$</span><span class="va">od</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> orig         A        B         C        D       Sum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.00000 8.126216  0.000000 0.000000  8.126216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   B   15.45535 0.000000 18.081832 5.712864 39.250050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   C    0.00000 1.125679  0.000000 0.000000  1.125679</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   D   17.66941 0.000000  8.043363 0.000000 25.712770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 33.12476 9.251895 26.125195 5.712864 74.214715</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># scientific data 2019 paper</span></span></span>
+<span class="r-in"><span><span class="va">s1</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">80</span>, <span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">10</span>, <span class="fl">180</span>, <span class="fl">10</span>, <span class="fl">70</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">140</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">90</span>, <span class="fl">40</span>, <span class="fl">160</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">95</span>, <span class="fl">75</span>, <span class="fl">55</span>, <span class="fl">35</span>, <span class="fl">5</span>, <span class="fl">225</span>, <span class="fl">0</span>, <span class="fl">25</span>, <span class="fl">15</span>, <span class="fl">5</span>, <span class="fl">115</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">55</span>, <span class="fl">50</span>, <span class="fl">215</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e7</span> <span class="op">&lt;-</span> <span class="fu">ffs_demo</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, b_por <span class="op">=</span> <span class="va">b</span>, d_por <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="sum_od.html">sum_od</a></span><span class="op">(</span><span class="va">e7</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig          A  B         C         D Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    0.000000  5  7.857143 22.142857  35</span>
@@ -336,7 +390,7 @@ Returns a <code>list</code> object with:</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

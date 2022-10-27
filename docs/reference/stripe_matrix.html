@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,23 +71,32 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">stripe_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, s <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">FALSE</span>, dimnames <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stripe_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, s <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">FALSE</span>, dimnames <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>Vector of numbers to identify each stripe.</p></dd>
+
+
 <dt>s</dt>
 <dd><p>Vector of values for the size of the stripes, order depending on <code>byrow</code></p></dd>
+
+
 <dt>byrow</dt>
 <dd><p>Logical value. If <code>FALSE</code> (the default) the stripes are filled by columns, otherwise the stripes in the matrix are filled by rows.</p></dd>
+
+
 <dt>dimnames</dt>
 <dd><p>Character string of name attribute for the basis of the stripped matrix. If <code>NULL</code> a vector of the same length of <code>s</code> provides the basis of row and column names.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a <code>matrix</code> with stripe sizes determined by the <code>s</code> argument. Each stripe is filled with the same value taken from <code>x</code>.</p>
+    
+
+<p>Returns a <code>matrix</code> with stripe sizes determined by the <code>s</code> argument. Each stripe is filled with the same value taken from <code>x</code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -100,7 +109,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">stripe_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">44</span>, s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span>, dimnames <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">stripe_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">44</span>, s <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span>, dimnames <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A1 A2 B1 B2 B3 C1 C2 C3 C4 D1 D2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A1  1  1  2  2  2  3  3  3  3  4  4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A2  5  5  6  6  6  7  7  7  7  8  8</span>
@@ -127,7 +136,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

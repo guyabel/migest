@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,31 +71,44 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">match_pob_tot</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, method <span class="op">=</span> <span class="st">"rescale"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">match_pob_tot</span><span class="op">(</span><span class="va">m1</span>, <span class="va">m2</span>, method <span class="op">=</span> <span class="st">"rescale"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m1</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>Character string matching either <code>rescale</code>, <code>rescale-adjust-zero-fb</code>, <code>open</code> or <code>open-dr</code>. See details.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration of the rescale, as used in <code>ipf2</code>. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a <code>list</code> object with:</p>
+    
+
+<p>Returns a <code>list</code> object with:</p>
 <dl><dt>m1_adj </dt>
 <dd><p>Matrix of adjusted <code>m1</code> where rows (place of births) match <code>m2_adj</code>.</p></dd>
+
 <dt>m2_adj </dt>
 <dd><p>Matrix of adjusted <code>m2</code> where rows (place of births) match <code>m1_adj</code>.</p></dd>
+
 <dt>in_mat </dt>
 <dd><p>Matrix of estimated inflows into the system.</p></dd>
+
 <dt>out_mat </dt>
 <dd><p>Matrix of estimated outflows from the system.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -130,7 +143,7 @@ The <code>open-dr</code> method allows for moves in and out of the global system
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

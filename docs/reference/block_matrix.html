@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,23 +71,32 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, b <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">FALSE</span>, dimnames <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, b <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">FALSE</span>, dimnames <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>Vector of numbers to identify each block.</p></dd>
+
+
 <dt>b</dt>
 <dd><p>Numeric value for the size of the blocks within the matrix ordered depending on <code>byrow</code></p></dd>
+
+
 <dt>byrow</dt>
 <dd><p>Logical value. If <code>FALSE</code> (the default) the blocks are filled by columns, otherwise the blocks in the matrix are filled by rows.</p></dd>
+
+
 <dt>dimnames</dt>
 <dd><p>Character string of name attribute for the basis of the block matrix. If <code>NULL</code> a vector of the same length of <code>b</code> provides the basis of row and column names.#'</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a <code>matrix</code> with block sizes determined by the <code>b</code> argument. Each block is filled with the same value taken from <code>x</code>.</p>
+    
+
+<p>Returns a <code>matrix</code> with block sizes determined by the <code>b</code> argument. Each block is filled with the same value taken from <code>x</code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -100,7 +109,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">16</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A1 A2 B1 B2 B3 C1 C2 C3 C4 D1 D2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A1  1  1  5  5  5  9  9  9  9 13 13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A2  1  1  5  5  5  9  9  9  9 13 13</span>
@@ -113,8 +122,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> C4  3  3  7  7  7 11 11 11 11 15 15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> D1  4  4  8  8  8 12 12 12 12 16 16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> D2  4  4  8  8  8 12 12 12 12 16 16</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">block_matrix</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A1 A2 B1 B2 B3 C1 C2 C3 C4 D1 D2 E1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A1  1  1  6  6  6 11 11 11 11 16 16 21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A2  1  1  6  6  6 11 11 11 11 16 16 21</span>
@@ -142,7 +151,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

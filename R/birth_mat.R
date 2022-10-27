@@ -7,6 +7,7 @@
 #' @param non_negative Adjust birth matrix calculation to ensure all deductions from \code{m2} will result in positive population counts. On rare occasions when working with international stock data the number of births can exceed the increase in the number of native born population.
 #'
 #' @return Matrix of place of birth by place of residence for new-born’s
+#' 
 birth_mat <- function(b_por = NULL, m2 = NULL, method = "native", non_negative = TRUE){
   # m2 = m2_a; b_por = b
   bb <- m2
@@ -16,24 +17,23 @@ birth_mat <- function(b_por = NULL, m2 = NULL, method = "native", non_negative =
       # check that deduction of bb will not lead to negative populations
       xx <- diag(m2) - b_por < 0
       if (sum(xx) > 0){
-        message(paste0("Too many births in region ", names(b_por)[xx], ". Subtracted proportionally for this country. Might want to check the input data"))
-        bb[, xx] <- mipfp::Ipfp(seed = m2,
-                                target.list = list(2),
-                                target.data = list(b_por),
-                                tol = 1e-05)$x.hat[, xx]
+        message(paste0("Too many births in region ", names(b_por)[xx], ". Subtracted births proportionally for this region. Might want to check the input data."))
+        bb[, xx] <- mipfp::Ipfp(
+          seed = m2, 
+          target.list = list(2),
+          target.data = list(b_por),
+          tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+        )$x.hat[, xx]
       }
     }
   }
   if(method == "proportion"){
-    bb <- mipfp::Ipfp(seed = m2,
-                      target.list = list(2),
-                      target.data = list(b_por),
-                      tol = 1e-05) %>%
-      suppressMessages() %>%
-      .$x.hat
+    bb <- mipfp::Ipfp(
+      seed = m2, 
+      target.list = list(2),
+      target.data = list(b_por),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    ) $x.hat
   }
   return(bb)
 }
-
-x <- matrix(c(4, 5,6,7), nrow = 2)
-mipfp::Ipfp(seed = x, target.list = (2), target.data = list(c(10, 11)))

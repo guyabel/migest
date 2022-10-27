@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,15 +71,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">index_distance</span><span class="op">(</span>
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  d <span class="op">=</span> <span class="cn">NULL</span>,
-  orig_col <span class="op">=</span> <span class="st">"orig"</span>,
-  dest_col <span class="op">=</span> <span class="st">"dest"</span>,
-  flow_col <span class="op">=</span> <span class="st">"flow"</span>,
-  dist_col <span class="op">=</span> <span class="st">"dist"</span>,
-  long <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">index_distance</span><span class="op">(</span></span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  d <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  orig_col <span class="op">=</span> <span class="st">"orig"</span>,</span>
+<span>  dest_col <span class="op">=</span> <span class="st">"dest"</span>,</span>
+<span>  flow_col <span class="op">=</span> <span class="st">"flow"</span>,</span>
+<span>  dist_col <span class="op">=</span> <span class="st">"dist"</span>,</span>
+<span>  long <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="source">
@@ -90,55 +90,73 @@
     <h2>Arguments</h2>
     <dl><dt>m</dt>
 <dd><p>A <code>matrix</code> or data frame of origin-destination flows. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>flow_col</code>.</p></dd>
+
+
 <dt>d</dt>
 <dd><p>A <code>matrix</code> or data frame of origin-destination distances. For <code>matrix</code> the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to <code>orig_col</code>, <code>dest_col</code> and <code>dist_col</code>. Region names should match those in <code>m</code>.</p></dd>
+
+
 <dt>orig_col</dt>
 <dd><p>Character string of the origin column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>dest_col</dt>
 <dd><p>Character string of the destination column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>flow_col</dt>
 <dd><p>Character string of the flow column name (when <code>m</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>dist_col</dt>
 <dd><p>Character string of the distance column name (when <code>dist</code> is a data frame rather than a <code>matrix</code>)</p></dd>
+
+
 <dt>long</dt>
 <dd><p>Logical to return a long data frame with index values all in one column</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble with 3 summary measures where</p>
+    
+
+<p>A tibble with 3 summary measures where</p>
 <dl><dt>mean</dt>
 <dd><p>Mean migration distance from Bell et. al. (2002) - not discussed in text but given in Table 6</p></dd>
+
 <dt>median</dt>
 <dd><p>Mean migration distance from Bell et. al. (2002)</p></dd>
+
 <dt>decay</dt>
 <dd><p>Distance decay parameter obtained from a Poisson regression model (<code>flow ~ orig + dest + log(dist)</code>)</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># single year</span></span>
-<span class="r-in"><span class="fu">index_distance</span><span class="op">(</span></span>
-<span class="r-in">  m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">korea_reg</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span><span class="op">)</span>, </span>
-<span class="r-in">  d <span class="op">=</span> <span class="va">korea_dist</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># single year</span></span></span>
+<span class="r-in"><span><span class="fu">index_distance</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">korea_reg</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2020</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  d <span class="op">=</span> <span class="va">korea_dist</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   measure   value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> mean    105.   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> median   68.7  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> decay    -<span style="color: #BB0000;">0.852</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># multiple years</span></span>
-<span class="r-in"><span class="va">korea_reg</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">orig</span>, <span class="va">dest</span>, <span class="va">flow</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">korea_dist</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>i <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">m</span>, .y <span class="op">=</span> <span class="va">d</span>, </span>
-<span class="r-in">                  .f <span class="op">=</span> <span class="op">~</span><span class="fu">index_distance</span><span class="op">(</span>m <span class="op">=</span> <span class="va">.x</span>, d <span class="op">=</span> <span class="va">.y</span>, long <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">m</span>, <span class="op">-</span><span class="va">d</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># multiple years</span></span></span>
+<span class="r-in"><span><span class="va">korea_reg</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">orig</span>, <span class="va">dest</span>, <span class="va">flow</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">korea_dist</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>i <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">m</span>, .y <span class="op">=</span> <span class="va">d</span>, </span></span>
+<span class="r-in"><span>                  .f <span class="op">=</span> <span class="op">~</span><span class="fu">index_distance</span><span class="op">(</span>m <span class="op">=</span> <span class="va">.x</span>, d <span class="op">=</span> <span class="va">.y</span>, long <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">m</span>, <span class="op">-</span><span class="va">d</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    year  mean median  decay</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -165,7 +183,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

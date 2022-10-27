@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,26 +71,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="cn">NULL</span>, m2 <span class="op">=</span> <span class="cn">NULL</span>, M <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"dennett"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="cn">NULL</span>, m2 <span class="op">=</span> <span class="cn">NULL</span>, M <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"dennett"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>m1</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em></p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>M</dt>
 <dd><p>Numeric value for the global sum of migration flows, used for <code>dennett</code> approach.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>Method to estimate flows. Can take values <code>dennett</code> or <code>rogers-von-rabenau</code>. See details section for more information. Uses <code>dennett</code> as default.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Estimates migrant transitions flows based on migration rates.
-When <code>method = "dennett"</code> migration are derived from the matrix supplied to <code>m1</code>. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in <code>M</code>.
-When <code>method = "rogers-von-rabenau"</code> a matrix of growth rates are derived from the changes in initial populations stock <code>m1</code> to obtain <code>m2</code>;
-$$P^{t+1} = g P^{t}$$and then multiplied by the corresponding populations at risk in <code>m1</code>. Can result in negative flows.</p>
+    
+
+<p>Estimates migrant transitions flows based on migration rates.</p>
+
+
+<p>When <code>method = "dennett"</code> migration are derived from the matrix supplied to <code>m1</code>. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in <code>M</code>.</p>
+
+
+<p>When <code>method = "rogers-von-rabenau"</code> a matrix of growth rates are derived from the changes in initial populations stock <code>m1</code> to obtain <code>m2</code>;
+$$P^{t+1} = g P^{t}$$</p>
+
+
+<p>and then multiplied by the corresponding populations at risk in <code>m1</code>. Can result in negative flows.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -108,13 +124,13 @@ $$P^{t+1} = g P^{t}$$and then multiplied by the corresponding populations at ris
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">55</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">140</span>, <span class="fl">65</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">30</span>, <span class="fl">15</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">150</span>, <span class="fl">35</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">200</span><span class="op">)</span>,</span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">r</span>, por <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">s1</span>; <span class="va">s2</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">0</span>, <span class="fl">20</span>, <span class="fl">55</span>, <span class="fl">25</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">40</span>, <span class="fl">140</span>, <span class="fl">65</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">75</span>, <span class="fl">25</span>, <span class="fl">5</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">45</span>, <span class="fl">30</span>, <span class="fl">15</span>, <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">150</span>, <span class="fl">35</span>, <span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">5</span>, <span class="fl">200</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">r</span>, por <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s1</span>; <span class="va">s2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob   A  B   C   D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A 100 10  10   0</span>
@@ -127,18 +143,18 @@ $$P^{t+1} = g P^{t}$$and then multiplied by the corresponding populations at ris
 <span class="r-out co"><span class="r-pr">#&gt;</span>   B 20 45  30  15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C 30 40 150  35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D 10 50   5 200</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># calculate total migration flows for dennett approach</span></span>
-<span class="r-in"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, M <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"dennett"</span> <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># calculate total migration flows for dennett approach</span></span></span>
+<span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, M <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"dennett"</span> <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig        A        B        C         D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A 0.000000 2.352941 2.352941  0.000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    B 4.705882 0.000000 5.882353  2.352941</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    C 2.352941 9.411765 0.000000 15.294118</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    D 4.705882 5.882353 4.705882  0.000000</span>
-<span class="r-in"><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, method <span class="op">=</span> <span class="st">"rogers-von-rabenau"</span> <span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">ffs_rates</span><span class="op">(</span>m1 <span class="op">=</span> <span class="va">s1</span>, m2 <span class="op">=</span> <span class="va">s2</span>, method <span class="op">=</span> <span class="st">"rogers-von-rabenau"</span> <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig          A         B         C         D</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    A   0.000000 26.584620 -10.22741  24.16653</span>
@@ -159,7 +175,7 @@ $$P^{t+1} = g P^{t}$$and then multiplied by the corresponding populations at ris
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

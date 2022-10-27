@@ -28,6 +28,7 @@
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3}}, \code{\link{ffs_demo}}
 #' 
+#' 
 #' @examples
 #' \donttest{
 #' ## create row-table and column-table specific known margins.

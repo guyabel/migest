@@ -9,6 +9,7 @@
 #'
 #' @return An \code{array} or \code{matrix}
 #' @author Guy J. Abel
+#' 
 ipf_seed <- function(m = NULL, R = NULL, n_dim = NULL, dn = NULL){
   if (is.null(m) & is.null(R))
     stop("Must provide either m or R")

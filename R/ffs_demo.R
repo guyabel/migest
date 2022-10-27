@@ -6,25 +6,20 @@
 #' @param b_por Vector of the number of births between time \emph{t} and \emph{t}+1 in each region.
 #' @param d_por Vector of the number of deaths between time \emph{t} and \emph{t}+1 in each region.
 #' @param m Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.
-#' @param stayer_assumption Logical value to indicate whether to use \code{\link{ipf3}} or \code{ipf3_qi} to estimate flows. By default uses \code{ipf3_qi}, i.e. is set to \code{TRUE}. The \code{ipf} function is useful for replicating method of Azose and Raftery.
+#' @param stayer_assumption Logical value to indicate whether to use a quasi-independent or independent IPFP to estimate flows. By default uses quasi-independent, i.e. is set to \code{TRUE} and estimates the minimum migration. When set to \code{FALSE} estimates flows under the independent model as used as part of Azose and Raftery (2019).
 #' @param match_global Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_pob_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.
 #' @param match_pob_tot_method Character string passed to \code{method} argument in \code{match_pob_tot} to ensure place of birth margins in stock tables match.
 #' @param birth_method Character string passed to \code{method} argument in \code{birth_mat}.
 #' @param birth_non_negative Logical value passed to \code{non_negative} argument in \code{birth_mat}.
 #' @param death_method Character string passed to \code{method} argument in \code{death_mat}.
-#' @param verbose Logical value to indicate the print the parameter estimates at each iteration of the various IPF routines. By default \code{FALSE}.
-#' @param ... Additional arguments passes to \code{\link{ipf3_qi}} or \code{\link{ipf3}}.
+#' @param verbose Logical value to show progress of the estimation procedure. By default \code{FALSE}.
+#' @param return Character string used to indicate whether to return the array of estimated flows when set to \code{flow} (default), array of demographic accounts when set to \code{account} or the demographic account, list of input settings and the origin-destination matrix when set to \code{classic}
 #'
 #' @return
 #' Estimates migrant transitions flows between two sequential migrant stock tables using various methods. See the example section for possible variations on estimation methods.
 #' 
-#' Returns a \code{list} object with:
-#' \item{mu }{Array of indirect estimates of origin-destination matrices by place of birth.}
-#' \item{it }{Iteration count.}
-#' \item{tol }{Tolerance level at final iteration.}
-#' \item{y }{Array of indirect estimates of origin-destination matrices by place of birth with additional rows and columns for births, deaths and moves to other regions.}
-#' \item{...}{Slots to record which estimation method was used (as set by arguments above)}
-#' \item{od_flow }{Matrix of estimated origin-destination flows}
+#' Detail of returned object varies depending on the setting used in the \code{return} argument.
+#' 
 #' @references 
 #' Abel and Cohen (2019) Bilateral international migration flow estimates for 200 countries \emph{Scientific Data} 6 (1), 1-13
 #' 
@@ -61,7 +56,8 @@
 #' 
 #' # demographic research and science paper example
 #' e0 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e0$od
+#' e0
+#' sum_od(e0)
 #' 
 #' # international migration review paper example
 #' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
@@ -70,7 +66,7 @@
 #' addmargins(s2)
 #' 
 #' e1 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e1$od
+#' sum_od(e1)
 #' 
 #' # international migration review supp. material example
 #' # distance matrix
@@ -79,7 +75,7 @@
 #' dimnames(dd) <- list(orig = r, dest = r)
 #' dd
 #' e2 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, m = dd)
-#' e2$od
+#' sum_od(e2)
 #' 
 #' ##
 #' ## with births and deaths over period
@@ -90,15 +86,15 @@
 #' b[] <- c(80, 20, 40, 60)
 #' d[] <- c(70, 30, 50, 10)
 #' e3 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
-#' e3$od
+#' sum_od(e3)
 #' # makes more sense to use this method
 #' e4 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open")
-#' e4$od
+#' sum_od(e4)
 #' 
 #' # science paper  supp. material example
 #' b[] <- c(80, 20, 60, 60)
 #' e5 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e5$od
+#' sum_od(e5)
 #' 
 #' # international migration review supp. material example (with births and deaths)
 #' s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
@@ -106,7 +102,7 @@
 #' b[] <- c(10, 50, 25, 60)
 #' d[] <- c(30, 10, 40, 10)
 #' e6 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e6$od_flow
+#' sum_od(e6)
 #' 
 #' # scientific data 2019 paper
 #' s1[] <- c(100, 80, 30, 60, 10, 180, 10, 70, 10, 10, 140, 10, 0, 90, 40, 160)
@@ -114,7 +110,7 @@
 #' b[] <- c(0, 0, 0, 0)
 #' d[] <- c(0, 0, 0, 0)
 #' e7 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
-#' e7$od
+#' sum_od(e7)
 # source("C:/Users/Guy/Documents/GitHub/migest/R/ipf_seed.R")
 # source("C:/Users/Guy/Documents/GitHub/migest/R/birth_mat.R");
 # source("C:/Users/Guy/Documents/GitHub/migest/R/death_mat.R")
@@ -126,10 +122,11 @@
 # source("./R/match_pob_tot.R"); source("./R/rescale_nb.R")
 # m1 = s1; m2 = s2; b_por = b; d_por = d; m = NULL
 # m1 = s1; m2 = s2; b_por = births; d_por = deaths; m = NULL
-# stayer_assumption = TRUE; match_pob_tot_method = "rescale"; birth_non_negative = TRUE; birth_method = "native"; death_method = "proportion"; match_global = "after-demo-adjust"; verbose = FALSE
-# birth_method = "proportion"
+# match_global = "before-demo-adjust"
+# match_pob_tot_method = "rescale"
 # birth_method = "native"
-# match_pob_tot_method = "open-dr";
+# birth_non_negative = TRUE
+# death_method = "proportion"
 ffs_demo <- function(m1 = NULL,
                      m2 = NULL, 
                      b_por = NULL, 
@@ -142,7 +139,7 @@ ffs_demo <- function(m1 = NULL,
                      birth_non_negative = TRUE,
                      death_method = "proportion",
                      verbose = FALSE,
-                     ...) {
+                     return = "flow") {
   # make sure dimensions match
   n <- unique(c(dim(m1), dim(m2), length(b_por), length(d_por)))
   if (length(n) != 1)
@@ -207,13 +204,13 @@ ffs_demo <- function(m1 = NULL,
   x2 <- match_pob_tot(m1 = m1_c, m2 = m2_c, method = match_pob_tot_method, verbose = verbose)
   m1_d <- x2$m1_adj
   m2_d <- x2$m2_adj
-
+  
   # ipf
   if(verbose)
     message("Estimate flows to match changes in adjusted stocks")
   if(stayer_assumption){
     d0 <- expand.grid(a = 1:n, b = 1:n)
-    diag_count <- diag_zero <- array(0, c(n, n, n))
+    diag_count <- array(0, c(n, n, n))
     diag_count <- with(
       data = d0, 
       expr = replace(x = diag_count,
@@ -221,50 +218,63 @@ ffs_demo <- function(m1 = NULL,
                      values = apply(X = cbind(c(t(m1_d)), c(t(m2_d))), 
                                     MARGIN = 1, 
                                     FUN = min)))
-    dimnames(diag_count) <- dimnames(diag_zero) <- dimnames(m)
+    dimnames(diag_count) <- dimnames(m)
     
+    diag_zero <- diag_count + 1
     diag_zero <- with(data = d0, expr = replace(x = diag_zero, 
                                                 list = cbind(a, a, b), 
                                                 values = 0))
-    if(sum(m) != n*n*3)
-      diag_zero <- m
+    
+    x0 <- t(m1_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum)
+    x1 <- t(m2_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum)
+    # tiny differences in column sums. rescale to get matching
+    x1 <- mipfp::Ipfp(
+      seed = x1, 
+      target.list = list(2), 
+      target.data = list(colSums(x0)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )$x.hat
+    
     a0 <- mipfp::Ipfp(
-      seed = diag_zero, tol = 1e-03, iter = 1e05,
-      # print = TRUE,
+      seed = diag_zero,
       target.list = list(c(1, 3), c(2,3)),
-      target.data = list(t(m1_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum),
-                         t(m2_d) - apply(X = diag_count, MARGIN = c(1, 3), FUN = sum)),
-      tol = 1e-05)
+      target.data = list(x0, x1),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
     f0 <- a0$x.hat + diag_count
   }
-
+  
   if(!stayer_assumption){
-    # fl <- ipf3(row_tot = t(m1_d), col_tot = m2_d, m = m, verbose = verbose, ...)$mu
-    f0 <- mipfp::Ipfp(seed = m, tol = 1e-03, iter = 1e05,
-                      # print = TRUE,
-                      target.list = list(c(1, 3), c(2,3)),
-                      target.data = list(t(m1_d), m2_d),
-                      tol = 1e-05)$x.hat
-    
+    f0 <- mipfp::Ipfp(
+      seed = m,
+      target.list = list(c(1, 3), c(2,3)),
+      target.data = list(t(m1_d), t(m2_d)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+      )$x.hat
+  }
+  
+  if(return == "flow")
+    rr <- f0
+  
+  if(return %in% c("account", "classic")){
+    y[1:n, 1:n, ] <- f0
+    y[n + 1, 1:n, ] <- b_mat
+    y[n + 2, 1:n, ] <- t(x2$out_mat)
+    y[1:n, n + 1, ] <- t(d_mat)
+    y[1:n, n + 2, ] <- t(x2$in_mat)
+    rr <- y
   }
     
-  # fill in y
-  y[1:n, 1:n, ] <- f0
-  y[n + 1, 1:n, ] <- b_mat
-  y[n + 2, 1:n, ] <- t(x2$out_mat)
-  y[1:n, n + 1, ] <- t(d_mat)
-  y[1:n, n + 2, ] <- t(x2$in_mat)
-  
-  return(
-    list(flow = f0, 
-         y = y, 
-         stayer_assumption = stayer_assumption,
-         match_pob_tot_method = match_pob_tot_method,
-         birth_non_negative = birth_non_negative,
-         death_method = death_method, 
-         od_flow = f0 %>%
-           sum_od() %>%
-           stats::addmargins()
+  if(return == "classic")
+    rr <- list(flow = f0, 
+               y = y, 
+               stayer_assumption = stayer_assumption,
+               match_pob_tot_method = match_pob_tot_method,
+               birth_non_negative = birth_non_negative,
+               death_method = death_method, 
+               od_flow = f0 %>%
+                 sum_od() %>%
+                 stats::addmargins()
     )
-  )
+  return(rr)
 }

@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,23 +71,32 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">birth_mat</span><span class="op">(</span>b_por <span class="op">=</span> <span class="cn">NULL</span>, m2 <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"native"</span>, non_negative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">birth_mat</span><span class="op">(</span>b_por <span class="op">=</span> <span class="cn">NULL</span>, m2 <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"native"</span>, non_negative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>b_por</dt>
 <dd><p>Vector of numeric values for births in each place of residence</p></dd>
+
+
 <dt>m2</dt>
 <dd><p>Matrix of migrant stock totals at time <em>t</em>+1. Rows in the matrix correspond to place of birth and columns to place of residence at time <em>t</em>+1.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>Character string of either <code>"native"</code> or <code>"proportion"</code> to choose method to distribute births. The <code>"proportion"</code> method assumes the rate of non-migration increase in each place of birth sub-group (native born and all foreign born stocks) is the same. The <code>"native"</code> method ensures that all births (non-migration increases) in stocks belong to the native born population (they do not move straight after birth).</p></dd>
+
+
 <dt>non_negative</dt>
 <dd><p>Adjust birth matrix calculation to ensure all deductions from <code>m2</code> will result in positive population counts. On rare occasions when working with international stock data the number of births can exceed the increase in the number of native born population.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Matrix of place of birth by place of residence for new-born’s</p>
+    
+
+<p>Matrix of place of birth by place of residence for new-born’s</p>
     </div>
 
   </div>
@@ -102,7 +111,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

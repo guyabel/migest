@@ -25,7 +25,7 @@ where \(m_{ij}\) is a set of prior estimates for \(y_{ij}\) and itself is no mor
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -75,43 +75,65 @@ where \(m_{ij}\) is a set of prior estimates for \(y_{ij}\) and itself is no mor
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ipf2</span><span class="op">(</span>
-  row_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  col_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">row_tot</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">col_tot</span><span class="op">)</span><span class="op">)</span>,
-  tol <span class="op">=</span> <span class="fl">1e-05</span>,
-  maxit <span class="op">=</span> <span class="fl">500</span>,
-  verbose <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ipf2</span><span class="op">(</span></span>
+<span>  row_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">row_tot</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">col_tot</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-05</span>,</span>
+<span>  maxit <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>row_tot</dt>
 <dd><p>Vector of origin totals to constrain the sum of the imputed cell rows.</p></dd>
+
+
 <dt>col_tot</dt>
 <dd><p>Vector of destination totals to constrain the sum of the imputed cell columns.</p></dd>
+
+
 <dt>m</dt>
 <dd><p>Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>Numeric value for the tolerance level used in the parameter estimation.</p></dd>
+
+
 <dt>maxit</dt>
 <dd><p>Numeric value for the maximum number of iterations used in the parameter estimation.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). This is equivalent to a conditional maximization of the likelihood, as discussed by Willekens (1999), and hence provides identical indirect estimates to those obtained from the <code><a href="cm2.html">cm2</a></code> routine. 
-The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.
-If only one of the margins is known, the function can still be run. The indirect estimates will correspond to the log-linear model without the \(\alpha_{i}\) term if (<code>row_tot = NULL</code>) or without the \(\beta_{j}\) term if (<code>col_tot = NULL</code>)
-Returns a <code>list</code> object with</p>
+    
+
+<p>Iterative Proportional Fitting routine set up in a similar manner to Agresti (2002, p.343). This is equivalent to a conditional maximization of the likelihood, as discussed by Willekens (1999), and hence provides identical indirect estimates to those obtained from the <code><a href="cm2.html">cm2</a></code> routine.</p>
+
+
+<p>The user must ensure that the row and column totals are equal in sum. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) to equal those provided in the row and column totals.</p>
+
+
+<p>If only one of the margins is known, the function can still be run. The indirect estimates will correspond to the log-linear model without the \(\alpha_{i}\) term if (<code>row_tot = NULL</code>) or without the \(\beta_{j}\) term if (<code>col_tot = NULL</code>)</p>
+
+
+<p>Returns a <code>list</code> object with</p>
 <dl><dt>mu </dt>
 <dd><p>Origin-Destination matrix of indirect estimates</p></dd>
+
 <dt>it </dt>
 <dd><p>Iteration count</p></dd>
+
 <dt>tol </dt>
 <dd><p>Tolerance level at final iteration</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -129,46 +151,46 @@ Returns a <code>list</code> object with</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## with Willekens (1999) data</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span>, </span>
-<span class="r-in">          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, </span>
-<span class="r-in">                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## with Willekens (1999) data</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig      A     B Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   13.25  4.75  18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   B    2.75 17.25  20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 16.00 22.00  38</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## with all elements of offset equal</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## with all elements of offset equal</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">22</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      7.58 10.42  18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      8.42 11.58  20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sum 16.00 22.00  38</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## with bigger matrix</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">170</span>, <span class="fl">120</span>, <span class="fl">410</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">140</span>, <span class="fl">60</span><span class="op">)</span>, </span>
-<span class="r-in">          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">10</span>, <span class="fl">220</span>, <span class="fl">120</span>, <span class="fl">120</span>, <span class="fl">30</span>, <span class="fl">545</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, </span>
-<span class="r-in">                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># display with row and col totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## with bigger matrix</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">170</span>, <span class="fl">120</span>, <span class="fl">410</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">140</span>, <span class="fl">60</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">10</span>, <span class="fl">220</span>, <span class="fl">120</span>, <span class="fl">120</span>, <span class="fl">30</span>, <span class="fl">545</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, </span></span>
+<span class="r-in"><span>                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># display with row and col totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig    A   B  C Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    72  40 59 170</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   B    32  88  0 120</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C   396  12  1 410</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 500 140 60 700</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## only one margin known</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span class="r-in">          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, </span>
-<span class="r-in">                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## only one margin known</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">ipf2</span><span class="op">(</span>row_tot <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">20</span><span class="op">)</span>, col_tot <span class="op">=</span> <span class="cn">NULL</span>, </span></span>
+<span class="r-in"><span>          m <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">7</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>                     dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>orig <span class="op">=</span> <span class="va">dn</span>, dest <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">y</span><span class="op">$</span><span class="va">mu</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      dest</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> orig   A  B Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   13  5  18</span>
@@ -188,7 +210,7 @@ Returns a <code>list</code> object with</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

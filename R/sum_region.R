@@ -10,6 +10,7 @@
 #'
 #' @return A \code{tibble} with total in-, out- and turnover of flows for each region. 
 #' 
+#' 
 #' @export
 #' @examples 
 #' # matrix

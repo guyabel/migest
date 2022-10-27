@@ -4,6 +4,7 @@
 #' @param n n from from \code{str_wrap_n}
 #'
 #' @return String with line breaks
+#' 
 str_wrap_n_single <- function(string = NULL, n = 2){
   # words
   w <- stringr::str_split(string = string, pattern = " ")[[1]]

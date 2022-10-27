@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,28 +71,37 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rescale_net</span><span class="op">(</span>
-  <span class="va">x</span>,
-  method <span class="op">=</span> <span class="st">"no-switches"</span>,
-  w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,
-  integer_result <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rescale_net</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"no-switches"</span>,</span>
+<span>  w <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  integer_result <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>Vector of net migration values</p></dd>
+
+
 <dt>method</dt>
 <dd><p>Method used to adjust net migration values of <code>x</code> to obtain a global zero sum. By default <code>method="no-switches"</code>. Can also take values <code>method="switches"</code>. See details for explanation on each method.</p></dd>
+
+
 <dt>w</dt>
 <dd><p>Weights used in rescaling method</p></dd>
+
+
 <dt>integer_result</dt>
 <dd><p>Logical operator to indicate if output should be integers, default is <code>TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Rescales net migration for a number of regions in vector <code>x</code> to sum to zero.  When <code>method="no-switches"</code> rescaling of values are done for the positive and negative values separately, to ensure the final global sum is zero. When <code>method="switches"</code> the mean of the unscaled net migration is subtracted from each value.</p>
+    
+
+<p>Rescales net migration for a number of regions in vector <code>x</code> to sum to zero.  When <code>method="no-switches"</code> rescaling of values are done for the positive and negative values separately, to ensure the final global sum is zero. When <code>method="switches"</code> the mean of the unscaled net migration is subtracted from each value.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -105,30 +114,30 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># net migration in regions countries (does not add up to zero)</span></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="op">-</span><span class="fl">30</span>, <span class="op">-</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">60</span>, <span class="fl">80</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">x</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># net migration in regions countries (does not add up to zero)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="op">-</span><span class="fl">30</span>, <span class="op">-</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">60</span>, <span class="fl">80</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -200  -30   -5    0   10   20   60   80</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -65</span>
-<span class="r-in"><span class="co"># rescale </span></span>
-<span class="r-in"><span class="va">y1</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">y1</span></span>
+<span class="r-in"><span><span class="co"># rescale </span></span></span>
+<span class="r-in"><span><span class="va">y1</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y1</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -172  -26   -4    0   12   24   71   95</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-in"><span class="co"># rescale without integer restriction</span></span>
-<span class="r-in"><span class="va">y2</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span>, integer_result <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">y2</span></span>
+<span class="r-in"><span><span class="co"># rescale without integer restriction</span></span></span>
+<span class="r-in"><span><span class="va">y2</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span>, integer_result <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -172.340426  -25.851064   -4.308511    0.000000   11.911765   23.823529</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [7]   71.470588   95.294118</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.993606e-15</span>
-<span class="r-in"><span class="co"># rescale allowing switching of signs (small negative value becomes positive)</span></span>
-<span class="r-in"><span class="va">y3</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"switches"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">y3</span></span>
+<span class="r-in"><span><span class="co"># rescale allowing switching of signs (small negative value becomes positive)</span></span></span>
+<span class="r-in"><span><span class="va">y3</span> <span class="op">&lt;-</span> <span class="fu">rescale_net</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"switches"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y3</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -191  -22    3    8   18   28   68   88</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">y3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 </code></pre></div>
     </div>
@@ -144,7 +153,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

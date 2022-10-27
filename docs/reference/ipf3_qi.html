@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,48 +71,72 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ipf3_qi</span><span class="op">(</span>
-  row_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  col_tot <span class="op">=</span> <span class="cn">NULL</span>,
-  diag_count <span class="op">=</span> <span class="cn">NULL</span>,
-  m <span class="op">=</span> <span class="cn">NULL</span>,
-  speed <span class="op">=</span> <span class="cn">TRUE</span>,
-  tol <span class="op">=</span> <span class="fl">1e-05</span>,
-  maxit <span class="op">=</span> <span class="fl">500</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ipf3_qi</span><span class="op">(</span></span>
+<span>  row_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_tot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  diag_count <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  m <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  speed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  tol <span class="op">=</span> <span class="fl">1e-05</span>,</span>
+<span>  maxit <span class="op">=</span> <span class="fl">500</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>row_tot</dt>
 <dd><p>Vector of origin totals to constrain the sum of the imputed cell rows.</p></dd>
+
+
 <dt>col_tot</dt>
 <dd><p>Vector of destination totals to constrain the sum of the imputed cell columns.</p></dd>
+
+
 <dt>diag_count</dt>
 <dd><p>Array with counts on diagonal to constrain diagonal elements of the indirect estimates too. By default these are taken as their maximum possible values given the relevant margins totals in each table. If user specifies their own array of diagonal totals, values on the non-diagonals in the array can take any positive number (they are ultimately ignored).</p></dd>
+
+
 <dt>m</dt>
 <dd><p>Array of auxiliary data. By default set to 1 for all origin-destination-migrant typologies combinations.</p></dd>
+
+
 <dt>speed</dt>
 <dd><p>Speeds up the IPF algorithm by minimizing sufficient statistics.</p></dd>
+
+
 <dt>tol</dt>
 <dd><p>Numeric value for the tolerance level used in the parameter estimation.</p></dd>
+
+
 <dt>maxit</dt>
 <dd><p>Numeric value for the maximum number of iterations used in the parameter estimation.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Logical value to indicate the print the parameter estimates at each iteration. By default <code>FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments <code>row_tot</code> and <code>col_tot</code> take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins. 
-The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) equal those provided in the row and column totals.
-Returns a <code>list</code> object with</p>
+    
+
+<p>Iterative Proportional Fitting routine set up using the partial likelihood derivatives illustrated in Abel (2013). The arguments <code>row_tot</code> and <code>col_tot</code> take the row-table and column-table specific known margins. By default the diagonal values are taken as their maximum possible values given the relevant margins totals in each table. Diagonal values can be added by the user, but care must be taken to ensure resulting diagonals are feasible given the set of margins.</p>
+
+
+<p>The user must ensure that the row and column totals in each table sum to the same value. Care must also be taken to allow the dimension of the auxiliary matrix (<code>m</code>) equal those provided in the row and column totals.</p>
+
+
+<p>Returns a <code>list</code> object with</p>
 <dl><dt>mu </dt>
 <dd><p>Array of indirect estimates of origin-destination matrices by migrant characteristic</p></dd>
+
 <dt>it </dt>
 <dd><p>Iteration count</p></dd>
+
 <dt>tol </dt>
 <dd><p>Tolerance level at final iteration</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -135,23 +159,23 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
-<span class="r-in"><span class="co">## create row-table and column-table specific known margins.</span></span>
-<span class="r-in"><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>,  <span class="fl">10</span>,   <span class="fl">0</span>, </span>
-<span class="r-in">               <span class="fl">55</span>,   <span class="fl">555</span>,  <span class="fl">50</span>,   <span class="fl">5</span>, </span>
-<span class="r-in">               <span class="fl">80</span>,    <span class="fl">40</span>, <span class="fl">800</span> , <span class="fl">40</span>, </span>
-<span class="r-in">               <span class="fl">20</span>,    <span class="fl">25</span>,  <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>, </span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>,  <span class="fl">60</span>,   <span class="fl">0</span>, </span>
-<span class="r-in">                <span class="fl">80</span>, <span class="fl">505</span>,  <span class="fl">75</span>,   <span class="fl">5</span>, </span>
-<span class="r-in">                <span class="fl">90</span>,  <span class="fl">30</span>, <span class="fl">800</span>,  <span class="fl">40</span>, </span>
-<span class="r-in">                <span class="fl">40</span>,  <span class="fl">45</span>,   <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>, </span>
-<span class="r-in">             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># display with row and col totals</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="co">## create row-table and column-table specific known margins.</span></span></span>
+<span class="r-in"><span><span class="va">dn</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">P1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">100</span>,  <span class="fl">10</span>,   <span class="fl">0</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">55</span>,   <span class="fl">555</span>,  <span class="fl">50</span>,   <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">80</span>,    <span class="fl">40</span>, <span class="fl">800</span> , <span class="fl">40</span>, </span></span>
+<span class="r-in"><span>               <span class="fl">20</span>,    <span class="fl">25</span>,  <span class="fl">20</span>, <span class="fl">200</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">P2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">950</span>, <span class="fl">100</span>,  <span class="fl">60</span>,   <span class="fl">0</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">80</span>, <span class="fl">505</span>,  <span class="fl">75</span>,   <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">90</span>,  <span class="fl">30</span>, <span class="fl">800</span>,  <span class="fl">40</span>, </span></span>
+<span class="r-in"><span>                <span class="fl">40</span>,  <span class="fl">45</span>,   <span class="fl">0</span>, <span class="fl">180</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>             nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">4</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>             dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>pob <span class="op">=</span> <span class="va">dn</span>, por <span class="op">=</span> <span class="va">dn</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># display with row and col totals</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A   1000 100  10   0 1110</span>
@@ -159,7 +183,7 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     80  40 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     20  25  20 200  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1155 720 880 245 3000</span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="va">P2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      por</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pob      A   B   C   D  Sum</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A    950 100  60   0 1110</span>
@@ -167,22 +191,22 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 <span class="r-out co"><span class="r-pr">#&gt;</span>   C     90  30 800  40  960</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   D     40  45   0 180  265</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sum 1160 680 935 225 3000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># # run ipf</span></span>
-<span class="r-in"><span class="co"># y &lt;- ipf3_qi(row_tot = t(P1), col_tot = P2)</span></span>
-<span class="r-in"><span class="co"># # display with row, col and table totals</span></span>
-<span class="r-in"><span class="co"># round(addmargins(y$mu), 1)</span></span>
-<span class="r-in"><span class="co"># # origin-destination flow table</span></span>
-<span class="r-in"><span class="co"># round(sum_od(y$mu), 1)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## with alternative offset term</span></span>
-<span class="r-in"><span class="co"># dis &lt;- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))</span></span>
-<span class="r-in"><span class="co"># y &lt;- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)</span></span>
-<span class="r-in"><span class="co"># # display with row, col and table totals</span></span>
-<span class="r-in"><span class="co"># round(addmargins(y$mu), 1)</span></span>
-<span class="r-in"><span class="co"># # origin-destination flow table</span></span>
-<span class="r-in"><span class="co"># round(sum_od(y$mu), 1)</span></span>
-<span class="r-in"><span class="co"># } </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># # run ipf</span></span></span>
+<span class="r-in"><span><span class="co"># y &lt;- ipf3_qi(row_tot = t(P1), col_tot = P2)</span></span></span>
+<span class="r-in"><span><span class="co"># # display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="co"># round(addmargins(y$mu), 1)</span></span></span>
+<span class="r-in"><span><span class="co"># # origin-destination flow table</span></span></span>
+<span class="r-in"><span><span class="co"># round(sum_od(y$mu), 1)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## with alternative offset term</span></span></span>
+<span class="r-in"><span><span class="co"># dis &lt;- array(c(1, 2, 3, 4, 2, 1, 5, 6, 3, 4, 1, 7, 4, 6, 7, 1), c(4, 4, 4))</span></span></span>
+<span class="r-in"><span><span class="co"># y &lt;- ipf3_qi(row_tot = t(P1), col_tot = P2, m = dis)</span></span></span>
+<span class="r-in"><span><span class="co"># # display with row, col and table totals</span></span></span>
+<span class="r-in"><span><span class="co"># round(addmargins(y$mu), 1)</span></span></span>
+<span class="r-in"><span><span class="co"># # origin-destination flow table</span></span></span>
+<span class="r-in"><span><span class="co"># round(sum_od(y$mu), 1)</span></span></span>
+<span class="r-in"><span><span class="co"># } </span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -197,7 +221,7 @@ where \(m_{ijk}\) is a set of prior estimates for \(y_{ijk}\) and is no more com
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

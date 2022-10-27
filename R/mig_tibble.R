@@ -6,6 +6,7 @@
 #' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #'
 #' @return Formatted tibble
+#' 
 mig_tibble <- function(m, orig_col = "orig", dest_col = "dest", flow_col = "flow"){
   orig <- dest <- flow <- NULL
   if(!is.matrix(m)){

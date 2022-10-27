@@ -26,6 +26,7 @@
 #'
 #' @author Guy J. Abel
 #' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
+#' 
 match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   if (!(method %in% c("open", "open-dr", "rescale-adjust-zero-fb", "rescale")) | length(method) != 1)
     stop("method must be open, open-dr, rescale-adjust-zero-fb or rescale")
@@ -64,16 +65,18 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
     # m1_wz_adj <- ipf2(row_tot = rowSums(m1_wz) - dd_wz, col_tot = colSums(m1_wz), m = m1_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
     # m2_wz_adj <- ipf2(row_tot = rowSums(m2_wz) + dd_wz, col_tot = colSums(m2_wz), m = m2_wz, maxit = 1e05, tol = 0.1, verbose = verbose)
     
-    m1_wz_adj <- mipfp::Ipfp(seed = m1_wz, 
-                      target.list = list(1, 2), 
-                      target.data = list(rowSums(m1_wz) - dd_wz, 
-                                         colSums(m1_wz)),
-                      tol = 1e-05)
-    m2_wz_adj <- mipfp::Ipfp(seed = m2_wz, 
-                      target.list = list(1, 2), 
-                      target.data = list(rowSums(m2_wz) + dd_wz, 
-                                         colSums(m2_wz)),
-                      tol = 1e-05)
+    m1_wz_adj <- mipfp::Ipfp(
+      seed = m1_wz, 
+      target.list = list(1, 2), 
+      target.data = list(rowSums(m1_wz) - dd_wz, colSums(m1_wz)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
+    m2_wz_adj <- mipfp::Ipfp(
+      seed = m2_wz, 
+      target.list = list(1, 2), 
+      target.data = list(rowSums(m2_wz) + dd_wz, colSums(m2_wz)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
     m1_z <- m1[zid,]
     m2_z <- m2[zid,]
     if(length(zid) == 1){
@@ -96,16 +99,18 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
 
 
   if(method == "rescale"){
-    m1_adj <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-                          # print = TRUE,
-                          target.list = list(1, 2),
-                          target.data = list(rowSums(m1) - dd / 2, colSums(m1)),
-                          tol = 1e-05)
-    m2_adj <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-                          # print = TRUE,
-                          target.list = list(1, 2),
-                          target.data = list(rowSums(m2) + dd / 2, colSums(m2)),
-                          tol = 1e-05)
+    m1_adj <- mipfp::Ipfp(
+      seed = m1,
+      target.list = list(1, 2),
+      target.data = list(rowSums(m1) - dd / 2, colSums(m1)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
+    m2_adj <- mipfp::Ipfp(
+      seed = m2, 
+      target.list = list(1, 2),
+      target.data = list(rowSums(m2) + dd / 2, colSums(m2)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
     if(min(m1_adj$x.hat) < 0 | min(m2_adj$x.hat) < 0)
       message("negative flows from rescale")
     if(m1_adj$conv == FALSE | m2_adj$conv == FALSE)
@@ -118,22 +123,34 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   zeros <- mipfp::Ipfp(seed = m1, target.list = list(1, 2), target.data = list(0, 0), tol = 1e-05)
   in_mat <- out_mat <- zeros
   if(method == "open"){
-    in_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-                          target.list = list(1),
-                          target.data = list(pmax(-dd, 0)))
-    out_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-                          target.list = list(1),
-                          target.data = list(pmax(dd, 0)))
+    in_mat <- mipfp::Ipfp(
+      seed = m1, 
+      target.list = list(1),
+      target.data = list(pmax(-dd, 0)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
+    out_mat <- mipfp::Ipfp(
+      seed = m2, 
+      target.list = list(1),
+      target.data = list(pmax(dd, 0)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
     m1_adj <- m1 - out_mat$x.hat
     m2_adj <- m2 - in_mat$x.hat
   }
   if(method == "open-dr"){
-    in_mat <- mipfp::Ipfp(seed = m2, tol = 1e-03, iter = 1e05,
-                          target.list = list(1),
-                          target.data = list(pmax(-dd, 0)))
-    out_mat <- mipfp::Ipfp(seed = m1, tol = 1e-03, iter = 1e05,
-                           target.list = list(1),
-                           target.data = list(pmax(dd, 0)))
+    in_mat <- mipfp::Ipfp(
+      seed = m2,
+      target.list = list(1),
+      target.data = list(pmax(-dd, 0)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
+    out_mat <- mipfp::Ipfp(
+      seed = m1,
+      target.list = list(1),
+      target.data = list(pmax(dd, 0)),
+      tol = 1e-03, iter = 1e05, tol.margins = 1e-03
+    )
     m1_adj <- m1 - out_mat$x.hat
     m2_adj <- m2 - in_mat$x.hat
   }

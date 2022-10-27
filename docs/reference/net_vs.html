@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">migest</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.3</span>
       </span>
     </div>
 
@@ -71,31 +71,42 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">net_vs</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  pop0_col <span class="op">=</span> <span class="cn">NULL</span>,
-  pop1_col <span class="op">=</span> <span class="cn">NULL</span>,
-  births_col <span class="op">=</span> <span class="st">"births"</span>,
-  deaths_col <span class="op">=</span> <span class="st">"deaths"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">net_vs</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  pop0_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pop1_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  births_col <span class="op">=</span> <span class="st">"births"</span>,</span>
+<span>  deaths_col <span class="op">=</span> <span class="st">"deaths"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>A data frame with two rows with the total number of lifetime in- and out-migrants in separate columns. The first row contains totals at the first time point and second row at the second time point.</p></dd>
+
+
 <dt>pop0_col</dt>
 <dd><p>Character string name of column containing name of initial populations. Default <code>"pop0"</code>.</p></dd>
+
+
 <dt>pop1_col</dt>
 <dd><p>Character string name of column containing name of end populations. Default <code>"pop1"</code>.</p></dd>
+
+
 <dt>births_col</dt>
 <dd><p>Character string name of column containing name of births over the period. Default <code>"births"</code>.</p></dd>
+
+
 <dt>deaths_col</dt>
 <dd><p>Character string name of column containing name of deaths over the period. Default <code>"deaths"</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A tibble with additional columns for the population change (`pop_change`), the natural population increase (`natural_inc`) and the net migration (`net`) over the period.</p>
+    
+
+<p>A tibble with additional columns for the population change (`pop_change`), the natural population increase (`natural_inc`) and the net migration (`net`) over the period.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -104,16 +115,16 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">alabama_1970</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">race</span>, <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>births <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1960</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span>
-<span class="r-in">            pop_1960 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1960</span><span class="op">)</span> <span class="op">-</span> <span class="va">births</span>,</span>
-<span class="r-in">            pop_1970 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1970</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">alabama_1970</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">race</span>, <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>births <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1960</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            pop_1960 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1960</span><span class="op">)</span> <span class="op">-</span> <span class="va">births</span>,</span></span>
+<span class="r-in"><span>            pop_1970 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pop_1970</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `summarise()` has grouped output by 'race'. You can override using the</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `.groups` argument.</span>
-<span class="r-in"><span class="va">d</span></span>
+<span class="r-in"><span><span class="va">d</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   race      sex    births pop_1960 pop_1970</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -121,17 +132,18 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> non-white male   <span style="text-decoration: underline;">131</span>767   <span style="text-decoration: underline;">467</span>648   <span style="text-decoration: underline;">426</span>452</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> white     female <span style="text-decoration: underline;">224</span>034  1<span style="text-decoration: underline;">159</span>548  1<span style="text-decoration: underline;">298</span>342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> white     male   <span style="text-decoration: underline;">236</span>481  1<span style="text-decoration: underline;">124</span>061  1<span style="text-decoration: underline;">235</span>489</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">d</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>deaths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">51449</span>, <span class="fl">58845</span>, <span class="fl">86880</span>, <span class="fl">123220</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">net_vs</span><span class="op">(</span>pop0_col <span class="op">=</span> <span class="st">"pop_1960"</span>, pop1_col <span class="op">=</span> <span class="st">"pop_1970"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>deaths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">51449</span>, <span class="fl">58845</span>, <span class="fl">86880</span>, <span class="fl">123220</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">net_vs</span><span class="op">(</span>pop0_col <span class="op">=</span> <span class="st">"pop_1960"</span>, pop1_col <span class="op">=</span> <span class="st">"pop_1970"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   race      sex   births pop_1960 pop_1970 deaths pop_change natural_inc     net</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> non-white fema… <span style="text-decoration: underline;">126</span>886   <span style="text-decoration: underline;">515</span>483   <span style="text-decoration: underline;">483</span>882  <span style="text-decoration: underline;">51</span>449     -<span style="color: #BB0000; text-decoration: underline;">31</span><span style="color: #BB0000;">601</span>       <span style="text-decoration: underline;">75</span>437 -<span style="color: #BB0000; text-decoration: underline;">107</span><span style="color: #BB0000;">038</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> non-white male  <span style="text-decoration: underline;">131</span>767   <span style="text-decoration: underline;">467</span>648   <span style="text-decoration: underline;">426</span>452  <span style="text-decoration: underline;">58</span>845     -<span style="color: #BB0000; text-decoration: underline;">41</span><span style="color: #BB0000;">196</span>       <span style="text-decoration: underline;">72</span>922 -<span style="color: #BB0000; text-decoration: underline;">114</span><span style="color: #BB0000;">118</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> white     fema… <span style="text-decoration: underline;">224</span>034  1<span style="text-decoration: underline;">159</span>548  1<span style="text-decoration: underline;">298</span>342  <span style="text-decoration: underline;">86</span>880     <span style="text-decoration: underline;">138</span>794      <span style="text-decoration: underline;">137</span>154    <span style="text-decoration: underline;">1</span>640</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> white     male  <span style="text-decoration: underline;">236</span>481  1<span style="text-decoration: underline;">124</span>061  1<span style="text-decoration: underline;">235</span>489 <span style="text-decoration: underline;">123</span>220     <span style="text-decoration: underline;">111</span>428      <span style="text-decoration: underline;">113</span>261   -<span style="color: #BB0000; text-decoration: underline;">1</span><span style="color: #BB0000;">833</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   race      sex    births pop_1960 pop_1970 deaths pop_change natural_…¹     net</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> non-white female <span style="text-decoration: underline;">126</span>886   <span style="text-decoration: underline;">515</span>483   <span style="text-decoration: underline;">483</span>882  <span style="text-decoration: underline;">51</span>449     -<span style="color: #BB0000; text-decoration: underline;">31</span><span style="color: #BB0000;">601</span>      <span style="text-decoration: underline;">75</span>437 -<span style="color: #BB0000; text-decoration: underline;">107</span><span style="color: #BB0000;">038</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> non-white male   <span style="text-decoration: underline;">131</span>767   <span style="text-decoration: underline;">467</span>648   <span style="text-decoration: underline;">426</span>452  <span style="text-decoration: underline;">58</span>845     -<span style="color: #BB0000; text-decoration: underline;">41</span><span style="color: #BB0000;">196</span>      <span style="text-decoration: underline;">72</span>922 -<span style="color: #BB0000; text-decoration: underline;">114</span><span style="color: #BB0000;">118</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> white     female <span style="text-decoration: underline;">224</span>034  1<span style="text-decoration: underline;">159</span>548  1<span style="text-decoration: underline;">298</span>342  <span style="text-decoration: underline;">86</span>880     <span style="text-decoration: underline;">138</span>794     <span style="text-decoration: underline;">137</span>154    <span style="text-decoration: underline;">1</span>640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> white     male   <span style="text-decoration: underline;">236</span>481  1<span style="text-decoration: underline;">124</span>061  1<span style="text-decoration: underline;">235</span>489 <span style="text-decoration: underline;">123</span>220     <span style="text-decoration: underline;">111</span>428     <span style="text-decoration: underline;">113</span>261   -<span style="color: #BB0000; text-decoration: underline;">1</span><span style="color: #BB0000;">833</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​natural_inc</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -146,7 +158,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
