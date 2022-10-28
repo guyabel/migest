@@ -28,7 +28,7 @@ roxygen2::roxygenise()
 # devtools::build()
 # devtools::install()
 pkgdown::build_site(run_dont_run = TRUE)
-pkgdown::build_reference()
+pkgdown::build_reference() 
 
 usethis::use_spell_check()
 
