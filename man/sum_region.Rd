@@ -59,7 +59,7 @@ sum_region(m)
 library(tidyverse)
 
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/26239945", show_col_types = FALSE)
+f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
 f
 
 # single period
