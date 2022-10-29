@@ -8,7 +8,7 @@ Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., &
 
 Shryock, H. S., & Siegel, J. S. (1976). The Methods and Materials of Demography. (E. G. Stockwell (ed.); Condensed). Academic Press. \cr
 
-United Nations Department of Economic and Social Affairs Population Division. (1983). Methods of measuring internal migration. United Nations Publication. https://www.un.org/en/development/desa/population/publications/manual/migration/measuring-migration.asp
+United Nations Department of Economic and Social Affairs Population Division. (1970). Methods of measuring internal migration. United Nations Department of Economic and Social Affairs Population Division - 1970 - Methods of measuring internal migration \url{https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/files/documents/2020/Jan/manual_vi_methods_of_measuring_internal_migration.pdf}
 }
 \usage{
 index_impact(
