@@ -1,40 +1,41 @@
+message("Demo file no longer maintained. Please see https://guyabel.github.io/migest/reference/mig_chord.html for easier plotting of chord diagrams for migration data.")
 ##
 ## load packages
 ##
-# install.packages("tidyverse")
-library(tidyverse)
-library(migest)
-
-# load data sets
-d <- read_csv(system.file("vidwp", "reg_flow.csv", package = "migest"))
-r <- read_csv(system.file("vidwp", "reg_plot.csv", package = "migest"))
-
-# Estimated global flows for 2010-2015 from 
-#  Abel, G.J. (2016) Estimates of global bilateral migration flows by gender 
-#  between 1960 and 2015. Vienna Institute of Demography Working Papers 2/2016.
-d
-
-# meta data for plot
-r
-
-##
-## plot using mig_chord adaption of circlize::chordDiagram
-##
-pdf(file = "chord_reg2.pdf")
-mig_chord(x = d, 
-          order = r$region,
-          grid.col = r %>% 
-            select(region, col1) %>%
-            deframe(), 
-          lab_bend1 = r %>%
-            select(region, reg1) %>%
-            deframe(),
-          lab_bend2 = r %>%
-            select(region, reg2) %>%
-            deframe())
-          # axis_breaks = 1)
-dev.off()
-file.show("chord_reg2.pdf")
+# # install.packages("tidyverse")
+# library(tidyverse)
+# library(migest)
+# 
+# # load data sets
+# d <- read_csv(system.file("vidwp", "reg_flow.csv", package = "migest"))
+# r <- read_csv(system.file("vidwp", "reg_plot.csv", package = "migest"))
+# 
+# # Estimated global flows for 2010-2015 from 
+# #  Abel, G.J. (2016) Estimates of global bilateral migration flows by gender 
+# #  between 1960 and 2015. Vienna Institute of Demography Working Papers 2/2016.
+# d
+# 
+# # meta data for plot
+# r
+# 
+# ##
+# ## plot using mig_chord adaption of circlize::chordDiagram
+# ##
+# pdf(file = "chord_reg2.pdf")
+# mig_chord(x = d, 
+#           order = r$region,
+#           grid.col = r %>% 
+#             select(region, col1) %>%
+#             deframe(), 
+#           lab_bend1 = r %>%
+#             select(region, reg1) %>%
+#             deframe(),
+#           lab_bend2 = r %>%
+#             select(region, reg2) %>%
+#             deframe())
+#           # axis_breaks = 1)
+# dev.off()
+# file.show("chord_reg2.pdf")
 
 # ##
 # ## Original code, pre improvements in visualising migration data using

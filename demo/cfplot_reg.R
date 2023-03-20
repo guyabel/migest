@@ -1,56 +1,57 @@
+message("Demo file no longer maintained. Please see https://guyabel.github.io/migest/reference/mig_chord.html for easier plotting of chord diagrams for migration data.")
 ##
 ## load packages
 ##
-# install.packages("tidyverse")
-library(tidyverse)
-library(migest)
-
-##
-## read in table and define matrix (m) and reference data.frame (df1)
-##
-science_reg <- read_tsv(system.file("science", "region_custom.txt", package = "migest"), 
-                        skip = 1, n_max = 10)
-
-# set up a region data frame
-r <- science_reg %>%
-  select(1:3) %>% 
-  rename(order = 1, 
-         rgb = 2,
-         region = 3) %>% 
-  arrange(order) %>% 
-  separate(col = rgb, into = c("r","g","b")) %>% 
-  mutate(col = rgb(red = r, green = g, blue = b, max = 255),
-         label = str_replace_all(string = region, pattern = "_", replacement = " "))
-r
-
-# set up a flow data frame
-d <- science_reg %>%
-  rename(orig = 3) %>%
-  select(-(1:2)) %>%
-  pivot_longer(cols = -1, names_to = "dest", values_to = "flow") %>%
-  mutate(flow = flow/1e6, 
-         # drop small flows - not sure why we thought this was a good idea
-         vis = flow > quantile(x = flow, 0.65))
-d
-
-##
-## plot using mig_chord adaption of circlize::chordDiagram
-##
-pdf(file = "chord_reg.pdf")
-mig_chord(x = d, 
-          order = r$region,
-          grid.col = r %>% 
-            select(region, col) %>%
-            deframe(), 
-          lab_bend1 = r %>%
-            select(region, label) %>%
-            deframe(),
-          label_size = 0.9,
-          axis_breaks = 1,
-          link.visible = d$vis
-          )
-dev.off()
-file.show("chord_reg.pdf")
+# # install.packages("tidyverse")
+# library(tidyverse)
+# library(migest)
+# 
+# ##
+# ## read in table and define matrix (m) and reference data.frame (df1)
+# ##
+# science_reg <- read_tsv(system.file("science", "region_custom.txt", package = "migest"), 
+#                         skip = 1, n_max = 10)
+# 
+# # set up a region data frame
+# r <- science_reg %>%
+#   select(1:3) %>% 
+#   rename(order = 1, 
+#          rgb = 2,
+#          region = 3) %>% 
+#   arrange(order) %>% 
+#   separate(col = rgb, into = c("r","g","b")) %>% 
+#   mutate(col = rgb(red = r, green = g, blue = b, max = 255),
+#          label = str_replace_all(string = region, pattern = "_", replacement = " "))
+# r
+# 
+# # set up a flow data frame
+# d <- science_reg %>%
+#   rename(orig = 3) %>%
+#   select(-(1:2)) %>%
+#   pivot_longer(cols = -1, names_to = "dest", values_to = "flow") %>%
+#   mutate(flow = flow/1e6, 
+#          # drop small flows - not sure why we thought this was a good idea
+#          vis = flow > quantile(x = flow, 0.65))
+# d
+# 
+# ##
+# ## plot using mig_chord adaption of circlize::chordDiagram
+# ##
+# pdf(file = "chord_reg.pdf")
+# mig_chord(x = d, 
+#           order = r$region,
+#           grid.col = r %>% 
+#             select(region, col) %>%
+#             deframe(), 
+#           lab_bend1 = r %>%
+#             select(region, label) %>%
+#             deframe(),
+#           label_size = 0.9,
+#           axis_breaks = 1,
+#           link.visible = d$vis
+#           )
+# dev.off()
+# file.show("chord_reg.pdf")
 
 # ##
 # ## Original code, pre circlize::chordDiagram and improvements in visualising 

@@ -1,57 +1,58 @@
+message("Demo file no longer maintained. Please see https://guyabel.github.io/migest/reference/mig_chord.html for easier plotting of chord diagrams for migration data.")
 ##
 ## load packages
 ##
 # install.packages("tidyverse")
-library(tidyverse)
-library(migest)
-
-##
-## read in table and define matrix (m) and reference data.frame (df1)
-##
-science_nat <- read_tsv(system.file("science", "country_custom.txt", package = "migest"), skip = 1)
-
-# set up a region data frame
-r <- science_nat %>%
-  select(1:3) %>% 
-  rename(order = 1, 
-         rgb = 2,
-         region = 3) %>% 
-  arrange(order) %>% 
-  separate(col = rgb, into = c("r","g","b")) %>% 
-  mutate(col = rgb(red = r, green = g, blue = b, max = 255),
-         label = str_replace_all(string = region, pattern = "_", replacement = "\n"))
-r
-
-# set up a flow data frame
-d <- science_nat %>%
-  rename(orig = 3) %>%
-  select(-(1:2)) %>%
-  pivot_longer(cols = -1, names_to = "dest", values_to = "flow") %>%
-  mutate(flow = flow/1e5, 
-         # drop small flows - not sure why we thought this was a good idea
-         vis = flow > quantile(x = flow, 0.9))
-d
-
-##
-## plot using mig_chord adaption of circlize::chordDiagram
-##
-pdf(file = "chord_nat.pdf")
-mig_chord(x = d, 
-          order = r$region,
-          grid.col = r %>% 
-            select(region, col) %>%
-            deframe(), 
-          lab = r %>%
-            select(region, label) %>%
-            deframe(),
-          preAllocateTracks = list(track.height = 0.1),
-          label_size = 0.8, 
-          label_nudge = -0.2,
-          axis_size = 0.7, 
-          axis_breaks = 5,
-          link.visible = d$vis)
-dev.off()
-file.show("chord_nat.pdf")
+# library(tidyverse)
+# library(migest)
+# 
+# ##
+# ## read in table and define matrix (m) and reference data.frame (df1)
+# ##
+# science_nat <- read_tsv(system.file("science", "country_custom.txt", package = "migest"), skip = 1)
+# 
+# # set up a region data frame
+# r <- science_nat %>%
+#   select(1:3) %>% 
+#   rename(order = 1, 
+#          rgb = 2,
+#          region = 3) %>% 
+#   arrange(order) %>% 
+#   separate(col = rgb, into = c("r","g","b")) %>% 
+#   mutate(col = rgb(red = r, green = g, blue = b, max = 255),
+#          label = str_replace_all(string = region, pattern = "_", replacement = "\n"))
+# r
+# 
+# # set up a flow data frame
+# d <- science_nat %>%
+#   rename(orig = 3) %>%
+#   select(-(1:2)) %>%
+#   pivot_longer(cols = -1, names_to = "dest", values_to = "flow") %>%
+#   mutate(flow = flow/1e5, 
+#          # drop small flows - not sure why we thought this was a good idea
+#          vis = flow > quantile(x = flow, 0.9))
+# d
+# 
+# ##
+# ## plot using mig_chord adaption of circlize::chordDiagram
+# ##
+# pdf(file = "chord_nat.pdf")
+# mig_chord(x = d, 
+#           order = r$region,
+#           grid.col = r %>% 
+#             select(region, col) %>%
+#             deframe(), 
+#           lab = r %>%
+#             select(region, label) %>%
+#             deframe(),
+#           preAllocateTracks = list(track.height = 0.1),
+#           label_size = 0.8, 
+#           label_nudge = -0.2,
+#           axis_size = 0.7, 
+#           axis_breaks = 5,
+#           link.visible = d$vis)
+# dev.off()
+# file.show("chord_nat.pdf")
 
 
 # ##

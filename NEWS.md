@@ -1,3 +1,7 @@
+# migest 2.0.4
+
+* Direct demo users to `mig_chord()` pkgdown site
+
 # migest 2.0.3
 
 * Dropped `sum_turnover()` and `sum_bilateral()`

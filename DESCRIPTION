@@ -33,6 +33,5 @@ Depends:
     R (>= 2.10)
 Suggests: 
     spelling, 
-    tidyverse,
     countrycode
 Language: en-US
