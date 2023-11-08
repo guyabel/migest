@@ -63,14 +63,14 @@
 #' 
 #' # pass arguments to circlize::chordDiagramFromDataFrame
 #' # pdf(file = "chord.pdf")
-#' mig_chord(x = pb, 
+#' mig_chord(x = pb,
 #'           # order of regions
-#'           order = rev(unique(pb$orig)),
+#'           order = unique(pb$orig)[c(1, 3, 2, 6, 4, 5)],
 #'           # spacing for labels
 #'           preAllocateTracks = list(track.height = 0.3),
 #'           # colours
 #'           grid.col = c("blue", "royalblue", "navyblue", "skyblue", "cadetblue", "darkblue")
-#'           ) 
+#'           )
 #' # dev.off()
 #' # file.show("chord.pdf")
 #' 
@@ -177,9 +177,16 @@ mig_chord <- function(
                     dest = 2, 
                     flow = 3) %>%
       sum_region() %>%
-      dplyr::mutate(col = grDevices::colorRampPalette(migest::umbrella)(dplyr::n())) %>%
+      {if(is.null(z$order)) . else dplyr::mutate(., region = factor(region, levels = z$order))} %>%
+      {if(is.null(z$order)) . else dplyr::arrange(., region)} %>%
+      dplyr::mutate(col = grDevices::colorRampPalette(migest::umbrella)(nrow(.))) %>%
+      {if(is.null(z$grid.col)) . else dplyr::mutate(., col = z$grid.col)} %>%
       dplyr::select(region, col) %>%
       tibble::deframe()
+  }
+  
+  if(!is.null(z$grid.col) & !is.null(z$order)){
+    z$grid.col <- stats::setNames(object = z$grid.col, nm = z$order)
   }
 
   circlize::circos.clear()

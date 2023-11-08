@@ -5,7 +5,7 @@ library(countrycode)
 library(readxl)
 
 d <- read_csv("I:/ADRI/project/data-unpd/tims/data/total/tims2020.csv")
-a <- read_excel("I:/ADRI/project/data-unpd/tims/data-raw/tims2020/aggregates_correspondence_table_2020_1.xlsx", skip = 10)
+a <- read_excel("D:/ADRI/project/data-unpd/tims/data-raw/tims2020/aggregates_correspondence_table_2020_1.xlsx", skip = 10)
 
 # d0 <- d %>%
 #   select(pob, por) %>%

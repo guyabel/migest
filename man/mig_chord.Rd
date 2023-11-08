@@ -107,14 +107,14 @@ mig_chord(x = pb)
 
 # pass arguments to circlize::chordDiagramFromDataFrame
 # pdf(file = "chord.pdf")
-mig_chord(x = pb, 
+mig_chord(x = pb,
           # order of regions
-          order = rev(unique(pb$orig)),
+          order = unique(pb$orig)[c(1, 3, 2, 6, 4, 5)],
           # spacing for labels
           preAllocateTracks = list(track.height = 0.3),
           # colours
           grid.col = c("blue", "royalblue", "navyblue", "skyblue", "cadetblue", "darkblue")
-          ) 
+          )
 # dev.off()
 # file.show("chord.pdf")
 

@@ -87,7 +87,7 @@
     <h2>Source</h2>
     <p>Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., &amp; Hugo, G. J. (2002). Cross-national comparison of internal migration: issues and measures. Journal of the Royal Statistical Society: Series A (Statistics in Society), 165(3), 435–464. https://doi.org/10.1111/1467-985X.00247 <br></p>
 <p>Shryock, H. S., &amp; Siegel, J. S. (1976). The Methods and Materials of Demography. (E. G. Stockwell (ed.); Condensed). Academic Press. <br></p>
-<p>United Nations Department of Economic and Social Affairs Population Division. (1983). Methods of measuring internal migration. United Nations Publication. https://www.un.org/en/development/desa/population/publications/manual/migration/measuring-migration.asp</p>
+<p>United Nations Department of Economic and Social Affairs Population Division. (1970). Methods of measuring internal migration. United Nations Department of Economic and Social Affairs Population Division - 1970 - Methods of measuring internal migration <a href="https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/files/documents/2020/Jan/manual_vi_methods_of_measuring_internal_migration.pdf" class="external-link">https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/files/documents/2020/Jan/manual_vi_methods_of_measuring_internal_migration.pdf</a></p>
     </div>
     <div id="arguments">
     <h2>Arguments</h2>
@@ -169,8 +169,12 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>i <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.x <span class="op">=</span> <span class="va">m</span>, .y <span class="op">=</span> <span class="va">p</span>, </span></span>
 <span class="r-in"><span>                  .f <span class="op">=</span> <span class="op">~</span><span class="fu">index_impact</span><span class="op">(</span>m <span class="op">=</span> <span class="va">.x</span>, p <span class="op">=</span> <span class="va">.y</span>, pop_col <span class="op">=</span> <span class="st">"population"</span>, long <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">m</span>, <span class="op">-</span><span class="va">p</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "year"</span>
+<span class="r-in"><span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest.html" class="external-link">unnest</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(year)`</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Each row in `x` is expected to match at most 1 row in `y`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Row 1 of `x` matches multiple rows.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> If multiple matches are expected, set `multiple = "all"` to silence this</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   warning.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    year effectivness  anmr preference velocity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -197,7 +201,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

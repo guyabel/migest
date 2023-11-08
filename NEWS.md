@@ -1,6 +1,7 @@
 # migest 2.0.4
 
 * Direct demo users to `mig_chord()` pkgdown site
+* Fixed colour ordering in `mig_chord()` when `order` is set
 
 # migest 2.0.3
 

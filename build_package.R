@@ -18,6 +18,7 @@ devtools::build()
 ##
 ## these are key if devtools::check() is working by github actions are not
 ##
+usethis::use_github_action()
 usethis::use_github_action_check_standard()
 usethis::use_github_action("pkgdown")
 usethis::use_github_actions_badge()
