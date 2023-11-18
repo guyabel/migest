@@ -17,7 +17,7 @@ Data frame with 288 rows and 7 columns:
 }
 }
 \source{
-Data scraped from Table D, pp. 183-191 of Eldridge, H., & Kim, Y. (1968). The estimation of intercensal migration from birth-residence statistics: a study of data for the United States, 1950 and 1960 (PSC Analytical and Technical Report Series, Issue 7). \url{https://repository.upenn.edu/psc_penn_papers/3/}
+Data scraped from Table D, pp. 183-191 of Eldridge, H., & Kim, Y. (1968). The estimation of intercensal migration from birth-residence statistics: a study of data for the United States, 1950 and 1960 (PSC Analytical and Technical Report Series, Issue 7). \url{https://repository.upenn.edu/entities/publication/2a11a5f7-3ddf-47f3-a47d-1de5254f4cc5}
 }
 \usage{
 usa_1960

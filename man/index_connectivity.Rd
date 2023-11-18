@@ -43,9 +43,9 @@ index_connectivity(
 }
 \value{
 A tibble with 12 summary measures:
-\item{connectivity}{I_{mc} of Bell et. al. (2002) for the share of non-zero flows. A value of 0 means no connections (all zero flows) and 1 shows that all regions are connected by migrants.}
-\item{inequality_equal}{I_{mi} of Bell et. al. (2002) based on a distributions of flows compared to equal distributions of expected flows . A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
-\item{inequality_sim}{I_{mi} of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit \code{flow ~ orig +  dest}. A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
+\item{connectivity}{Migration connectivity index of Bell et. al. (2002) for the share of non-zero flows. A value of 0 means no connections (all zero flows) and 1 shows that all regions are connected by migrants.}
+\item{inequality_equal}{Migration inequality index of Bell et. al. (2002) based on a distributions of flows compared to equal distributions of expected flows . A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
+\item{inequality_sim}{Migration inequality index of Bell et. al. (2002) based on a distributions of flows compared to distributions of expected flows from a Poisson regression independence fit \code{flow ~ orig +  dest}. A value of 0 shows complete equality in flows and 1 shows maximum inequality.}
 \item{gini_total}{Overall concentration of migration from Bell (2002), corrected from Plane and Mulligan (1997). A value of 0 means no spatial focusing and 1 shows that all migrants are found in one single flow. Calculated using \code{migration.indices::migration.gini.total()}}
 \item{gini_orig_standardized}{Relative extent to which the origin selections of out-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from \code{migration.indices::migration.gini.row.standardized()}.}
 \item{gini_dest_standardized}{Relative extent to which the destination selections of in-migrations are spatially focused. A value of 0 means no spatial focusing and 1 shows maximum focusing. Adapted from \code{migration.indices::migration.gini.col.standardized()}.}
