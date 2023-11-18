@@ -5,7 +5,7 @@
 \alias{dict_ims}
 \title{Dictionary to look up region geographies based on countries used in UN DESA International Migrant Stock.}
 \format{
-Data frame with 237 rows and 18 columns. One of first three columns intended as input for \code{origin} in \code{countrycode}.
+Data frame with 243 rows and 18 columns. One of first three columns intended as input for \code{origin} in \code{countrycode}.
 \describe{
   \item{name}{Country name}
   \item{iso3c}{ISO numeric code}
@@ -13,11 +13,13 @@ Data frame with 237 rows and 18 columns. One of first three columns intended as 
 }
 Remaining columns intended as input for \code{destination} in \code{countrycode}.
 \describe{
-  \item{name_short}{Short country name }
+  \item{name_short}{Short country name}
+  \item{ims}{Country in UN DESA International Migration Stock data. Some codes added for older political geographies to match World Bank data and older country units in IMS}
   \item{region}{Geographic region of country (6)}
   \item{region_sub}{Geographic sub region of country (22). Filled using \code{region} if none given in original data}
   \item{region_sdg}{SDG region of country (8)}
   \item{region_sdg_sub}{Sub SDG region of country (9). Filled using \code{region_sdg} if none given in original data}
+  \item{region_wb}{World Bank region}
   \item{un_develop}{UN development group of country (3)}
   \item{wb_income}{World Bank income group of country (3)}
   \item{wb_income_detail}{Detailled World Bank income group of country (4)}
@@ -27,7 +29,6 @@ Remaining columns intended as input for \code{destination} in \code{countrycode}
   \item{region_sab2014}{Region grouping used for global chord diagram plots by Sander, Abel and Bauer (2014)}
   \item{region_a2018}{Region grouping used for global chord diagram plots by Abel (2018)}
   \item{region_ac2022}{Region grouping used for global chord diagram plots by Abel and Cohen (2022)}
-  \item{region_wb}{World Bank region}
 }
 }
 \source{

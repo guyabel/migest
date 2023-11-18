@@ -6,14 +6,14 @@
 \title{Estimation of bilateral migrant flows from bilateral migrant stocks using demographic accounting approaches}
 \usage{
 ffs_demo(
-  m1 = NULL,
-  m2 = NULL,
-  b_por = NULL,
-  d_por = NULL,
-  m = NULL,
+  stock_start = NULL,
+  stock_end = NULL,
+  births = NULL,
+  deaths = NULL,
+  seed = NULL,
   stayer_assumption = TRUE,
   match_global = "before-demo-adjust",
-  match_pob_tot_method = "rescale",
+  match_birthplace_tot_method = "rescale",
   birth_method = "native",
   birth_non_negative = TRUE,
   death_method = "proportion",
@@ -22,21 +22,21 @@ ffs_demo(
 )
 }
 \arguments{
-\item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
+\item{stock_start}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}. Previously had argument name \code{m1}.}
 
-\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
+\item{stock_end}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1. Previously had argument name \code{m2}.}
 
-\item{b_por}{Vector of the number of births between time \emph{t} and \emph{t}+1 in each region.}
+\item{births}{Vector of the number of births between time \emph{t} and \emph{t}+1 in each region. Previously had argument name \code{b_por}.}
 
-\item{d_por}{Vector of the number of deaths between time \emph{t} and \emph{t}+1 in each region.}
+\item{deaths}{Vector of the number of deaths between time \emph{t} and \emph{t}+1 in each region. Previously had argument name \code{d_por}.}
 
-\item{m}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations.}
+\item{seed}{Matrix of auxiliary data. By default set to 1 for all origin-destination combinations. Previously had argument name \code{m}.}
 
 \item{stayer_assumption}{Logical value to indicate whether to use a quasi-independent or independent IPFP to estimate flows. By default uses quasi-independent, i.e. is set to \code{TRUE} and estimates the minimum migration. When set to \code{FALSE} estimates flows under the independent model as used as part of Azose and Raftery (2019).}
 
-\item{match_global}{Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_pob_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.}
+\item{match_global}{Character string used to indicate whether to balance the change in stocks totals with the changes in births and deaths. Only applied when \code{match_birthplace_tot_method} is either \code{rescale} or \code{rescale-adjust-zero-fb}. By default uses \code{after-demo-adjust} rather than \code{before-demo-adjust} which I think minimises risk of negative values.}
 
-\item{match_pob_tot_method}{Character string passed to \code{method} argument in \code{match_pob_tot} to ensure place of birth margins in stock tables match.}
+\item{match_birthplace_tot_method}{Character string passed to \code{method} argument in \code{match_birthplace_tot} to ensure place of birth margins in stock tables match.}
 
 \item{birth_method}{Character string passed to \code{method} argument in \code{birth_mat}.}
 
@@ -61,7 +61,6 @@ Estimates migrant transitions flows between two sequential migrant stock tables.
 ## without births and deaths over period
 ##
 # data as in demographic research and science paper papers
-
 s1 <- matrix(data = c(1000, 100, 10, 0, 55, 555, 50, 5, 80, 40, 800, 40, 20, 25, 20, 200),
              nrow = 4, ncol = 4, byrow = TRUE)
 s2 <- matrix(data = c(950, 100, 60, 0, 80, 505, 75, 5, 90, 30, 800, 40, 40, 45, 0, 180),
@@ -76,7 +75,7 @@ b
 d
 
 # demographic research and science paper example
-e0 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+e0 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d)
 e0
 sum_od(e0)
 
@@ -86,7 +85,7 @@ s2[,] <- c(70, 25, 10, 40, 30, 60, 55, 45, 10, 10, 140, 0, 10, 15, 50, 180)
 addmargins(s1)
 addmargins(s2)
 
-e1 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+e1 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d)
 sum_od(e1)
 
 # international migration review supp. material example
@@ -95,7 +94,7 @@ dd <- matrix(data = c(0, 5, 50, 500, 5, 0, 45, 495, 50, 45, 0, 450, 500, 495, 45
              nrow = 4, ncol = 4, byrow = TRUE)
 dimnames(dd) <- list(orig = r, dest = r)
 dd
-e2 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, m = dd)
+e2 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d, seed = dd)
 sum_od(e2)
 
 ##
@@ -106,15 +105,19 @@ s1[,] <- c(1000, 55, 80, 20, 100, 555, 40, 25, 10, 50, 800, 20, 0, 5, 40, 200)
 s2[,] <- c(1060, 45, 70, 30, 60, 540, 75, 30, 10, 40, 770, 20, 10, 0, 70, 230)
 b[] <- c(80, 20, 40, 60)
 d[] <- c(70, 30, 50, 10)
-e3 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open-dr")
+e3 <- ffs_demo(stock_start = s1, stock_end = s2, 
+               births = b, deaths = d, 
+               match_birthplace_tot_method = "open-dr")
 sum_od(e3)
 # makes more sense to use this method
-e4 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d, match_pob_tot_method = "open")
+e4 <- ffs_demo(stock_start = s1, stock_end = s2, 
+               births = b, deaths = d, 
+               match_birthplace_tot_method = "open")
 sum_od(e4)
 
 # science paper  supp. material example
 b[] <- c(80, 20, 60, 60)
-e5 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+e5 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d)
 sum_od(e5)
 
 # international migration review supp. material example (with births and deaths)
@@ -122,7 +125,7 @@ s1[,] <- c(100, 20, 10, 20, 10, 55, 40, 25, 10, 25, 140, 20, 0, 10, 65, 200)
 s2[,] <- c(75, 20, 30, 30, 25, 45, 40, 30, 5, 30, 150, 20, 0, 15, 60, 230)
 b[] <- c(10, 50, 25, 60)
 d[] <- c(30, 10, 40, 10)
-e6 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+e6 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d)
 sum_od(e6)
 
 # scientific data 2019 paper
@@ -130,7 +133,7 @@ s1[] <- c(100, 80, 30, 60, 10, 180, 10, 70, 10, 10, 140, 10, 0, 90, 40, 160)
 s2[] <- c(95, 75, 55, 35, 5, 225, 0, 25, 15, 5, 115, 25, 5, 55, 50, 215)
 b[] <- c(0, 0, 0, 0)
 d[] <- c(0, 0, 0, 0)
-e7 <- ffs_demo(m1 = s1, m2 = s2, b_por = b, d_por = d)
+e7 <- ffs_demo(stock_start = s1, stock_end = s2, births = b, deaths = d)
 sum_od(e7)
 }
 \references{

@@ -1,4 +1,4 @@
-#' Adjust migrant stock tables to have matching place of birth totals
+#' Adjust migrant stock tables to have matching place of birth (origin) totals
 #'
 #' This function is predominantly intended to be used within the ffs routines in the migest package.
 #' @param m1 Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.
@@ -25,9 +25,9 @@
 #' Abel, G. J. and Sander, N. (2014). Quantifying Global International Migration Flows. \emph{Science}, 343 (6178) 1520-1522
 #'
 #' @author Guy J. Abel
-#' @seealso \code{\link{ipf3_qi}}, \code{\link{ffs_diff}}
+#' @seealso \code{\link{ffs_demo}}
 #' 
-match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
+match_birthplace_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
   if (!(method %in% c("open", "open-dr", "rescale-adjust-zero-fb", "rescale")) | length(method) != 1)
     stop("method must be open, open-dr, rescale-adjust-zero-fb or rescale")
   # m1 = m1_c; m2 = m2_c
@@ -56,7 +56,7 @@ match_pob_tot <- function(m1, m2, method = "rescale", verbose = FALSE){
 
     dd_wz <- dd
     zid <- which(names(dd) %in% z$name)
-    x <- rescale_nb(m1 = m1[-zid, -zid], m2 = m2[-zid, -zid], b = 0, d = 0)
+    x <- nb_scale_global(m1 = m1[-zid, -zid], m2 = m2[-zid, -zid], b = 0, d = 0)
     m1_wz <- x$m1_adj
     m2_wz <- x$m2_adj
     dd_wz <- rowSums(m1_wz) - rowSums(m2_wz)

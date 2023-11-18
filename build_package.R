@@ -11,7 +11,6 @@ usethis::use_build_ignore(
 )
 
 roxygen2::roxygenise()
-
 devtools::check()
 devtools::build()
 

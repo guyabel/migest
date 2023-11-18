@@ -32,8 +32,9 @@
 #'
 #' @examples
 #' library(dplyr)
-#' korea_reg %>%
+#' korea_gravity %>%
 #'   filter(year == 2020) %>%
+#'   select(orig, dest, flow) %>%
 #'   index_connectivity()
 index_connectivity <- function(m = NULL, #inequality_expected =  c("equal", "weighted"),
                                gini_orig_all = FALSE, gini_dest_all = FALSE,

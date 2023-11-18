@@ -127,6 +127,9 @@
     <loc>/reference/korea_dist.html</loc>
   </url>
   <url>
+    <loc>/reference/korea_gravity.html</loc>
+  </url>
+  <url>
     <loc>/reference/korea_pop.html</loc>
   </url>
   <url>
@@ -134,6 +137,9 @@
   </url>
   <url>
     <loc>/reference/manila_1970.html</loc>
+  </url>
+  <url>
+    <loc>/reference/match_birthplace_tot.html</loc>
   </url>
   <url>
     <loc>/reference/match_pob_tot.html</loc>
@@ -155,6 +161,12 @@
   </url>
   <url>
     <loc>/reference/multi_comp2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/nb_non_zero.html</loc>
+  </url>
+  <url>
+    <loc>/reference/nb_scale_global.html</loc>
   </url>
   <url>
     <loc>/reference/nchars_wrap.html</loc>

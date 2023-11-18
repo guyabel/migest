@@ -18,39 +18,40 @@
 #' @examples
 #' # single year
 #' library(dplyr)
-#' m <- korea_reg %>%
+#' m <- korea_gravity %>%
 #'   filter(year == 2020,
-#'          orig != dest) %>%
-#'   pull(flow) %>%
-#'   sum()
+#'          orig != dest)
 #' m
-#' p <- korea_pop %>%
+#' p <- korea_gravity %>%
 #'   filter(year == 2020) %>%
-#'   pull(population) %>%
-#'   sum()
+#'   distinct(dest, dest_pop)
 #' p
-#' index_intensity(mig_total = m, pop_total = p, n = n_distinct(korea_pop$region))
+#' index_intensity(mig_total = sum(m$flow), pop_total = sum(p$dest_pop*1e6), n = nrow(p))
 #' 
 #' # multiple years
-#' mm <- korea_reg %>%
+#' library(tidyr)
+#' library(purrr) 
+#' mm <- korea_gravity  %>%
+#'  filter(orig != dest) %>%
 #'   group_by(year) %>%
-#'   filter(orig != dest) %>%
 #'   summarise(m = sum(flow))
 #' mm
-#' pp <- korea_pop %>%
+#' 
+#' pp <- korea_gravity %>%
 #'   group_by(year) %>%
-#'   summarise(p = sum(population))
+#'   distinct(dest, dest_pop) %>%
+#'   summarise(p = sum(dest_pop)*1e6,
+#'             n = n_distinct(dest))
 #' pp
 #' 
 #' library(purrr)
 #' library(tidyr)
 #' mm %>%
 #'   left_join(pp) %>%
-#'   mutate(i = map2(.x = m, .y = p,
-#'                   .f = ~index_intensity(mig_total = .x,
-#'                                         pop_total = .y,
-#'                                         n = n_distinct(korea_pop$region),
-#'                                         long = FALSE))) %>%
+#'   mutate(i = pmap(
+#'     .l = list(m, p, n),
+#'     .f = ~index_intensity(mig_total = ..1, pop_total = ..2,n = ..3, long = FALSE)
+#'   )) %>%
 #'   unnest(cols = i)
 index_intensity <- function(mig_total = NULL,
                             pop_total = NULL,

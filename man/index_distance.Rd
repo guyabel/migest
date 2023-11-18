@@ -44,19 +44,23 @@ Summary indices of migration distance
 \examples{
 # single year
 index_distance(
-  m = subset(korea_reg, year == 2020), 
-  d = korea_dist
+  m = subset(korea_gravity, year == 2020),
+  d = subset(korea_gravity, year == 2020),
+  dist_col = "dist_cent"
 )
 
+# multiple years
 library(dplyr)
 library(tidyr)
 library(purrr)
-# multiple years
-korea_reg \%>\%
-  nest(m = c(orig, dest, flow)) \%>\%
-  mutate(d = list(korea_dist)) \%>\%
-  mutate(i = map2(.x = m, .y = d, 
-                  .f = ~index_distance(m = .x, d = .y, long = FALSE))) \%>\%
-  select(-m, -d) \%>\%
+
+korea_gravity \%>\%
+  select(year, orig, dest, flow, dist_cent) \%>\%
+  group_nest(year) \%>\%
+  mutate(i = map2(
+    .x = data, .y = data, 
+    .f = ~index_distance(m = .x, d = .y, dist_col = "dist_cent", long = FALSE)
+  )) \%>\%
+  select(-data) \%>\%
   unnest(i)
 }

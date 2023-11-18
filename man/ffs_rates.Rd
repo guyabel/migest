@@ -4,12 +4,12 @@
 \alias{ffs_rates}
 \title{Estimation of bilateral migrant flows from bilateral migrant stocks using rates approaches}
 \usage{
-ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = "dennett")
+ffs_rates(stock_start = NULL, stock_end = NULL, M = NULL, method = "dennett")
 }
 \arguments{
-\item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
+\item{stock_start}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
 
-\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
+\item{stock_end}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
 \item{M}{Numeric value for the global sum of migration flows, used for \code{dennett} approach.}
 
@@ -18,11 +18,11 @@ ffs_rates(m1 = NULL, m2 = NULL, M = NULL, method = "dennett")
 \value{
 Estimates migrant transitions flows based on migration rates.
 
-When \code{method = "dennett"} migration are derived from the matrix supplied to \code{m1}. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in \code{M}.
+When \code{method = "dennett"} migration are derived from the matrix supplied to \code{stock_start}. Dennett uses bilateral migrant stocks at beginning of period. Rates then multiplied by global migration flows supplied in \code{M}.
 
-When \code{method = "rogers-von-rabenau"} a matrix of growth rates are derived from the changes in initial populations stock \code{m1} to obtain \code{m2};
+When \code{method = "rogers-von-rabenau"} a matrix of growth rates are derived from the changes in initial populations stock \code{stock_start} to obtain \code{stock_end};
 \deqn{P^{t+1} = g P^{t}}
-and then multiplied by the corresponding populations at risk in \code{m1}. Can result in negative flows.
+and then multiplied by the corresponding populations at risk in \code{stock_start}. Can result in negative flows.
 }
 \description{
 Estimates migrant transitions flows between two sequential migrant stock tables using approached based on rates.
@@ -39,8 +39,8 @@ s1; s2
 # calculate total migration flows for dennett approach
 n <- colSums(s2) - colSums(s1)
 
-ffs_rates(m1 = s1, M =  sum(abs(n)), method = "dennett" )
-ffs_rates(m1 = s1, m2 = s2, method = "rogers-von-rabenau" )
+ffs_rates(stock_start = s1, M =  sum(abs(n)), method = "dennett" )
+ffs_rates(stock_start = s1, stock_end = s2, method = "rogers-von-rabenau" )
 }
 \references{
 Dennett, A. (2015). Estimating an Annual Time Series of Global Migration Flows - An Alternative Methodology for Using Migrant Stock Data. \emph{Global Dynamics: Approaches from Complexity Science}, 125–142. https://doi.org/10.1002/9781118937464.ch7

@@ -60,7 +60,8 @@ Summary indices of migration connectivity
 }
 \examples{
 library(dplyr)
-korea_reg \%>\%
+korea_gravity \%>\%
   filter(year == 2020) \%>\%
+  select(orig, dest, flow) \%>\%
   index_connectivity()
 }

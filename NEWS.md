@@ -2,6 +2,16 @@
 
 * Direct demo users to `mig_chord()` pkgdown site
 * Fixed colour ordering in `mig_chord()` when `order` is set
+* Added `nb_non_zero()` to deal with negative native born population estimates from World Bank data
+* Changed function name of `rescale_nb()` to `nb_scale_global()`
+* Changed function name of `match_pob_tot()` to `match_birthplace_tot()`
+* Changed argument names in `ffs_demo()`, `ffs_diff()` and `ffs_rates()` to more intuitive values (`stock_start` instead of `s1`, `stock_end` instead of `s2`, `births` instead of `b`, `deaths` instead of `d` and `seed` instead of `m`
+* Added code to create `dict_ims`
+* Added countries based on older political geography to `dict_ims` and column in data frame to indicate not in UN IMS data.
+* Added `korea_gravity`, combining `korea_dist`, `korea_pop`, and `korea_reg` and additional distance, contiguity, area and economic measures. 
+* Removed `korea_dist`, `korea_pop`, and `korea_reg`
+* Updated examples in `impcat_*()` functions for changes in Korean data
+* Updated pkgdown template to `bootstrap: 5`
 
 # migest 2.0.3
 

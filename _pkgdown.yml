@@ -44,7 +44,7 @@ reference:
 - contents:
   - quadratic_eqn
   - dict_ims
-- title: "Classic data"
+- title: "Data"
 - contents:
   - alabama_1970
   - bombay_1951
@@ -63,12 +63,13 @@ reference:
   - death_mat
   - ipf3_qi
   - ipf_seed
-  - match_pob_tot
+  - nb_scale_global
+  - nb_non_zero
   - migest-package
   - mig_matrix
   - mig_tibble
+  - match_birthplace_tot
   - nchars_wrap
-  - rescale_nb
   - str_wrap_n_single
   - sum_net
   - sum_od
@@ -85,6 +86,7 @@ navbar:
        icon: "fas fa-blog fa-lg"
        href: https://guyabel.com
 template:
+  bootstrap: 5
   params:
     ganalytics: G-2XE3QBSNZJ
 figures:

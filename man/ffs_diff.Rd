@@ -4,16 +4,21 @@
 \alias{ffs_diff}
 \title{Estimation of bilateral migrant flows from bilateral migrant stocks using stock differencing approaches}
 \usage{
-ffs_diff(m1, m2, decrease = "return", include_native_born = FALSE)
+ffs_diff(
+  stock_start,
+  stock_end,
+  decrease = "return",
+  include_native_born = FALSE
+)
 }
 \arguments{
-\item{m1}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
+\item{stock_start}{Matrix of migrant stock totals at time \emph{t}. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}}
 
-\item{m2}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
+\item{stock_end}{Matrix of migrant stock totals at time \emph{t}+1. Rows in the matrix correspond to place of birth and columns to place of residence at time \emph{t}+1.}
 
 \item{decrease}{How to treat decreases in bilateral stocks over the \emph{t} to \emph{t}+1 period (so as to avoid a negative bilateral flow estimates). See details for possible options. Default is \code{return}}
 
-\item{include_native_born}{Logical value to indicate whether to include diagonal elements of \code{m1} and \code{m2}. Default of \code{FALSE} - not include.}
+\item{include_native_born}{Logical value to indicate whether to include diagonal elements of \code{stock_start} and \code{stock_end}. Default of \code{FALSE} - not include.}
 }
 \value{
 Estimates migrant transitions flows between two sequential migrant stock tables. 
@@ -34,8 +39,8 @@ r <- LETTERS[1:4]
 dimnames(s1) <- dimnames(s2) <- list(pob = r, por = r)
 s1; s2
 
-ffs_diff(m1 = s1, m2 = s2, decrease = "zero")
-ffs_diff(m1 = s1, m2 = s2, decrease = "return")
+ffs_diff(stock_start = s1, stock_end = s2, decrease = "zero")
+ffs_diff(stock_start = s1, stock_end = s2, decrease = "return")
 }
 \references{
 Beine, Michel, Simone Bertoli, and Jesús Fernández-Huertas Moraga. (2016). A Practitioners’ Guide to Gravity Models of International Migration. \emph{The World Economy} 39(4):496–512.

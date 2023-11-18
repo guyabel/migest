@@ -17,7 +17,8 @@ birth_mat <- function(b_por = NULL, m2 = NULL, method = "native", non_negative =
       # check that deduction of bb will not lead to negative populations
       xx <- diag(m2) - b_por < 0
       if (sum(xx) > 0){
-        message(paste0("Too many births in region ", names(b_por)[xx], ". Subtracted births proportionally for this region. Might want to check the input data."))
+        message(paste0("Too many births in region ", names(b_por)[xx], ".\n
+                       ... Subtracted births proportionally for this region. Might want to check the input data.\n"))
         bb[, xx] <- mipfp::Ipfp(
           seed = m2, 
           target.list = list(2),

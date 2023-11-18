@@ -20,20 +20,24 @@
 #' @examples
 #' # single year
 #' index_distance(
-#'   m = subset(korea_reg, year == 2020), 
-#'   d = korea_dist
+#'   m = subset(korea_gravity, year == 2020),
+#'   d = subset(korea_gravity, year == 2020),
+#'   dist_col = "dist_cent"
 #' )
 #' 
+#' # multiple years
 #' library(dplyr)
 #' library(tidyr)
 #' library(purrr)
-#' # multiple years
-#' korea_reg %>%
-#'   nest(m = c(orig, dest, flow)) %>%
-#'   mutate(d = list(korea_dist)) %>%
-#'   mutate(i = map2(.x = m, .y = d, 
-#'                   .f = ~index_distance(m = .x, d = .y, long = FALSE))) %>%
-#'   select(-m, -d) %>%
+#' 
+#' korea_gravity %>%
+#'   select(year, orig, dest, flow, dist_cent) %>%
+#'   group_nest(year) %>%
+#'   mutate(i = map2(
+#'     .x = data, .y = data, 
+#'     .f = ~index_distance(m = .x, d = .y, dist_col = "dist_cent", long = FALSE)
+#'   )) %>%
+#'   select(-data) %>%
 #'   unnest(i)
 index_distance <- function(m = NULL, 
                            d = NULL,
@@ -44,15 +48,22 @@ index_distance <- function(m = NULL,
                            ){
   # orig_col = "orig"; dest_col = "dest"; flow_col = "flow"; pop_col = "pop"; dist_col = "dist"
   orig <- dest <- flow <- dist <- NULL
-  ff <- mig_tibble(
+  f0 <- mig_tibble(
     m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
   )
-  d0 <- ff$d
-  g <- ff$g
+  d0 <- f0$d %>%
+    dplyr::select(orig, dest, flow)
+  g0 <- f0$g
   
   m_reg <- as.character(unique(c(d0$orig, d0$dest)))
   # dd <- mig_tibble(m = korea_dist, flow_col = "dist")$d
-  d1 <- mig_tibble(m = d, flow_col = "dist")$d
+  f1 <- d %>% 
+    dplyr::rename(dist := !!dist_col) %>%
+    mig_tibble(orig_col = orig_col, dest_col = dest_col)
+  d1 <- f1$d %>%
+    dplyr::select(orig, dest, dist)
+  g1 <- f1$g
+   
   d_reg <- as.character(unique(c(d1$orig, d1$dest)))
   if(!setequal(m_reg, d_reg))
     stop("different region names in m and d")
