@@ -7,19 +7,7 @@
     <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>/CONTRIBUTING.html</loc>
-  </url>
-  <url>
     <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
   </url>
   <url>
     <loc>/news/index.html</loc>
@@ -52,9 +40,6 @@
     <loc>/reference/cm_net_tot.html</loc>
   </url>
   <url>
-    <loc>/reference/counter.html</loc>
-  </url>
-  <url>
     <loc>/reference/death_mat.html</loc>
   </url>
   <url>
@@ -68,12 +53,6 @@
   </url>
   <url>
     <loc>/reference/ffs_rates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_migration_matrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/format_migration_tibble.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -124,25 +103,13 @@
     <loc>/reference/italy_area.html</loc>
   </url>
   <url>
-    <loc>/reference/korea_dist.html</loc>
-  </url>
-  <url>
     <loc>/reference/korea_gravity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/korea_pop.html</loc>
-  </url>
-  <url>
-    <loc>/reference/korea_reg.html</loc>
   </url>
   <url>
     <loc>/reference/manila_1970.html</loc>
   </url>
   <url>
     <loc>/reference/match_birthplace_tot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/match_pob_tot.html</loc>
   </url>
   <url>
     <loc>/reference/migest-package.html</loc>
@@ -196,9 +163,6 @@
     <loc>/reference/rescale_integer_sum.html</loc>
   </url>
   <url>
-    <loc>/reference/rescale_nb.html</loc>
-  </url>
-  <url>
     <loc>/reference/rescale_net.html</loc>
   </url>
   <url>
@@ -212,9 +176,6 @@
   </url>
   <url>
     <loc>/reference/sum_bilat.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_bilateral.html</loc>
   </url>
   <url>
     <loc>/reference/sum_expand.html</loc>
@@ -232,9 +193,6 @@
     <loc>/reference/sum_region.html</loc>
   </url>
   <url>
-    <loc>/reference/sum_turnover.html</loc>
-  </url>
-  <url>
     <loc>/reference/uar_1960.html</loc>
   </url>
   <url>
@@ -242,8 +200,5 @@
   </url>
   <url>
     <loc>/reference/usa_1960.html</loc>
-  </url>
-  <url>
-    <loc>/SUPPORT.html</loc>
   </url>
 </urlset>
