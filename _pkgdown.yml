@@ -10,7 +10,7 @@ reference:
 - title: "Migration indices"
 - contents:
   - starts_with("index")
-- title: "Functions for creating matrices"
+- title: "Creating special matrices"
 - contents:
   - block_matrix
   - stripe_matrix
