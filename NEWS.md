@@ -10,8 +10,7 @@
 * Added countries based on older political geography to `dict_ims` and column in data frame to indicate not in UN IMS data.
 * Added `korea_gravity`, combining `korea_dist`, `korea_pop`, and `korea_reg` and additional distance, contiguity, area and economic measures. 
 * Removed `korea_dist`, `korea_pop`, and `korea_reg`
-* Updated examples in `impcat_*()` functions for changes in Korean data
-* Updated pkgdown template to `bootstrap: 5`
+* Updated examples in `index_*()` functions for changes in Korean data
 
 # migest 2.0.3
 
