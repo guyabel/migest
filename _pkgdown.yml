@@ -86,6 +86,7 @@ navbar:
        icon: "fas fa-blog fa-lg"
        href: https://guyabel.com
 template:
+  bootstrap: 5
   params:
     ganalytics: G-2XE3QBSNZJ
 figures:

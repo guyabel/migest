@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/guyabel/migest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/guyabel/migest/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-<img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="200" style="float:right; height:200px;"/>
+<!-- <img src='https://raw.githubusercontent.com/guyabel/migest/master/hex/logo_transp.png' align="right" height="200" style="float:right; height:200px;"/> -->
 
 Tools for estimating, measuring and working with migration data. 
 
