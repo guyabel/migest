@@ -1,5 +1,5 @@
 template:
-  bootstrap: 5
+  # bootstrap: 5
   params:
     ganalytics: G-2XE3QBSNZJ
 navbar:
