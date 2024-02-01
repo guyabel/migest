@@ -1,3 +1,18 @@
+template:
+  bootstrap: 5
+  params:
+    ganalytics: G-2XE3QBSNZJ
+navbar:
+  structure:
+    left:  [home, intro, reference, articles, tutorials, news]
+    right: [github, twitter, personal-site]
+  components:
+     twitter:
+       icon: "fab fa-twitter fa-lg"
+       href: https://twitter.com/guyabelguyabel
+     personal-site:
+       icon: "fas fa-home fa-lg"
+       href: https://guyabel.com
 reference:
 - title: "Migration data summaries"
 - contents:
@@ -74,22 +89,4 @@ reference:
   - sum_net
   - sum_od
   - umbrella
-navbar:
-  structure:
-    left:  [home, intro, reference, articles, tutorials, news]
-    right: [github, twitter, personal-site]
-  components:
-     twitter:
-       icon: "fab fa-twitter fa-lg"
-       href: https://twitter.com/guyabelguyabel
-     personal-site:
-       icon: "fas fa-blog fa-lg"
-       href: https://guyabel.com
-template:
-  bootstrap: 5
-  params:
-    ganalytics: G-2XE3QBSNZJ
-figures:
-  fig.width: 7.2916667
-  fig.height: 7.2916667
 
