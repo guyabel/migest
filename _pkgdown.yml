@@ -13,6 +13,9 @@ navbar:
      personal-site:
        icon: "fas fa-home fa-lg"
        href: https://guyabel.com
+figures:
+  fig.width: 7.2916667
+  fig.height: 7.2916667
 reference:
 - title: "Migration data summaries"
 - contents:
