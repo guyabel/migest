@@ -1,6 +1,6 @@
 #' Alabama population totals in 1960 and 1970 by age, sex and race
 #'
-#' Population data for Alabama by age, sex and race in 1960 and 1970 
+#' Population data for Alabama by age, sex and race in 1960 and 1970 .
 #'
 #' @format Data frame with 68 rows and 6 columns:
 #' \describe{

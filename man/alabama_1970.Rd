@@ -22,6 +22,6 @@ Data scraped from Figure 2.3 and Table 1-3A of Bogue, D. J., Hinze, K., & White,
 alabama_1970
 }
 \description{
-Population data for Alabama by age, sex and race in 1960 and 1970
+Population data for Alabama by age, sex and race in 1960 and 1970 .
 }
 \keyword{datasets}
