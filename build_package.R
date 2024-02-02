@@ -6,7 +6,7 @@
 # usethis::use_news_md()
 
 usethis::use_build_ignore(
-  c("build_package.R", "data-raw", "hex", "old-scripts",
+  c("build_package.R", "data-raw", "hex", "old-scripts", "R - copy",
     "tests", "LICENSE", "README")
 )
 
@@ -27,6 +27,7 @@ file.show("NEWS.md")
 roxygen2::roxygenise()
 # devtools::build()
 # devtools::install()
+usethis::use_pkgdown()
 pkgdown::build_site()
 pkgdown::build_site(run_dont_run = TRUE)
 pkgdown::build_site_github_pages()
