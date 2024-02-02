@@ -1,7 +1,7 @@
 Package: migest
 Type: Package
 Title: Methods for the Indirect Estimation of Bilateral Migration
-Version: 2.0.4
+Version: 2.0.5
 Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
                     email = "g.j.abel@gmail.com",
                     comment = c(ORCID = "0000-0002-4893-5687")))
@@ -12,11 +12,7 @@ BugReports: https://github.com/guyabel/migest/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Imports:
 Depends: 
     R (>= 2.10)
-Suggests: 
-    spelling, 
-    countrycode
-Language: en-US

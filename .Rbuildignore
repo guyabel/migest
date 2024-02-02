@@ -1,19 +1,10 @@
 ^migest\.Rproj$
 ^\.Rproj\.user$
-^LICENSE\.md$
-^README\.Rmd$
-^cran-comments\.md$
-^\.github$
-^hex$
-^data-raw$
-^old-scripts$
 ^build_package\.R$
-^README\.Rmd$
+^data-raw$
+^hex$
+^old-scripts$
+^R - copy$
 ^tests$
 ^LICENSE$
 ^README$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
-^wp-blog$
-^R - copy$

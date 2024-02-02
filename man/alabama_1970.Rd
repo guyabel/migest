@@ -7,12 +7,12 @@
 \format{
 Data frame with 68 rows and 6 columns:
 \describe{
-  \item{age_1970}{Age group in 1970}
-  \item{sex}{Sex from `male` or `female`}
-  \item{race}{Race from `white` or `non-white`}
-  \item{pop_1960}{Enumerated population in 1960. Number of births in first and second half of 1960s used for age groups `0-4` and `5-9`.}
-  \item{pop_1970}{Enumerated population in 1970}
-  \item{us_census_sr}{Census survival ratio based on US population}
+\item{age_1970}{Age group in 1970}
+\item{sex}{Sex from \code{male} or \code{female}}
+\item{race}{Race from \code{white} or \code{non-white}}
+\item{pop_1960}{Enumerated population in 1960. Number of births in first and second half of 1960s used for age groups \code{0-4} and \code{5-9}.}
+\item{pop_1970}{Enumerated population in 1970}
+\item{us_census_sr}{Census survival ratio based on US population}
 }
 }
 \source{
