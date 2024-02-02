@@ -1,0 +1,82 @@
+orig_reg,dest_reg,flow
+Africa,Africa,3.498892
+Africa,Eastern Asia,0.007214
+Africa,Eastern Europe & Central Asia,0.03682
+Africa,Europe,1.744666
+Africa,Latin America & Caribbean,0.022516
+Africa,Northern America,0.825409
+Africa,Oceania,0.107072
+Africa,Southern Asia,0.000869
+Africa,Western Asia,0.675984
+Eastern Asia,Africa,0.021043
+Eastern Asia,Eastern Asia,2.178887
+Eastern Asia,Eastern Europe & Central Asia,0.085849
+Eastern Asia,Europe,0.565937
+Eastern Asia,Latin America & Caribbean,0.04099
+Eastern Asia,Northern America,1.593311
+Eastern Asia,Oceania,0.359676
+Eastern Asia,Southern Asia,0.002097
+Eastern Asia,Western Asia,0.380948
+Eastern Europe & Central Asia,Africa,0.00176
+Eastern Europe & Central Asia,Eastern Asia,0.025689
+Eastern Europe & Central Asia,Eastern Europe & Central Asia,1.354018
+Eastern Europe & Central Asia,Europe,0.566555
+Eastern Europe & Central Asia,Latin America & Caribbean,0.001438
+Eastern Europe & Central Asia,Northern America,0.043438
+Eastern Europe & Central Asia,Oceania,0.002543
+Eastern Europe & Central Asia,Southern Asia,0
+Eastern Europe & Central Asia,Western Asia,0.088158
+Europe,Africa,0.175242
+Europe,Eastern Asia,0.010825
+Europe,Eastern Europe & Central Asia,0.601772
+Europe,Europe,2.006166
+Europe,Latin America & Caribbean,0.168391
+Europe,Northern America,0.449838
+Europe,Oceania,0.222712
+Europe,Southern Asia,1.4e-05
+Europe,Western Asia,0.223626
+Latin America & Caribbean,Africa,0.004648
+Latin America & Caribbean,Eastern Asia,0.014653
+Latin America & Caribbean,Eastern Europe & Central Asia,0.009782
+Latin America & Caribbean,Europe,0.290048
+Latin America & Caribbean,Latin America & Caribbean,0.682464
+Latin America & Caribbean,Northern America,2.195385
+Latin America & Caribbean,Oceania,0.022709
+Latin America & Caribbean,Southern Asia,0
+Latin America & Caribbean,Western Asia,0.010966
+Northern America,Africa,0.011244
+Northern America,Eastern Asia,0.044196
+Northern America,Eastern Europe & Central Asia,0.172959
+Northern America,Europe,0.213784
+Northern America,Latin America & Caribbean,0.207948
+Northern America,Northern America,0.112105
+Northern America,Oceania,0.037692
+Northern America,Southern Asia,0
+Northern America,Western Asia,0.02632
+Oceania,Africa,0.006264
+Oceania,Eastern Asia,0.006773
+Oceania,Eastern Europe & Central Asia,0.015882
+Oceania,Europe,0.079224
+Oceania,Latin America & Caribbean,0.004123
+Oceania,Northern America,0.045753
+Oceania,Oceania,0.184822
+Oceania,Southern Asia,0
+Oceania,Western Asia,0.011272
+Southern Asia,Africa,0.051368
+Southern Asia,Eastern Asia,0.505476
+Southern Asia,Eastern Europe & Central Asia,0.042952
+Southern Asia,Europe,1.168379
+Southern Asia,Latin America & Caribbean,0.009744
+Southern Asia,Northern America,1.420783
+Southern Asia,Oceania,0.316133
+Southern Asia,Southern Asia,1.306389
+Southern Asia,Western Asia,3.106273
+Western Asia,Africa,0.244112
+Western Asia,Eastern Asia,0.007958
+Western Asia,Eastern Europe & Central Asia,0.395673
+Western Asia,Europe,0.431518
+Western Asia,Latin America & Caribbean,0.006412
+Western Asia,Northern America,0.323827
+Western Asia,Oceania,0.06514
+Western Asia,Southern Asia,0.036058
+Western Asia,Western Asia,4.519158

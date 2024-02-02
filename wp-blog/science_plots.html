@@ -1,0 +1,27 @@
+<p><span style="color: red;">Please see <a href="https://gjabel.wordpress.com/2016/05/18/updated-circular-plots-for-directional-bilateral-migration-data/">this</a> blog post on updated version of circular plots for migration flows, based on global estimates for 2010-15.</span></p>
+<p>A article of mine was published in <a href="http://www.sciencemag.org/content/343/6178/1520"><em>Science</em></a> today. It introduces estimates for bilateral global migration flows between all countries. The underlying methodology is based on the conditional maximisation routine in my <a href="http://www.demographic-research.org/volumes/vol28/18/"><em>Demographic Research</em></a> paper. However, I tweaked the demographic accounting which ensures the net migration in the estimated migration flow tables matches very closely to the net migration figures from the United Nations.</p>
+<p>My co-author, Nikola Sander, developed some circular plots for the paper based on <a href="http://circos.ca/">circos</a> in perl. A couple of months back, after the paper was already in the submission process, I figured out how to replicate these plots in R using the <a href="http://cran.r-project.org/web/packages/circlize/">circlize</a> package. Zuguang Gu, the circlize package developer was very helpful, responding quickly (and with examples) to my emails.</p>
+<p>To demonstrate, I have put two demo files in my <a href="http://cran.r-project.org/web/packages/migest/">migest</a> R package. For the estimates of flows by regions, users can hopefully replicate the plots (so long as the circlize and plyr packages are installed) using:</p>
+<pre>[code language="r"]
+library("migest")
+demo(cfplot_reg, package = "migest", ask = FALSE)
+[/code]</pre>
+<p><br />It should result in the following plot:<br /><a href="http://gjabel.files.wordpress.com/2014/03/cfplot_reg2.png"><img class="aligncenter size-full wp-image-1342" src="http://gjabel.files.wordpress.com/2014/03/cfplot_reg2.png" alt="cfplot_reg" width="640" height="640" /></a><br />The basic idea of the plot is to show simultaneously the relative size of estimated flows between regions. The origins and destinations of migrants are represented by the circle's segments, where nearby regions are positioned close to each other. The size of the estimated flow is indicated by the width of the link at its bases and can be read using the tick marks (in millions) on the outside of the circle's segments. The direction of the flow is encoded both by the origin colour and by the gap between link and circle segment at the destination.</p>
+<p>You can save the PDF version of the plot (which looks much better than what comes up in my R graphics device) using:</p>
+<pre>[code language="r"]
+dev.copy2pdf(file = "cfplot_reg.pdf", height=10, width=10)
+[/code]</pre>
+<p><br />If you want to view the R script:</p>
+<pre>[code language="r"]
+file.show(system.file("demo/cfplot_reg.R", package = "migest"))
+[/code]</pre>
+<p><br />In Section 5 of our <a href="http://www.global-migration.info/VID%20WP%20Visualising%20Migration%20Flow%20Data%20with%20Circular%20Plots.pdf">Vienna Institute of Demography Working Paper</a> I provide a more detailed breakdown for the R code in the demo files.</p>
+<p>A similar demo with slight alterations to the labelling is also available for a plot of the largest country to country flows:</p>
+<pre>[code language="r"]
+demo(cfplot_nat, package = "migest", ask = FALSE)
+[/code]</pre>
+<p><br /><a href="http://gjabel.files.wordpress.com/2014/03/cfplot_nat2.png"><img class="aligncenter size-full wp-image-1341" src="http://gjabel.files.wordpress.com/2014/03/cfplot_nat2.png" alt="cfplot_nat" width="640" height="640" /></a></p>
+<p>If you are interested in the estimates, you can fully explore in the interactive website (made using d3.js) at <a href="http://global-migration.info/">http://global-migration.info/</a>. There is also a link on the website to download all the data. Ramon Bauer has a nice <a href="http://www.metropop.eu/the-global-flow-of-people.html">blog post</a> explaining the d3 version.</p>
+<p><span style="font-size: 15.75pt; font-family: arial; font-weight: bold; color: #000000;">Publication Details:</span></p>
+<p>Abel, G.J. and Sander, N. (2014). <a href="http://www.sciencemag.org/content/343/6178/1520">Quantifying Global International Migration Flows</a>. <em>Science</em>. 343 (6178), 1520--1522.</p>
+<p>Widely available data on the number of people living outside of their country of birth do not adequately capture contemporary intensities and patterns of global migration flows. We present data on bilateral flows between 196 countries from 1990 through 2010 that provide a comprehensive view of international migration flows. Our data suggest a stable intensity of global 5-year migration flows at ~0.6% of world population since 1995. In addition, the results aid the interpretation of trends and patterns of migration flows to and from individual countries by placing them in a regional or global context. We estimate the largest movements to occur between South and West Asia, from Latin to North America, and within Africa.</p>
