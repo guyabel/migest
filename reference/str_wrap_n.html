@@ -97,14 +97,14 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘dplyr’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a bb ccc dddd\neeee ffffff"</span>
 <span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘dplyr’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a bb\nccc dddd\neeee\nffffff"</span>
 <span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="st">"a bb ccc dddd eeee ffffff"</span>, n <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Asking for more lines than words</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘dplyr’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a\nbb\nccc\ndddd\neeee\nffffff"</span>
 <span class="r-in"><span><span class="fu">str_wrap_n</span><span class="op">(</span>string <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a bb"</span>, <span class="st">"a bb ccc"</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘dplyr’</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "a\nbb"     "a bb\nccc"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
