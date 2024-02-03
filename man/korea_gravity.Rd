@@ -44,4 +44,7 @@ korea_gravity
 \description{
 Origin-destination migration flows between 2012 and 2020 based on first level administrative regions.
 }
+\examples{
+korea_gravity
+}
 \keyword{datasets}

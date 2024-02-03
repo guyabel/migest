@@ -1,9 +1,9 @@
 #' Dictionary to look up region geographies based on countries used in UN DESA International Migrant Stock.
 #'
 #' Intended for use as a custom dictionary with the countrycode package, where the existing UN region and area codes do not match those used by UN DESA in the WPP, see \url{https://github.com/vincentarelbundock/countrycode/issues/253}
-#' 
+#'
 #' @source The aggregates_correspondence_table_2020_1.xlsx file of United Nations Department of Economic and Social Affairs, Population Division (2020). International Migrant Stock 2020.
-#' 
+#'
 #' @format Data frame with 243 rows and 18 columns. One of first three columns intended as input for \code{origin} in \code{countrycode}.
 #' \describe{
 #'   \item{name}{Country name}
@@ -29,14 +29,15 @@
 #'   \item{region_a2018}{Region grouping used for global chord diagram plots by Abel (2018)}
 #'   \item{region_ac2022}{Region grouping used for global chord diagram plots by Abel and Cohen (2022)}
 #' }
-#' @examples 
+#' @examples
+#' dict_ims
 #' \dontrun{
 #' library(tidyverse)
 #' library(countrycode)
 #' # download Abel and Cohen (2019) estimates
 #' f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
 #' f
-#' 
+#'
 #' # use dictionary to get region to region flows
 #' d <- f %>%
 #'   mutate(

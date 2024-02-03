@@ -29,11 +29,15 @@
 #' @export
 #'
 #' @examples
-#' library(readr)
+#'
 #' library(dplyr)
+#' library(tidyr)
+#' library(tibble)
 #' library(countrycode)
-#' # download Abel and Cohen (2019) estimates
-#' f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
+#' #' # download Abel and Cohen (2019) estimates
+#' f <- url("https://ndownloader.figshare.com/files/38016762") %>%
+#'   read.csv() %>%
+#'   as_tibble()
 #' f
 #'
 #' # use dictionary to get region to region flows

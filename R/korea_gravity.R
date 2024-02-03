@@ -26,7 +26,9 @@
 #'   \item{dest_pconsum_pc}{Personal consumption per capita of destination region. Data obtained from KOSIS.}
 #' }
 #' @source Statistics Korea, Internal Migration Statistics. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
-#' @source Robin Edwards, Maksym Bondarenko, Andrew J. Tatem and Alessandro Sorichetta. Unconstrained subnational Population Weighted Density in 2000, 2005, 2010, 2015 and 2020 ( 100m resolution ). WorldPop, University of Southampton, UK. 
+#' @source Robin Edwards, Maksym Bondarenko, Andrew J. Tatem and Alessandro Sorichetta. Unconstrained subnational Population Weighted Density in 2000, 2005, 2010, 2015 and 2020 ( 100m resolution ). WorldPop, University of Southampton, UK.
 #' @source Source: Statistics Korea, Population Statistics Based on Resident Registration. Data downloaded from \url{https://kosis.kr/eng} in July 2021.
 #' @source Source: Statistics Korea, Regional GDP, Gross regional income and Individual income. Data downloaded from \url{https://kosis.kr/eng} in November 2023.
+#' @examples
+#' korea_gravity
 "korea_gravity"

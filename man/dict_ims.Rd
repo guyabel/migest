@@ -41,6 +41,7 @@ dict_ims
 Intended for use as a custom dictionary with the countrycode package, where the existing UN region and area codes do not match those used by UN DESA in the WPP, see \url{https://github.com/vincentarelbundock/countrycode/issues/253}
 }
 \examples{
+dict_ims
 \dontrun{
 library(tidyverse)
 library(countrycode)

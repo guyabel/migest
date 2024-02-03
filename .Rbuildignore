@@ -4,10 +4,11 @@
 ^data-raw$
 ^hex$
 ^old-scripts$
-^R - copy$
+^wp-blog$
 ^tests$
 ^LICENSE$
 ^README$
+^README.Rmd
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
