@@ -10,7 +10,7 @@
 #'   \item{migrants}{Number of migrants, defined by those who had changed usual place of residence to a different minor administrative region compared to usual place of residence five years prior to the census. Obtained by summing person weights for `migrate5` variable equal to any of code 12, 20 or 30.}
 #'   \item{population}{Population of each age group, obtained by summing person weights `perwt` variable. }
 #' }
-#' @source Minnesota Population Center. (2015). Integrated Public Use Microdata Series, International: Version 6.4 [Machine-readable database](\url{https://international.ipums.org/international/})
+#' @source Minnesota Population Center. (2015). Integrated Public Use Microdata Series, International: Version 6.4 [Machine-readable database](\url{https://international.ipums.org/})
 #'
 #' @source Bernard, A., Bell, M., & Charles-Edwards, E. (2014). Improved measures for the cross-national comparison of age profiles of internal migration. Population Studies, 68(2), 179–195.
 "ipumsi_age"
