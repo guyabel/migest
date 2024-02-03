@@ -73,7 +73,8 @@ Fitting the sector labels on the page is usually the most time consuming task. U
 Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 }
 \examples{
-library(tidyverse)
+library(readr)
+library(dplyr)
 library(countrycode)
 # download Abel and Cohen (2019) estimates
 f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
