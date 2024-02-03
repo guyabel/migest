@@ -16,3 +16,23 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 2.10)
+Imports:
+    dplyr,
+    purrr,
+    tidyr,
+    stringr,
+    magrittr,
+    stats,
+    tibble,
+    forcats,
+    utils,
+    matrixStats, 
+    migration.indices,
+    circlize,
+    graphics,
+    grDevices,
+    mipfp
+Suggests: 
+    spelling, 
+    countrycode,
+    readr

@@ -16,3 +16,79 @@ navbar:
 figures:
   fig.width: 7.2916667
   fig.height: 7.2916667
+reference:
+- title: "Migration data summaries"
+- contents:
+  - sum_bilat
+  - sum_region
+  - sum_lump
+  - sum_expand
+  - multi_comp
+  - multi_comp2
+- title: "Visualisation"
+- contents:
+  - mig_chord
+  - str_wrap_n
+- title: "Flows from stocks estimation methods"
+- contents:
+  - starts_with("ffs")
+- title: "Migration indices"
+- contents:
+  - starts_with("index")
+- title: "Creating special matrices"
+- contents:
+  - block_matrix
+  - stripe_matrix
+- title: "Constrained maximisation routines"
+- contents:
+  - starts_with("cm")
+- title: "Iterative proportional fitting procedures"
+- contents:
+  - ipf2
+  - ipf3
+  - ipf2_block
+  - ipf2_stripe
+- title: "Net migration estimation methods"
+- contents:
+  - starts_with("net")
+- title: "Rogers Castro model age schedule parameters"
+- contents:
+  - starts_with("rc")
+- title: "Rescaling functions"
+- contents:
+  - rescale_net
+  - rescale_integer_sum
+- title: "Miscellaneous"
+- contents:
+  - quadratic_eqn
+  - dict_ims
+- title: "Data"
+- contents:
+  - alabama_1970
+  - bombay_1951
+  - indian_sub
+  - ipumsi_age
+  - italy_area
+  - starts_with("korea")
+  - manila_1970
+  - new_england_1960
+  - uar_1960
+  - usa_1960
+- title: "internal"
+  contents:
+  - birth_mat
+  - block_sum
+  - death_mat
+  - ipf3_qi
+  - ipf_seed
+  - nb_scale_global
+  - nb_non_zero
+  - migest-package
+  - mig_matrix
+  - mig_tibble
+  - match_birthplace_tot
+  - nchars_wrap
+  - str_wrap_n_single
+  - sum_net
+  - sum_od
+  - umbrella

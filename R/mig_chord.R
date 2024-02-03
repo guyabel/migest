@@ -1,14 +1,14 @@
 #' Chord diagram for directional origin-destination data
-#' 
+#'
 #' Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 #'
 #' @param x Data frame with origin in first column, destination in second column and bilateral measure in third column
 #' @param lab Named vector of labels for plot. If \code{NULL} will use names from \code{d}
 #' @param lab_bend1 Named vector of bending labels for plot. Note line breaks do not work with \code{facing = "bending"} in circlize.
-#' @param lab_bend2 Named vector of second row of bending labels for plot. 
+#' @param lab_bend2 Named vector of second row of bending labels for plot.
 #' @param label_size Font size of label text.
 #' @param label_nudge Numeric value to nudge labels towards (negative number) or away (positive number) the sector axis.
-#' @param label_squeeze Numeric value to nudge \code{lab_bend1} and \code{lab_bend2} labels apart (negative number) or together (positive number).  
+#' @param label_squeeze Numeric value to nudge \code{lab_bend1} and \code{lab_bend2} labels apart (negative number) or together (positive number).
 #' @param axis_size Font size on axis labels.
 #' @param axis_breaks Numeric value for how often to add axis label breaks. Default not activated, uses default from \code{circlize::circos.axis()}
 #' @param ... Arguments for \code{circlize::chordDiagramFromDataFrame()}.
@@ -22,20 +22,20 @@
 #' @param points.overflow.warning Argument for \code{circlize::chordDiagramFromDataFrame()}.
 #'
 #' @return Chord diagram based on first three columns of \code{x}. The function tweaks the defaults of \code{circlize::chordDiagramFromDataFrame()} for easier plotting of directional origin-destination data. Users can override these defaults and pass additional tweaks using any of the \code{circlize::chordDiagramFromDataFrame()} arguments.
-#' 
-#' The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the \code{pdf} function). See the end of the examples for converting PDF to PNG images in R. 
-#' 
+#'
+#' The layout of the plots are designed to specifically work on plotting images into PDF devices with widths and heights of 7 inches (the default dimension when using the \code{pdf} function). See the end of the examples for converting PDF to PNG images in R.
+#'
 #' Fitting the sector labels on the page is usually the most time consuming task. Use the different label options, including line breaks, \code{label_nudge}, track height in \code{preAllocateTracks} and font sizes in \code{label_size} and \code{axis_size} to find the best fit. If none of the label options produce desirable results, plot your own using \code{circlize::circos.text} having set \code{no_labels = TRUE} and \code{clear_circos_par = FALSE}.
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(tidyverse)
+#' library(readr)
+#' library(dplyr)
 #' library(countrycode)
 #' # download Abel and Cohen (2019) estimates
 #' f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
 #' f
-#' 
+#'
 #' # use dictionary to get region to region flows
 #' d <- f %>%
 #'   mutate(
@@ -55,12 +55,12 @@
 #'     mutate(flow = da_pb_closed/1e6) %>%
 #'     select(orig, dest, flow)
 #' pb
-#'     
+#'
 #' # pdf(file = "chord.pdf")
 #' mig_chord(x = pb)
 #' # dev.off()
 #' # file.show("chord.pdf")
-#' 
+#'
 #' # pass arguments to circlize::chordDiagramFromDataFrame
 #' # pdf(file = "chord.pdf")
 #' mig_chord(x = pb,
@@ -73,14 +73,14 @@
 #'           )
 #' # dev.off()
 #' # file.show("chord.pdf")
-#' 
+#'
 #' # multiple line labels to fit on longer labels
 #' r <- pb %>%
 #'   sum_region() %>%
 #'   mutate(lab = str_wrap_n(string = region, n = 2)) %>%
 #'   separate(col = lab, into = c("lab1", "lab2"), sep = "\n", remove = FALSE, fill = "right")
 #' r
-#' 
+#'
 #' # pdf(file = "chord.pdf")
 #' mig_chord(x = pb,
 #'           lab = r %>%
@@ -92,7 +92,7 @@
 #'           )
 #' # dev.off()
 #' # file.show("chord.pdf")
-#' 
+#'
 #' # bending labels
 #' # pdf(file = "chord.pdf")
 #' mig_chord(x = pb,
@@ -105,32 +105,31 @@
 #'           )
 #' # dev.off()
 #' # file.show("chord.pdf")
-#' 
-#' 
+#'
+#'
 #' # convert pdf to image file
 #' # library(magick)
 #' # p <- image_read_pdf("chord.pdf")
 #' # image_write(image = p, path = "chord.png")
 #' # file.show("chord.png")
-#' }
 mig_chord <- function(
-  x, 
+  x,
   lab = NULL,
   lab_bend1 = NULL,
   lab_bend2 = NULL,
-  label_size = 1, 
+  label_size = 1,
   label_nudge = 0,
   label_squeeze = 0,
   axis_size = 0.8,
   axis_breaks = NULL,
-  ..., 
+  ...,
   no_labels = FALSE,
   no_axis = FALSE,
   clear_circos_par = TRUE,
   zero_margin = TRUE,
-  start.degree = 90, 
+  start.degree = 90,
   gap.degree = 4,
-  track.margin = c(-0.1, 0.1), 
+  track.margin = c(-0.1, 0.1),
   points.overflow.warning = FALSE
 ){
   z <- list(...)
@@ -159,11 +158,11 @@ mig_chord <- function(
     keep_axis <- FALSE
   if(is.null(z$annotationTrack))
     z$annotationTrack = "grid"
-  
+
   # y <- list()
   # y[] <- z[!names(z) %in% formalArgs(chordDiagramFromDataFrame)]
   # z <- z[names(z) %in% formalArgs(chordDiagramFromDataFrame)]
-  
+
   h <- 0.2
   if(!is.null(lab_bend1) | !is.null(lab_bend2))
     h <- 0.05
@@ -173,8 +172,8 @@ mig_chord <- function(
   if(is.null(z$grid.col)){
     region <- col <- NULL
     z$grid.col <- x %>%
-      dplyr::rename(orig = 1, 
-                    dest = 2, 
+      dplyr::rename(orig = 1,
+                    dest = 2,
                     flow = 3) %>%
       sum_region() %>%
       {if(is.null(z$order)) . else dplyr::mutate(., region = factor(region, levels = z$order))} %>%
@@ -184,34 +183,34 @@ mig_chord <- function(
       dplyr::select(region, col) %>%
       tibble::deframe()
   }
-  
+
   if(!is.null(z$grid.col) & !is.null(z$order)){
     z$grid.col <- stats::setNames(object = z$grid.col, nm = z$order)
   }
 
   circlize::circos.clear()
   circlize::circos.par(
-    start.degree = start.degree, 
-    track.margin = track.margin, 
+    start.degree = start.degree,
+    track.margin = track.margin,
     gap.degree = gap.degree,
     points.overflow.warning = points.overflow.warning
   )
   if(zero_margin)
     graphics::par(mar = rep(0, 4))
-  
+
   do.call(what = circlize::chordDiagramFromDataFrame, args = z)
-  
+
   if(keep_axis){
     # if(is.null(y$h))
     #   y$h <- "bottom"
     # if(is.null(y$labels.cex))
     #   y$labels.cex <- axis_size
     circlize::circos.trackPlotRegion(
-      track.index = 1, 
-      bg.border = NA, 
+      track.index = 1,
+      bg.border = NA,
       panel.fun = function(x, y) {
         if(is.null(axis_breaks))
-          circlize::circos.axis(h = "bottom", labels.cex = axis_size, 
+          circlize::circos.axis(h = "bottom", labels.cex = axis_size,
                                 labels.niceFacing = FALSE)
           # do.call(what = circlize::circos.axis, args = y)
         if(!is.null(axis_breaks)){
@@ -228,11 +227,11 @@ mig_chord <- function(
         }
       })
   }
-    
+
   if(!no_labels){
     circlize::circos.trackPlotRegion(
-      track.index = 1, 
-      bg.border = NA, 
+      track.index = 1,
+      bg.border = NA,
       panel.fun = function(x, y) {
         xx = circlize::get.cell.meta.data("xlim")
         s = circlize::get.cell.meta.data("sector.index")
@@ -256,12 +255,12 @@ mig_chord <- function(
             if(is.na(lab_bend2[s]))
               yy <- 2 + label_nudge
           circlize::circos.text(
-            x = mean(xx), y = yy, labels = lab_bend1[s], cex = label_size, 
+            x = mean(xx), y = yy, labels = lab_bend1[s], cex = label_size,
             facing = "bending", niceFacing = FALSE)
         }
         if(!is.null(lab_bend2)){
           circlize::circos.text(
-            x = mean(xx), y = 2 + label_nudge - label_squeeze, labels = lab_bend2[s], 
+            x = mean(xx), y = 2 + label_nudge - label_squeeze, labels = lab_bend2[s],
             cex = label_size, facing = "bending", niceFacing = FALSE)
         }
       }
@@ -271,12 +270,12 @@ mig_chord <- function(
     circlize::circos.clear()
 }
 # figuring out label distances relationship
-# x = tibble(track = c(0.05, 0.1, 0.2), 
+# x = tibble(track = c(0.05, 0.1, 0.2),
 #        y = c(1.2, 0.6, 0.4))
 # x %>%
 #   ggplot(aes(x = track, y = y)) +
 #   geom_point() +
 #   scale_x_log10()
-# 
-# 
+#
+#
 # lm(formula = y ~ log(track), data = x)

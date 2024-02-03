@@ -73,7 +73,6 @@ Fitting the sector labels on the page is usually the most time consuming task. U
 Adaption of \code{circlize::chordDiagramFromDataFrame()} with defaults set to allow for more effective visualisation of directional origin-destination data
 }
 \examples{
-\dontrun{
 library(tidyverse)
 library(countrycode)
 # download Abel and Cohen (2019) estimates
@@ -99,7 +98,7 @@ pb <- d \%>\%
     mutate(flow = da_pb_closed/1e6) \%>\%
     select(orig, dest, flow)
 pb
-    
+
 # pdf(file = "chord.pdf")
 mig_chord(x = pb)
 # dev.off()
@@ -156,5 +155,4 @@ mig_chord(x = pb,
 # p <- image_read_pdf("chord.pdf")
 # image_write(image = p, path = "chord.png")
 # file.show("chord.png")
-}
 }
