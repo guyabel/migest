@@ -144,6 +144,29 @@
 <p>Source: Statistics Korea, Regional GDP, Gross regional income and Individual income. Data downloaded from <a href="https://kosis.kr/eng" class="external-link">https://kosis.kr/eng</a> in November 2023.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">korea_gravity</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,601 × 20</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    orig  dest         year   flow dist_…¹ dist_…² dist_pw contig orig_…³ dest_…⁴</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Seoul Seoul        <span style="text-decoration: underline;">2</span>012 1.07<span style="color: #949494;">e</span>6     0       0       0   TRUE      10.2  10.2  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Seoul Busan        <span style="text-decoration: underline;">2</span>012 2.14<span style="color: #949494;">e</span>4   319.    294.    324.  FALSE     10.2   3.54 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Seoul Daegu        <span style="text-decoration: underline;">2</span>012 1.38<span style="color: #949494;">e</span>4   241.    209.    236.  FALSE     10.2   2.51 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Seoul Incheon      <span style="text-decoration: underline;">2</span>012 3.22<span style="color: #949494;">e</span>4    44.1     0      25.0 TRUE      10.2   2.84 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Seoul Gwangju      <span style="text-decoration: underline;">2</span>012 1.18<span style="color: #949494;">e</span>4   266.    244.    265.  FALSE     10.2   1.47 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Seoul Daejeon      <span style="text-decoration: underline;">2</span>012 1.46<span style="color: #949494;">e</span>4   139.    109.    138.  FALSE     10.2   1.52 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Seoul Ulsan        <span style="text-decoration: underline;">2</span>012 6.80<span style="color: #949494;">e</span>3   300.    263.    307.  FALSE     10.2   1.15 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Seoul Sejong       <span style="text-decoration: underline;">2</span>012 1.01<span style="color: #949494;">e</span>3   112.     79.6   117.  FALSE     10.2   0.113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Seoul Gyeonggi-do  <span style="text-decoration: underline;">2</span>012 2.54<span style="color: #949494;">e</span>5    17.9     0      13.2 TRUE      10.2  12.1  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Seoul Gangwon-do   <span style="text-decoration: underline;">2</span>012 2.13<span style="color: #949494;">e</span>4   116.     34.3   113.  FALSE     10.2   1.54 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,591 more rows, 10 more variables: orig_area &lt;units&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dest_area &lt;units&gt;, orig_gdp_pc &lt;dbl&gt;, orig_ginc_pc &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   orig_iinc_pc &lt;dbl&gt;, orig_pconsum_pc &lt;dbl&gt;, dest_gdp_pc &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   dest_ginc_pc &lt;dbl&gt;, dest_iinc_pc &lt;dbl&gt;, dest_pconsum_pc &lt;dbl&gt;, and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   abbreviated variable names ¹​dist_cent, ²​dist_min, ³​orig_pop, ⁴​dest_pop</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
