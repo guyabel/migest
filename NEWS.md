@@ -1,3 +1,8 @@
+# migest 2.0.5
+
+* Added `labels.pos.adjust = FALSE` in `mig_chord()`
+* Default colour ordering in `mig_chord()` based on `union(.$orig, .$dest)`
+
 # migest 2.0.4
 
 * Direct demo users to `mig_chord()` pkgdown site

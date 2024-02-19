@@ -180,12 +180,13 @@ mig_chord <- function(
                     dest = 2,
                     flow = 3) %>%
       sum_region() %>%
-      {if(is.null(z$order)) . else dplyr::mutate(., region = factor(region, levels = z$order))} %>%
-      {if(is.null(z$order)) . else dplyr::arrange(., region)} %>%
+      {if(is.null(z$order)) dplyr::mutate(., region = factor(region, levels = union(x[[1]], x[[2]]))) else dplyr::mutate(., region = factor(region, levels = z$order))} %>%
+      dplyr::arrange(., region) %>%
       dplyr::mutate(col = grDevices::colorRampPalette(migest::umbrella)(nrow(.))) %>%
       {if(is.null(z$grid.col)) . else dplyr::mutate(., col = z$grid.col)} %>%
       dplyr::select(region, col) %>%
       tibble::deframe()
+    # pie(rep(1, length(xx)), col = xx, labels = names(xx))
   }
 
   if(!is.null(z$grid.col) & !is.null(z$order)){
@@ -215,7 +216,7 @@ mig_chord <- function(
       panel.fun = function(x, y) {
         if(is.null(axis_breaks))
           circlize::circos.axis(h = "bottom", labels.cex = axis_size,
-                                labels.niceFacing = FALSE)
+                                labels.niceFacing = FALSE, labels.pos.adjust = FALSE)
           # do.call(what = circlize::circos.axis, args = y)
         if(!is.null(axis_breaks)){
           # if(is.null(y$major.at))
@@ -226,6 +227,7 @@ mig_chord <- function(
               mm <- max(z$xmax)*2
           circlize::circos.axis(
             h = "bottom", labels.cex = axis_size, labels.niceFacing = FALSE,
+            labels.pos.adjust = FALSE,
             major.at = seq(from = 0, to = mm, by = axis_breaks)
           )
         }

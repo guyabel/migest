@@ -17,7 +17,7 @@ figures:
   fig.width: 7.2916667
   fig.height: 7.2916667
 reference:
-- title: "Migration data summaries"
+- title: "Data summaries"
 - contents:
   - sum_bilat
   - sum_region
@@ -29,35 +29,35 @@ reference:
 - contents:
   - mig_chord
   - str_wrap_n
-- title: "Flows from stocks estimation methods"
-- contents:
-  - starts_with("ffs")
-- title: "Migration indices"
+- title: "Indices"
 - contents:
   - starts_with("index")
-- title: "Creating special matrices"
+- title: "Estimation: flows from stocks"
 - contents:
-  - block_matrix
-  - stripe_matrix
-- title: "Constrained maximisation routines"
+  - starts_with("ffs")
+- title: "Estimation: constrained maximisation routines"
 - contents:
   - starts_with("cm")
-- title: "Iterative proportional fitting procedures"
+- title: "Estimation: iterative proportional fitting procedures"
 - contents:
   - ipf2
   - ipf3
   - ipf2_block
   - ipf2_stripe
-- title: "Net migration estimation methods"
+- title: "Estimation: net migration"
 - contents:
   - starts_with("net")
-- title: "Rogers Castro model age schedule parameters"
-- contents:
-  - starts_with("rc")
 - title: "Rescaling functions"
 - contents:
   - rescale_net
   - rescale_integer_sum
+- title: "Rogers Castro model age schedule parameters"
+- contents:
+  - starts_with("rc")
+- title: "Creating special matrices"
+- contents:
+  - block_matrix
+  - stripe_matrix
 - title: "Miscellaneous"
 - contents:
   - quadratic_eqn
