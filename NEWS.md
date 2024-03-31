@@ -2,6 +2,7 @@
 
 * Added `labels.pos.adjust = FALSE` in `mig_chord()`
 * Default colour ordering in `mig_chord()` based on `union(.$orig, .$dest)`
+* Include `na_rm` option in `sum_region()` and `sum_country()`
 
 # migest 2.0.4
 

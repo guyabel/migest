@@ -12,7 +12,8 @@ sum_region(
   dest_col = "dest",
   flow_col = "flow",
   international = FALSE,
-  include_net = TRUE
+  include_net = TRUE,
+  na_rm = TRUE
 )
 
 sum_country(
@@ -22,7 +23,8 @@ sum_country(
   dest_col = "dest",
   flow_col = "flow",
   include_net = TRUE,
-  international = TRUE
+  international = TRUE,
+  na_rm = TRUE
 )
 }
 \arguments{
@@ -39,6 +41,8 @@ sum_country(
 \item{international}{Logical to indicate if flows are international.}
 
 \item{include_net}{Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}.}
+
+\item{na_rm}{Logical to indicate if to remove NA values in \code{m} when calcualting in and out migraiton flow totals. Default set to \code{TRUE}.}
 }
 \value{
 A \code{tibble} with total in-, out- and turnover of flows for each region.
@@ -53,7 +57,7 @@ m <- matrix(data = c(0, 100, 30, 70, 50, 0, 45, 5, 60, 35, 0, 40, 20, 25, 20, 0)
             nrow = 4, ncol = 4, dimnames = list(orig = r, dest = r), byrow = TRUE)
 m
 sum_region(m)
-  
+
 \dontrun{
 # data frame (tidy) format
 library(tidyverse)
@@ -63,13 +67,13 @@ f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types 
 f
 
 # single period
-f \%>\% 
+f \%>\%
   filter(year0 == 1990) \%>\%
   sum_country(flow_col = "da_pb_closed")
 
 # all periods using group_by
-f \%>\% 
+f \%>\%
   group_by(year0) \%>\%
   sum_country(flow_col = "da_pb_closed")
-}   
+}
 }
