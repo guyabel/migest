@@ -1,13 +1,9 @@
-# migest 2.0.6
+# migest 2.0.5
 
 * Replaced `orig_col`, `dest_col` and `flow_col` argument names in, `sum_unilat()`, `sum_region()` and `sum_country()` with `orig`, `dest` and `flow`.
 * Allow `orig`, `dest` and `flow` argument names in, `sum_bilateral`, `sum_region()` and `sum_country()` to be non-characters.
 * Added `sum_unilat()` alias of `sum_region()` and `sum_country()`
 * Replaced `orig_col`, `dest_col` and `flow_col` argument names in all other functions
-
-
-# migest 2.0.5
-
 * Added `labels.pos.adjust = FALSE` in `mig_chord()`
 * Default colour ordering in `mig_chord()` based on `union(.$orig, .$dest)`
 * Include `na_rm` option in `sum_region()` and `sum_country()`

@@ -56,7 +56,9 @@ index_distance <- function(m = NULL,
   if(!is.character(flow)){
     flow <- as.name(substitute(flow))
   }
-  dist <- NULL
+  if(!is.character(dist)){
+    dist <- as.name(substitute(dist))
+  }
 
   f0 <- mig_tibble(
     m = m, orig = orig, dest = dest, flow = flow

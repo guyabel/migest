@@ -1,216 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/alabama_1970.html</loc>
-  </url>
-  <url>
-    <loc>/reference/birth_mat.html</loc>
-  </url>
-  <url>
-    <loc>/reference/block_matrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/block_sum.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bombay_1951.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cm2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cm3.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cm_net.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cm_net_tot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/death_mat.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dict_ims.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ffs_demo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ffs_diff.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ffs_rates.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_age.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_age_rc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_connectivity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_distance.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_impact.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index_intensity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/indian_sub.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf2_block.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf2_stripe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf3.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf3_qi.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipf_seed.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ipumsi_age.html</loc>
-  </url>
-  <url>
-    <loc>/reference/italy_area.html</loc>
-  </url>
-  <url>
-    <loc>/reference/korea_gravity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/manila_1970.html</loc>
-  </url>
-  <url>
-    <loc>/reference/match_birthplace_tot.html</loc>
-  </url>
-  <url>
-    <loc>/reference/migest-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mig_chord.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mig_matrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mig_tibble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/multi_comp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/multi_comp2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nb_non_zero.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nb_scale_global.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nchars_wrap.html</loc>
-  </url>
-  <url>
-    <loc>/reference/net_sr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/net_vs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/new_england_1960.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/quadratic_eqn.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rc_model_fund.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rc_model_un.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rescale_integer_sum.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rescale_nb.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rescale_net.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stripe_matrix.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_wrap_n.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_wrap_n_single.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_bilat.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_bilateral.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_expand.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_lump.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_net.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_od.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_region.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sum_turnover.html</loc>
-  </url>
-  <url>
-    <loc>/reference/uar_1960.html</loc>
-  </url>
-  <url>
-    <loc>/reference/umbrella.html</loc>
-  </url>
-  <url>
-    <loc>/reference/usa_1960.html</loc>
-  </url>
-  <url>
-    <loc>/SUPPORT.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/alabama_1970.html</loc></url>
+<url><loc>/reference/birth_mat.html</loc></url>
+<url><loc>/reference/block_matrix.html</loc></url>
+<url><loc>/reference/block_sum.html</loc></url>
+<url><loc>/reference/bombay_1951.html</loc></url>
+<url><loc>/reference/cm2.html</loc></url>
+<url><loc>/reference/cm3.html</loc></url>
+<url><loc>/reference/cm_net.html</loc></url>
+<url><loc>/reference/cm_net_tot.html</loc></url>
+<url><loc>/reference/death_mat.html</loc></url>
+<url><loc>/reference/dict_ims.html</loc></url>
+<url><loc>/reference/ffs_demo.html</loc></url>
+<url><loc>/reference/ffs_diff.html</loc></url>
+<url><loc>/reference/ffs_rates.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/index_age.html</loc></url>
+<url><loc>/reference/index_age_rc.html</loc></url>
+<url><loc>/reference/index_connectivity.html</loc></url>
+<url><loc>/reference/index_distance.html</loc></url>
+<url><loc>/reference/index_impact.html</loc></url>
+<url><loc>/reference/index_intensity.html</loc></url>
+<url><loc>/reference/indian_sub.html</loc></url>
+<url><loc>/reference/ipf2.html</loc></url>
+<url><loc>/reference/ipf2_block.html</loc></url>
+<url><loc>/reference/ipf2_stripe.html</loc></url>
+<url><loc>/reference/ipf3.html</loc></url>
+<url><loc>/reference/ipf3_qi.html</loc></url>
+<url><loc>/reference/ipf_seed.html</loc></url>
+<url><loc>/reference/ipumsi_age.html</loc></url>
+<url><loc>/reference/italy_area.html</loc></url>
+<url><loc>/reference/korea_gravity.html</loc></url>
+<url><loc>/reference/manila_1970.html</loc></url>
+<url><loc>/reference/match_birthplace_tot.html</loc></url>
+<url><loc>/reference/migest-package.html</loc></url>
+<url><loc>/reference/mig_chord.html</loc></url>
+<url><loc>/reference/mig_matrix.html</loc></url>
+<url><loc>/reference/mig_tibble.html</loc></url>
+<url><loc>/reference/multi_comp.html</loc></url>
+<url><loc>/reference/multi_comp2.html</loc></url>
+<url><loc>/reference/nb_non_zero.html</loc></url>
+<url><loc>/reference/nb_scale_global.html</loc></url>
+<url><loc>/reference/nchars_wrap.html</loc></url>
+<url><loc>/reference/net_sr.html</loc></url>
+<url><loc>/reference/net_vs.html</loc></url>
+<url><loc>/reference/new_england_1960.html</loc></url>
+<url><loc>/reference/pipe.html</loc></url>
+<url><loc>/reference/quadratic_eqn.html</loc></url>
+<url><loc>/reference/rc_model_fund.html</loc></url>
+<url><loc>/reference/rc_model_un.html</loc></url>
+<url><loc>/reference/rescale_integer_sum.html</loc></url>
+<url><loc>/reference/rescale_nb.html</loc></url>
+<url><loc>/reference/rescale_net.html</loc></url>
+<url><loc>/reference/stripe_matrix.html</loc></url>
+<url><loc>/reference/str_wrap_n.html</loc></url>
+<url><loc>/reference/str_wrap_n_single.html</loc></url>
+<url><loc>/reference/sum_bilat.html</loc></url>
+<url><loc>/reference/sum_bilateral.html</loc></url>
+<url><loc>/reference/sum_expand.html</loc></url>
+<url><loc>/reference/sum_lump.html</loc></url>
+<url><loc>/reference/sum_net.html</loc></url>
+<url><loc>/reference/sum_od.html</loc></url>
+<url><loc>/reference/sum_region.html</loc></url>
+<url><loc>/reference/sum_turnover.html</loc></url>
+<url><loc>/reference/uar_1960.html</loc></url>
+<url><loc>/reference/umbrella.html</loc></url>
+<url><loc>/reference/usa_1960.html</loc></url>
+<url><loc>/SUPPORT.html</loc></url>
 </urlset>
+

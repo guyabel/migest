@@ -64,7 +64,7 @@ index_impact <- function(m, p,
   if(!is.character(flow)){
     flow <- as.name(substitute(flow))
   }
-  pop <- reg <- net <- turn <- NULL
+  net <- turn <- NULL
   if(!is.matrix(m)){
     m <- mig_matrix(m = m, orig = orig, dest = dest, flow = flow)
     diag(m) <- 0
