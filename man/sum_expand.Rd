@@ -9,17 +9,15 @@ sum_expand(
   return_matrix = FALSE,
   guess_order = TRUE,
   area_first = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
-  orig_area_col = "orig_area",
-  dest_area_col = "dest_area",
-  orig_area = NULL,
-  dest_area = NULL
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
+  orig_area = "orig_area",
+  dest_area = "dest_area"
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
 \item{return_matrix}{Logical to return a matrix. Default \code{FALSE}.}
 
@@ -27,15 +25,11 @@ sum_expand(
 
 \item{area_first}{Order area sums to be placed before the origin and destination values. Default \code{TRUE}}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
-
-\item{orig_area_col}{Character string of the origin area column name (when \code{m} is a data frame rather than a \code{matrix})}
-
-\item{dest_area_col}{Character string of the destination area column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{orig_area}{Vector of labels for the origin areas of each row of \code{m}.}
 
@@ -70,7 +64,7 @@ library(tidyverse)
 library(countrycode)
 
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
+f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_types = FALSE)
 f
 
 # 1990-1995 flow estimates
@@ -82,7 +76,7 @@ f \%>\%
     dest_area = countrycode(sourcevar = dest, custom_dict = dict_ims,
                             origin = "iso3c", destination = "region")
   ) \%>\%
-  sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
+  sum_expand(flow = "da_pb_closed", return_matrix = FALSE)
 
 # by group (period)
 f \%>\%
@@ -93,6 +87,6 @@ f \%>\%
                             origin = "iso3c", destination = "region")
   ) \%>\%
   group_by(year0) \%>\%
-  sum_expand(flow_col = "da_pb_closed", return_matrix = FALSE)
+  sum_expand(flow = "da_pb_closed", return_matrix = FALSE)
 }
 }

@@ -14,28 +14,28 @@ United Nations Department of Economic and Social Affairs Population Division. (1
 index_impact(
   m,
   p,
-  pop_col = "pop",
-  reg_col = "region",
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
+  pop = "pop",
+  reg = "region",
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
   long = TRUE
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
-\item{p}{A data frame or named vector for the total population. When data frame, column of populations labelled using \code{pop_col} and region names labelled \code{reg_col}.}
+\item{p}{A data frame or named vector for the total population. When data frame, column of populations labelled using \code{pop} and region names labelled \code{reg}.}
 
-\item{pop_col}{Character string of the population column name}
+\item{pop}{Character string of the population column name}
 
-\item{reg_col}{Character string of the region column name. Must match dimension names or values in origin and destination columns of \code{m}.}
+\item{reg}{Character string of the region column name. Must match dimension names or values in origin and destination columns of \code{m}.}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{long}{Logical to return a long data frame with index values all in one column}
 }
@@ -61,11 +61,11 @@ p <- korea_gravity \%>\%
   filter(year == 2020) \%>\%
   distinct(dest, dest_pop)
 p
-index_impact(m = m, p = p, pop_col = "dest_pop", reg_col = "dest")
+index_impact(m = m, p = p, pop = "dest_pop", reg = "dest")
 
 # multiple years
 library(tidyr)
-library(purrr) 
+library(purrr)
 
 korea_gravity \%>\%
   select(year, orig, dest, flow, dest_pop) \%>\%
@@ -74,7 +74,7 @@ korea_gravity \%>\%
          p = map(.x = data, .f = ~distinct(.x, dest, dest_pop)),
          i = map2(.x = m, .y = p,
                   .f = ~index_impact(
-                    m = .x, p = .y, pop_col = "dest_pop", reg_col = "dest", long = FALSE
+                    m = .x, p = .y, pop = "dest_pop", reg = "dest", long = FALSE
                   ))) \%>\%
   select(-data, -m, -p) \%>\%
   unnest(i)

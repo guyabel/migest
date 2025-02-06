@@ -4,16 +4,16 @@
 \alias{mig_tibble}
 \title{Helper function to format migration input}
 \usage{
-mig_tibble(m, orig_col = "orig", dest_col = "dest", flow_col = "flow")
+mig_tibble(m, orig = "orig", dest = "dest", flow = "flow")
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 }
 \value{
 Formatted tibble

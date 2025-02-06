@@ -1,13 +1,13 @@
 #' Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
 #'
-#' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.
+#' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.
 #' @param drop_diagonal Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.
-#' @param orig_col Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
-#' @param dest_col Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
-#' @param flow_col Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
+#' @param orig Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})
+#' @param dest Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})
+#' @param flow Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})
 #' @param include_net Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}.
 #' @param international Logical to indicate if flows are international.
-#' @param na_rm Logical to indicate if to remove NA values in \code{m} when calcualting in and out migraiton flow totals. Default set to \code{TRUE}.
+#' @param na_rm Logical to indicate if to remove NA values in \code{m} when calculating in and out migration flow totals. Default set to \code{TRUE}.
 #'
 #' @return A \code{tibble} with total in-, out- and turnover of flows for each region.
 #'
@@ -32,29 +32,39 @@
 #' # single period
 #' f %>%
 #'   filter(year0 == 1990) %>%
-#'   sum_country(flow_col = "da_pb_closed")
+#'   sum_country(flow = "da_pb_closed")
 #'
 #' # all periods using group_by
 #' f %>%
 #'   group_by(year0) %>%
-#'   sum_country(flow_col = "da_pb_closed")
+#'   sum_country(flow = "da_pb_closed")
 #' }
 sum_region <- function(
   m, drop_diagonal = TRUE,
-  orig_col = "orig", dest_col = "dest", flow_col = "flow",
+  orig = "orig", dest = "dest", flow = "flow",
   international = FALSE, include_net = TRUE,
   na_rm = TRUE){
-  # m = d0; drop_diagonal = FALSE; include_net = TRUE
+  # m = d0; drop_diagonal = FALSE; include_net = TRUE; na_rm = TRUE; international = TRUE
   # m <- xtabs(formula = da_pb_closed ~ orig + dest, data = d0, subset = year0 == 1990)
-  # orig_col = "orig"; dest_col = "dest"; flow_col = "da_pb_closed"
-  # flow_col = "flow"
-  orig <- dest <- flow <- region <- tot_in_mig <- tot_out_mig <- NULL
+  # orig = "orig"; dest = "dest"; flow = "da_pb_closed"
+  # flow = "flow"
+  if(!is.character(orig)){
+    orig <- as.name(substitute(orig))
+  }
+  if(!is.character(dest)){
+    dest <- as.name(substitute(dest))
+  }
+  if(!is.character(flow)){
+    flow <- as.name(substitute(flow))
+  }
+  region <- tot_in_mig <- tot_out_mig <- NULL
   # fmt <- migest:::mig_tibble(
   fmt <- mig_tibble(
-    m = m, orig_col = orig_col, dest_col = dest_col, flow_col = flow_col
+    m = m, orig = orig, dest = dest, flow = flow
   )
   d <- fmt$d
   g <- fmt$g
+  # print(d)
 
   if(drop_diagonal)
     d <- d %>%
@@ -98,10 +108,20 @@ sum_region <- function(
 #' @rdname sum_region
 #' @export
 sum_country <- function(m, drop_diagonal = TRUE,
-                       orig_col = "orig", dest_col = "dest", flow_col = "flow",
+                        orig = "orig", dest = "dest", flow = "flow",
                        include_net = TRUE, international = TRUE, na_rm = TRUE){
   sum_region(m = m, drop_diagonal = drop_diagonal,
-             orig_col = orig_col, dest_col = dest_col, flow_col = flow_col,
+             orig = orig, dest = dest, flow = flow,
+             include_net = include_net, international = international, na_rm = na_rm)
+}
+
+#' @rdname sum_region
+#' @export
+sum_unilat <- function(m, drop_diagonal = TRUE,
+                        orig = "orig", dest = "dest", flow = "flow",
+                       include_net = TRUE, international = TRUE, na_rm = TRUE){
+  sum_region(m = m, drop_diagonal = drop_diagonal,
+             orig = orig, dest = dest, flow = flow,
              include_net = include_net, international = international, na_rm = na_rm)
 }
 

@@ -12,13 +12,13 @@ sum_lump(
   complete = FALSE,
   fill = 0,
   return_matrix = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow"
+  orig = "orig",
+  dest = "dest",
+  flow = "flow"
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
 \item{threshold}{Numeric value used to determine small flows, origins or destinations that will be grouped (lumped) together.}
 
@@ -32,11 +32,11 @@ sum_lump(
 
 \item{return_matrix}{Logical to return a matrix. Default \code{FALSE}.}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 }
 \value{
 A \code{tibble} with an additional \code{other} origins and/or destinations region based on the grouping together of small values below the \code{threshold} argument and the \code{lump} argument to indicate on where to apply the threshold.
@@ -71,17 +71,17 @@ sum_lump(m, threshold = 80, complete = TRUE, return_matrix = FALSE)
 library(tidyverse)
 
 # download Abel and Cohen (2019) estimates
-f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_col_types = FALSE)
+f <- read_csv("https://ndownloader.figshare.com/files/38016762", show_types = FALSE)
 f
 
 # large 1990-1995 flow estimates
 f \%>\%
   filter(year0 == 1990) \%>\%
-  sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
+  sum_lump(flow = "da_pb_closed", threshold = 1e5)
 
 # large flow estimates for each year
 f \%>\%
   group_by(year0) \%>\%
-  sum_lump(flow_col = "da_pb_closed", threshold = 1e5)
+  sum_lump(flow = "da_pb_closed", threshold = 1e5)
 }
 }

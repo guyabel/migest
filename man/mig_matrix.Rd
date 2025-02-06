@@ -4,24 +4,18 @@
 \alias{mig_matrix}
 \title{Helper function to format migration input}
 \usage{
-mig_matrix(
-  m,
-  array = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow"
-)
+mig_matrix(m, array = TRUE, orig = "orig", dest = "dest", flow = "flow")
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
 \item{array}{Logical on return of array of all dimensions or origin-destination matrix (summed over all other dimensions)}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 }
 \value{
 Formatted matrix

@@ -10,25 +10,25 @@ Bell, M., Blake, M., Boyle, P., Duke-Williams, O., Rees, P. H., Stillwell, J., &
 index_distance(
   m = NULL,
   d = NULL,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
-  dist_col = "dist",
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
+  dist = "dist",
   long = TRUE
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
-\item{d}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{dist_col}. Region names should match those in \code{m}.}
+\item{d}{A \code{matrix} or data frame of origin-destination distances. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{dist}. Region names should match those in \code{m}.}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dist_col}{Character string of the distance column name (when \code{dist} is a data frame rather than a \code{matrix})}
+\item{dist}{Character string of the distance column name (when \code{dist} is a data frame rather than a \code{matrix})}
 
 \item{long}{Logical to return a long data frame with index values all in one column}
 }
@@ -46,7 +46,7 @@ Summary indices of migration distance
 index_distance(
   m = subset(korea_gravity, year == 2020),
   d = subset(korea_gravity, year == 2020),
-  dist_col = "dist_cent"
+  dist = "dist_cent"
 )
 
 # multiple years
@@ -58,8 +58,8 @@ korea_gravity \%>\%
   select(year, orig, dest, flow, dist_cent) \%>\%
   group_nest(year) \%>\%
   mutate(i = map2(
-    .x = data, .y = data, 
-    .f = ~index_distance(m = .x, d = .y, dist_col = "dist_cent", long = FALSE)
+    .x = data, .y = data,
+    .f = ~index_distance(m = .x, d = .y, dist = "dist_cent", long = FALSE)
   )) \%>\%
   select(-data) \%>\%
   unnest(i)

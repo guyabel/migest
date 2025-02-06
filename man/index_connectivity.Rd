@@ -18,14 +18,14 @@ index_connectivity(
   gini_orig_all = FALSE,
   gini_dest_all = FALSE,
   gini_corrected = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
   long = TRUE
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
 \item{gini_orig_all}{Logical to include gini index values for all origin regions. Default \code{FALSE}.}
 
@@ -33,11 +33,11 @@ index_connectivity(
 
 \item{gini_corrected}{Logical to use corrected denominator in Gini index of Bell (2002) or original of David A. Plane and Mulligan (1997)}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{long}{Logical to return a long data frame with index values all in one column}
 }

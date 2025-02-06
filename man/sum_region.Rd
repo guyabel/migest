@@ -3,14 +3,15 @@
 \name{sum_region}
 \alias{sum_region}
 \alias{sum_country}
+\alias{sum_unilat}
 \title{Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_region(
   m,
   drop_diagonal = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
   international = FALSE,
   include_net = TRUE,
   na_rm = TRUE
@@ -19,30 +20,41 @@ sum_region(
 sum_country(
   m,
   drop_diagonal = TRUE,
-  orig_col = "orig",
-  dest_col = "dest",
-  flow_col = "flow",
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
+  include_net = TRUE,
+  international = TRUE,
+  na_rm = TRUE
+)
+
+sum_unilat(
+  m,
+  drop_diagonal = TRUE,
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
   include_net = TRUE,
   international = TRUE,
   na_rm = TRUE
 )
 }
 \arguments{
-\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig_col}, \code{dest_col} and \code{flow_col}.}
+\item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
 
 \item{drop_diagonal}{Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.}
 
-\item{orig_col}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{orig}{Character string of the origin column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{dest_col}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{dest}{Character string of the destination column name (when \code{m} is a data frame rather than a \code{matrix})}
 
-\item{flow_col}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
+\item{flow}{Character string of the flow column name (when \code{m} is a data frame rather than a \code{matrix})}
 
 \item{international}{Logical to indicate if flows are international.}
 
 \item{include_net}{Logical to indicate inclusion of a net migration total column for each region, in addition to the total in- and out-flows. Default \code{TRUE}.}
 
-\item{na_rm}{Logical to indicate if to remove NA values in \code{m} when calcualting in and out migraiton flow totals. Default set to \code{TRUE}.}
+\item{na_rm}{Logical to indicate if to remove NA values in \code{m} when calculating in and out migration flow totals. Default set to \code{TRUE}.}
 }
 \value{
 A \code{tibble} with total in-, out- and turnover of flows for each region.
@@ -69,11 +81,11 @@ f
 # single period
 f \%>\%
   filter(year0 == 1990) \%>\%
-  sum_country(flow_col = "da_pb_closed")
+  sum_country(flow = "da_pb_closed")
 
 # all periods using group_by
 f \%>\%
   group_by(year0) \%>\%
-  sum_country(flow_col = "da_pb_closed")
+  sum_country(flow = "da_pb_closed")
 }
 }
