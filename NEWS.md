@@ -1,5 +1,6 @@
 # migest 2.0.5
 
+* Added `net_matrix_ipf()`, `net_matrix_optim()`, `net_matrix_lp()` and `net_matrix_entropy()` functions.
 * Replaced `orig_col`, `dest_col` and `flow_col` argument names in, `sum_unilat()`, `sum_region()` and `sum_country()` with `orig`, `dest` and `flow`.
 * Allow `orig`, `dest` and `flow` argument names in, `sum_bilateral`, `sum_region()` and `sum_country()` to be non-characters.
 * Added `sum_unilat()` alias of `sum_region()` and `sum_country()`

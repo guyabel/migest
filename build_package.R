@@ -31,7 +31,7 @@ usethis::use_pkgdown()
 pkgdown::build_site()
 pkgdown::build_site(run_dont_run = TRUE)
 pkgdown::build_site_github_pages()
-pkgdown::build_reference() 
+pkgdown::build_reference()
 
 usethis::use_spell_check()
 

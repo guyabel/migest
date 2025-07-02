@@ -1,6 +1,6 @@
 Package: migest
 Type: Package
-Title: Methods for the Indirect Estimation of Bilateral Migration
+Title: Tools for estimating, measuring and working with migration data.
 Version: 2.0.5
 Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
                     email = "g.j.abel@gmail.com",
@@ -31,7 +31,9 @@ Imports:
     circlize,
     graphics,
     grDevices,
-    mipfp
+    mipfp,
+    CVXR,
+    lpSolve
 Suggests: 
     spelling, 
     countrycode
