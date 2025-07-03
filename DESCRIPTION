@@ -1,12 +1,12 @@
 Package: migest
 Type: Package
-Title: Tools for estimating, measuring and working with migration data.
+Title: Tools for estimating, measuring and working with migration data
 Version: 2.0.5
 Authors@R: c(person(c("Guy", "J."), "Abel", role = c("aut", "cre"),
                     email = "g.j.abel@gmail.com",
                     comment = c(ORCID = "0000-0002-4893-5687")))
 Maintainer: Guy J. Abel <g.j.abel@gmail.com>
-Description: Tools for estimating, measuring and working with migration data.
+Description: Provides tools for estimating, measuring, and analyzing migration data. Designed to assist researchers and analysts in working effectively with migration data.
 URL: http://guyabel.github.io/migest/
 BugReports: https://github.com/guyabel/migest/issues
 License: GPL-3

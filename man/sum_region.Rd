@@ -4,7 +4,8 @@
 \alias{sum_region}
 \alias{sum_country}
 \alias{sum_unilat}
-\title{Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
+\alias{sum_unilateral}
+\title{Unilateral summaries of in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.}
 \usage{
 sum_region(
   m,
@@ -38,6 +39,17 @@ sum_unilat(
   international = TRUE,
   na_rm = TRUE
 )
+
+sum_unilateral(
+  m,
+  drop_diagonal = TRUE,
+  orig = "orig",
+  dest = "dest",
+  flow = "flow",
+  include_net = TRUE,
+  international = TRUE,
+  na_rm = TRUE
+)
 }
 \arguments{
 \item{m}{A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.}
@@ -60,7 +72,13 @@ sum_unilat(
 A \code{tibble} with total in-, out- and turnover of flows for each region.
 }
 \description{
-Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
+Unilateral summaries of in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
+
+Alias for sum_region() for international data
+
+Alias for sum_region() with more general naming
+
+Alias for sum_unilat() with more explicit naming
 }
 \examples{
 # matrix

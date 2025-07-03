@@ -1,4 +1,4 @@
-#' Summary of regional in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
+#' Unilateral summaries of in-, out-, turnover and net-migration totals from an origin-destination migration flow matrix or data frame.
 #'
 #' @param m A \code{matrix} or data frame of origin-destination flows. For \code{matrix} the first and second dimensions correspond to origin and destination respectively. For a data frame ensure the correct column names are passed to \code{orig}, \code{dest} and \code{flow}.
 #' @param drop_diagonal Logical to indicate dropping of diagonal terms, where the origin and destination are the same, in the calculation of totals. Default \code{TRUE}.
@@ -105,6 +105,7 @@ sum_region <- function(
   return(d)
 }
 
+#' Alias for sum_region() for international data
 #' @rdname sum_region
 #' @export
 sum_country <- function(m, drop_diagonal = TRUE,
@@ -115,6 +116,7 @@ sum_country <- function(m, drop_diagonal = TRUE,
              include_net = include_net, international = international, na_rm = na_rm)
 }
 
+#' Alias for sum_region() with more general naming
 #' @rdname sum_region
 #' @export
 sum_unilat <- function(m, drop_diagonal = TRUE,
@@ -125,7 +127,16 @@ sum_unilat <- function(m, drop_diagonal = TRUE,
              include_net = include_net, international = international, na_rm = na_rm)
 }
 
-
+#' Alias for sum_unilat() with more explicit naming
+#' @rdname sum_region
+#' @export
+sum_unilateral <- function(m, drop_diagonal = TRUE,
+                       orig = "orig", dest = "dest", flow = "flow",
+                       include_net = TRUE, international = TRUE, na_rm = TRUE){
+  sum_unilat(m = m, drop_diagonal = drop_diagonal,
+             orig = orig, dest = dest, flow = flow,
+             include_net = include_net, international = international, na_rm = na_rm)
+}
 
 # library(tidyverse)
 # library(migest)
