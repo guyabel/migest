@@ -163,13 +163,15 @@
 <span class="r-in"><span><span class="co">##</span></span></span>
 <span class="r-in"><span><span class="co">## from large data frame</span></span></span>
 <span class="r-in"><span><span class="co">##</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://vincentarelbundock.github.io/countrycode/" class="external-link">countrycode</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># download Abel and Cohen (2019) estimates</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"https://ndownloader.figshare.com/files/38016762"</span>, show_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_csv("https://ndownloader.figshare.com/files/38016762", show_types = FALSE):</span> unused argument (show_types = FALSE)</span>
 <span class="r-in"><span><span class="va">f</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'f' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 1990-1995 flow estimates</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
@@ -181,6 +183,7 @@
 <span class="r-in"><span>                            origin <span class="op">=</span> <span class="st">"iso3c"</span>, destination <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">sum_expand</span><span class="op">(</span>flow <span class="op">=</span> <span class="st">"da_pb_closed"</span>, return_matrix <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'f' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># by group (period)</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
@@ -192,7 +195,8 @@
 <span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year0</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">sum_expand</span><span class="op">(</span>flow <span class="op">=</span> <span class="st">"da_pb_closed"</span>, return_matrix <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'f' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
