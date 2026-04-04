@@ -65,11 +65,6 @@ result$n |>
   round(2)
 sum_region(result$n)
 }
-\seealso{
-\code{\link{net_matrix_entropy}()} for entropy-based estimation minimizing KL divergence,
-\code{\link{net_matrix_lp}()} for L1-loss linear programming,
-and \code{\link{net_matrix_optim}()} for least-squares (L2) optimization.
-}
 \author{
 Guy J. Abel, Peter W. F. Smith
 }

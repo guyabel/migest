@@ -1,3 +1,7 @@
+# migest 2.0.6
+
+* Stash all `net_matrix_*` functions in dev folder
+
 # migest 2.0.5
 
 * Added `net_matrix_ipf()`, `net_matrix_optim()`, `net_matrix_lp()` and `net_matrix_entropy()` functions.

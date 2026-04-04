@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^build_package\.R$
 ^data-raw$
+^dev$
 ^hex$
 ^old-scripts$
 ^wp-blog$

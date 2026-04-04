@@ -29,11 +29,6 @@
 #'
 #' @author Guy J. Abel, Peter W. F. Smith
 #'
-#' @seealso
-#' \code{\link{net_matrix_entropy}()} for entropy-based estimation minimizing KL divergence,
-#' \code{\link{net_matrix_lp}()} for L1-loss linear programming,
-#' and \code{\link{net_matrix_optim}()} for least-squares (L2) optimization.
-#'
 #' @examples
 #' m <- matrix(c(0, 100, 30, 70,
 #'               50,   0, 45,  5,
