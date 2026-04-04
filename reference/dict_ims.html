@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">migest</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,10 +145,10 @@
 <span class="r-in"><span><span class="co"># use dictionary to get region to region flows</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="va">f</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">mutate</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    orig <span class="op">=</span> <span class="fu"><a href="https://vincentarelbundock.github.io/countrycode/reference/countrycode.html" class="external-link">countrycode</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    orig <span class="op">=</span> <span class="fu"><a href="https://vincentarelbundock.github.io/countrycode/man/countrycode.html" class="external-link">countrycode</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      sourcevar <span class="op">=</span> <span class="va">orig</span>, custom_dict <span class="op">=</span> <span class="va">dict_ims</span>,</span></span>
 <span class="r-in"><span>      origin <span class="op">=</span> <span class="st">"iso3c"</span>, destination <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    dest <span class="op">=</span> <span class="fu"><a href="https://vincentarelbundock.github.io/countrycode/reference/countrycode.html" class="external-link">countrycode</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    dest <span class="op">=</span> <span class="fu"><a href="https://vincentarelbundock.github.io/countrycode/man/countrycode.html" class="external-link">countrycode</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      sourcevar <span class="op">=</span> <span class="va">dest</span>, custom_dict <span class="op">=</span> <span class="va">dict_ims</span>,</span></span>
 <span class="r-in"><span>      origin <span class="op">=</span> <span class="st">"iso3c"</span>, destination <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
@@ -167,7 +167,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
